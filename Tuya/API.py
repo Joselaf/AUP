@@ -31,7 +31,7 @@ if result.get("success"):
                     print(f"    {item['code']}: {item['value']}")
             else:
                 print(f"  Status error: {status_response.get('msg')}")
-            print()
+            
     else:
         print(f"Error getting devices: {devices_response.get('msg')}")
 else:
