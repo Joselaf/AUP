@@ -41,10 +41,10 @@ if result.get("success"):
             if status_response.get("success"):
                 print(f"  Status:")
                 for item in status_response["result"]:
-                    print(f"    {item['code']}: {item['value']}")
+                    print(f"{item['code']}:{item['value']}")
             else:
                 print(f"  Status error: {status_response.get('msg')}")
-            
+            print('\n')
     else:
         print(f"Error getting devices: {devices_response.get('msg')}")
 else:
