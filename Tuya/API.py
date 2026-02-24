@@ -17,9 +17,22 @@ if result.get("success"):
         print(f"Found {len(devices)} device(s):\n")
         
         for device in devices:
-            print(f"Device: {device.get('name', device.get('custom_name', 'Unknown'))}")
-            print(f"  ID: {device['id']}")
-            print(f"  Online: {device.get('is_online', device.get('online', 'N/A'))}")
+            device_id = device['id']
+            
+            # Get full device info to get the proper name
+            info_response = openapi.get(f"/v1.0/devices/{device_id}")
+            
+            if info_response.get("success"):
+                device_info = info_response["result"]
+                device_name = device_info.get('name', 'Unknown')
+                is_online = device_info.get('online', False)
+            else:
+                device_name = device.get('name', device.get('custom_name', 'Unknown'))
+                is_online = 'N/A'
+            
+            print(f"Device: {device_name}")
+            print(f"  ID: {device_id}")
+            print(f"  Online: {is_online}")
             print(f"  Category: {device.get('category', 'N/A')}")
             print(f"  Product ID: {device.get('product_id', 'N/A')}")
             
