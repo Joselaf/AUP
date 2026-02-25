@@ -65,7 +65,7 @@ def monitor_device(device_id):
 
 # Main
 devices = get_all_devices()
-print(f"\n✓ Found {len(devices)} devices")
+##print(f"\n✓ Found {len(devices)} devices")
 
 while True:
     print("\n1. List  \n2. Status  \n3. Command  \n4. Monitor  \n5. Exit")
