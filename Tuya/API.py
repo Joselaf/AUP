@@ -68,7 +68,7 @@ devices = get_all_devices()
 print(f"\n✓ Found {len(devices)} devices")
 
 while True:
-    print("\n1. List  2. Status  3. Command  4. Monitor  5. Exit")
+    print("\n1. List  \n2. Status  \n3. Command  \n4. Monitor  \n5. Exit")
     choice = input("Choice: ").strip()
     
     if choice == '1':
