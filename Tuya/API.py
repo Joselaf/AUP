@@ -1,4 +1,7 @@
 from tuya_connector import TuyaOpenAPI
+import time
+import threading
+import sys
 
 ACCESS_ID = "wq3f87vwvv8jpj5ynsqu"
 ACCESS_KEY = "c1250567ba4a4361a85678c7431ba3c1"
@@ -23,6 +26,40 @@ def show_device_status(device_id):
     print(f"\n=== {info['name']} Status ===")
     for item in status:
         print(f"  {item['code']}: {item['value']}")
+
+def monitor_device(device_id):
+    info = openapi.get(f"/v1.0/devices/{device_id}")["result"]
+    print(f"\n=== Monitoring {info['name']} ===")
+    print("Press 'q' and Enter to stop monitoring\n")
+    
+    stop_monitoring = False
+    
+    def check_input():
+        nonlocal stop_monitoring
+        input()
+        stop_monitoring = True
+    
+    # Start input thread
+    input_thread = threading.Thread(target=check_input, daemon=True)
+    input_thread.start()
+    
+    try:
+        while not stop_monitoring:
+            status = openapi.get(f"/v1.0/devices/{device_id}/status")["result"]
+            
+            # Clear previous output
+            print("\033[H\033[J", end="")
+            print(f"=== Monitoring {info['name']} === (Press Enter to stop)\n")
+            print(f"Time: {time.strftime('%H:%M:%S')}\n")
+            
+            for item in status:
+                print(f"  {item['code']}: {item['value']}")
+            
+            time.sleep(2)  # Update every 2 seconds
+    except KeyboardInterrupt:
+        pass
+    
+    print("\n✓ Monitoring stopped")
 
 def send_command(device_id):
     # Show current status first
@@ -74,7 +111,8 @@ while True:
     print("1. List devices")
     print("2. View device status")
     print("3. Send command")
-    print("4. Exit")
+    print("4. Monitor device (live updates)")
+    print("5. Exit")
     
     choice = input("\nChoice: ").strip()
     
@@ -98,6 +136,14 @@ while True:
             print("✗ Invalid device number")
     
     elif choice == '4':
+        show_devices(devices)
+        device_num = input("\nSelect device number: ").strip()
+        if device_num.isdigit() and 1 <= int(device_num) <= len(devices):
+            monitor_device(devices[int(device_num)-1]['id'])
+        else:
+            print("✗ Invalid device number")
+    
+    elif choice == '5':
         print("\nGoodbye!")
         break
     
