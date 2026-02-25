@@ -58,8 +58,8 @@ devices = get_devices()
 print(f"\n{len(devices)} devices loaded\n")
 
 while True:
-    print("1. List\n  2. Status\n  3. Command\n  4. Monitor\n  5. Exit")
-    choice = input("> ").strip()
+    print("  1. List\n  2. Status\n  3. Command\n  4. Monitor\n  5. Exit")
+    choice = input("-> ").strip()
     
     if choice == '1':
         for i, d in enumerate(devices, 1):
