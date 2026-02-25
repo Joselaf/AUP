@@ -5,119 +5,99 @@ import threading
 ACCESS_ID = "c8uhx3vs89grhea8mg7p"
 ACCESS_KEY = "7221603a3b754d8b89b30c8dc9114b0d"
 
-openapi = TuyaOpenAPI("https://openapi.tuyaeu.com", ACCESS_ID, ACCESS_KEY)
-openapi.connect()
+api = TuyaOpenAPI("https://openapi.tuyaeu.com", ACCESS_ID, ACCESS_KEY)
+api.connect()
 
-def get_all_devices():
+def get_devices():
     devices, seen = [], set()
-    print("Loading devices", end="", flush=True)
-    
-    for page in range(10):
+    for _ in range(10):
         body = {"page_size": 20}
         if devices:
-            body["last_id"] = devices[-1]['id']  # Changed from last_row_key to last_id
+            body["last_id"] = devices[-1]['id']
         
-        response = openapi.get("/v2.0/cloud/thing/device", body)
-        result = response.get("result", [])
-        
+        result = api.get("/v2.0/cloud/thing/device", body).get("result", [])
         if not result:
             break
         
-        new_count = 0
         for d in result:
             if d['id'] not in seen:
                 seen.add(d['id'])
                 devices.append(d)
-                new_count += 1
         
-        print(".", end="", flush=True)
-        
-        # Stop if no new devices or less than 20 (last page)
-        if new_count == 0 or len(result) < 20:
+        if len(result) < 20:
             break
-    
-    print(f" {len(devices)} found!")
     return devices
 
-def get_device_info(device_id):
-    return openapi.get(f"/v1.0/devices/{device_id}")["result"]
+def get_info(device_id):
+    return api.get(f"/v1.0/devices/{device_id}")["result"]
 
-def get_device_status(device_id):
-    return openapi.get(f"/v1.0/devices/{device_id}/status")["result"]
+def get_status(device_id):
+    return api.get(f"/v1.0/devices/{device_id}/status")["result"]
 
-def send_command(device_id, code, value):
-    return openapi.post(f"/v1.0/devices/{device_id}/commands", 
-                       {"commands": [{"code": code, "value": value}]})
+def send_cmd(device_id, code, value):
+    return api.post(f"/v1.0/devices/{device_id}/commands", 
+                    {"commands": [{"code": code, "value": value}]})
 
-def monitor_device(device_id):
-    info = get_device_info(device_id)
-    print(f"\n=== Monitoring {info['name']} === (Press Enter to stop)\n")
+def monitor(device_id):
+    info = get_info(device_id)
+    print(f"\nMonitoring {info['name']} (Press Enter to stop)\n")
     
-    stop = False
-    threading.Thread(target=lambda: (input(), globals().update(stop=True)), daemon=True).start()
+    stop = [False]
+    threading.Thread(target=lambda: (input(), stop.__setitem__(0, True)), daemon=True).start()
     
-    while not stop:
-        print("\033[H\033[J" + f"Time: {time.strftime('%H:%M:%S')}\n")
-        for item in get_device_status(device_id):
-            print(f"  {item['code']}: {item['value']}")
+    while not stop[0]:
+        print("\033[H\033[J", end="")
+        print(f"{info['name']} - {time.strftime('%H:%M:%S')}\n")
+        for s in get_status(device_id):
+            print(f"  {s['code']}: {s['value']}")
         time.sleep(2)
-    print("\n✓ Stopped")
+    print("\nStopped")
 
 # Main
-devices = get_all_devices()
-##print(f"\n✓ Found {len(devices)} devices")
+devices = get_devices()
+print(f"\n{len(devices)} devices loaded\n")
 
 while True:
-    print("\n1. List  \n2. Status  \n3. Command  \n4. Monitor  \n5. Exit")
-    choice = input("Choice: ").strip()
+    print("1. List\n  2. Status\n  3. Command\n  4. Monitor\n  5. Exit")
+    choice = input("> ").strip()
     
     if choice == '1':
         for i, d in enumerate(devices, 1):
-            info = get_device_info(d['id'])
-            print(f"{i}. {info['name']} - {'Online' if info['online'] else 'Offline'}")
+            info = get_info(d['id'])
+            print(f"{i}. {info['name']} ({'ON' if info['online'] else 'OFF'})")
     
     elif choice in ['2', '3', '4']:
-        for i, d in enumerate(devices, 1):
-            print(f"{i}. {get_device_info(d['id'])['name']}")
-        
-        num = input("Device #: ").strip()
+        num = input("Device #: ")
         if not num.isdigit() or not (1 <= int(num) <= len(devices)):
-            print("✗ Invalid")
             continue
         
         device_id = devices[int(num)-1]['id']
         
-        if choice == '2':
-            info = get_device_info(device_id)
-            print(f"\n=== {info['name']} ===")
-            for item in get_device_status(device_id):
-                print(f"  {item['code']}: {item['value']}")
-        
-        elif choice == '3':
-            print("\nAvailable commands:")
-            for item in get_device_status(device_id):
-                print(f"  {item['code']}: {item['value']}")
+        if choice == '4':
+            monitor(device_id)
+        else:
+            info = get_info(device_id)
+            status = get_status(device_id)
             
-            while True:
-                cmd = input("\nCommand (code=value or 'back'): ").strip()
-                if cmd == 'back':
-                    break
-                try:
-                    code, val = cmd.split('=')
-                    val = val.strip()
-                    if val == 'true': val = True
-                    elif val == 'false': val = False
-                    elif val.isdigit(): val = int(val)
-                    
-                    if send_command(device_id, code.strip(), val).get("success"):
-                        print("✓ Sent")
-                    else:
-                        print("✗ Failed")
-                except:
-                    print("✗ Use: code=value")
-        
-        elif choice == '4':
-            monitor_device(device_id)
+            print(f"\n{info['name']}:")
+            for s in status:
+                print(f"  {s['code']}: {s['value']}")
+            
+            if choice == '3':
+                while True:
+                    cmd = input("\ncode=value (or 'q'): ")
+                    if cmd == 'q':
+                        break
+                    try:
+                        code, val = cmd.split('=')
+                        if val == 'true': val = True
+                        elif val == 'false': val = False
+                        elif val.isdigit(): val = int(val)
+                        
+                        if send_cmd(device_id, code, val).get("success"):
+                            print("✓")
+                    except:
+                        print("✗")
     
     elif choice == '5':
         break
