@@ -1,13 +1,13 @@
 from tuya_connector import TuyaOpenAPI
 import time
 import threading
-
+## credentials from the cloud project you can find these in the Tuya IoT Platform
 ACCESS_ID = "c8uhx3vs89grhea8mg7p"
 ACCESS_KEY = "7221603a3b754d8b89b30c8dc9114b0d"
-
+##It is used to connect to the API
 api = TuyaOpenAPI("https://openapi.tuyaeu.com", ACCESS_ID, ACCESS_KEY)
 api.connect()
-
+## It fetches all the devices of the user and returns a list of devices.
 def get_devices():
     devices, seen = [], set()
     for _ in range(10):
@@ -28,16 +28,19 @@ def get_devices():
             break
     return devices
 
+##gets the info of the device
 def get_info(device_id):
     return api.get(f"/v1.0/devices/{device_id}")["result"]
-
+## gets the status of the device
 def get_status(device_id):
     return api.get(f"/v1.0/devices/{device_id}/status")["result"]
 
+#Sends command to the device
 def send_cmd(device_id, code, value):
     return api.post(f"/v1.0/devices/{device_id}/commands", 
                     {"commands": [{"code": code, "value": value}]})
 
+##It monitors a specific device's status every 2 seconds
 def monitor(device_id):
     info = get_info(device_id)
     print(f"\nMonitoring {info['name']} (Press Enter to stop)\n")
