@@ -48,11 +48,45 @@ def monitor(device_id):
     stop = [False]
     threading.Thread(target=lambda: (input(), stop.__setitem__(0, True)), daemon=True).start()
     
+    total_kwh = 0.0
+    last_time = time.time()
+    
     while not stop[0]:
         print("\033[H\033[J", end="")
         print(f"{info['name']} - {time.strftime('%H:%M:%S')}\n")
-        for s in get_status(device_id):
+        
+        status = get_status(device_id)
+        consumption_data = {}
+        
+        for s in status:
+            # Highlight consumption-related metrics
+            if s['code'] in ['cur_power', 'cur_current', 'cur_voltage', 'power', 'add_ele']:
+                consumption_data[s['code']] = s['value']
             print(f"  {s['code']}: {s['value']}")
+        
+        # Calculate kWh consumption
+        current_time = time.time()
+        time_diff_hours = (current_time - last_time) / 3600
+        
+        if 'cur_power' in consumption_data:
+            power_watts = consumption_data['cur_power'] / 10
+            total_kwh += (power_watts / 1000) * time_diff_hours
+        
+        last_time = current_time
+        
+        # Display consumption summary
+        if consumption_data:
+            print("\n--- CONSUMPTION ---")
+            if 'cur_power' in consumption_data:
+                print(f"  Power: {consumption_data['cur_power'] / 10:.1f} W")
+            if 'cur_current' in consumption_data:
+                print(f"  Current: {consumption_data['cur_current']} mA")
+            if 'cur_voltage' in consumption_data:
+                print(f"  Voltage: {consumption_data['cur_voltage'] / 10:.1f} V")
+            if 'add_ele' in consumption_data:
+                print(f"  Total Energy: {consumption_data['add_ele'] / 100:.2f} kWh")
+            print(f"  Session Energy: {total_kwh:.4f} kWh")
+        
         time.sleep(2)
     print("\nStopped")
 
