@@ -49,7 +49,7 @@ def monitor(device_id):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"device_log_{info['name'].replace(' ', '_')}_{timestamp}.txt"
     
-    with open(filename, 'w') as f:
+    with open(filename, 'w', encoding='utf-8') as f:
         f.write(f"Device Monitoring Log: {info['name']}\n")
         f.write("=" * 50 + "\n\n")
     
@@ -116,7 +116,7 @@ def monitor(device_id):
             print(f"\nSession Energy: {total_kwh:.4f} kWh")
         
         # Save to file
-        with open(filename, 'a') as f:
+        with open(filename, 'a', encoding='utf-8') as f:
             f.write(f"\n{current_timestamp}\n")
             f.write('\n'.join(table_lines))
             if 'cur_power' in consumption_data:
