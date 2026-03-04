@@ -1,17 +1,17 @@
 """
-Optimized monitoring script - Fetches ALL Tuya devices simultaneously every 5 seconds
+Local network monitoring - Communicates directly with Tuya devices (FAST!)
+No cloud API needed - all communication happens on your local network
 """
 
 import tinytuya
 import pyodbc
 from datetime import datetime
 import time
+import json
+import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
-
-## Tuya Cloud credentials
-ACCESS_ID = "c8uhx3vs89grhea8mg7p"
-ACCESS_KEY = "7221603a3b754d8b89b30c8dc9114b0d"
-REGION = "eu"
+## Device configuration file
+DEVICES_FILE = "devices.json"
 
 ## SQL Server settings
 SQL_SERVER = "localhost\\SQLEXPRESS"
@@ -20,13 +20,52 @@ SQL_DATABASE = "Monitor"
 ## Polling interval (seconds)
 POLL_INTERVAL = 5
 
-## Global connection string (reuse)
+## Global connection string
 CONN_STR = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={SQL_SERVER};DATABASE={SQL_DATABASE};Trusted_Connection=yes;'
 
-## Initialize Tuya Cloud connection (singleton)
-cloud = tinytuya.Cloud(apiRegion=REGION, apiKey=ACCESS_ID, apiSecret=ACCESS_KEY)
+## Load device configurations
+def load_devices():
+    """Load device configurations from JSON file"""
+    if not os.path.exists(DEVICES_FILE):
+        print("=" * 60)
+        print("DEVICE CONFIGURATION NOT FOUND")
+        print("=" * 60)
+        print("\nYou need to create a 'devices.json' file with your device info.")
+        print("\nQuick Setup:")
+        print("1. pip install tinytuya")
+        print("2. python -m tinytuya wizard")
+        print("3. Follow the wizard - it will create devices.json automatically\n")
+        print("Manual Setup - Create 'devices.json' with this format:")
+        example = {
+            "devices": [
+                {
+                    "name": "Smart Plug 1",
+                    "id": "device_id_here",
+                    "ip": "192.168.1.100",
+                    "key": "local_key_here",
+                    "version": "3.3"
+                }
+            ]
+        }
+        print(json.dumps(example, indent=2))
+        print("\n" + "=" * 60)
+        return []
+    
+    with open(DEVICES_FILE, 'r') as f:
+        config = json.load(f)
+    return config.get('devices', [])
 
-## Optimized database connection with connection pooling
+## Create device connection
+def create_device(device_config):
+    """Create a tinytuya device object"""
+    return tinytuya.OutletDevice(
+        dev_id=device_config['id'],
+        address=device_config['ip'],
+        local_key=device_config['key'],
+        version=float(device_config.get('version', '3.3'))
+    )
+
+## Database connection
 def get_db_connection():
     """Create SQL Server connection"""
     try:
@@ -34,7 +73,7 @@ def get_db_connection():
     except pyodbc.Error:
         return None
 
-## Batch insert to database (more efficient than individual inserts)
+## Batch insert to database
 def batch_save_to_database(data_list):
     """Insert multiple records at once"""
     if not data_list:
@@ -46,7 +85,7 @@ def batch_save_to_database(data_list):
     
     try:
         cursor = conn.cursor()
-        cursor.fast_executemany = True  # Enable fast batch insert
+        cursor.fast_executemany = True
         
         cursor.executemany('''
             INSERT INTO dbo.DeviceLog (DeviceName, Consumption_kWh, ReadingTime)
@@ -63,58 +102,64 @@ def batch_save_to_database(data_list):
         conn.close()
         return 0
 
-## Fetch single device data (optimized with timeout)
-def fetch_device_data(device):
-    """Fetch status for a single device"""
-    device_id = device.get('id')
-    device_name = device.get('name', 'Unknown')
+## Fetch single device data locally
+def fetch_device_data_local(device_config):
+    """Fetch status from device on local network"""
+    device_name = device_config['name']
     start_time = time.time()
     
     try:
-        status = cloud.getstatus(device_id)
+        device = create_device(device_config)
+        
+        # Get status from local device
+        data = device.status()
         fetch_time = time.time() - start_time
         
-        if not status or 'result' not in status:
+        if not data or 'dps' not in data:
             return (device_name, 0, False, "No data", fetch_time)
         
-        # Extract energy consumption efficiently
-        for item in status['result']:
-            if item.get('code') == 'add_ele':
-                energy = item.get('value', 0) / 100
-                return (device_name, energy, True, None, fetch_time)
+        dps = data['dps']
         
-        return (device_name, 0, False, "No energy data", fetch_time)
+        # Extract energy consumption
+        # DPS codes: 17 = total energy (kWh*100), 19 = power (W*10)
+        energy = 0
+        
+        # Try different DPS codes for energy
+        if '17' in dps:
+            energy = dps['17'] / 100
+        elif 17 in dps:
+            energy = dps[17] / 100
+        
+        return (device_name, energy, True, None, fetch_time)
+        
     except Exception as e:
         fetch_time = time.time() - start_time
         return (device_name, 0, False, str(e), fetch_time)
 
-## Main monitoring loop (optimized)
+## Main monitoring loop
 def monitor_devices():
     """Continuously fetch and save device data"""
-    print(f"\nFetching devices from Tuya Cloud...")
+    print(f"\nLoading device configurations...")
+    devices_config = load_devices()
     
-    try:
-        devices = cloud.getdevices()
-        if not devices:
-            print("No devices found!")
-            return
-    except Exception as e:
-        print(f"Error fetching devices: {e}")
+    if not devices_config:
+        print("No devices configured!")
         return
     
-    device_count = len(devices)
+    device_count = len(devices_config)
     print(f"Found {device_count} device(s):\n")
-    for i, device in enumerate(devices, 1):
-        print(f"  {i}. {device.get('name', 'Unknown')}")
+    for i, device in enumerate(devices_config, 1):
+        print(f"  {i}. {device['name']} ({device['ip']})")
     
-    print(f"\nStarting optimized monitoring (all devices fetched simultaneously every {POLL_INTERVAL}s)...")
+    print(f"\nStarting LOCAL network monitoring (polling every {POLL_INTERVAL}s)...")
+    print("All communication happens on your local network - FAST!")
     print("Press Ctrl+C to stop\n")
     
     cycle_count = 0
     total_saved = 0
     
     try:
-        # Use persistent thread pool with more workers for better parallelism
+        # Use thread pool for parallel device queries
         with ThreadPoolExecutor(max_workers=20) as executor:
             while True:
                 cycle_count += 1
@@ -123,10 +168,9 @@ def monitor_devices():
                 
                 print(f"--- Cycle {cycle_count} [{timestamp.strftime('%H:%M:%S')}] ---")
                 
-                # Fetch all devices simultaneously - submit all at once
+                # Fetch all devices simultaneously
                 fetch_start = time.time()
-                futures = {executor.submit(fetch_device_data, device): device for device in devices}
-                fetch_submit_time = time.time() - fetch_start
+                futures = {executor.submit(fetch_device_data_local, device): device for device in devices_config}
                 
                 # Collect results and prepare batch insert
                 batch_data = []
@@ -164,7 +208,7 @@ def monitor_devices():
                 avg_fetch = sum(fetch_times) / len(fetch_times) if fetch_times else 0
                 max_fetch = max(fetch_times) if fetch_times else 0
                 
-                print(f"  [API: avg {avg_fetch:.2f}s, max {max_fetch:.2f}s | Collect: {collect_time:.2f}s | DB: {db_time:.3f}s]")
+                print(f"  [Local API: avg {avg_fetch:.3f}s, max {max_fetch:.3f}s | DB: {db_time:.3f}s]")
                 print(f"  [Total: {elapsed:.2f}s | {success_count}/{device_count} saved | Cycle total: {total_saved}]\n")
                 
                 # Sleep for remaining time
@@ -179,11 +223,11 @@ def monitor_devices():
 ## Run the script
 if __name__ == "__main__":
     print("=" * 60)
-    print("TUYA OPTIMIZED MONITOR - Simultaneous Fetch + Batch Insert")
+    print("TUYA LOCAL NETWORK MONITOR - Direct Device Communication")
     print("=" * 60)
     print(f"Database: {SQL_SERVER} -> {SQL_DATABASE}")
     print(f"Table: dbo.DeviceLog")
-    print(f"Polling: {POLL_INTERVAL}s | Mode: Parallel fetch + Batch insert")
+    print(f"Polling: {POLL_INTERVAL}s | Mode: Local network (NO CLOUD)")
     print("=" * 60)
     
     # Test database connection

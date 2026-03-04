@@ -18,7 +18,7 @@ SQL_DATABASE = "Monitor"
 SQL_TABLE = "dbo.DeviceLog"
 
 ## Polling interval (seconds)
-POLL_INTERVAL = 1  # Fetch data every n seconds
+POLL_INTERVAL = 5  # Fetch data every n seconds
 
 ## Connect to Tuya Cloud
 print("Connecting to Tuya Cloud...")
