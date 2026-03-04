@@ -1,5 +1,5 @@
 """
-Simple script to fetch Tuya device data and populate SQL Server database
+Fast monitoring script - Fetches Tuya device data every 5 seconds
 """
 
 import tinytuya
@@ -18,7 +18,7 @@ SQL_DATABASE = "Monitor"
 SQL_TABLE = "dbo.DeviceLog"
 
 ## Polling interval (seconds)
-POLL_INTERVAL = 1  # Fetch data every n seconds
+POLL_INTERVAL = 5  # Fetch data every 5 seconds
 
 ## Connect to Tuya Cloud
 print("Connecting to Tuya Cloud...")
@@ -63,7 +63,6 @@ def save_to_database(device_name, consumption):
     """Insert data into SQL Server"""
     conn = get_db_connection()
     if not conn:
-        print(f"  Error: Could not connect to database")
         return False
     
     try:
@@ -80,12 +79,7 @@ def save_to_database(device_name, consumption):
         conn.close()
         return True
     except pyodbc.Error as e:
-        print(f"  *** DATABASE ERROR ***")
-        print(f"  Error Code: {e.args[0]}")
-        print(f"  Error Message: {e.args[1]}")
-        print(f"  Device: {device_name}")
-        print(f"  Consumption: {consumption}")
-        
+        print(f"  Database error: {e}")
         conn.close()
         return False
 
@@ -103,14 +97,16 @@ def monitor_devices():
     for i, device in enumerate(devices, 1):
         print(f"  {i}. {device.get('name', 'Unknown')}")
     
-    print(f"\nStarting monitoring (polling every {POLL_INTERVAL} seconds)...")
-    print("Press Ctrl+C tovice.get('name', 'Unknown')}")
-    
-    print(f"\nStarting monitoring (polling every {POLL_INTERVAL} seconds)...")
+    print(f"\nStarting FAST monitoring (polling every {POLL_INTERVAL} seconds)...")
     print("Press Ctrl+C to stop\n")
+    
+    cycle_count = 0
     
     try:
         while True:
+            cycle_count += 1
+            print(f"--- Cycle {cycle_count} [{datetime.now().strftime('%H:%M:%S')}] ---")
+            
             for device in devices:
                 device_id = device.get('id')
                 device_name = device.get('name', 'Unknown')
@@ -131,25 +127,29 @@ def monitor_devices():
                     
                     # Save to database
                     if save_to_database(device_name, energy):
-                        print(f"[{datetime.now().strftime('%H:%M:%S')}] {device_name}: {energy:.4f} kWh - Saved")
+                        print(f"  ✓ {device_name}: {energy:.4f} kWh")
                     else:
-                        print(f"[{datetime.now().strftime('%H:%M:%S')}] {device_name}: Failed to save")
+                        print(f"  ✗ {device_name}: Failed to save")
                 else:
-                    print(f"[{datetime.now().strftime('%H:%M:%S')}] {device_name}: No data")
+                    print(f"  - {device_name}: No data")
+            
+            print()  # Blank line between cycles
             
             # Wait before next poll
             time.sleep(POLL_INTERVAL)
             
     except KeyboardInterrupt:
         print("\n\nMonitoring stopped.")
+        print(f"Total cycles completed: {cycle_count}")
 
 ## Run the script
 if __name__ == "__main__":
     print("=" * 60)
-    print("TUYA TO DATABASE - Simple Monitor")
+    print("TUYA FAST MONITOR - 5 Second Polling")
     print("=" * 60)
     print(f"Database: {SQL_SERVER} -> {SQL_DATABASE}")
     print(f"Table: {SQL_TABLE}")
+    print(f"Polling Interval: {POLL_INTERVAL} seconds")
     print("=" * 60)
     
     # Test database connection
@@ -166,4 +166,4 @@ if __name__ == "__main__":
         print("\nPlease check:")
         print("1. SQL Server is running")
         print("2. Database 'Monitor' exists")
-        print("3. Table 'dbo.monitor' exists with columns: DeviceName, Consumption, ReadingDate")
+        print("3. Table 'dbo.DeviceLog' exists")
