@@ -100,8 +100,11 @@ def monitor_devices():
         return
     
     print(f"Found {len(devices)} device(s):\n")
-    for device in devices:
-        print(f"  - {device.get('name', 'Unknown')}")
+    for i, device in enumerate(devices, 1):
+        print(f"  {i}. {device.get('name', 'Unknown')}")
+    
+    print(f"\nStarting monitoring (polling every {POLL_INTERVAL} seconds)...")
+    print("Press Ctrl+C tovice.get('name', 'Unknown')}")
     
     print(f"\nStarting monitoring (polling every {POLL_INTERVAL} seconds)...")
     print("Press Ctrl+C to stop\n")
