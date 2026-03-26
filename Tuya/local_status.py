@@ -1,30 +1,26 @@
 import json
 import tinytuya
+from get_dps import get_alerts
 
 
-# Open devices.json
-with open('devices.json') as file:
-    devices = json.load(file)
+def main():
+    with open('devices.json') as f:
+        devices = json.load(f)
+
+    for device in devices:
+        name = device.get('name', 'Unknown')
+        if not device.get('ip'):
+            continue
+
+        print(f"{name} ({device.get('category', '?')}) — {device['ip']}")
+        alerts = get_alerts(device)
+
+        if alerts:
+            for alert in alerts:
+                print(f"  ⚠ {alert}")
+        else:
+            print(f"  ✓ OK")
 
 
-def get_status(id, name, ip, key, version):
-    device = tinytuya.OutletDevice(id, ip, key)
-    device.set_version(version)
-    status = device.status()
-    dps = status.get('dps', {})
-    watts = dps.get('19', 0) / 10
-    print(watts)
-
-# Loop through devices and get local status
-for device in devices:
-    device_NAME = device.get('name', 'none')
-    device_ID = device.get('id')
-    devce_IP = device.get('ip')
-    device_KEY = device.get('key')
-    device_VERSION = device.get('version')
-    if devce_IP:
-        print(f"{device_NAME} has an IP:{devce_IP}")
-        get_status(device_ID, device_NAME, devce_IP, device_KEY, device_VERSION)
-    else:
-        continue
-
+if __name__ == "__main__":
+    main()
