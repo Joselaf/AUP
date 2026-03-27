@@ -3,80 +3,139 @@ import tinytuya
 BATTERY_LOW_THRESHOLD  = 20
 BATTERY_DEAD_THRESHOLD = 5
 
-# DPS keys to check per alert type
-BATTERY_KEYS = {"battery_percentage", "battery_state", "battery_value", "va_battery"}
-BREAKER_KEYS = {"switch", "switch_1", "tripped", "leakage_current", "fault"}
-FIRE_KEYS    = {"smoke_sensor_status", "fire_alarm", "alarm_smoke", "smoke_sensor_state"}
-PANIC_KEYS   = {"sos", "sos_state", "panic", "alarm"}
+# --- Category Mapping ---
+# dlq  = Circuit Breaker
+# ywbj = Smoke / Fire Alarm
+# sos  = Panic / SOS Button
+
+BATTERY_KEYS = {"battery_percentage", "battery_state", "4", "15", "residue"}
+BREAKER_KEYS = {"1","9", "fault", "tripped", "leakage_current", "switch", "switch_1"}
+FIRE_KEYS    = {"1", "smoke_sensor_status", "fire_alarm", "alarm_smoke"}
+PANIC_KEYS   = {"1", "13", "sos", "sos_state", "panic"}
 
 
 def get_alerts(device):
-    """Connect to a device locally and return a list of alert strings."""
-    ip      = device.get("ip")
-    dev_id  = device.get("id")
-    key     = device.get("key")
-    version = float(device.get("version") or device.get("ver") or 3.3)
+    """Connect to a device via cloud and return a list of alert strings."""
+    name     = device.get("name", "Unknown")
+    dev_id   = device.get("id")
+    category = device.get("category", "").lower()
+    ip       = device.get("ip", "")
+    key      = device.get("key", "")
+    version  = float(device.get("version", device.get("ver", "3.4")))
 
-    d = tinytuya.OutletDevice(dev_id, ip, key)
-    d.set_version(version)
-    d.set_socketTimeout(5)
-    result = d.status()
-
-    if not result or "Error" in result:
-        return [f"Error: {result.get('Error', 'No response')}"]
-
-    dps    = result.get("dps", {})
     alerts = []
 
-    # --- Battery (runs on all devices; skipped automatically if no battery DPS present) ---
-    for key in BATTERY_KEYS:
-        val = dps.get(key)
+    # --- Get DPS ---
+    try:
+        if ip:
+            # Local connection
+            d = tinytuya.OutletDevice(dev_id, ip, key)
+            d.set_version(version)
+            d.set_socketTimeout(5)
+            result = d.status()
+            dps = result.get("dps", {}) if result else {}
+        else:
+            return [f"No IP address - cannot connect locally"]
+    except Exception as e:
+        return [f"Connection error: {e}"]
+
+    if not dps:
+        return [f"No DPS data received"]
+
+    # --- Battery check (all devices) ---
+    for k in BATTERY_KEYS:
+        val = dps.get(k)
         if val is None:
             continue
         if isinstance(val, (int, float)):
             if val <= BATTERY_DEAD_THRESHOLD:
-                alerts.append(f"Dead battery ({val}%)")
+                alerts.append(f"⛔ Dead battery ({val}%)")
             elif val <= BATTERY_LOW_THRESHOLD:
-                alerts.append(f"Low battery ({val}%)")
+                alerts.append(f"⚠️  Low battery ({val}%)")
         elif isinstance(val, str):
             v = val.lower()
             if v in ("dead", "exhausted", "empty"):
-                alerts.append(f"Dead battery ('{val}')")
+                alerts.append(f"⛔ Dead battery ('{val}')")
             elif v in ("low", "critical"):
-                alerts.append(f"Low battery ('{val}')")
+                alerts.append(f"⚠️  Low battery ('{val}')")
 
-    # --- Circuit breaker (checks DPS keys directly, no category needed) ---
-    for key in BREAKER_KEYS:
-        val = dps.get(key)
-        if val is None:
-            continue
-        if key in ("switch", "switch_1") and val is False:
-            alerts.append(f"Circuit breaker tripped ({key} is OFF)")
-        elif key == "tripped" and val is True:
-            alerts.append("Circuit breaker tripped")
-        elif key == "fault" and val:
-            alerts.append(f"Circuit breaker fault ({val})")
-        elif key == "leakage_current" and isinstance(val, (int, float)) and val > 0:
-            alerts.append(f"Leakage current detected ({val} mA)")
+    # --- Circuit Breaker (dlq) ---
+    if category == "dlq":
+        # DPS '1' = switch state (True=ON, False=OFF/tripped)
+        # DPS '9' = fault code (0=OK)
+        # DPS '18' = current (mA)
+        # DPS '19' = power (W*10)
+        # DPS '20' = voltage (V*10)
 
-    # --- Fire / smoke alarm ---
-    for key in FIRE_KEYS:
-        val = dps.get(key)
-        if val is None:
-            continue
-        if val is True or (isinstance(val, str) and val.lower() in ("alarm", "smoke", "fire", "detected")):
-            alerts.append(f"Fire/smoke alarm active ({key}: {val})")
-        elif isinstance(val, int) and val == 1:
-            alerts.append(f"Fire/smoke alarm active ({key}: {val})")
+        switch = dps.get('1')
+        fault  = dps.get('9', 0)
 
-    # --- Panic / SOS button ---
-    for key in PANIC_KEYS:
-        val = dps.get(key)
-        if val is None:
-            continue
-        if val is True or (isinstance(val, str) and val.lower() in ("sos", "panic", "alarm", "active")):
-            alerts.append(f"Panic/SOS active ({key}: {val})")
-        elif isinstance(val, int) and val == 1:
-            alerts.append(f"Panic/SOS active ({key}: {val})")
+        if switch is False:
+            alerts.append(f"⚡ Breaker TRIPPED / OFF (switch is OFF)")
+        elif switch is True:
+            alerts.append(f"✅ Breaker ON")
+        
+        if fault and fault != 0:
+            alerts.append(f"⚡ Breaker FAULT code: {fault}")
+        
+        # Show readings if available
+        """
+       if '18' in dps:
+            alerts.append(f"ℹ️  Current: {dps['18']} mA")
+        if '19' in dps:
+            alerts.append(f"ℹ️  Power: {dps['19'] / 10:.1f} W")
+        if '20' in dps:
+            alerts.append(f"ℹ️  Voltage: {dps['20'] / 10:.1f} V")
+        """
+
+    # --- Fire / Smoke Alarm (ywbj) ---
+    elif category == "ywbj":
+        for k in FIRE_KEYS:
+            val = dps.get(k)
+            if val is None:
+                continue
+            if val is True or (isinstance(val, str) and val.lower() in ("alarm", "smoke", "fire", "detected")):
+                alerts.append(f"🔥 FIRE/SMOKE ALARM ACTIVE ({k}: {val})")
+            elif isinstance(val, int) and val == 1:
+                alerts.append(f"🔥 FIRE/SMOKE ALARM ACTIVE ({k}: {val})")
+        
+        if not alerts:
+            alerts.append("✅ No smoke/fire detected")
+
+    # --- Panic / SOS Button (sos) ---
+    elif category == "sos":
+        for k in PANIC_KEYS:
+            val = dps.get(k)
+            if val is None:
+                continue
+            if val is True or (isinstance(val, str) and val.lower() in ("sos", "panic", "alarm", "active")):
+                alerts.append(f"🚨 PANIC/SOS ACTIVE ({k}: {val})")
+            elif isinstance(val, int) and val == 1:
+                alerts.append(f"🚨 PANIC/SOS ACTIVE ({k}: {val})")
+        
+        if not alerts:
+            alerts.append("✅ No panic/SOS active")
+
+    # --- Unknown category ---
+    else:
+        alerts.append(f"ℹ️  Unknown category '{category}' - raw DPS: {dps}")
 
     return alerts
+
+
+def check_all_devices(devices):
+    """Check all devices and print alerts"""
+    print(f"\n{'='*60}")
+    print(f"DEVICE STATUS CHECK - {__import__('datetime').datetime.now().strftime('%H:%M:%S')}")
+    print(f"{'='*60}\n")
+
+    for device in devices:
+        name     = device.get("name", "Unknown")
+        category = device.get("category", "unknown")
+
+        print(f"[{category.upper()}] {name}")
+        
+        alerts = get_alerts(device)
+        for alert in alerts:
+            print(f"  {alert}")
+        print()
