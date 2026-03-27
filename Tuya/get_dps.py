@@ -63,7 +63,7 @@ def get_alerts(device):
         fault  = dps.get('9', 0)
         if switch is False:
             alerts.append("⚡ Breaker OFF")
-        if fault and fault != 0:
+        if fault != 0:
             alerts.append(f"⚠️ Breaker FAULT code: {fault}")
 
     # --- Heater (tdq) ---
