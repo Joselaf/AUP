@@ -7,7 +7,7 @@ BATTERY_KEYS = {"battery_percentage", "battery_state", "4", "15", "residue", "9"
 FIRE_KEYS    = {"1", "smoke_sensor_status", "fire_alarm", "alarm_smoke"}
 PANIC_KEYS   = {"1", "13", "sos", "sos_state", "panic"}
 
-NON_BATTERY_CATEGORIES = {'dlq', 'td', 'dj', 'tdq'}
+NON_BATTERY_CATEGORIES = {'dlq', 'td', 'dj', 'tdq', 'cz','wnykq', 'mcs', 'kg', 'infrared_tv'}
 
 
 def get_alerts(device):
@@ -62,7 +62,7 @@ def get_alerts(device):
         switch = dps.get('1')
         fault  = dps.get('9', 0)
         if switch is False:
-            alerts.append("⚡ Breaker TRIPPED or OFF")
+            alerts.append("⚡ Breaker OFF")
         if fault and fault != 0:
             alerts.append(f"⚠️ Breaker FAULT code: {fault}")
 
