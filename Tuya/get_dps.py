@@ -115,15 +115,3 @@ def get_alerts(device):
     return alerts
 
 
-def check_all_devices(devices):
-
-    for device in devices:
-        name     = device.get("name", "Unknown")
-        category = device.get("category", "unknown")
-
-        print(f"[{category.upper()}] {name}")
-        
-        alerts = get_alerts(device)
-        for alert in alerts:
-            print(f"  {alert}")
-        print()
