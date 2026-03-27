@@ -72,7 +72,7 @@ def get_alerts(device):
         fault  = dps.get('9', 0)
 
         if switch is False:
-            alerts.append(f"⚡ Breaker TRIPPED / OFF")
+            alerts.append(f"⚡ Breaker OFF")
         elif switch is True:
             alerts.append(f"✅ Breaker ON")
 
@@ -92,7 +92,7 @@ def get_alerts(device):
                 alerts.append(f"🔥 FIRE/SMOKE ALARM ACTIVE ({k}: {val})")
         
         if not alerts:
-            alerts.append("✅ No smoke/fire detected")
+            alerts.append("✅ No smoke/FIRE detected")
 
     # --- Panic / SOS Button (sos) ---
     elif category == "sos":
