@@ -78,8 +78,15 @@ def get_alerts(device):
 
         if fault and fault != 0:
             alerts.append(f"⚠️  Breaker FAULT code: {fault}")
-
-
+            
+    if category == 'tdq':
+        switch = dps.get('1')
+        fault  = dps.get('9', 0)
+        if switch is False:
+            alerts.append(f"⚡ heater OFF")
+        elif switch is True:
+            alerts.append(f"✅ heater ON")
+   
     # --- Fire / Smoke Alarm (ywbj) ---
     elif category == "ywbj":
         for k in FIRE_KEYS:
