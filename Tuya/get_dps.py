@@ -8,7 +8,7 @@ BATTERY_DEAD_THRESHOLD = 5
 # ywbj = Smoke / Fire Alarm
 # sos  = Panic / SOS Button
 
-BATTERY_KEYS = {"battery_percentage", "battery_state", "4", "15", "residue"}
+BATTERY_KEYS = {"battery_percentage", "battery_state", "4", "15", "residue","9","3"}
 BREAKER_KEYS = {"1","9", "fault", "tripped", "leakage_current", "switch", "switch_1"}
 FIRE_KEYS    = {"1", "smoke_sensor_status", "fire_alarm", "alarm_smoke"}
 PANIC_KEYS   = {"1", "13", "sos", "sos_state", "panic"}
@@ -43,10 +43,11 @@ def get_alerts(device):
         return [f"No DPS data received"]
 
     # --- Battery check (all devices) ---
-    for k in BATTERY_KEYS:
-        val = dps.get(k)
+    if(category != 'dlq' or 'td' or 'dj'):
+        for k in BATTERY_KEYS:
+            val = dps.get(k)
         if val is None:
-            continue
+            next
         if isinstance(val, (int, float)):
             if val <= BATTERY_DEAD_THRESHOLD:
                 alerts.append(f"⛔ Dead battery ({val}%)")
@@ -59,7 +60,7 @@ def get_alerts(device):
             elif v in ("low", "critical"):
                 alerts.append(f"⚠️  Low battery ('{val}')")
 
-    # --- Circuit Breaker (dlq) ---
+    # Logic for circuit breakers (dlq)
     if category == "dlq":
         # DPS '1'  = switch state (True=ON, False=OFF/tripped)
         # DPS '9'  = fault code (0=OK)
@@ -78,15 +79,28 @@ def get_alerts(device):
 
         if fault and fault != 0:
             alerts.append(f"⚠️  Breaker FAULT code: {fault}")
-            
-    if category == 'tdq':
+
+# Logic for Heaters (tdp)
+    elif category == 'tdq':
         switch = dps.get('1')
         fault  = dps.get('9', 0)
         if switch is False:
             alerts.append(f"⚡ heater OFF")
         elif switch is True:
             alerts.append(f"✅ heater ON")
-   
+
+   # Logic for Magnetic Sensors (ms)
+    elif category == 'ms':
+    # 1. Check for Tamper (DP 2) - This is a high priority alert
+        if dps.get('2') == True:
+            alerts.append(f"⚠️ TAMPER ALERT: {name} sensor has been moved or opened!")
+
+    # 2. Check Door State (DP 1)
+        is_open = dps.get('1')
+        status_text = "OPEN 🔓" if is_open else "CLOSED 🔒"
+        alerts.append(f"🚪 {name}: {status_text}")
+
+
     # --- Fire / Smoke Alarm (ywbj) ---
     elif category == "ywbj":
         for k in FIRE_KEYS:
@@ -111,9 +125,15 @@ def get_alerts(device):
                 alerts.append(f"🚨 PANIC/SOS ACTIVE ({k}: {val})")
             elif isinstance(val, int) and val == 1:
                 alerts.append(f"🚨 PANIC/SOS ACTIVE ({k}: {val})")
-        
         if not alerts:
             alerts.append("✅ No panic/SOS active")
+    # Logic for Water Leak Detectors
+    elif category == 'jtmspro':
+    # Check for Leak (DP 1)
+    # Some use 'alarm' (String), others use True (Boolean)
+        leak_state = dps.get('1')
+        if leak_state in [True, 'alarm', 'water_leak']:
+            alerts.append(f"🌊 CRITICAL: {name} DETECTED A WATER LEAK!")
 
     # --- Unknown category ---
     else:
