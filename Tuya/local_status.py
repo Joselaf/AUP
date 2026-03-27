@@ -47,7 +47,7 @@ if __name__ == "__main__":
             for name, category ,alerts in results:
                 for alert in alerts:
                     print(f"{name}:{alert}")
-                print()
+                
 
             
             time.sleep(POLL_INTERVAL)

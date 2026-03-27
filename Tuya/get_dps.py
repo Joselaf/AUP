@@ -3,103 +3,85 @@ import tinytuya
 BATTERY_LOW_THRESHOLD  = 20
 BATTERY_DEAD_THRESHOLD = 5
 
-# --- Category Mapping ---
-# dlq  = Circuit Breaker
-# ywbj = Smoke / Fire Alarm
-# sos  = Panic / SOS Button
-
-BATTERY_KEYS = {"battery_percentage", "battery_state", "4", "15", "residue","9","3"}
-BREAKER_KEYS = {"1","9", "fault", "tripped", "leakage_current", "switch", "switch_1"}
+BATTERY_KEYS = {"battery_percentage", "battery_state", "4", "15", "residue", "9", "3"}
 FIRE_KEYS    = {"1", "smoke_sensor_status", "fire_alarm", "alarm_smoke"}
 PANIC_KEYS   = {"1", "13", "sos", "sos_state", "panic"}
 
+NON_BATTERY_CATEGORIES = {'dlq', 'td', 'dj', 'tdq'}
+
 
 def get_alerts(device):
-    """Connect to a device via cloud and return a list of alert strings."""
     name     = device.get("name", "Unknown")
     dev_id   = device.get("id")
     category = device.get("category", "").lower()
     ip       = device.get("ip", "")
     key      = device.get("key", "")
-    version  = float(device.get("version", device.get("ver", "3.4")))
+
+    try:
+        version = float(device.get("version", device.get("ver", "3.4")))
+    except (ValueError, TypeError):
+        version = 3.4
 
     alerts = []
 
     # --- Get DPS ---
     try:
-        if ip:
-            # Local connection
-            d = tinytuya.OutletDevice(dev_id, ip, key)
-            d.set_version(version)
-            d.set_socketTimeout(5)
-            result = d.status()
-            dps = result.get("dps", {}) if result else {}
-        else:
-            return [f"No IP address - cannot connect locally"]
+        if not ip:
+            return ["No IP address - cannot connect locally"]
+        d = tinytuya.OutletDevice(dev_id, ip, key)
+        d.set_version(version)
+        d.set_socketTimeout(5)
+        result = d.status()
+        dps = result.get("dps", {}) if result else {}
     except Exception as e:
         return [f"Connection error: {e}"]
 
     if not dps:
-        return [f"No DPS data received"]
+        return ["No DPS data received"]
 
-    # --- Battery check (all devices) ---
-    if(category != ('dlq' or 'td' or 'dj')):
+    # --- Battery check (skip mains-powered devices) ---
+    if category not in NON_BATTERY_CATEGORIES:
         for k in BATTERY_KEYS:
             val = dps.get(k)
-        if val is None:
-            next
-        if isinstance(val, (int, float)):
-            if val <= BATTERY_DEAD_THRESHOLD:
-                alerts.append(f"⛔ Dead battery ({val}%)")
-            elif val <= BATTERY_LOW_THRESHOLD:
-                alerts.append(f"⚠️  Low battery ({val}%)")
-        elif isinstance(val, str):
-            v = val.lower()
-            if v in ("dead", "exhausted", "empty"):
-                alerts.append(f"⛔ Dead battery ('{val}')")
-            elif v in ("low", "critical"):
-                alerts.append(f"⚠️  Low battery ('{val}')")
+            if val is None:
+                continue
+            if isinstance(val, (int, float)):
+                if val <= BATTERY_DEAD_THRESHOLD:
+                    alerts.append(f"⛔ Dead battery ({val}%)")
+                elif val <= BATTERY_LOW_THRESHOLD:
+                    alerts.append(f"⚠️ Low battery ({val}%)")
+            elif isinstance(val, str):
+                v = val.lower()
+                if v in ("dead", "exhausted", "empty"):
+                    alerts.append(f"⛔ Dead battery ('{val}')")
+                elif v in ("low", "critical"):
+                    alerts.append(f"⚠️ Low battery ('{val}')")
 
-    # Logic for circuit breakers (dlq)
+    # --- Circuit Breaker (dlq) ---
     if category == "dlq":
-        # DPS '1'  = switch state (True=ON, False=OFF/tripped)
-        # DPS '9'  = fault code (0=OK)
-        # DPS '17' = total energy (kWh * 100)
-        # DPS '18' = current (mA)
-        # DPS '19' = power (W * 10)
-        # DPS '20' = voltage (V * 10)
-
         switch = dps.get('1')
         fault  = dps.get('9', 0)
-
         if switch is False:
-            alerts.append(f"⚡ Breaker OFF")
-        elif switch is True:
-            alerts.append(f"✅ Breaker ON")
-
+            alerts.append("⚡ Breaker TRIPPED or OFF")
         if fault and fault != 0:
-            alerts.append(f"⚠️  Breaker FAULT code: {fault}")
+            alerts.append(f"⚠️ Breaker FAULT code: {fault}")
 
-# Logic for Heaters (tdp)
-    elif category == 'tdq':
+    # --- Heater (tdq) ---
+    elif category == "tdq":
         switch = dps.get('1')
         fault  = dps.get('9', 0)
         if switch is False:
-            alerts.append(f"⚡ heater OFF")
-        elif switch is True:
-            alerts.append(f"✅ heater ON")
+            alerts.append("⚡ Heater OFF")
+        if fault and fault != 0:
+            alerts.append(f"⚠️ Heater FAULT code: {fault}")
 
-   # Logic for Magnetic Sensors (ms)
-    elif category == 'ms':
-    # 1. Check for Tamper (DP 2) - This is a high priority alert
-        if dps.get('2') == True:
-            alerts.append(f"⚠️ TAMPER ALERT: {name} sensor has been moved or opened!")
-
-    # 2. Check Door State (DP 1)
-        is_open = dps.get('1')
-        status_text = "OPEN 🔓" if is_open else "CLOSED 🔒"
-        alerts.append(f"🚪 {name}: {status_text}")
-
+    # --- Magnetic Door Sensor (ms) ---
+    elif category == "ms":
+        if dps.get('2') is True:
+            alerts.append(f"⚠️ TAMPER ALERT: {name} has been moved or opened!")
+        # Door open/closed is status only — only alert if open
+        if dps.get('1') is True:
+            alerts.append(f"🔓 {name}: OPEN")
 
     # --- Fire / Smoke Alarm (ywbj) ---
     elif category == "ywbj":
@@ -111,11 +93,8 @@ def get_alerts(device):
                 alerts.append(f"🔥 FIRE/SMOKE ALARM ACTIVE ({k}: {val})")
             elif isinstance(val, int) and val == 1:
                 alerts.append(f"🔥 FIRE/SMOKE ALARM ACTIVE ({k}: {val})")
-        
-        if not alerts:
-            alerts.append("✅ No smoke/FIRE detected")
 
-    # --- Panic / SOS Button (sos) ---
+    # --- Panic / SOS (sos) ---
     elif category == "sos":
         for k in PANIC_KEYS:
             val = dps.get(k)
@@ -125,20 +104,15 @@ def get_alerts(device):
                 alerts.append(f"🚨 PANIC/SOS ACTIVE ({k}: {val})")
             elif isinstance(val, int) and val == 1:
                 alerts.append(f"🚨 PANIC/SOS ACTIVE ({k}: {val})")
-        if not alerts:
-            alerts.append("✅ No panic/SOS active")
-    # Logic for Water Leak Detectors
-    elif category == 'jtmspro':
-    # Check for Leak (DP 1)
-    # Some use 'alarm' (String), others use True (Boolean)
+
+    # --- Water Leak (jtmspro) ---
+    elif category == "jtmspro":
         leak_state = dps.get('1')
-        if leak_state in [True, 'alarm', 'water_leak']:
+        if leak_state in (True, 'alarm', 'water_leak'):
             alerts.append(f"🌊 CRITICAL: {name} DETECTED A WATER LEAK!")
 
-    # --- Unknown category ---
+    # --- Unknown ---
     else:
-        alerts.append(f"ℹ️  Unknown category '{category}' - raw DPS: {dps}")
+        alerts.append(f"ℹ️ Unknown category '{category}' - raw DPS: {dps}")
 
     return alerts
-
-
