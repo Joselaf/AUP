@@ -32,6 +32,8 @@ if __name__ == "__main__":
     skipped = [d for d in devices if not d.get('ip')]
 
 
+    devices = {"id": , "object": }
+
     cycle = 0
     try:
         while True:
