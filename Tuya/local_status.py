@@ -44,7 +44,7 @@ if __name__ == "__main__":
             # Sort by category then name
             results.sort(key=lambda x: (x[1], x[0]))
 
-            for name, category, alerts in results:
+            for name, category ,alerts in results:
                 for alert in alerts:
                     print(f"{name}:{alert}")
                 print()

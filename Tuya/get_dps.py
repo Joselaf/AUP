@@ -43,7 +43,7 @@ def get_alerts(device):
         return [f"No DPS data received"]
 
     # --- Battery check (all devices) ---
-    if(category != 'dlq' or 'td' or 'dj'):
+    if(category != ('dlq' or 'td' or 'dj')):
         for k in BATTERY_KEYS:
             val = dps.get(k)
         if val is None:
