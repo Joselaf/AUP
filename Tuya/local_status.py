@@ -50,7 +50,7 @@ if __name__ == "__main__":
                 print()
 
             
-            time.sleep(max(0, POLL_INTERVAL))
+            time.sleep(POLL_INTERVAL)
 
     except KeyboardInterrupt:
         print("\n\nStopped.")

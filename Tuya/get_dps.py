@@ -61,32 +61,24 @@ def get_alerts(device):
 
     # --- Circuit Breaker (dlq) ---
     if category == "dlq":
-        # DPS '1' = switch state (True=ON, False=OFF/tripped)
-        # DPS '9' = fault code (0=OK)
+        # DPS '1'  = switch state (True=ON, False=OFF/tripped)
+        # DPS '9'  = fault code (0=OK)
+        # DPS '17' = total energy (kWh * 100)
         # DPS '18' = current (mA)
-        # DPS '19' = power (W*10)
-        # DPS '20' = voltage (V*10)
+        # DPS '19' = power (W * 10)
+        # DPS '20' = voltage (V * 10)
 
         switch = dps.get('1')
         fault  = dps.get('9', 0)
 
         if switch is False:
-            alerts.append(f"⚡ Breaker TRIPPED / OFF (switch is OFF)")
+            alerts.append(f"⚡ Breaker TRIPPED / OFF")
         elif switch is True:
             alerts.append(f"✅ Breaker ON")
-        
+
         if fault and fault != 0:
-            alerts.append(f"⚡ Breaker FAULT code: {fault}")
-        
-        # Show readings if available
-        """
-       if '18' in dps:
-            alerts.append(f"ℹ️  Current: {dps['18']} mA")
-        if '19' in dps:
-            alerts.append(f"ℹ️  Power: {dps['19'] / 10:.1f} W")
-        if '20' in dps:
-            alerts.append(f"ℹ️  Voltage: {dps['20'] / 10:.1f} V")
-        """
+            alerts.append(f"⚠️  Breaker FAULT code: {fault}")
+
 
     # --- Fire / Smoke Alarm (ywbj) ---
     elif category == "ywbj":
@@ -124,10 +116,6 @@ def get_alerts(device):
 
 
 def check_all_devices(devices):
-    """Check all devices and print alerts"""
-    print(f"\n{'='*60}")
-    print(f"DEVICE STATUS CHECK - {__import__('datetime').datetime.now().strftime('%H:%M:%S')}")
-    print(f"{'='*60}\n")
 
     for device in devices:
         name     = device.get("name", "Unknown")
