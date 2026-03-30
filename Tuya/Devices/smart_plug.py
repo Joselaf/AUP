@@ -1,3 +1,5 @@
+import tinytuya
+
 class smart_plug:
      def __init__(self, id, ip, local_key, name):
         self.id = id
