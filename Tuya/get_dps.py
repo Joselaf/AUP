@@ -33,6 +33,7 @@ def get_alerts(device):
         d.set_socketTimeout(5)
         result = d.status()
         dps = result.get("dps", {}) if result else {}
+        print(f"{name} {dev_id}:{dps}")
     except Exception as e:
         return [f"Connection error: {e}"]
 
