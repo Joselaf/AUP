@@ -16,21 +16,24 @@ class heater:
         self.curr_temp = self.dps('3')
         self.mode = self.dps('4')
         self.child_lock = self.dps('40')
-        
+    ##returns ID of the device    
     def get_id():
         return self.id
-
+    ##retunrs Name of the device 
     def get_name():
         return self.name
 
+    ##returns if the device is ON/OFF
     def get_state():
         return self.state
-
+    
+    ##Turns the device ON if it is OFF and vice-versa
     def Toogle():
         new_state = not self.state
         self.device.set_dps(new_state, '1')
         self.state = new_state
 
+    ##Target Temperature: The heat you want to reach (e.g., 22 = 22°C).
     def get_targ_temp():
         return self.targ_temp
 
@@ -41,17 +44,21 @@ class heater:
         self.device.set_dps(temp, '2')
         self.targ_temp = temp
 
+    ##ork Mode: Usually manual, eco, or auto.
     def set_mode(mode):        
         self.device.set_dps(mode, '4')
         self.mode = mode
 
-    
+    ##Current Temperature: Room reading from the sensor probe.
     def get_curr_temp():        
         return self.curr_temp
-        
+
+
+    ##returns the child lock status
     def get_child_lock():
         return self.child_lock
 
+    ##Physical Lock: Disables manual buttons if present. 
     def set_child_lock(lock):
         self.device.set_dps(lock, '40')
         self.child_lock = lock

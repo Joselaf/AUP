@@ -13,16 +13,19 @@ class Breaker:
         self.dps = self.device.status('dps',{})
         self.refresh_stats(self)
 
+    ##refreshs the stats from the device
     def refresh_stats():
         self.state = self.dps.get('1')
         self.fault = self.dps.get('9')
 
+    ##Turns the device ON if it is OFF and vice-versa
     def toggle():
        new_state = not self.state
        self.device.set_dps('1', new_state)
        self.state = new_state
        return(new_state)
 
+    ##returns the status of the breaker
     def get_status():
         if(self.state):
             return("ON")
@@ -31,6 +34,7 @@ class Breaker:
         else:
             return("OFF") 
 
+    ##returns the instant volts, amps, and watts and updates the self values of the device 
     def atm_values():
         volt = dps.get('3') / 10.0
         amp = dps.get('4') / 1000.0

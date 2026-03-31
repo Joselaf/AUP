@@ -9,7 +9,8 @@ class lock:
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
         self.dps = self.device.status('dps',{})
         self.refresh_stats(self)
-    
+
+    ##refreshs the stats from the device
     def refresh_stats(self):
         self.finger_unlocked = self.dps('1')
         self.password_unlocked = self.dps('2')
