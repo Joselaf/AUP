@@ -7,16 +7,15 @@ class Breaker:
         self.local_key = local_key
         self.name = name
         self.device = tinytuya.OutletDevice(id, ip, local_key)
-        self.refresh_stats()
-
-
-    def refresh_stats():
-        self.dps = self.device.status('dps',{})
-        self.state = self.dps.get('1')
-        self.fault = self.dps.get('9')
         self.volts = 0.0
         self.amps = 0.0
         self.watts = 0.0
+        self.dps = self.device.status('dps',{})
+        self.refresh_stats(self)
+
+    def refresh_stats():
+        self.state = self.dps.get('1')
+        self.fault = self.dps.get('9')
 
     def toggle():
        new_state = not self.state

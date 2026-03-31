@@ -7,10 +7,10 @@ class lock_main:
         self.local_key = local_key
         self.name = name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
+        self.dps = self.device.status('dps',{})
         self.refresh_stats(self)
         
     def refresh_stats(self):
-        self.dps = self.device.status('dps',{})
         self.feed_status = self.dps('101')
         self.battery = self.dps('102')
         self.pir_switch = self.dps('103')
