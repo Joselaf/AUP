@@ -23,37 +23,55 @@ class lock:
         self.doorbell = self.dps('14')
         self.remote = self.dps('61')
 
+    ##returns the device id
     def get_id():
         return self.id
-    
+
+    ##returns the device name
     def get_name():
         return self.name
 
+    ##returns the device ip
+    def get_ip():
+        return self.ip
+
+    ##Reports the ID of the fingerprint used to unlock. 
     def get_finger_unlocked():
         return self.finger_unlocked
 
+    ##Reports the ID of the local password used.
     def get_password_unlocked():
         return self.password_unlocked
     
-    
+    ##Reports when an App-generated temporary code is used.
     def get_temp_unlocked():
         return self.temp_unlocked
     
+    ##Reports the ID of the RFID card/tag used.
     def get_card_unlocked():
         return self.card_unlockeced
     
+
+    ##Reports if a physical key was used (if supported).
     def get_key():
         return self.key
 
+    ##True (Open) / False (Closed).
     def get_door_status():
         return self.door_status
 
+
+    ##Reports errors (e.g., wrong_password, low_battery).
     def get_alarms():
         return self.alarms
     
+
+    ##Remaining capacity in percentage (0–100%).
     def get_battery_level():
         return self.battery_level
     
+
+    ##True when the doorbell button is pressed.
     def get_doorbell():
         return self.doorbell
         

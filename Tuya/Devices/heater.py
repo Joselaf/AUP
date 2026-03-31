@@ -16,12 +16,19 @@ class heater:
         self.curr_temp = self.dps('3')
         self.mode = self.dps('4')
         self.child_lock = self.dps('40')
-    ##returns ID of the device    
+
+    ##returns the device id
     def get_id():
         return self.id
-    ##retunrs Name of the device 
+        
+    ##retunrs the device name 
     def get_name():
         return self.name
+
+    ##returns the device ip
+    def egt_ip():
+        return self.ip
+    
 
     ##returns if the device is ON/OFF
     def get_state():
@@ -33,16 +40,18 @@ class heater:
         self.device.set_dps(new_state, '1')
         self.state = new_state
 
-    ##Target Temperature: The heat you want to reach (e.g., 22 = 22°C).
+    ##returns the target temperature set previously
     def get_targ_temp():
         return self.targ_temp
 
-    def get_mode():
-        return self.mode
-
+    ##Target Temperature: The heat you want to reach (e.g., 22 = 22°C).
     def set_targ_temp(temp):
         self.device.set_dps(temp, '2')
         self.targ_temp = temp
+
+    #returns the mode of the heater
+    def get_mode():
+        return self.mode
 
     ##ork Mode: Usually manual, eco, or auto.
     def set_mode(mode):        
@@ -53,15 +62,15 @@ class heater:
     def get_curr_temp():        
         return self.curr_temp
 
+    ##Physical Lock: Disables manual buttons if present. 
+    def set_child_lock(lock):
+        self.device.set_dps(lock, '40')
+        self.child_lock = lock
 
     ##returns the child lock status
     def get_child_lock():
         return self.child_lock
 
-    ##Physical Lock: Disables manual buttons if present. 
-    def set_child_lock(lock):
-        self.device.set_dps(lock, '40')
-        self.child_lock = lock
 
         
 

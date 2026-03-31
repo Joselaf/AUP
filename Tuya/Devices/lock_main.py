@@ -21,6 +21,19 @@ class lock_main:
         self.video_flip = self.dps('115')
         self.night_mode = self.dps('116')
 
+    ##returns the device name
+    def get_name():
+        return self.name
+
+    ##retuns the device id
+    def get_id():
+        return self.id
+
+    ##retuns the device ip
+    def get_ip():
+        return self.ip
+
+
     ##Doorbell Call: true when someone rings the bell.
     def get_feed_status():
         return self.feed_status
@@ -68,7 +81,7 @@ class lock_main:
     ##Night Mode: 0 = Auto, 1 = On, 2 = Off
     def get_night_mode():
         return self.night_mode
-        
+
     ##sets the night mode to 0, 1, or 2.
     def set_nighgt_mode(value):
         self.device.set_dps(value, '116')
