@@ -18,6 +18,18 @@ class smart_bulb:
             self.scene = self.dps.get('25')
             self.countdown = self.dps.get('26')
 
+            ##returns the device name
+            def get_name():
+                return(self.name)
+
+            ##returns the device id
+            def  get_id():
+                return(self.id)
+
+            ##returns the device ip
+            def get_ip():
+                return(self.ip)
+
         
         ##Turns the device ON if it is OFF and vice-versa
         def Toogle():
@@ -71,5 +83,5 @@ class smart_bulb:
         def get_countdown():
             return self.countdown
         
-        
+
 
