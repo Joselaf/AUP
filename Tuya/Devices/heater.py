@@ -53,7 +53,7 @@ class heater:
     def get_mode():
         return self.mode
 
-    ##ork Mode: Usually manual, eco, or auto.
+    ##work Mode: Usually manual, eco, or auto.
     def set_mode(mode):        
         self.device.set_dps(mode, '4')
         self.mode = mode
