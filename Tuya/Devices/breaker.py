@@ -25,7 +25,7 @@ class Breaker:
     ##returns the device name
     def get_name():
         return(self.name)
-        
+
     ##returns the device id
     def  get_id():
         return(self.id)
@@ -56,7 +56,7 @@ class Breaker:
 
     ##returns the instant volts, amps, and watts and updates the self values of the device 
     def atm_values():
-        volt = dps.get('20') / 10.0
         amp = dps.get('18') / 1000.0
         watt = dps.get('19') / 10.0
-        return (volt, amp, watt)##
+        volt = dps.get('20') / 10.0
+        return (volt, amp, watt)
