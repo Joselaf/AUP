@@ -19,6 +19,7 @@ class Breaker:
         self.state = self.dps.get('1')
         self.fault = self.dps.get('26')
         self.relay_status = self.dps.get('38')
+        self.child_lock = self.dps.get('40')
         self.add_ele = self.dps.get('17')
         self.amps += dps.get('18') / 1000.0
         self.watts += dps.get('19') / 10.0
@@ -52,7 +53,7 @@ class Breaker:
         else:
             return("OFF")
 
-    ##power_on / power_off / last
+    ##power_on / power_off / memory
     def set_relay_status(value):
         self.device.set_dps('38', value)
         self.relay_status = value
@@ -68,3 +69,12 @@ class Breaker:
         volt = self.dps.get('20') / 10.0
         add_ele = self.dps('17')
         return (volt, amp, watt, add_ele)
+
+        ##Child Lock: Disables the physical button on the plug.
+        def set_childlock():
+            self.device.set_dps('40', True)
+            self.child_lock = True
+            
+        ##returns the child lock status
+        def get_child_lock():
+            return(self.child_lock)
