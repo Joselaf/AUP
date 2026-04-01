@@ -1,6 +1,6 @@
 import tinytuya
 
-class Breaker:
+class consumption_breaker:
     def __init__(self, id, ip, local_key, name):
         self.id = id
         self.ip = ip
@@ -25,7 +25,9 @@ class Breaker:
         self.watts += dps.get('19') / 10.0
         self.volts += dps.get('20') / 10.0
 
-    ##returns the device name
+
+
+     ##returns the device name
     def get_name():
         return(self.name)
 
@@ -74,19 +76,20 @@ class Breaker:
         def set_childlock():
             self.device.set_dps('40', True)
             self.child_lock = True
-
+            
         ##returns the child lock status
         def get_child_lock():
             return(self.child_lock)
+
+        ##returns the total consumption in KWH    
+        def get_kwh():
+            return(self.add_ele / 1000.0)
+
+        ##returns atm_voltage    
+        def get_volts():
+            return(self.volts)
+
+        ##returns atm_amps
+        def get_amps():
+            return(self.amps)
         
-    ##returns the total consumption in KWH    
-    def get_kwh():
-        return(self.add_ele / 1000.0)
-
-    ##returns atm_voltage    
-    def get_volts():
-        return(self.volts)
-
-    ##returns atm_amps
-    def get_amps():
-        return(self.amps)
