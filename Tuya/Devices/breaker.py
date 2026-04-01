@@ -10,6 +10,7 @@ class Breaker:
         self.volts = 0.0
         self.amps = 0.0
         self.watts = 0.0
+        self.add_ele = 0.0
         self.dps = self.device.status('dps',{})
         self.refresh_stats(self)
 
@@ -18,6 +19,7 @@ class Breaker:
         self.state = self.dps.get('1')
         self.fault = self.dps.get('26')
         self.relay_status = self.dps.get('38')
+        self.add_ele = self.dps.get('17')
         self.amps += dps.get('18') / 1000.0
         self.watts += dps.get('19') / 10.0
         self.volts += dps.get('20') / 10.0
@@ -29,6 +31,10 @@ class Breaker:
     ##returns the device id
     def  get_id():
         return(self.id)
+
+    ##returns the device ip
+    def get_ip():
+        return(self.ip)
 
     ##Turns the device ON if it is OFF and vice-versa
     def toggle():
@@ -51,12 +57,14 @@ class Breaker:
         self.device.set_dps('38', value)
         self.relay_status = value
 
+    ##returns the relay status
     def get_relay_status():
         return(self.relay_status)
 
     ##returns the instant volts, amps, and watts and updates the self values of the device 
     def atm_values():
-        amp = dps.get('18') / 1000.0
-        watt = dps.get('19') / 10.0
-        volt = dps.get('20') / 10.0
-        return (volt, amp, watt)
+        amp = self.dps.get('18') / 1000.0
+        watt = self.dps.get('19') / 10.0
+        volt = self.dps.get('20') / 10.0
+        add_ele = self.dps('17')
+        return (volt, amp, watt, add_ele)

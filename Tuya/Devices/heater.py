@@ -7,15 +7,15 @@ class heater:
         self.local_key = local_key
         self.name = name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
+        self.dps = self.device.status('dps',{})
         self.refresh_stats(self)
 
     def refresh_stats(self):
-        self.dps = self.device.status('dps',{})
         self.state = self.dps('1')
-        self.targ_temp = self.dps('2')
-        self.curr_temp = self.dps('3')
-        self.mode = self.dps('4')
+        self.countdown = self.dps('9')  
+        self.relay_status = self.dps('38')
         self.child_lock = self.dps('40')
+        self.switch_type = self.dps('42')
 
     ##returns the device id
     def get_id():
@@ -40,27 +40,24 @@ class heater:
         self.device.set_dps(new_state, '1')
         self.state = new_state
 
-    ##returns the target temperature set previously
-    def get_targ_temp():
-        return self.targ_temp
+    ##sets the countdown value (in minutes) to turn the device OFF
+    def set_countdown(vaue):
+        self.device.set_dps(value, '9')
+        self.countdown = value
 
-    ##Target Temperature: The heat you want to reach (e.g., 22 = 22°C).
-    def set_targ_temp(temp):
-        self.device.set_dps(temp, '2')
-        self.targ_temp = temp
+    ##returns the countdown value
+    def get_countdown():
+        return self.countdown
 
-    #returns the mode of the heater
-    def get_mode():
-        return self.mode
+    ##Power-on State: 0 (Off), 1 (On), 2 (Last state).
+    def set_relay_status(value):
+        self.device.set_dps(value, '38')
+        self.relay_status = value
 
-    ##work Mode: Usually manual, eco, or auto.
-    def set_mode(mode):        
-        self.device.set_dps(mode, '4')
-        self.mode = mode
-
-    ##Current Temperature: Room reading from the sensor probe.
-    def get_curr_temp():        
-        return self.curr_temp
+    ##returns the relay status (if the device is actually ON/OFF)
+    def get_relay_status():
+        return self.relay_status
+    
 
     ##Physical Lock: Disables manual buttons if present. 
     def set_child_lock(lock):
@@ -70,6 +67,15 @@ class heater:
     ##returns the child lock status
     def get_child_lock():
         return self.child_lock
+
+    ##Switch Type: 1 - momentary, 2 - toggle, 3 - state
+    def set_switch_type(value):
+        self.device.set_dps(value, '42')
+        self.switch_type = value
+    
+    ##returns the switch type
+    def get_switch_type():
+        return self.switch_type
 
 
         
