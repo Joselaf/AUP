@@ -1,6 +1,6 @@
 import tinytuya
 
-class lock_main:
+class smart_lock:
     def __init__(self, id, ip, local_key, name):
         self.id = id
         self.ip = ip
