@@ -8,7 +8,7 @@ class smart_bulb:
         self.name = name
         self.device = tinytuya.OutletDevice(id, ip, local_key)
         self.dps = self.device.status('dps',{})
-        self.refresh_stats(self)
+        self.refresh_stats()
 
         ##refreshs the stats from the device
         def refresh_stats():

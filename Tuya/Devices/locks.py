@@ -8,7 +8,7 @@ class lock:
         self.name = name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
         self.dps = self.device.status('dps',{})
-        self.refresh_stats(self)
+        self.refresh_stats()
 
     ##refreshs the stats from the device
     def refresh_stats(self):

@@ -12,7 +12,7 @@ class Breaker:
         self.watts = 0.0
         self.add_ele = 0.0
         self.dps = self.device.status('dps',{})
-        self.refresh_stats(self)
+        self.refresh_stats()
 
     ##refreshs the stats from the device
     def refresh_stats(self):

@@ -10,7 +10,7 @@ class general_circuit_breaker:
         self.device = tinytuya.OutletDevice(id, ip, local_key)
         self.add_ele = 0.0
         self.dps = self.device.status('dps',{})
-        self.refresh_stats(self)
+        self.refresh_stats()
         
     ##returns the device id
     def get_id(self):

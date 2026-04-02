@@ -12,7 +12,7 @@ class consumption_breaker:
         self.watts = 0.0
         self.add_ele = 0.0
         self.dps = self.device.status('dps',{})
-        self.refresh_stats(self)
+        self.refresh_stats()
 
     ##refreshs the stats from the device
     def refresh_stats(self):
@@ -21,9 +21,9 @@ class consumption_breaker:
         self.relay_status = self.dps.get('38')
         self.child_lock = self.dps.get('40')
         self.add_ele = self.dps.get('17')
-        self.amps += dps.get('18') / 1000.0
-        self.watts += dps.get('19') / 10.0
-        self.volts += dps.get('20') / 10.0
+        self.amps += self.dps.get('18') / 1000.0
+        self.watts += self.dps.get('19') / 10.0
+        self.volts += self.dps.get('20') / 10.0
 
 
 
