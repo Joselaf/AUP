@@ -48,7 +48,7 @@ class smart_tv:
             self.mute = new_state
         
 
-        ##mage patterns : such as standard, vivid, movie,user
+        ##mage patterns : such as standard, vivid, movie, user
         def set_mode(value):
             self.device.dps_set(value, '4')
 

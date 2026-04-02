@@ -19,31 +19,31 @@ class door_sensor:
             self.tamper_alarm = self.dps('4')
 
         ##returns device name
-        def get_name():
+        def get_name(self):
             return self.name
         
         ##returns the device id
-        def get_id():
+        def get_id(self):
             return self.id
     
         ##returns if the door is open or close
-        def get_door_status():            
+        def get_door_status(self):            
             if (self.dps('1') == (True)):
                 return "Door is open"
             else:
                 return "Door is closed"
         
         ##returns the battery percentage
-        def get_battery_percentage():
+        def get_battery_percentage(self):
             return self.dps('2')
     
         ##returns Battery Status: low, middle, or high.
-        def  get_battery_state():
+        def  get_battery_state(self):
             return(self.dps('3'))
         
 
         ##returns Tamper Alarm: True = case is opened/removed, False = case is closed
-        def get_tamper_alarm():
+        def get_tamper_alarm(self):
            if (self.dps('4') == (True)):
             return "case is opened/removed"
            else:

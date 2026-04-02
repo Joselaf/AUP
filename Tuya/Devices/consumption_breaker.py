@@ -15,7 +15,7 @@ class consumption_breaker:
         self.refresh_stats(self)
 
     ##refreshs the stats from the device
-    def refresh_stats():
+    def refresh_stats(self):
         self.state = self.dps.get('1')
         self.fault = self.dps.get('26')
         self.relay_status = self.dps.get('38')
@@ -28,26 +28,26 @@ class consumption_breaker:
 
 
      ##returns the device name
-    def get_name():
+    def get_name(self):
         return(self.name)
 
     ##returns the device id
-    def  get_id():
+    def  get_id(self):
         return(self.id)
 
     ##returns the device ip
-    def get_ip():
+    def get_ip(self):
         return(self.ip)
 
     ##Turns the device ON if it is OFF and vice-versa
-    def toggle():
+    def toggle(self):
        new_state = not self.state
        self.device.set_dps('1', new_state)
        self.state = new_state
        return(new_state)
 
     ##returns the status of the breaker
-    def get_status():
+    def get_status(self):
         if(self.state):
             return("ON")
         elif(not self.state and self.fault):
@@ -56,16 +56,16 @@ class consumption_breaker:
             return("OFF")
 
     ##power_on / power_off / memory
-    def set_relay_status(value):
+    def set_relay_status(self, value):
         self.device.set_dps('38', value)
         self.relay_status = value
 
     ##returns the relay status
-    def get_relay_status():
+    def get_relay_status(self):
         return(self.relay_status)
 
     ##returns the instant volts, amps, and watts and updates the self values of the device 
-    def atm_values():
+    def atm_values(self):
         amp = self.dps.get('18') / 1000.0
         watt = self.dps.get('19') / 10.0
         volt = self.dps.get('20') / 10.0
@@ -73,23 +73,24 @@ class consumption_breaker:
         return (volt, amp, watt, add_ele)
 
         ##Child Lock: Disables the physical button on the plug.
-        def set_childlock():
-            self.device.set_dps('40', True)
-            self.child_lock = True
+    def set_childlock(self):
+        new_state = not self.child_lock
+        self.device.set_dps('40', new_state)
+        self.child_lock = new_state
             
-        ##returns the child lock status
-        def get_child_lock():
-            return(self.child_lock)
+    ##returns the child lock status
+    def get_child_lock(self):
+        return(self.child_lock)
 
-        ##returns the total consumption in KWH    
-        def get_kwh():
-            return(self.add_ele / 1000.0)
+    ##returns the total consumption in KWH    
+    def get_kwh(self):
+        return(self.add_ele / 1000.0)
 
-        ##returns atm_voltage    
-        def get_volts():
-            return(self.volts)
+    ##returns atm_voltage    
+    def get_volts(self):
+        return(self.volts)
 
-        ##returns atm_amps
-        def get_amps():
-            return(self.amps)
-        
+    ##returns atm_amps
+    def get_amps(self):
+        return(self.amps)
+    

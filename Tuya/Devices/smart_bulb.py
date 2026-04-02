@@ -1,3 +1,5 @@
+import tinytuya
+
 class smart_bulb:
     def __init__(self, id, ip, local_key, name):
         self.id = id
@@ -19,68 +21,68 @@ class smart_bulb:
             self.countdown = self.dps.get('26')
 
             ##returns the device name
-            def get_name():
+            def get_name(self):
                 return(self.name)
 
             ##returns the device id
-            def  get_id():
+            def  get_id(self):
                 return(self.id)
 
             ##returns the device ip
-            def get_ip():
+            def get_ip(self):
                 return(self.ip)
 
         
         ##Turns the device ON if it is OFF and vice-versa
-        def Toogle():
+        def Toogle(self):
             new_state = not self.led
             self.device.set_dps(new_state, '1')
             self.led = new_state
 
         ##Modes : white(White Light), colour(Color), scene(Scene), music(Music)
-        def set_mode(value):
+        def set_mode(self, value):
             self.device.dps_set(value, '21')
 
         ##White light brightness : typically ranging from 10 to 1000.
-        def set_brightness(value):
+        def set_brightness(self, value):
             self.device.dps_set(value, '22')
         
 
         ##Color temperature range: 0–1000 (0 for warm light, 1000 for cool white)
-        def set_temperature(value):
+        def set_temperature(self, value):
             self.device.dps_set(value, '23')
 
         ##Colored data : Hexadecimal strings in HSV format (e.g. 000003e803e8)
-        def set_colour(value):
+        def set_colour(self, value):
             self.device.dps_set(value, '24')
 
         ##Scene data : Preset blinking or fade pattern data
-        def set_scene(value):
+        def set_scene(self, value):
             self.device.dps_set(value, '25')
 
         ##Countdown : in seconds (0–86400)
-        def set_countdown(value):
+        def set_countdown(self, value):
             self.device.dps_set(value, '26')
         
-        def get_state():
+        def get_state(self):
             return self.led
 
-        def get_mode():
+        def get_mode(self):
             return self.mode
         
-        def get_brightness():
+        def get_brightness(self):
             return self.bright
         
-        def get_temperature():
+        def get_temperature(self):
             return self.temp
         
-        def get_colour():
+        def get_colour(self):
             return self.colour
         
-        def get_scene():
+        def get_scene(self):
             return self.scene
         
-        def get_countdown():
+        def get_countdown(self):
             return self.countdown
         
 
