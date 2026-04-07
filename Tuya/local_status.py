@@ -7,8 +7,9 @@ import json
 import time
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from get_dps import get_alerts
-import devices
+from regex import match
+import tinytuya
+from devices import *
 
 
 DEVICES_FILE = "devices.json"
@@ -30,13 +31,35 @@ def check_device(device):
 if __name__ == "__main__":
 
     devices = load_devices()
-    valid = [d for d in devices if d.get('ip')]
-    skipped = [d for d in devices if not d.get('ip')]
+    ##valid = [d for d in devices if d.get('ip')]
+    ##skipped = [d for d in devices if not d.get('ip')]
     
-    ##make a library of the category of devices and the number of devices in each category
+    devices_cat = {}    
+    
+    for d in devices:
+        obj = tinytuya.OutletDevice(d['id'], d['ip'], d['key'])
+        obj.set_version(d['version'])
+        devices_cat[d['category']] = obj
+    
+    devices_type = {}
+    
+    
+    for category, device in devices_cat.items():
+        match category:
+            case 'dlq':
+                d = breaker(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['disjuntor']] = d
+                
+            case 'tdp':
+                d = heater(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['aquecedor']] = d
+                       
         
+    
+   
+    
+    
 
-    cycle = 0
     try:
         while True:
       
