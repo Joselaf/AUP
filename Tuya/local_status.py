@@ -8,6 +8,8 @@ import time
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from get_dps import get_alerts
+import devices
+
 
 DEVICES_FILE = "devices.json"
 POLL_INTERVAL = 0
@@ -30,9 +32,9 @@ if __name__ == "__main__":
     devices = load_devices()
     valid = [d for d in devices if d.get('ip')]
     skipped = [d for d in devices if not d.get('ip')]
-
-
-    devices = {"id": , "object": }
+    
+    ##make a library of the category of devices and the number of devices in each category
+        
 
     cycle = 0
     try:
