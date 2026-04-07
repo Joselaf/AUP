@@ -70,15 +70,15 @@ class Breaker:
         add_ele = self.dps.get('17')
         return (volt, amp, watt, add_ele)
 
-        ##Child Lock: Disables the physical button on the plug.
-        def set_childlock(self):
-            self.device.set_dps('40', True)
-            self.child_lock = True
+    ##Child Lock: Disables the physical button on the plug.
+    def set_childlock(self):
+        self.device.set_dps('40', True)
+        self.child_lock = True
 
-        ##returns the child lock status
-        def get_child_lock(self):
-            return(self.child_lock)
-        
+    ##returns the child lock status
+    def get_child_lock(self):
+        return(self.child_lock)
+    
     ##returns the total consumption in KWH    
     def get_kwh(self):
         return(self.add_ele / 1000.0)

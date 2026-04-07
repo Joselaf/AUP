@@ -25,7 +25,7 @@ def check_device(device):
     """Check a single device and return its alerts"""
     name = device.get('name', 'Unknown')
     category = device.get('category', 'unknown')
-    alerts = get_alerts(device)
+    ##alerts = get_alerts(device)
     return (name, category, alerts)
 
 if __name__ == "__main__":
