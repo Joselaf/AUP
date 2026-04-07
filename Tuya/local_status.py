@@ -49,11 +49,48 @@ if __name__ == "__main__":
             case 'dlq':
                 d = breaker(device['id'], device['ip'], device['key'], device['name'])
                 devices_type[device['disjuntor']] = d
+            
+            case 'dlq'if("consumo" in device['name'].lower()):
+                d = breaker(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['disjuntor_consumo']] = d
                 
             case 'tdp':
                 d = heater(device['id'], device['ip'], device['key'], device['name'])
                 devices_type[device['aquecedor']] = d
-                       
+                
+            case 'mcs':
+                d = contact_sensor(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['contact_sensor']] = d
+                
+            case 'hps':
+                d = presence_sensor(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['presence_sensor']] = d
+            
+            case 'ms':
+                d = smart_lock(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['fechadura_inteligente']] = d
+            
+            case 'cz':
+                d = smart_plug(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['luz_estufa']] = d
+            
+            case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].lower()):
+                d = smart_bulb(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['luz_inteligente']] = d
+            
+            case 'dj'if("esmax" in device['name'].lower()):
+                d = esmax(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['esmax']] = d
+                
+            case 'dj':
+                d = smart_ir(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['ir']] = d
+            
+            case 'tv':
+                d = smart_tv(device['id'], device['ip'], device['key'], device['name'])
+                devices_type[device['tv']] = d
+            
+            
         
     
    

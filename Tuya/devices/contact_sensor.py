@@ -1,6 +1,6 @@
 import tinytuya
 
-class door_sensor:
+class contact_sensor:
         def __init__(self, id, ip, local_key, name):
             self.id = id
             self.ip = ip

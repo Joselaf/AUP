@@ -1,6 +1,6 @@
 from . import breaker
 from . import consumption_breaker
-from . import door_sensor
+from . import contact_sensor
 from . import general_circuit_breaker
 from . import heater
 from . import locks
@@ -9,3 +9,5 @@ from . import smart_ir
 from . import smart_lock
 from . import smart_plug
 from . import smart_tv
+from . import presence_sensor
+from . import esmax
