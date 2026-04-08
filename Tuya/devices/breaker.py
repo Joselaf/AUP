@@ -1,3 +1,5 @@
+import threading
+
 import tinytuya
 
 class Breaker:
@@ -90,3 +92,4 @@ class Breaker:
     ##returns atm_amps
     def get_amps(self):
         return(self.amps)
+    

@@ -3,13 +3,21 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import tinytuya
 from devices import *
 
+DEVICES_FILE = "devices.json"
+POLL_INTERVAL = 0
+def load_devices():
+    """Load devices from devices.json"""
+    with open(DEVICES_FILE) as f:
+        data = json.load(f)
+    return data if isinstance(data, list) else data.get('devices', [])
+
 
 devices_cat = {}    
 def devices_by_category(d):
             obj = tinytuya.OutletDevice(d['id'], d['ip'], d['key'])
             obj.set_version(d['version'])
             devices_cat[d['category']] = obj
-    
+ 
       
 devices_type = {}
 def devices_by_type():
@@ -64,20 +72,11 @@ def devices_by_type():
                     devices_type[device['fechadura_inteligente']] = d
             
 
-DEVICES_FILE = "devices.json"
-POLL_INTERVAL = 0
 
-def load_devices():
-    """Load devices from devices.json"""
-    with open(DEVICES_FILE) as f:
-        data = json.load(f)
-    return data if isinstance(data, list) else data.get('devices', [])
 
 if __name__ == "__main__":
 
     devices = load_devices()
-    ##valid = [d for d in devices if d.get('ip')]
-    ##skipped = [d for d in devices if not d.get('ip')]
     try:
       
 
