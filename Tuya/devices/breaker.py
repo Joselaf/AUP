@@ -20,7 +20,7 @@ class Breaker:
         self.fault = self.dps.get('26')
         self.relay_status = self.dps.get('38')
         self.child_lock = self.dps.get('40')
-        self.add_ele = self.dps.get('17')
+        self.add_ele += self.dps.get('17')
         self.amps += self.dps.get('18') / 1000.0
         self.watts += self.dps.get('19') / 10.0
         self.volts += self.dps.get('20') / 10.0

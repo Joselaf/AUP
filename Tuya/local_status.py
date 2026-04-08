@@ -74,7 +74,7 @@ if __name__ == "__main__":
                 d = smart_plug(device['id'], device['ip'], device['key'], device['name'])
                 devices_type[device['luz_estufa']] = d
             
-            case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].lower()):
+            case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
                 d = smart_bulb(device['id'], device['ip'], device['key'], device['name'])
                 devices_type[device['luz_inteligente']] = d
             
