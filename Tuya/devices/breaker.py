@@ -67,8 +67,8 @@ class Breaker:
     ##returns the instant volts, amps, and watts and updates the self values of the device 
     def atm_values(self):
         amp = self.dps.get('18') / 1000.0
-        watt = self.dps.get('19') / 10.0
         volt = self.dps.get('20') / 10.0
+        watt = self.dps.get('19') / 10.0
         add_ele = self.dps.get('17')
         return (volt, amp, watt, add_ele)
 
