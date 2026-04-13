@@ -13,10 +13,10 @@ def load_devices():
 
 
 devices_cat = {}    
-def devices_by_category(d):
-            obj = tinytuya.OutletDevice(d['id'], d['ip'], d['key'])
-            obj.set_version(d['version'])
-            devices_cat[d['category']] = obj
+def devices_by_category(device):
+            obj = tinytuya.OutletDevice(device['id'], device['ip'], device['key'])
+            obj.set_version(device['version'])
+            devices_cat[device['category']].append(device)
  
       
 devices_type = {}
@@ -25,51 +25,51 @@ def devices_by_type():
             match category:
                 case 'dlq':
                     d = breaker(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['disjuntor']] = d
+                    devices_type[device['disjuntor']].append(d)
                 
                 case 'dlq'if("consumo" in device['name'].lower()):
                     d = breaker(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['disjuntor_consumo']] = d
+                    devices_type[device['disjuntor_consumo']].append(d)
                     
                 case 'tdp':
                     d = heater(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['aquecedor']] = d
+                    devices_type[device['aquecedor']].append(d)
                     
                 case 'mcs':
                     d = contact_sensor(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['contact_sensor']] = d
+                    devices_type[device['contact_sensor']].append(d)
                     
                 case 'hps':
                     d = presence_sensor(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['presence_sensor']] = d
+                    devices_type[device['presence_sensor']].append(d)
                 
                 case 'ms':
                     d = locks(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['fechadura']] = d
+                    devices_type[device['fechadura']].append(d)
                 
                 case 'cz':
                     d = smart_plug(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['luz_estufa']] = d
+                    devices_type[device['luz_estufa']].append(d)
                 
                 case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
                     d = smart_bulb(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['luz_inteligente']] = d
+                    devices_type[device['luz_inteligente']].append(d)
                 
                 case 'dj'if("esmax" in device['name'].lower()):
                     d = esmax(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['esmax']] = d
+                    devices_type[device['esmax']].append(d)
                     
                 case 'dj':
                     d = smart_ir(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['ir']] = d
+                    devices_type[device['ir']].append(d)
                 
                 case 'tv':
                     d = smart_tv(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['tv']] = d
+                    devices_type[device['tv']].append(d)
                     
                 case 'jtmspro':
                     d = smart_lock(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['fechadura_inteligente']] = d
+                    devices_type[device['fechadura_inteligente']].append(d)
             
 
 
