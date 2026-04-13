@@ -50,7 +50,7 @@ class Breaker:
     def get_status(self):
         if(self.state):
             return("ON")
-        elif(not self.state and self.fault):
+        elif(self.fault):
             return(f"OFF:{self.fault}")
         else:
             return("OFF")
@@ -64,7 +64,7 @@ class Breaker:
     def get_relay_status(self):
         return(self.relay_status)
 
-    ##returns the instant volts, amps, and watts and updates the self values of the device 
+    ##returns the instant volts, amps, and watts of the device 
     def atm_values(self):
         amp = self.dps.get('18') / 1000.0
         volt = self.dps.get('20') / 10.0
