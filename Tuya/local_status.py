@@ -2,6 +2,7 @@ import json
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import tinytuya
 from devices import *
+from collections import defaultdict
 
 DEVICES_FILE = "devices.json"
 POLL_INTERVAL = 0
@@ -12,14 +13,14 @@ def load_devices():
     return data if isinstance(data, list) else data.get('devices', [])
 
 
-devices_cat = {}    
+devices_cat = defaultdict(list)  
 def devices_by_category(device):
             obj = tinytuya.OutletDevice(device['id'], device['ip'], device['key'])
             obj.set_version(device['version'])
-            devices_cat[device['category']].append(device)
+            devices_cat[device['category']].append(device)  
  
       
-devices_type = {}
+devices_type = defaultdict(list)
 def devices_by_type():
         for category, device in devices_cat.items():
             match category:
@@ -30,6 +31,9 @@ def devices_by_type():
                 case 'dlq'if("consumo" in device['name'].lower()):
                     d = breaker(device['id'], device['ip'], device['key'], device['name'])
                     devices_type[device['disjuntor_consumo']].append(d)
+                case 'kg':
+                    d = breaker(device['id'], device['ip'], device['key'], device['name'])
+                    devices_type[device['rail']].append(d)
                     
                 case 'tdp':
                     d = heater(device['id'], device['ip'], device['key'], device['name'])
@@ -77,15 +81,16 @@ def devices_by_type():
 if __name__ == "__main__":
 
     devices = load_devices()
+    print("I'm here")
     try:
       
-
+        print("Processing devices by category...")
         with ThreadPoolExecutor(max_workers=20) as executor:
             futures = [executor.submit(devices_by_category, d) for d in devices]
             results = [f.result() for f in as_completed(futures)]
 
             
-            
+        print("Processing devices by type...")
         try:
             with ThreadPoolExecutor(max_workers=20) as executor:
                 futures = [executor.submit(devices_by_type) for _ in range(len(devices))]
@@ -96,6 +101,10 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Error processing devices: {e}")
     
+    print("Devices by category:")
+    print (devices_cat)
+    print("Devices by type:")
+    print (devices_type)
         
     
    
