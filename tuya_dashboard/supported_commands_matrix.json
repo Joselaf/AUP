@@ -1,0 +1,3767 @@
+[
+  {
+    "device": "Disjuntor AC Q13",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q23",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q23",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q21",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q25",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras Q12",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q02",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q12",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q24",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Bombas Furo",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q15",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Aquecedor Piso1_2",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "43",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "random_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "0 | 1 | 2"
+      },
+      {
+        "code": "remote_add",
+        "dps": "49",
+        "allowed": "raw"
+      },
+      {
+        "code": "remote_list",
+        "dps": "50",
+        "allowed": "raw"
+      },
+      {
+        "code": "switch_1",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_inching",
+        "dps": "44",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "switch_type",
+        "dps": "47",
+        "allowed": "flip | sync | button"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q14",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q03",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechadura Q22",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechadura Q11",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechadura Q21",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q01",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q02",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q13",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras Q04",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Smart Lock 2",
+    "commands": [
+      {
+        "code": "doorbell",
+        "dps": "19",
+        "allowed": "true | false"
+      },
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "initiative_message",
+        "dps": "212",
+        "allowed": "raw"
+      },
+      {
+        "code": "lock_local_record",
+        "dps": "70",
+        "allowed": "raw"
+      },
+      {
+        "code": "lock_record",
+        "dps": "57",
+        "allowed": "raw"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "remote_no_dp_key",
+        "dps": "50",
+        "allowed": "raw"
+      },
+      {
+        "code": "remote_no_pd_setkey",
+        "dps": "49",
+        "allowed": "raw"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_key",
+        "dps": "7",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "video_request_realtime",
+        "dps": "63",
+        "allowed": "raw"
+      }
+    ]
+  },
+  {
+    "device": "Smart Lock Main",
+    "commands": [
+      {
+        "code": "doorbell",
+        "dps": "19",
+        "allowed": "true | false"
+      },
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "initiative_message",
+        "dps": "212",
+        "allowed": "raw"
+      },
+      {
+        "code": "lock_local_record",
+        "dps": "70",
+        "allowed": "raw"
+      },
+      {
+        "code": "lock_record",
+        "dps": "57",
+        "allowed": "raw"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "remote_no_dp_key",
+        "dps": "50",
+        "allowed": "raw"
+      },
+      {
+        "code": "remote_no_pd_setkey",
+        "dps": "49",
+        "allowed": "raw"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_key",
+        "dps": "7",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "video_request_realtime",
+        "dps": "63",
+        "allowed": "raw"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras Q01",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q15",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Piso 2",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Candeeiros Viela",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras Q03",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras Q26",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q04",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras Q14",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Aquecedor Piso 2_4",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "43",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "random_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "0 | 1 | 2"
+      },
+      {
+        "code": "remote_add",
+        "dps": "49",
+        "allowed": "raw"
+      },
+      {
+        "code": "remote_list",
+        "dps": "50",
+        "allowed": "raw"
+      },
+      {
+        "code": "switch_1",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_inching",
+        "dps": "44",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "switch_type",
+        "dps": "47",
+        "allowed": "flip | sync | button"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras inteligentes 25",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q03",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q24",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q01",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras Q24",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras Q13",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC  Q11",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Aquecedor WC Piso1_3",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "43",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "random_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "0 | 1 | 2"
+      },
+      {
+        "code": "remote_add",
+        "dps": "49",
+        "allowed": "raw"
+      },
+      {
+        "code": "remote_list",
+        "dps": "50",
+        "allowed": "raw"
+      },
+      {
+        "code": "switch_1",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_inching",
+        "dps": "44",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "switch_type",
+        "dps": "47",
+        "allowed": "flip | sync | button"
+      }
+    ]
+  },
+  {
+    "device": "Fechaduras Q02",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q26",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q12",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q22",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q26",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q11",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Geral Piso 0",
+    "commands": [
+      {
+        "code": "balance_energy",
+        "dps": "13",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      },
+      {
+        "code": "breaker_number",
+        "dps": "19",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "charge_energy",
+        "dps": "14",
+        "allowed": "min 0, max 999999, step 1, unit kW·h"
+      },
+      {
+        "code": "energy_reset",
+        "dps": "12",
+        "allowed": "empty"
+      },
+      {
+        "code": "phase_a",
+        "dps": "6",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_b",
+        "dps": "7",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_c",
+        "dps": "8",
+        "allowed": "raw"
+      },
+      {
+        "code": "switch",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_prepayment",
+        "dps": "11",
+        "allowed": "true | false"
+      },
+      {
+        "code": "total_forward_energy",
+        "dps": "1",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Consumo Piso 0_2",
+    "commands": [
+      {
+        "code": "balance_energy",
+        "dps": "13",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      },
+      {
+        "code": "charge_energy",
+        "dps": "14",
+        "allowed": "min 0, max 999999, step 1, unit kW·h"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "105",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "106",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "energy_reset",
+        "dps": "12",
+        "allowed": "empty"
+      },
+      {
+        "code": "leakage_current",
+        "dps": "15",
+        "allowed": "min 0, max 1000, step 1, unit mA"
+      },
+      {
+        "code": "phase_a",
+        "dps": "6",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_b",
+        "dps": "7",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_c",
+        "dps": "8",
+        "allowed": "raw"
+      },
+      {
+        "code": "random_time",
+        "dps": "108",
+        "allowed": "string"
+      },
+      {
+        "code": "reverse_energy_total",
+        "dps": "110",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      },
+      {
+        "code": "switch",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_prepayment",
+        "dps": "11",
+        "allowed": "true | false"
+      },
+      {
+        "code": "total_forward_energy",
+        "dps": "1",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Consumo Piso 1",
+    "commands": [
+      {
+        "code": "balance_energy",
+        "dps": "13",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      },
+      {
+        "code": "charge_energy",
+        "dps": "14",
+        "allowed": "min 0, max 999999, step 1, unit kW·h"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "105",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "106",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "energy_reset",
+        "dps": "12",
+        "allowed": "empty"
+      },
+      {
+        "code": "leakage_current",
+        "dps": "15",
+        "allowed": "min 0, max 1000, step 1, unit mA"
+      },
+      {
+        "code": "phase_a",
+        "dps": "6",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_b",
+        "dps": "7",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_c",
+        "dps": "8",
+        "allowed": "raw"
+      },
+      {
+        "code": "random_time",
+        "dps": "108",
+        "allowed": "string"
+      },
+      {
+        "code": "reverse_energy_total",
+        "dps": "110",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      },
+      {
+        "code": "switch",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_prepayment",
+        "dps": "11",
+        "allowed": "true | false"
+      },
+      {
+        "code": "total_forward_energy",
+        "dps": "1",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Consumo Piso 0_3",
+    "commands": [
+      {
+        "code": "balance_energy",
+        "dps": "13",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      },
+      {
+        "code": "charge_energy",
+        "dps": "14",
+        "allowed": "min 0, max 999999, step 1, unit kW·h"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "105",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "106",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "energy_reset",
+        "dps": "12",
+        "allowed": "empty"
+      },
+      {
+        "code": "leakage_current",
+        "dps": "15",
+        "allowed": "min 0, max 1000, step 1, unit mA"
+      },
+      {
+        "code": "phase_a",
+        "dps": "6",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_b",
+        "dps": "7",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_c",
+        "dps": "8",
+        "allowed": "raw"
+      },
+      {
+        "code": "random_time",
+        "dps": "108",
+        "allowed": "string"
+      },
+      {
+        "code": "reverse_energy_total",
+        "dps": "110",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      },
+      {
+        "code": "switch",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_prepayment",
+        "dps": "11",
+        "allowed": "true | false"
+      },
+      {
+        "code": "total_forward_energy",
+        "dps": "1",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Consumo Piso 0_1",
+    "commands": [
+      {
+        "code": "balance_energy",
+        "dps": "13",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      },
+      {
+        "code": "charge_energy",
+        "dps": "14",
+        "allowed": "min 0, max 999999, step 1, unit kW·h"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "105",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "106",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "energy_reset",
+        "dps": "12",
+        "allowed": "empty"
+      },
+      {
+        "code": "leakage_current",
+        "dps": "15",
+        "allowed": "min 0, max 1000, step 1, unit mA"
+      },
+      {
+        "code": "phase_a",
+        "dps": "6",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_b",
+        "dps": "7",
+        "allowed": "raw"
+      },
+      {
+        "code": "phase_c",
+        "dps": "8",
+        "allowed": "raw"
+      },
+      {
+        "code": "random_time",
+        "dps": "108",
+        "allowed": "string"
+      },
+      {
+        "code": "reverse_energy_total",
+        "dps": "110",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      },
+      {
+        "code": "switch",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_prepayment",
+        "dps": "11",
+        "allowed": "true | false"
+      },
+      {
+        "code": "total_forward_energy",
+        "dps": "1",
+        "allowed": "min 0, max 99999999, step 1, unit kW·h"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q25",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q22",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Cozinha Piso 0",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Aquecedor WC Piso2_5",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "43",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "random_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "0 | 1 | 2"
+      },
+      {
+        "code": "remote_add",
+        "dps": "49",
+        "allowed": "raw"
+      },
+      {
+        "code": "remote_list",
+        "dps": "50",
+        "allowed": "raw"
+      },
+      {
+        "code": "switch_1",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_inching",
+        "dps": "44",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "switch_type",
+        "dps": "47",
+        "allowed": "flip | sync | button"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor Q21",
+    "commands": [
+      {
+        "code": "child_lock",
+        "dps": "41",
+        "allowed": "true | false"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "online_state",
+        "dps": "66",
+        "allowed": "online | offline"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q04",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "test",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Fechadura Q23",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Disjuntor AC Q14",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "light_mode",
+        "dps": "40",
+        "allowed": "relay | pos | none | on"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "test_bit",
+        "dps": "21",
+        "allowed": "min 0, max 5, step 1"
+      }
+    ]
+  },
+  {
+    "device": "Aquecedor WC Piso 0_1",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "43",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "random_time",
+        "dps": "42",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "relay_status",
+        "dps": "38",
+        "allowed": "0 | 1 | 2"
+      },
+      {
+        "code": "remote_add",
+        "dps": "49",
+        "allowed": "raw"
+      },
+      {
+        "code": "remote_list",
+        "dps": "50",
+        "allowed": "raw"
+      },
+      {
+        "code": "switch_1",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_inching",
+        "dps": "44",
+        "allowed": "string (maxlen 255)"
+      },
+      {
+        "code": "switch_type",
+        "dps": "47",
+        "allowed": "flip | sync | button"
+      }
+    ]
+  },
+  {
+    "device": "Porta Estufa",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "欧版A60-WB 9W RGBCW 220V E27",
+    "commands": [
+      {
+        "code": "colour_data_v2",
+        "dps": "24",
+        "allowed": "json"
+      },
+      {
+        "code": "control_data",
+        "dps": "28",
+        "allowed": "json"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "26",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_timing",
+        "dps": "209",
+        "allowed": "raw"
+      },
+      {
+        "code": "do_not_disturb",
+        "dps": "34",
+        "allowed": "true | false"
+      },
+      {
+        "code": "music_data",
+        "dps": "27",
+        "allowed": "json"
+      },
+      {
+        "code": "random_timing",
+        "dps": "210",
+        "allowed": "raw"
+      },
+      {
+        "code": "rhythm_mode",
+        "dps": "30",
+        "allowed": "raw"
+      },
+      {
+        "code": "scene_data_v2",
+        "dps": "25",
+        "allowed": "json"
+      },
+      {
+        "code": "sleep_mode",
+        "dps": "31",
+        "allowed": "raw"
+      },
+      {
+        "code": "switch_led",
+        "dps": "20",
+        "allowed": "true | false"
+      },
+      {
+        "code": "wakeup_mode",
+        "dps": "32",
+        "allowed": "raw"
+      },
+      {
+        "code": "work_mode",
+        "dps": "21",
+        "allowed": "white | colour | scene | music"
+      }
+    ]
+  },
+  {
+    "device": "ESMAX 2",
+    "commands": [
+      {
+        "code": "colour_data_v2",
+        "dps": "24",
+        "allowed": "json"
+      },
+      {
+        "code": "control_data",
+        "dps": "28",
+        "allowed": "json"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "26",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_timing",
+        "dps": "209",
+        "allowed": "raw"
+      },
+      {
+        "code": "do_not_disturb",
+        "dps": "34",
+        "allowed": "true | false"
+      },
+      {
+        "code": "music_data",
+        "dps": "27",
+        "allowed": "json"
+      },
+      {
+        "code": "random_timing",
+        "dps": "210",
+        "allowed": "raw"
+      },
+      {
+        "code": "rhythm_mode",
+        "dps": "30",
+        "allowed": "raw"
+      },
+      {
+        "code": "scene_data_v2",
+        "dps": "25",
+        "allowed": "json"
+      },
+      {
+        "code": "sleep_mode",
+        "dps": "31",
+        "allowed": "raw"
+      },
+      {
+        "code": "switch_led",
+        "dps": "20",
+        "allowed": "true | false"
+      },
+      {
+        "code": "wakeup_mode",
+        "dps": "32",
+        "allowed": "raw"
+      },
+      {
+        "code": "work_mode",
+        "dps": "21",
+        "allowed": "white | colour | scene | music"
+      }
+    ]
+  },
+  {
+    "device": "Fechadura Q15",
+    "commands": [
+      {
+        "code": "hijack",
+        "dps": "16",
+        "allowed": "true | false"
+      },
+      {
+        "code": "open_inside",
+        "dps": "17",
+        "allowed": "true | false"
+      },
+      {
+        "code": "unlock_app",
+        "dps": "15",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_card",
+        "dps": "5",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_dynamic",
+        "dps": "4",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_face",
+        "dps": "6",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_finger_vein",
+        "dps": "24",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_fingerprint",
+        "dps": "1",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_hand",
+        "dps": "23",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_password",
+        "dps": "2",
+        "allowed": "min 0, max 999, step 1"
+      },
+      {
+        "code": "unlock_request",
+        "dps": "9",
+        "allowed": "min 0, max 90, step 1"
+      },
+      {
+        "code": "unlock_temporary",
+        "dps": "3",
+        "allowed": "min 0, max 999, step 1"
+      }
+    ]
+  },
+  {
+    "device": "ESMAX",
+    "commands": [
+      {
+        "code": "colour_data_v2",
+        "dps": "24",
+        "allowed": "json"
+      },
+      {
+        "code": "control_data",
+        "dps": "28",
+        "allowed": "json"
+      },
+      {
+        "code": "countdown_1",
+        "dps": "26",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_timing",
+        "dps": "209",
+        "allowed": "raw"
+      },
+      {
+        "code": "do_not_disturb",
+        "dps": "34",
+        "allowed": "true | false"
+      },
+      {
+        "code": "music_data",
+        "dps": "27",
+        "allowed": "json"
+      },
+      {
+        "code": "random_timing",
+        "dps": "210",
+        "allowed": "raw"
+      },
+      {
+        "code": "rhythm_mode",
+        "dps": "30",
+        "allowed": "raw"
+      },
+      {
+        "code": "scene_data_v2",
+        "dps": "25",
+        "allowed": "json"
+      },
+      {
+        "code": "sleep_mode",
+        "dps": "31",
+        "allowed": "raw"
+      },
+      {
+        "code": "switch_led",
+        "dps": "20",
+        "allowed": "true | false"
+      },
+      {
+        "code": "wakeup_mode",
+        "dps": "32",
+        "allowed": "raw"
+      },
+      {
+        "code": "work_mode",
+        "dps": "21",
+        "allowed": "white | colour | scene | music"
+      }
+    ]
+  },
+  {
+    "device": "24G-Presence Sensor V3",
+    "commands": [
+      {
+        "code": "far_detection",
+        "dps": "4",
+        "allowed": "min 50, max 900, step 50, unit M"
+      },
+      {
+        "code": "near_detection",
+        "dps": "3",
+        "allowed": "min 0, max 600, step 50, unit M"
+      },
+      {
+        "code": "sensitivity",
+        "dps": "2",
+        "allowed": "min 1, max 10, step 1"
+      },
+      {
+        "code": "target_dis_closest",
+        "dps": "9",
+        "allowed": "min 0, max 100, step 1, unit M"
+      }
+    ]
+  },
+  {
+    "device": "Smart Rail On-Off Switch",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "7",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "cycle_time",
+        "dps": "17",
+        "allowed": "string"
+      },
+      {
+        "code": "light_mode",
+        "dps": "15",
+        "allowed": "relay | pos | none"
+      },
+      {
+        "code": "random_time",
+        "dps": "18",
+        "allowed": "string"
+      },
+      {
+        "code": "relay_status",
+        "dps": "14",
+        "allowed": "power_off | power_on | last"
+      },
+      {
+        "code": "switch_1",
+        "dps": "1",
+        "allowed": "true | false"
+      },
+      {
+        "code": "switch_inching",
+        "dps": "19",
+        "allowed": "string"
+      }
+    ]
+  },
+  {
+    "device": "Luz Estufa",
+    "commands": [
+      {
+        "code": "countdown_1",
+        "dps": "9",
+        "allowed": "min 0, max 86400, step 1, unit s"
+      },
+      {
+        "code": "electricity_coe",
+        "dps": "25",
+        "allowed": "min 0, max 1000000, step 1"
+      },
+      {
+        "code": "switch_1",
+        "dps": "1",
+        "allowed": "true | false"
+      }
+    ]
+  },
+  {
+    "device": "Contact Sensor",
+    "commands": [
+      {
+        "code": "doorcontact_state",
+        "dps": "1",
+        "allowed": "true | false"
+      }
+    ]
+  },
+  {
+    "device": "TV",
+    "commands": [
+      {
+        "code": "-/--",
+        "dps": "-/--",
+        "allowed": "string"
+      },
+      {
+        "code": "0",
+        "dps": "0",
+        "allowed": "string"
+      },
+      {
+        "code": "1",
+        "dps": "1",
+        "allowed": "string"
+      },
+      {
+        "code": "2",
+        "dps": "2",
+        "allowed": "string"
+      },
+      {
+        "code": "3",
+        "dps": "3",
+        "allowed": "string"
+      },
+      {
+        "code": "4",
+        "dps": "4",
+        "allowed": "string"
+      },
+      {
+        "code": "5",
+        "dps": "5",
+        "allowed": "string"
+      },
+      {
+        "code": "6",
+        "dps": "6",
+        "allowed": "string"
+      },
+      {
+        "code": "7",
+        "dps": "7",
+        "allowed": "string"
+      },
+      {
+        "code": "8",
+        "dps": "8",
+        "allowed": "string"
+      },
+      {
+        "code": "9",
+        "dps": "9",
+        "allowed": "string"
+      },
+      {
+        "code": "Back",
+        "dps": "Back",
+        "allowed": "string"
+      },
+      {
+        "code": "C",
+        "dps": "C",
+        "allowed": "enum"
+      },
+      {
+        "code": "Channel+",
+        "dps": "Channel+",
+        "allowed": "string"
+      },
+      {
+        "code": "Channel-",
+        "dps": "Channel-",
+        "allowed": "string"
+      },
+      {
+        "code": "Down",
+        "dps": "Down",
+        "allowed": "string"
+      },
+      {
+        "code": "Home",
+        "dps": "Home",
+        "allowed": "string"
+      },
+      {
+        "code": "Left",
+        "dps": "Left",
+        "allowed": "string"
+      },
+      {
+        "code": "Menu",
+        "dps": "Menu",
+        "allowed": "string"
+      },
+      {
+        "code": "OK",
+        "dps": "OK",
+        "allowed": "string"
+      },
+      {
+        "code": "Power",
+        "dps": "Power",
+        "allowed": "string"
+      },
+      {
+        "code": "Right",
+        "dps": "Right",
+        "allowed": "string"
+      },
+      {
+        "code": "Up",
+        "dps": "Up",
+        "allowed": "string"
+      },
+      {
+        "code": "Volume+",
+        "dps": "Volume+",
+        "allowed": "string"
+      },
+      {
+        "code": "Volume-",
+        "dps": "Volume-",
+        "allowed": "string"
+      }
+    ]
+  }
+]
