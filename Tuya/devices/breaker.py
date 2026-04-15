@@ -42,8 +42,6 @@ class Breaker:
     def toggle(self):
        new_state = not self.dps.get('1')
        self.device.set_dps('1', new_state)
-       self.state = new_state
-       return(new_state)
 
     ##returns the status of the breaker
     def get_status(self):

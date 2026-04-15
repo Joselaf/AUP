@@ -14,7 +14,7 @@ class consumption_breaker:
         self.dps = self.device.status('dps',{})
         self.refresh_stats()
 
-    ##refreshs the stats from the device
+    ##refreshs the stats from the device,
     def refresh_stats(self):
         self.fault = self.dps.get('26')
         self.relay_status = self.dps.get('38')
@@ -42,8 +42,6 @@ class consumption_breaker:
     def toggle(self):
        new_state = not self.dps.get('1')
        self.device.set_dps('1', new_state)
-       self.state = new_state
-       return(new_state)
 
     ##returns the status of the breaker
     def get_status(self):
