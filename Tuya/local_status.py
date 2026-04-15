@@ -13,15 +13,16 @@ def load_devices():
     return data if isinstance(data, list) else data.get('devices', [])
 
 
-devices_cat = defaultdict(list)  
-def devices_by_category(device):
-            obj = tinytuya.OutletDevice(device['id'], device['ip'], device['key'])
-            obj.set_version(device['version'])
-            devices_cat[device['category']].append(device)  
+dev1.get_status()
+
+
+
+for device in devices:
+    if device["class"] == "breaker":
+        
  
       
-devices_type = defaultdict(list)
-def devices_by_type():
+def devices_by_type(device):
         for category, device in devices_cat.items():
             match category:
                 case 'dlq':
@@ -82,27 +83,12 @@ if __name__ == "__main__":
 
     devices = load_devices()
     print("I'm here")
-    try:
-      
-        print("Processing devices by category...")
-        with ThreadPoolExecutor(max_workers=20) as executor:
-            futures = [executor.submit(devices_by_category, d) for d in devices]
-            results = [f.result() for f in as_completed(futures)]
-
-            
-        print("Processing devices by type...")
-        try:
-            with ThreadPoolExecutor(max_workers=20) as executor:
-                futures = [executor.submit(devices_by_type) for _ in range(len(devices))]
-                results = [f.result() for f in as_completed(futures)]
-        except Exception as e:
-            print(f"Error processing devices by type: {e}")
-               
-    except Exception as e:
-        print(f"Error processing devices: {e}")
     
-    print("Devices by category:")
-    print (devices_cat)
+            
+    for d in devices:
+        devices_by_type(d)
+    
+    
     print("Devices by type:")
     print (devices_type)
         

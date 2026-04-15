@@ -9,29 +9,21 @@ class smart_lock:
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
         self.dps = self.device.status('dps',{})
         self.refresh_stats()
+        
+        self.stats:{
+            "id":self.id,
+            "address:":self.ip, 
+            "name":self.name,
+            "feed_status":self.dps.get('101'),##Doorbell Call: true when someone rings the bell
+            "battery":self.dps.get('102'),##Battery Level: 0-100%
+            "pir_switch":self.dps.get('102'),##motion detection
+            "pir_sensitivity":self.dps.get('104'),## low, medium, or high
+            
+            
+        }
 
-     ##refreshs the stats from the device 
-    def refresh_stats(self):
-        self.feed_status = self.dps('101')
-        self.battery = self.dps('102')
-        self.pir_switch = self.dps('103')
-        self.pir_sensitivity = self.dps('104')
-        self.sd_status = self.dps('105')
-        self.p2p_id = self.dps('108')
-        self.video_flip = self.dps('115')
-        self.night_mode = self.dps('116')
 
-    ##returns the device name
-    def get_name(self):
-        return self.name
-
-    ##retuns the device id
-    def get_id(self):
-        return self.id
-
-    ##retuns the device ip
-    def get_ip(self):
-        return self.ip
+    
 
 
     ##Doorbell Call: true when someone rings the bell.

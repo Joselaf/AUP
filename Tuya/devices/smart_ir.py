@@ -9,15 +9,13 @@ class smart_ir:
         self.device = tinytuya.OutletDevice(id, ip, local_key)
         self.dps = self.device.status('dps',{})
         
+        self.stats:{
+            "id":self.id,
+            "address:":self.ip, 
+            "name":self.name,
+        }
         
-    def get_name(self):
-        return self.name
-    
-    def get_id(self):
-        return self.id
-
-    def get_ip(self):
-        return self.ip
+        
     
     ##Send Code: The raw IR code (Base64) to be emitted.
     def send_ir_code(self, code):
