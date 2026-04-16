@@ -9,27 +9,17 @@ class smart_tv:
         self.device = tinytuya.OutletDevice(id, ip, local_key)
         self.dps = self.device.status('dps',{})
         self.refresh_stats()
-
-    ##refreshs the stats from the device
-    def refresh_stats(self):
-        self.power = self.dps.get('1')
-        self.volume = self.dps.get('2')
-        self.mute = self.dps.get('3')
-        self.mode = self.dps.get('4')
-        self.tv_pannel = self.dps.get('16')
-        self.source = self.dps.get('101')
-
-    ##returns the device name
-    def get_name(self):
-        return(self.name)
-
-    ##returns the device id
-    def get_id(self):
-        return(self.id)
-
-    ##returns the device ip
-    def get_ip(self):
-        return(self.ip)
+        
+        self.stats:{
+            "id":self.id,
+            "address:":self.ip, 
+            "name":self.name,
+            "power":self.dps.get('1'),##if the devces is ON or OFF
+            "volume":self.dps.get('2'),##Volume atm in the devices
+            "mute":self.dps.get('3'),##if the mute is ON or OFF
+            "mode":self.dps.get('4'),##Image patterns : such as standard, vivid, movie, user
+            "source":self.dps.get('102'),##Input source : such as HDMI1, HDMI2, AV, TV,USB
+        }
 
     ##Turns the device ON if it is OFF and vice-versa
     def Toogle(self):

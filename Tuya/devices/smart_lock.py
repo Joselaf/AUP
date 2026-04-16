@@ -14,70 +14,24 @@ class smart_lock:
             "id":self.id,
             "address:":self.ip, 
             "name":self.name,
-            "feed_status":self.dps.get('101'),##Doorbell Call: true when someone rings the bell
-            "battery":self.dps.get('102'),##Battery Level: 0-100%
-            "pir_switch":self.dps.get('102'),##motion detection
-            "pir_sensitivity":self.dps.get('104'),## low, medium, or high
-            
-            
+            "finger_unlocked":self.dps.get('1'),##ID of th3e fingerprint used
+            "password_unlocked":self.dps.get('2'),##ID of the local password used
+            "password_generated":self.dps.get('3'),##Reports when an App-generated temporary code is used
+            "app_unlocked":self.dps.get('4'),##Remote Unlock: Appears as a request or action for remote opening
+            "battery_percentage": self.dps.gtet('21'),##Battery Status: 0%–100%
+            "alarm_lock":self.dps.get('38'),##Security alerts (Tamper, Wrong Try, Door Ajar)
+            "video_request":self.dps.get('45'),##Triggered when someone presses the Doorbell on the lock
+            "face_recognition":self.dps.get('50'),##(Specific to HR models) Reports the ID for Face Unlock
+            "door_state":self.dps.get('63'),##Reports if the door is currently Open or Closed
         }
 
 
     
 
 
-    ##Doorbell Call: true when someone rings the bell.
-    def get_feed_status(self):
-        return self.feed_status
-    
-    ##returns Battery Level: 0-100%
-    def get_battery(self):
-        return self.battery
-
-    ##PIR Master: Turn motion detection On/Off.
-    def set_pir_switch(self, state):
-        new_state = state
-        self.device.set_dps(state, '103')
-        self.pir_switch = new_state
-
-    ##returns if the motion detection is ON/OFF    
-    def get_pir_switch(self):
-        return self.pir_switch
+   
         
-    ##returnsPIR Sensitivity 
-    def get_pir_sensitivity(self):
-        return self.pir_sensitivity
-        
-    #PIR Level: low, medium, or high.
-    def set_pir_sensitivity(self, sense):
-        self.device.set_dps(sense, '104')
-        self.pir_sensitivity = sense
-
-    ## returns SD Card status: normal, error, formatting, or none.
-    def get_sd_status(self):
-        return self.sd_status
     
-    ##returns Stream ID: Used by the app to find the video feed.
-    def get_p2p_id(self):
-        return self.p2p_id
-    
-    ##returns if the video is flipped.
-    def get_video_flip(self):
-        return self.video_flip
-
-    ##sets the video flip true or false.
-    def set_video_flip(self, value):
-        self.device.set_dps(value, '115')
-        self.video_flip = value
-
-    ##Night Mode: 0 = Auto, 1 = On, 2 = Off
-    def get_night_mode(self):
-        return self.night_mode
-
-    ##sets the night mode to 0, 1, or 2.
-    def set_night_mode(self, value):
-        self.device.set_dps(value, '116')
-        self.night_mode = value
 
 
 
