@@ -8,6 +8,7 @@ class esmax:
         self.name = name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.key)
         self.dps = self.device.status('dps',{})
+        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
         self.switch_lock = self.dps.get('1')
         self.gear_set = self.dps.get('2')
         self.light_switch = self.dps.get('3')

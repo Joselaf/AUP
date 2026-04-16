@@ -8,7 +8,17 @@ class smart_bulb:
         self.name = name
         self.device = tinytuya.OutletDevice(id, ip, local_key)
         self.dps = self.device.status('dps',{})
+        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
         self.refresh_stats()
+
+    def refresh_stats(self):
+        self.led = self.dps.get('20')
+        self.mode = self.dps.get('21')
+        self.bright = self.dps.get('22')
+        self.temp = self.dps.get('23')
+        self.colour = self.dps.get('24')
+        self.scene = self.dps.get('25')
+        self.countdown = self.dps.get('26')
         
         self.stats:{
             "id":self.id,

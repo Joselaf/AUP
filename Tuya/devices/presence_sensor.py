@@ -8,6 +8,7 @@ class presence_sensor:
         self.name = name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
         self.dps = self.device.status('dps',{})
+        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
         
         self.stats:{
             "id":self.id,

@@ -8,7 +8,18 @@ class smart_lock:
         self.name = name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
         self.dps = self.device.status('dps',{})
+        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
         self.refresh_stats()
+
+    def refresh_stats(self):
+        self.feed_status = self.dps.get('101')
+        self.battery = self.dps.get('102')
+        self.pir_switch = self.dps.get('103')
+        self.pir_sensitivity = self.dps.get('104')
+        self.sd_status = self.dps.get('105')
+        self.p2p_id = self.dps.get('108')
+        self.video_flip = self.dps.get('115')
+        self.night_mode = self.dps.get('116')
         
         self.stats:{
             "id":self.id,

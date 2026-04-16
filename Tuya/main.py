@@ -3,10 +3,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import sys
 import os
 import tinytuya
-
-# Ensure the Tuya directory is on the path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 from devices import *
 from collections import defaultdict
 
@@ -20,7 +16,6 @@ def load_devices():
 
 
 devices_type:{} = defaultdict(list)
-      
 def devices_by_type(device):
             category = device['category']
             match category:
@@ -37,6 +32,7 @@ def devices_by_type(device):
                 case 'kg':
                     d = breaker(device['id'], device['ip'], device['key'], device['name'])
                     devices_type[device['rail']].append(d)
+                    
                 case 'tdp':
                     d = heater(device['id'], device['ip'], device['key'], device['name'])
                     devices_type[device['aquecedor']].append(d)
@@ -51,6 +47,7 @@ def devices_by_type(device):
                 case 'ms':
                     d = lock(device['id'], device['ip'], device['key'], device['name'])
                     devices_type[device['fechadura']].append(d)
+
                 
                 case 'cz':
                     d = smart_plug(device['id'], device['ip'], device['key'], device['name'])
@@ -81,7 +78,7 @@ def devices_by_type(device):
 
 if __name__ == "__main__":
 
-    devices = load_devices()
+    '''devices = load_devices()
     print("I'm here")
     
     try:
@@ -94,7 +91,13 @@ if __name__ == "__main__":
     
 
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error: {e}")'''
+    
+    
+    
+
+    
+    
     
     
     print("Devices by type:")

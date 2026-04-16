@@ -8,6 +8,7 @@ class smart_ir:
         self.name = name
         self.device = tinytuya.OutletDevice(id, ip, local_key)
         self.dps = self.device.status('dps',{})
+        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
         
         self.stats:{
             "id":self.id,
