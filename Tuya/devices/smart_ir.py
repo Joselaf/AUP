@@ -14,4 +14,5 @@ class smart_ir:
             "address:":self.ip, 
             "name":self.name,
         }
-        
+        def get_status():
+            return self.stats

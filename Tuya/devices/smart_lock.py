@@ -25,7 +25,8 @@ class smart_lock:
             "door_state":self.dps.get('63'),##Reports if the door is currently Open or Closed
         }
 
-
+        def get_status():
+            return self.stats
     
 
 

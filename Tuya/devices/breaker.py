@@ -29,6 +29,9 @@ class breaker:
             "relay_status":self.dps.get('38'),
             "child_lock":self.dps.get('40')
             }
+        
+    def get_status():
+        return self.stats
 
 
     ##Turns the device ON if it is OFF and vice-versa

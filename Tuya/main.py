@@ -24,7 +24,7 @@ def devices_by_type(device):
                     d.stats()
                     
                 case 'dlq'if("consumo" in device['name'].lower()):
-                    d = breaker(device['id'], device['ip'], device['key'], device['name'])
+                    d = consumption_breaker(device['id'], device['ip'], device['key'], device['name'])
                     devices_type[device['disjuntor_consumo']].append(d)
                     d.stats()
                     
@@ -78,9 +78,17 @@ if __name__ == "__main__":
     devices = load_devices()
     print("I'm here")
     
-            
-    for d in devices:
-        devices_by_type(d)
+    try:
+        
+        executor = ThreadPoolExecutor(max_workers=10)
+        futures = [executor.submit(devices_by_type, d) for d in devices]
+        
+        for future in as_completed(futures):
+            pass
+    
+
+    except Exception as e:
+        print(f"Error: {e}")
     
     
     print("Devices by type:")

@@ -35,8 +35,9 @@ class esmax:
             "milage_trip":self.dps.get('104'),##quilometragem da viagem
             "fault":self.dps.get('105'),##Fault Code: 0 (No Faults)
         }
-        
-    
+
+        def get_status():
+            return self.stats
     
     def toogle_switch_lock(self):
         new_state = not self.dps.get('1')

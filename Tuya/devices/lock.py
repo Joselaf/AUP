@@ -26,3 +26,5 @@ class lock:
         }
 
 
+        def get_status():
+            return self.stats

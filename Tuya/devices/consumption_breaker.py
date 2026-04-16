@@ -28,7 +28,10 @@ class consumption_breaker:
             }
 
 
-
+    def get_status():
+        return self.stats
+    
+    
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
        new_state = not self.dps.get('1')

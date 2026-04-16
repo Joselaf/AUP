@@ -22,7 +22,9 @@ class smart_bulb:
             "scene":self.dps.get('25'),##Scene data : Preset blinking or fade pattern data
             "countdown":self.dps.get('26'),##Countdown to switch state in seconds (0-86400)
         }
-    
+
+        def get_status():
+            return self.stats   
     ##Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
         new_state = not self.dps.get('20')

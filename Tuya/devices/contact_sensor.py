@@ -19,9 +19,9 @@ class contact_sensor:
             "battery_state":self.dps.get('3'), ##low/mid/high
             "tamper_alarm":self.dps.get('4'), ##true/false
             }
-
-    
-
+            
+        def get_status():
+            return self.stats
 
 
         

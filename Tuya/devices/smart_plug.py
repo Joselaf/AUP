@@ -21,7 +21,8 @@ class smart_plug:
                 "child_lock":self.dps.get('40'),##Child Lock: Disables the physical button on the plug
             }
 
-      
+        def get_status():
+            return self.stats     
 
         ##Turns the device ON if it is OFF and vice-versa
         def Toogle(self):

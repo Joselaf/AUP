@@ -21,6 +21,9 @@ class heater:
             
         }
         
+    def get_status():
+        return self.stats
+        
     
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
