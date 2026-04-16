@@ -13,7 +13,7 @@ def load_devices():
     return data if isinstance(data, list) else data.get('devices', [])
 
 
- 
+devices_type:{} = defaultdict(list)
       
 def devices_by_type(device):
             category = device['category']
