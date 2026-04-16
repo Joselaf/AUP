@@ -19,7 +19,9 @@ class smart_tv:
             "mode":self.dps.get('4'),##Image patterns : such as standard, vivid, movie, user
             "source":self.dps.get('102'),##Input source : such as HDMI1, HDMI2, AV, TV,USB
         }
-
+        def get_status():
+            return self.stats
+        
     ##Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
         new_state = not self.dps.get('1')
