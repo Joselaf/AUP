@@ -23,6 +23,7 @@ class presence_sensor:
 
         def get_status():
             return self.stats
+        
     ##Exercise classification : none( rest/breathing), presence( micromotion), (amplitude of motion)peaceful small_move large_move
     def set_motion_state(self, value):
         self.device.set_dps('105', value)

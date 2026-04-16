@@ -24,7 +24,8 @@ class smart_bulb:
         }
 
         def get_status():
-            return self.stats   
+            return self.stats 
+         
     ##Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
         new_state = not self.dps.get('20')

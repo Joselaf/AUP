@@ -4,7 +4,7 @@ from .contact_sensor import contact_sensor
 from .esmax import esmax
 from .general_circuit_breaker import general_circuit_breaker
 from .heater import heater
-from .locks import lock as locks
+from .lock import lock
 from .presence_sensor import presence_sensor
 from .smart_bulb import smart_bulb
 from .smart_ir import smart_ir
