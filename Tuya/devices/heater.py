@@ -24,9 +24,8 @@ class heater:
     
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
-        new_state = not self.state
+        new_state = not self.dps.get('1')
         self.device.set_dps(new_state, '1')
-        self.state = new_state
 
     ##sets the countdown value (in minutes) to turn the device OFF
     def set_countdown(self, value):

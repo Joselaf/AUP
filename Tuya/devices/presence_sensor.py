@@ -27,7 +27,8 @@ class presence_sensor:
         self.device.set_dps('105', value)
         self.motion_state = value
     
-    def set_indicator_switch(self, value):
-        self.device.set_dps('105', value)
+    def toogle_indicator_switch(self):
+        new_state = not self.dps.get('105')
+        self.device.set_dps('105', new_state)
     
     

@@ -8,7 +8,6 @@ class smart_tv:
         self.name = name
         self.device = tinytuya.OutletDevice(id, ip, local_key)
         self.dps = self.device.status('dps',{})
-        self.refresh_stats()
         
         self.stats:{
             "id":self.id,
@@ -23,9 +22,8 @@ class smart_tv:
 
     ##Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
-        new_state = not self.power
+        new_state = not self.dps.get('1')
         self.device.set_dps(new_state, '1')
-        self.power = new_state
     
     ##Volume setting : Normal range 0–100
     def set_volune(self, value):

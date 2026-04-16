@@ -25,10 +25,9 @@ class smart_plug:
 
         ##Turns the device ON if it is OFF and vice-versa
         def Toogle(self):
-            new_state = not self.state
+            new_state = not self.dps.get('1')
             self.device.set_dps('1', new_state)
-            self.state = new_state
-            return(new_state)
+        
 
         ##Countdown Timer: Remaining time in seconds before auto-off.
         def set_countdown(self, value):        

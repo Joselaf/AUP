@@ -35,7 +35,6 @@ class breaker:
     def toggle(self):
        new_state = not self.dps.get('1')
        self.device.set_dps('1', new_state)
-       self.dps['1'] = new_state
 
     ##power_on / power_off / memory
     def set_relay_status(self, value):

@@ -30,9 +30,8 @@ class general_circuit_breaker:
 
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
-        new_state = not self.state
+        new_state = not self.dps.get('1')
         self.device.set_dps('1', new_state)
-        self.state = new_state
 
     ##power_on / power_off / memory
     def set_relay_status(self, value):

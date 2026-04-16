@@ -38,9 +38,9 @@ class esmax:
         
     
     
-    def set_switch_lock(self, value):
-        self.device.set_dps('1', value)
-        self.switch_lock = value
+    def toogle_switch_lock(self):
+        new_state = not self.dps.get('1')
+        self.device.set_dps('1', new_state)
         
  
     def set_gear_set(self, value):

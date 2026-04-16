@@ -13,33 +13,27 @@ def load_devices():
     return data if isinstance(data, list) else data.get('devices', [])
 
 
-dev1.get_status()
-
-
-
-for device in devices:
-    if device["class"] == "breaker":
-        
  
       
 def devices_by_type(device):
-        for category, device in devices_cat.items():
+            category = device['category']
             match category:
                 case 'dlq':
                     d = breaker(device['id'], device['ip'], device['key'], device['name'])
-                    devices_type[device['disjuntor']].append(d)
-                
+                    devices_by_type[device['disjuntor']].append(d)
+                    d.stats()
+                    
                 case 'dlq'if("consumo" in device['name'].lower()):
                     d = breaker(device['id'], device['ip'], device['key'], device['name'])
                     devices_type[device['disjuntor_consumo']].append(d)
+                    d.stats()
+                    
                 case 'kg':
                     d = breaker(device['id'], device['ip'], device['key'], device['name'])
                     devices_type[device['rail']].append(d)
-                    
                 case 'tdp':
                     d = heater(device['id'], device['ip'], device['key'], device['name'])
                     devices_type[device['aquecedor']].append(d)
-                    
                 case 'mcs':
                     d = contact_sensor(device['id'], device['ip'], device['key'], device['name'])
                     devices_type[device['contact_sensor']].append(d)

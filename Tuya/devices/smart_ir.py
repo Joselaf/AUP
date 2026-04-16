@@ -15,15 +15,3 @@ class smart_ir:
             "name":self.name,
         }
         
-        
-    
-    ##Send Code: The raw IR code (Base64) to be emitted.
-    def send_ir_code(self, code):
-        payload = self.device.generate_payload(tinytuya.CONTROL, {'1': code})
-        self.device.send(payload)
-    
-    ##Learning Mode: Receives and reports the IR code from a physical remote. 
-    def enter_learning_mode(self):
-        payload = self.device.generate_payload(tinytuya.CONTROL, {'2': True })
-        self.device.send(payload)
-        
