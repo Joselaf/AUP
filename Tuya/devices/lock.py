@@ -7,25 +7,24 @@ class lock:
         self.local_key = local_key
         self.name = name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
-        self.dps = self.device.status('dps',{})
-        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
-        
-        self.stats:{
-            "id":self.id,
-            "address:":self.ip, 
-            "name":self.name,
-            "finger_unlocked":self.dps.get('1'),##ID of th3e fingerprint used
-            "password_unlocked":self.dps.get('2'),##ID of the local password used
-            "password_generated":self.dps.get('3'),##Reports when an App-generated temporary code is used
-            "card_unlocked":self.dps.get('5'),##Reports the ID of the RFID card/tag used
-            "key":self.dps.get('7'),##Reports if a physical key was used (if supported)
-            "door_status":self.dps.get('8'),##door open or close
-            "alarms":self.dps.get('9'),##Reports errors (e.g., wrong_password, low_battery)
-            "battery_level":self.dps.get('10'),##Remaining capacity in percentage (0–100%)
-            "doorbell":self.dps.get('14'),##True when the doorbell button is pressed
-            "remote":self.dps.get('61'),##True if door open remotelly
+        self.status = self.device.status()
+        self.dps = self.status.get('dps', {})
+
+        self.stats = {
+            "finger_unlocked":    self.dps.get('1'),   ## ID of fingerprint used
+            "password_unlocked":  self.dps.get('2'),   ## ID of local password used
+            "password_generated": self.dps.get('3'),   ## App-generated temp code
+            "card_unlocked":      self.dps.get('5'),   ## RFID card/tag ID
+            "key":                self.dps.get('7'),   ## Physical key used
+            "door_status":        self.dps.get('8'),   ## True=open, False=closed
+            "alarms":             self.dps.get('9'),   ## wrong_password, low_battery, etc.
+            "battery_level":      self.dps.get('10'),  ## 0-100%
+            "doorbell":           self.dps.get('14'),  ## True when doorbell pressed
+            "remote":             self.dps.get('61'),  ## True if opened remotely
         }
-
-
-        def get_status():
-            return self.stats
+        
+        def get_status(self):
+            if(self.ip):
+                return self.stats
+            else:
+                return None

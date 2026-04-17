@@ -7,9 +7,8 @@ class smart_plug:
         self.local_key = local_key
         self.name = name
         self.device = tinytuya.OutletDevice(id, ip, local_key)
-        self.dps = self.device.status('dps', {})
-        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
-        self.refresh_stats()
+        self.status = self.device.status()
+        self.dps = self.status.get('dps', {})
 
     def refresh_stats(self):
         self.state        = self.dps.get('1')
@@ -17,17 +16,21 @@ class smart_plug:
         self.relay_status = self.dps.get('38')
         self.child_lock   = self.dps.get('40')
 
-    def get_status(self):
-        return {
-            "id":           self.id,
-            "address":      self.ip,
-            "name":         self.name,
+        self.stats = {
             "state":        self.state,
             "countdown":    self.countdown,
             "relay_status": self.relay_status,
             "child_lock":   self.child_lock,
         }
-
+        
+        
+        def get_status(self):
+            if(self.ip):
+                return self.stats
+            else:
+                return None
+            
+            
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
         new_state = not self.dps.get('1')

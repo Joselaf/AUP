@@ -11,26 +11,25 @@ class consumption_breaker:
         self.amps = 0.0
         self.watts = 0.0
         self.add_ele = 0.0
-        self.dps = self.device.status('dps',{})
-        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
-        
-        ##It return the status of the device
+        self.status = self.device.status()
+        self.dps = self.status.get('dps', {})
         self.stats = {
-            "id": self.id,
-            "address:":self.ip, 
-            "name":self.name,
             "state":self.dps.get('1'),
-            "amps":(self.dps.get('18') / 1000.0),
-            "watts":(self.dps.get('19') / 10.0),
-            "volts":(self.dps.get('20') / 10.0),
+            "amps":(self.dps.get('18', 0) / 1000.0),
+            "watts":(self.dps.get('19', 0) / 10.0),
+            "volts":(self.dps.get('20', 0) / 10.0),
             "error":self.dps.get('26'),
             "relay_status":self.dps.get('38'),
             "child_lock":self.dps.get('40')
             }
 
 
-    def get_status():
-        return self.stats
+    ##It return the status of the device
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None
     
     
     ##Turns the device ON if it is OFF and vice-versa
