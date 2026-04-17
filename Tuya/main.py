@@ -19,159 +19,192 @@ def load_devices():
     return data if isinstance(data, list) else data.get('devices', [])
 
 
-def table(data: dict):
-    """Print a status dict as a simple aligned table."""
-    if data:
-        print("ONLLINE")
-        for key, value in data.items():
-            print(f"  {key:<25} {value}")
-    else:
-        print("OFFLINE")
+def organize_devices(device_list):
+    
+    devices = device_list
 
-device_by_room = defaultdict(list)
+    #print(devices[0])
 
-def devices_by_room(device):
-    d_name = device['name']
-    for i in range(1, 27):
-        if f"Q{i:02}" in d_name:
-            device_by_room[f"Q{i:02}"].append(device)  # store with same padding used to match
+    _organized_list = []
+    _organized_list_of_rooms = []
+    for index in range(len(devices)):
+        tmp_name = devices[index]["name"]
+        
+        
+        if "Q" in tmp_name:
+            tmp_index_start = tmp_name.index("Q")
+            tmp_index_end = tmp_index_start + 3
+            tmp_room = tmp_name[tmp_index_start:tmp_index_end]
             
-def print_devices_by_room(room):
-    """Print all devices in a room"""
-    devices = device_by_room[room]
+            if not tmp_room in _organized_list_of_rooms:
+                _organized_list_of_rooms.append(tmp_room)
+        else:
+            continue
+        
+    _sorted_organized_list_of_rooms = {"Floors":[]}
+    _rooms_template = {"Rooms": []}
+        
+
+
+    # Device[0][1]
+    # Organizar andares e quartos
+    for _room in  _organized_list_of_rooms:
+        _int_room = _room[1:len(_room)]
+        _int_floor = int(_int_room[0:1])
+        _int_room_number = int(_int_room[1:2])
+        while len(_sorted_organized_list_of_rooms["Floors"]) <= _int_floor:
+            _sorted_organized_list_of_rooms["Floors"].append([])
+            
+        while len(_sorted_organized_list_of_rooms["Floors"][_int_floor]) < _int_room_number:
+            _sorted_organized_list_of_rooms["Floors"][_int_floor].append([])
+            
+        _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number-1] = {"Name": _room, "Devices": []}
+
+    index = 0
+    for floor in _sorted_organized_list_of_rooms["Floors"]:
+        index+=1
+        
+        
+    #
+
+    _sorted_organized_list_of_rooms["Floors"][0][0]["Devices"]
+    _outside_devices = []
+
+
     for device in devices:
-        print(device['name'])
-        table(devices_status(device))
-        print()
+        tmp_name = device["name"]
+        
+        if "Q" in tmp_name:
+            tmp_index_start = tmp_name.index("Q")
+            tmp_index_end = tmp_index_start + 3
+            tmp_room = tmp_name[tmp_index_start:tmp_index_end]
+            
+            _int_room = tmp_room[1:len(tmp_room)]
+            _int_floor = int(_int_room[0:1])
+            _int_room_number = int(_int_room[1:2])
+            
+            _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number-1]["Devices"].append(device)
+        else:
+            _outside_devices.append(device)
+        
+
+
+
+    return _sorted_organized_list_of_rooms
 
 def devices_status(d):
-            category = d['category']
-            match category:
-                case 'dlq':
-                    if(not d['ip']):
-                        return None
-                    else:
-                        d = breaker(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                    
-                case 'dlq'if("consumo" in device['name'].lower()):
-                    if not d['ip']:
-                        return None
-                    else:      
-                        d = consumption_breaker(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                    
-                case 'kg':
-                    if not d['ip']:
-                        return None
-                    else:
-                        d = breaker(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                    
-                case 'tdp':
-                    if not d['ip']:
-                            return None
-                    else:
-                        d = heater(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                case 'mcs':
-                    if not d['ip']:
-                        return None
-                    else:             
-                        d = contact_sensor(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                        
-                case 'hps':
-                    if not d['ip']:
-                        return None
-                    else:
-                        d = presence_sensor(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
+    category = d['category']
+    match category:
+        case 'dlq':
+            if(not d['ip']):
+                return None
+            else:
+                d = breaker(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+            
+        case 'dlq'if("consumo" in device['name'].lower()):
+            if not d['ip']:
+                return None
+            else:      
+                d = consumption_breaker(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+            
+        case 'kg':
+            if not d['ip']:
+                return None
+            else:
+                d = breaker(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+            
+        case 'tdp':
+            if not d['ip']:
+                    return None
+            else:
+                d = heater(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+        case 'mcs':
+            if not d['ip']:
+                return None
+            else:             
+                d = contact_sensor(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
                 
-                case 'ms':
-                    if not d['ip']:
-                        return None
-                    else:
-                        d = lock(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                
-                case 'cz':
-                    if not d['ip']:
-                        return None
-                    else:
-                        d = smart_plug(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                
-                case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
-                    if not d['ip']:
-                        return None
-                        d = smart_bulb(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                
-                case 'dj'if("esmax" in device['name'].lower()):
-                    if not d['ip']:
-                        return None
-                    else:
-                        d = esmax(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                    
-                case 'dj':
-                    if not d['ip']:
-                        return None
-                    else:
-                        d = smart_ir(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                
-                case 'tv':
-                    if not d['ip']:
-                        return None
-                    else:
-                        d = smart_tv(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
-                    
-                case 'jtmspro':
-                    if not d['ip']:
-                        return None
-                    else:
-                        d = smart_lock(device['id'], device['ip'], device['key'], device['name'])
-                        return d.get_status()
+        case 'hps':
+            if not d['ip']:
+                return None
+            else:
+                d = presence_sensor(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+        
+        case 'ms':
+            if not d['ip']:
+                return None
+            else:
+                d = lock(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+        
+        case 'cz':
+            if not d['ip']:
+                return None
+            else:
+                d = smart_plug(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+        
+        case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
+            if not d['ip']:
+                return None
+                d = smart_bulb(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+        
+        case 'dj'if("esmax" in device['name'].lower()):
+            if not d['ip']:
+                return None
+            else:
+                d = esmax(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+            
+        case 'dj':
+            if not d['ip']:
+                return None
+            else:
+                d = smart_ir(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+        
+        case 'tv':
+            if not d['ip']:
+                return None
+            else:
+                d = smart_tv(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+            
+        case 'jtmspro':
+            if not d['ip']:
+                return None
+            else:
+                d = smart_lock(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+
 
 if __name__ == "__main__":
     devices = load_devices()
-    print("Finished loading file")
     
-    try:
-        with  ThreadPoolExecutor(max_workers=50) as executor:
-            futures = [executor.submit(devices_by_room, device) for device in devices]
-            for future in as_completed(futures):
-                result = future.result()
-    except Exception as e:
-        print(f"Error in thread execution: {e}")
-        
-    print("Finished devices_by_room")
+    my_devices = organize_devices(devices)
+    
+    index_floor = 0
+    index_room = 0
+    for floor in my_devices["Floors"]:
+        print(f"FLOOR:{index_floor}")
+        index_floor+=1
+        for room in floor:
+            print(f"Room:{index_room}")
+            index_room+=1
+            for device in room["Devices"]:
+                status = "ONLINE" if device['ip'] else "OFFLINE"
+                print(f"{device['name']}-->{status}")
+    
+    
+   
+    
 
-    for room, room_devices in device_by_room.items():
-        print(f"\n{room}:")
-        for device in room_devices:
-            print(f"  {device['name']} - {device['id']}")
-    
-    valid_rooms = sorted(device_by_room.keys())
-    print(f"\nQuartos disponíveis: {', '.join(valid_rooms)}")
-
-    try:
-        while True:
-            room = int(input("\nEscolhe quarto para visualização: "))
-            format_room = f"Q{room:02}"
-            if format_room not in device_by_room:
-                print(f"Quarto {format_room} não existe. Disponíveis: {', '.join(valid_rooms)}")
-            else:
-                print()
-                print_devices_by_room(format_room)
-    except KeyboardInterrupt:
-        print("\nloop ended")
-    
-    
-    
-    
     
 
