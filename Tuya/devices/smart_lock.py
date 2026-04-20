@@ -31,12 +31,12 @@ class smart_lock:
             "door_state":      self.dps.get('63'),
         }
         
-        def get_status(self):
-            if(self.ip):
-                return self.stats
-            else:
-                return None
-            
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None
+        
             
     def set_pir_switch(self, state):
         self.device.set_dps('103', state)

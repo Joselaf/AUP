@@ -32,11 +32,11 @@ class esmax:
             "fault":       self.fault,
         }
         
-        def get_status(self):
-            if(self.ip):
-                return self.stats
-            else:
-                return None
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None
 
     ## Electronic Lock toggle
     def toogle_switch_lock(self):

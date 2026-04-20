@@ -21,11 +21,11 @@ class general_circuit_breaker:
             "child_lock":   self.dps.get('40'),
         }
         
-        def get_status(self):
-            if(self.ip):
-                return self.stats
-            else:
-                return None
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None
 
     ## Turns the device ON if it is OFF and vice-versa
     def toggle(self):

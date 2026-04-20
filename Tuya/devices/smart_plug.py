@@ -18,11 +18,11 @@ class smart_plug:
         }
         
         
-        def get_status(self):
-            if(self.ip):
-                return self.stats
-            else:
-                return None
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None
             
             
     ## Turns the device ON if it is OFF and vice-versa

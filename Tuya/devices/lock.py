@@ -23,8 +23,8 @@ class lock:
             "remote":             self.dps.get('61'),  ## True if opened remotely
         }
         
-        def get_status(self):
-            if(self.ip):
-                return self.stats
-            else:
-                return None
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None

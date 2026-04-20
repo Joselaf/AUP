@@ -4,12 +4,12 @@ import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
 import datetime
+import tinytuya
+from devices import *
 
 # Ensure the Tuya directory is on the path regardless of where script is run from
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-import tinytuya
-from devices import *
 
 DEVICES_FILE = "devices.json"
 
@@ -24,9 +24,6 @@ def organize_devices(device_list):
     
     devices = device_list
 
-    #print(devices[0])
-
-    _organized_list = []
     _organized_list_of_rooms = []
     for index in range(len(devices)):
         tmp_name = devices[index]["name"]

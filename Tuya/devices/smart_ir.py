@@ -15,11 +15,11 @@ class smart_ir:
             "address": self.ip,
         }
         
-        def get_status(self):
-            if(self.ip):
-                return self.stats
-            else:
-                return None
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None
 
     ## Send Code: The raw IR code (Base64) to be emitted.
     def send_ir_code(self, code):
