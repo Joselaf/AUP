@@ -9,13 +9,7 @@ class smart_plug:
         self.device = tinytuya.OutletDevice(id, ip, local_key)
         self.status = self.device.status()
         self.dps = self.status.get('dps', {})
-
-    def refresh_stats(self):
-        self.state        = self.dps.get('1')
-        self.countdown    = self.dps.get('9')
-        self.relay_status = self.dps.get('38')
-        self.child_lock   = self.dps.get('40')
-
+        
         self.stats = {
             "state":        self.state,
             "countdown":    self.countdown,

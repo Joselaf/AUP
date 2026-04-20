@@ -3,6 +3,7 @@ import sys
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
+import datetime
 
 # Ensure the Tuya directory is on the path regardless of where script is run from
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -43,11 +44,7 @@ def organize_devices(device_list):
         
     _sorted_organized_list_of_rooms = {"Floors":[]}
     _rooms_template = {"Rooms": []}
-        
-
-
-    # Device[0][1]
-    # Organizar andares e quartos
+    
     for _room in  _organized_list_of_rooms:
         _int_room = _room[1:len(_room)]
         _int_floor = int(_int_room[0:1])
@@ -65,7 +62,7 @@ def organize_devices(device_list):
         index+=1
         
         
-    #
+    
 
     _sorted_organized_list_of_rooms["Floors"][0][0]["Devices"]
     _outside_devices = []
@@ -90,11 +87,18 @@ def organize_devices(device_list):
 
 
 
-    return _sorted_organized_list_of_rooms
+    return _sorted_organized_list_of_rooms, _outside_devices
 
 def devices_status(d):
     category = d['category']
     match category:
+        case 'dlq'if("consumo" in device['name'].lower()):
+            if not d['ip']:
+                return None
+            else:      
+                d = consumption_breaker(device['id'], device['ip'], device['key'], device['name'])
+                return d.get_status()
+
         case 'dlq':
             if(not d['ip']):
                 return None
@@ -102,12 +106,6 @@ def devices_status(d):
                 d = breaker(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
             
-        case 'dlq'if("consumo" in device['name'].lower()):
-            if not d['ip']:
-                return None
-            else:      
-                d = consumption_breaker(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
             
         case 'kg':
             if not d['ip']:
@@ -153,6 +151,7 @@ def devices_status(d):
         case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
             if not d['ip']:
                 return None
+            else:
                 d = smart_bulb(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
         
@@ -188,8 +187,9 @@ def devices_status(d):
 if __name__ == "__main__":
     devices = load_devices()
     
-    my_devices = organize_devices(devices)
+    my_devices, my_outside_devices = organize_devices(devices)
     
+      
     index_floor = 0
     index_room = 0
     for floor in my_devices["Floors"]:
@@ -199,10 +199,23 @@ if __name__ == "__main__":
             print(f"Room:{index_room}")
             index_room+=1
             for device in room["Devices"]:
-                status = "ONLINE" if device['ip'] else "OFFLINE"
+                status = f"{datetime.now()}ONLINE" if device['ip'] else "OFFLINE"
                 print(f"{device['name']}-->{status}")
+                
+        for device in my_outside_devices:
+            status = "ONLINE" if device['ip'] else "OFFLINE"
+            print(f"{device['name']}-->{status}")
+        
+    '''floor = int(input("indique o seu piso"))
+    room = int(input("indique o seu quarto"))
+    
+    for device in my_devices["Floors"][floor][room]["Devices"]:
+        status = "ONLINE" if device['ip'] else "OFFLINE"
+        print(f"{device['name'][0:device['name'].index("Q")]}-->{status}")'''
     
     
+       
+            
    
     
 
