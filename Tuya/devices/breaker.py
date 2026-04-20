@@ -17,7 +17,6 @@ class breaker:
         
         ##It return the status of the device
         self.stats = {
-
             "state":self.dps.get('1'),
             "amps":(self.dps.get('18', 0) / 1000.0),
             "watts":(self.dps.get('19', 0) / 10.0),
