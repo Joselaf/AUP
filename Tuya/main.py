@@ -9,7 +9,20 @@ import datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import tinytuya
-from devices import *
+from devices import{
+    breaker,
+    consumption_breaker,
+    contact_sensor,
+    esmax,
+    heater,
+    lock,
+    presence_sensor,
+    smart_bulb,
+    smart_ir,
+    smart_lock,
+    smart_plug,
+    smart_tv
+}
 
 DEVICES_FILE = "devices.json"
 
