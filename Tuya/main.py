@@ -3,7 +3,20 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import sys
 import os
 import tinytuya
-from devices import *
+from devices import (
+    breaker,
+    consumption_breaker,
+    contact_sensor,
+    esmax,
+    heater,
+    lock,
+    presence_sensor,
+    smart_bulb,
+    smart_ir,
+    smart_lock,
+    smart_plug,
+    smart_tv,
+)
 from collections import defaultdict
 
 DEVICES_FILE = "devices.json"
@@ -15,13 +28,13 @@ def load_devices():
     return data if isinstance(data, list) else data.get('devices', [])
 
 
-devices_type:{} = defaultdict(list)
+devices_type:{}= defaultdict(list)
 def devices_by_type(device):
             category = device['category']
             match category:
                 case 'dlq':
                     d = breaker(device['id'], device['ip'], device['key'], device['name'])
-                    devices_by_type[device['disjuntor']].append(d)
+                    devices_type[device['disjuntor']].append(d)
                     d.get_status()
                     
                 case 'dlq'if("consumo" in device['name'].lower()):
@@ -93,15 +106,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Error: {e}")'''
     
-    
-    
 
-    
-    
-    
-    
-    print("Devices by type:")
-    print (devices_type)
         
     
    
