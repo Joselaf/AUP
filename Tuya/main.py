@@ -1,28 +1,15 @@
+# Ensure the Tuya directory is on the path regardless of where script is run from
 import json
 import sys
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections import defaultdict
 import datetime
-
-# Ensure the Tuya directory is on the path regardless of where script is run from
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
 import tinytuya
-from devices import{
-    breaker,
-    consumption_breaker,
-    contact_sensor,
-    esmax,
-    heater,
-    lock,
-    presence_sensor,
-    smart_bulb,
-    smart_ir,
-    smart_lock,
-    smart_plug,
-    smart_tv
-}
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import devices
+
+
 
 DEVICES_FILE = "devices.json"
 
@@ -36,7 +23,7 @@ def load_devices():
 def organize_devices(device_list):
     
     devices = device_list
-
+    
     #print(devices[0])
 
     _organized_list = []
