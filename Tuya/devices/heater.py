@@ -7,13 +7,10 @@ class heater:
         self.local_key = local_key
         self.name = name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
-        self.dps = self.device.status('dps',{})
-        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
+        self.status = self.device.status()
+        self.dps = self.status.get('dps', {})
         
-        self.stats:{
-            "id":self.id,
-            "address:":self.ip, 
-            "name":self.name,
+        self.stats = {
             "state":self.dps.get('1'),##The device is on or off
             "countdown":self.dps.get('9'),##countdown value (in minutes) to turn the device OFF
             "relay_status":self.dps.get('83'),##Power-on State: 0 (Off), 1 (On), 2 (Last state)
@@ -22,8 +19,11 @@ class heater:
             
         }
         
-    def get_status():
-        return self.stats
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None
         
     
     ##Turns the device ON if it is OFF and vice-versa

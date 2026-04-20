@@ -1,7 +1,9 @@
 import json
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import sys
 import os
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from collections import defaultdict
+import datetime
 import tinytuya
 from devices import (
     breaker,
@@ -20,7 +22,7 @@ from devices import (
 from collections import defaultdict
 
 DEVICES_FILE = "devices.json"
-POLL_INTERVAL = 0
+
 def load_devices():
     """Load devices from devices.json"""
     with open(DEVICES_FILE) as f:

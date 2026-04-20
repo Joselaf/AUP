@@ -7,64 +7,61 @@ class smart_bulb:
         self.local_key = local_key
         self.name = name
         self.device = tinytuya.OutletDevice(id, ip, local_key)
-        self.dps = self.device.status('dps',{})
-        self.dps = self.dps.get('dps', self.dps) if isinstance(self.dps, dict) else {}
+        self.status = self.device.status()
+        self.dps = self.status.get('dps', {})
         self.refresh_stats()
 
     def refresh_stats(self):
-        self.led = self.dps.get('20')
-        self.mode = self.dps.get('21')
-        self.bright = self.dps.get('22')
-        self.temp = self.dps.get('23')
-        self.colour = self.dps.get('24')
-        self.scene = self.dps.get('25')
-        self.countdown = self.dps.get('26')
-        
-        self.stats:{
-            "id":self.id,
-            "address:":self.ip, 
-            "name":self.name,
-            "state":self.dps.get('20'),##True is ON False is OFF
-            "mode":self.dps.get('21'),##Modes : white(White Light), colour(Color), scene(Scene), music(Music)
-            "brightness":self.dps.get('22'),##White light brightness : typically ranging from 10 to 1000
-            "temperature":self.dps.get('23'),##Color temperature range: 0–1000 (0 for warm light, 1000 for cool white)
-            "colour":self.dps.get('24'),##RGB Data: Hex string in HSV format (e.g., 000003e803e8)
-            "scene":self.dps.get('25'),##Scene data : Preset blinking or fade pattern data
-            "countdown":self.dps.get('26'),##Countdown to switch state in seconds (0-86400)
-        }
+        self.led      = self.dps.get('20')
+        self.mode     = self.dps.get('21')
+        self.bright   = self.dps.get('22')
+        self.temp     = self.dps.get('23')
+        self.colour   = self.dps.get('24')
+        self.scene    = self.dps.get('25')
+        self.countdown= self.dps.get('26')
 
-        def get_status():
-            return self.stats 
-         
-    ##Turns the device ON if it is OFF and vice-versa
+        self.stats = {
+            "state":       self.led,
+            "mode":        self.mode,
+            "brightness":  self.bright,
+            "temperature": self.temp,
+            "colour":      self.colour,
+            "scene":       self.scene,
+            "countdown":   self.countdown,
+        }
+        
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None
+        
+        
+    ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
         new_state = not self.dps.get('20')
         self.device.set_dps(new_state, '20')
 
-    ##Modes : white(White Light), colour(Color), scene(Scene), music(Music)
+    ## Modes: white, colour, scene, music
     def set_mode(self, value):
         self.device.dps_set(value, '21')
 
-    ##White light brightness : typically ranging from 10 to 1000.
+    ## White light brightness: 10-1000
     def set_brightness(self, value):
         self.device.dps_set(value, '22')
-    
 
-    ##Color temperature range: 0–1000 (0 for warm light, 1000 for cool white)
+    ## Color temperature: 0-1000
     def set_temperature(self, value):
         self.device.dps_set(value, '23')
 
-    ##Colored data : Hexadecimal strings in HSV format (e.g. 000003e803e8)
+    ## Colour in HSV hex format
     def set_colour(self, value):
         self.device.dps_set(value, '24')
 
-    ##Scene data : Preset blinking or fade pattern data
+    ## Scene preset data
     def set_scene(self, value):
         self.device.dps_set(value, '25')
 
-    ##Countdown to switch state in seconds (0-86400).
+    ## Countdown in seconds (0-86400)
     def set_countdown(self, value):
-        self.device.dps_set(value, '26')    
-    
-
-
+        self.device.dps_set(value, '26')
