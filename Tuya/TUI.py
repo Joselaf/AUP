@@ -1,12 +1,16 @@
-from textual.app import App, ComposeResult
-from textual.widgets import Header, Footer, Label
+from textual.app import App
+from textual.widgets import Header, Footer, Static
+import main
 
-class MyApp(App):
-    def compose(self) -> ComposeResult:
+class HelloWorldApp(App):
+    def compose(self):
         yield Header()
-        yield Label("Monitoring TUYA devices...")
-        
+        yield Static("Hello, World!")
         yield Footer()
+    
+    def load_data(self):
+        devices = main.load_devices()
+        
 
 if __name__ == "__main__":
-    MyApp().run()
+    HelloWorldApp().run()
