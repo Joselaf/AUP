@@ -7,7 +7,7 @@ class TuyaDashboard(App):
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
-    
+
         devices = main.load_devices()
         my_devices, my_outside_devices = main.organize_devices(devices)
         index_floor = 0
@@ -19,7 +19,7 @@ class TuyaDashboard(App):
                     table = DataTable() ## criamos a tabela
                     table.add_columns("Device", "Status")
                     index_floor += 1
-                    
+
                     for room in floor:
                         for device in room.get("Devices", []):
                             status = "[bold green]ONLINE[/]" if device.get('ip') else "[bold red]OFFLINE[/]"

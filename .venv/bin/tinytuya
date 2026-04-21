@@ -1,0 +1,6 @@
+#!/home/joselafe/AUP/.venv/bin/python
+import sys
+from tinytuya.__main__ import dummy
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(dummy())
