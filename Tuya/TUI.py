@@ -15,7 +15,7 @@ class TuyaDashboard(App):
             ##uma coluna por cada andar, e cada andar tem uma tabela com os dispositivos daquele andar
             for index, floor in enumerate(my_devices.get("Floors", [])):
                 with Vertical():
-                    yield Label(f"Andar{index}")
+                    yield Label(f"Andar{index_floor}")
                     table = DataTable() ## criamos a tabela
                     table.add_columns("Device", "Status")
                     index_floor += 1
