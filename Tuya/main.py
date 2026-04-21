@@ -1,13 +1,10 @@
-# Ensure the Tuya directory is on the path regardless of where script is run from
 import json
 import sys
 import os
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from collections import defaultdict
 import datetime
-import tinytuya
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import devices
+from devices import *
+
 
 
 
@@ -24,9 +21,6 @@ def organize_devices(device_list):
     
     devices = device_list
     
-    #print(devices[0])
-
-    _organized_list = []
     _organized_list_of_rooms = []
     for index in range(len(devices)):
         tmp_name = devices[index]["name"]
@@ -89,18 +83,18 @@ def organize_devices(device_list):
 
     return _sorted_organized_list_of_rooms, _outside_devices
 
-def devices_status(d):
-    category = d['category']
+def devices_status(device):
+    category = device['category']
     match category:
         case 'dlq'if("consumo" in device['name'].lower()):
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:      
                 d = consumption_breaker(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
 
         case 'dlq':
-            if(not d['ip']):
+            if(not device['ip']):
                 return None
             else:
                 d = breaker(device['id'], device['ip'], device['key'], device['name'])
@@ -108,76 +102,76 @@ def devices_status(d):
             
             
         case 'kg':
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:
                 d = breaker(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
             
         case 'tdp':
-            if not d['ip']:
+            if not device['ip']:
                     return None
             else:
                 d = heater(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
         case 'mcs':
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:             
                 d = contact_sensor(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
                 
         case 'hps':
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:
                 d = presence_sensor(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
         
         case 'ms':
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:
                 d = lock(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
         
         case 'cz':
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:
                 d = smart_plug(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
         
         case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:
                 d = smart_bulb(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
         
         case 'dj'if("esmax" in device['name'].lower()):
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:
                 d = esmax(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
             
         case 'dj':
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:
                 d = smart_ir(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
         
         case 'tv':
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:
                 d = smart_tv(device['id'], device['ip'], device['key'], device['name'])
                 return d.get_status()
             
         case 'jtmspro':
-            if not d['ip']:
+            if not device['ip']:
                 return None
             else:
                 d = smart_lock(device['id'], device['ip'], device['key'], device['name'])
