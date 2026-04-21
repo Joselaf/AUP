@@ -10,14 +10,15 @@ class TuyaDashboard(App):
     
         devices = main.load_devices()
         my_devices, my_outside_devices = main.organize_devices(devices)
-
+        index_floor = 0
         with Horizontal():
-            ##uma coluna por cada 
+            ##uma coluna por cada andar, e cada andar tem uma tabela com os dispositivos daquele andar
             for index, floor in enumerate(my_devices.get("Floors", [])):
                 with Vertical():
-                    yield Label()
+                    yield Label(f"Andar{index}")
                     table = DataTable() ## criamos a tabela
                     table.add_columns("Device", "Status")
+                    index_floor += 1
                     
                     for room in floor:
                         for device in room.get("Devices", []):
@@ -25,7 +26,7 @@ class TuyaDashboard(App):
                             table.add_row(device['name'], status)
                     yield table
 
-            # 2. Create a column for Outside Devices
+            # 2. Criar uma tabela para os dispositivos "outside"
             with Vertical():
                 yield Label("OUTSIDE")
                 out_table = DataTable(id="outside-table")
