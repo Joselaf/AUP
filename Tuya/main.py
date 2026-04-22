@@ -3,9 +3,22 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from devices import *
+import subprocess
+
+def is_device_reachable(ip):
+    if not ip:
+        return False
+
+    result = subprocess.run(
+    ["ping", "-c", "1", "-W", "1", ip],
+    stdout=subprocess.DEVNULL,
+    stderr=subprocess.DEVNULL,
+    check=False,
+    )
+    return result.returncode == 0
 
 def devices_status(device):
-    if not device['ip']:
+    if not is_device_reachable(device['ip']):
         return None
     else: 
         category = device['category']

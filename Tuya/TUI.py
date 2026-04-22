@@ -26,7 +26,7 @@ class TuyaDashboard(App):
                     table = DataTable(id="device_by_floor") ## criamos a tabela
                     table.add_columns("Device", "Status")
                     for room in floor:
-                        for device in room.get("Devices", []):
+                        for in (room.get("Devices",[], "Objects", [])):
                             status = "[bold green]ONLINE[/]" if device['ip'] else "[bold red]OFFLINE[/]"
                             table.add_row(device['name'], status)
                     yield table
