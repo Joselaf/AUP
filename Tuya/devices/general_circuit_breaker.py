@@ -27,6 +27,13 @@ class general_circuit_breaker:
         else:
             return None
 
+    def get_ip(self):
+        return self.ip
+
+    def get_tui_info(self):
+        return "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
+
+
     ## Turns the device ON if it is OFF and vice-versa
     def toggle(self):
         new_state = not self.dps.get('1')

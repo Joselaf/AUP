@@ -9,25 +9,15 @@ class smart_lock:
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
         self.status = self.device.status()
         self.dps = self.status.get('dps', {})
-        self.refresh_stats()
-
-    def refresh_stats(self):
-        self.feed_status    = self.dps.get('101')
-        self.battery        = self.dps.get('102')
-        self.pir_switch     = self.dps.get('103')
-        self.pir_sensitivity= self.dps.get('104')
-        self.sd_status      = self.dps.get('105')
-        self.p2p_id         = self.dps.get('108')
-        self.video_flip     = self.dps.get('115')
-        self.night_mode     = self.dps.get('116')
+        
 
         self.stats = {
-            "battery":         self.battery,
-            "pir_switch":      self.pir_switch,
+            "battery":         self.dps.get('102'),
+            "pir_switch":      self.dps.get('103'),
             "pir_sensitivity": self.pir_sensitivity,
-            "sd_status":       self.sd_status,
-            "video_flip":      self.video_flip,
-            "night_mode":      self.night_mode,
+            "sd_status":       self.dps.get('105'),
+            "video_flip":      self.dps.get('115'),
+            "night_mode":      self.dps.get('116'),
             "door_state":      self.dps.get('63'),
         }
         
@@ -36,7 +26,12 @@ class smart_lock:
             return self.stats
         else:
             return None
-        
+    
+    def get_ip(self):
+        return self.ip
+    
+    def get_tui_info(self):
+        return "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]Closed[/]"
             
     def set_pir_switch(self, state):
         self.device.set_dps('103', state)

@@ -23,7 +23,12 @@ class smart_plug:
             return self.stats
         else:
             return None
-            
+    
+    def get_ip(self):
+        return self.ip
+
+    def gte_tui_info(self):
+        return "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
             
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):

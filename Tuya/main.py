@@ -5,11 +5,90 @@ import datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from devices import *
 
-
-
+def devices_status(device):
+    category = device['category']
+    match category:
+        case 'dlq'if("consumo" in device['name'].lower()):
+            if not device['ip']:
+                return None
+            else:      
+                d = consumption_breaker(device['id'], device['ip'], device['key'], device['name'])
+                return d
+        case 'dlq':
+            if(not device['ip']):
+                return None
+            else:
+                d = breaker(device['id'], device['ip'], device['key'], device['name'])
+                return d   
+        case 'kg':
+            if not device['ip']:
+                return None
+            else:
+                d = breaker(device['id'], device['ip'], device['key'], device['name'])
+                return d
+        case 'tdp':
+            if not device['ip']:
+                    return None
+            else:
+                d = heater(device['id'], device['ip'], device['key'], device['name'])
+                return d
+        case 'mcs':
+            if not device['ip']:
+                return None
+            else:             
+                d = contact_sensor(device['id'], device['ip'], device['key'], device['name'])
+                return d
+                
+        case 'hps':
+            if not device['ip']:
+                return None
+            else:
+                d = presence_sensor(device['id'], device['ip'], device['key'], device['name'])
+                return d
+        case 'ms':
+            if not device['ip']:
+                return None
+            else:
+                d = lock(device['id'], device['ip'], device['key'], device['name'])
+                return d
+        case 'cz':
+            if not device['ip']:
+                return None
+            else:
+                d = smart_plug(device['id'], device['ip'], device['key'], device['name'])
+                return d
+        case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
+            if not device['ip']:
+                return None
+            else:
+                d = smart_bulb(device['id'], device['ip'], device['key'], device['name'])
+                return d
+        case 'dj'if("esmax" in device['name'].lower()):
+            if not device['ip']:
+                return None
+            else:
+                d = esmax(device['id'], device['ip'], device['key'], device['name'])
+                return d     
+        case 'dj':
+            if not device['ip']:
+                return None
+            else:
+                d = smart_ir(device['id'], device['ip'], device['key'], device['name'])
+                return d
+        case 'tv':
+            if not device['ip']:
+                return None
+            else:
+                d = smart_tv(device['id'], device['ip'], device['key'], device['name'])
+                return d     
+        case 'jtmspro':
+            if not device['ip']:
+                return None
+            else:
+                d = smart_lock(device['id'], device['ip'], device['key'], device['name'])
+                return d
 
 DEVICES_FILE = "devices.json"
-
 def load_devices():
     """Load devices from devices.json"""
     with open(DEVICES_FILE) as f:
@@ -51,19 +130,17 @@ def organize_devices(device_list):
             
         _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number-1] = {"Name": _room, "Devices": []}
 
-    index = 0
-    for floor in _sorted_organized_list_of_rooms["Floors"]:
-        index+=1
-        
         
     
 
-    _sorted_organized_list_of_rooms["Floors"][0][0]["Devices"]
+    _sorted_organized_list_of_rooms["Floors"][0][0]["Devices"]["object"]
     _outside_devices = []
 
 
     for device in devices:
         tmp_name = device["name"]
+        d = devices_status(device)
+        
         
         if "Q" in tmp_name:
             tmp_index_start = tmp_name.index("Q")
@@ -74,108 +151,15 @@ def organize_devices(device_list):
             _int_floor = int(_int_room[0:1])
             _int_room_number = int(_int_room[1:2])
             
-            _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number-1]["Devices"].append(device)
+            _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number-1]["Devices"].append(d)
         else:
-            _outside_devices.append(device)
+            _outside_devices.append(d)
         
 
 
 
     return _sorted_organized_list_of_rooms, _outside_devices
 
-def devices_status(device):
-    category = device['category']
-    match category:
-        case 'dlq'if("consumo" in device['name'].lower()):
-            if not device['ip']:
-                return None
-            else:      
-                d = consumption_breaker(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-
-        case 'dlq':
-            if(not device['ip']):
-                return None
-            else:
-                d = breaker(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-            
-            
-        case 'kg':
-            if not device['ip']:
-                return None
-            else:
-                d = breaker(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-            
-        case 'tdp':
-            if not device['ip']:
-                    return None
-            else:
-                d = heater(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-        case 'mcs':
-            if not device['ip']:
-                return None
-            else:             
-                d = contact_sensor(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-                
-        case 'hps':
-            if not device['ip']:
-                return None
-            else:
-                d = presence_sensor(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-        
-        case 'ms':
-            if not device['ip']:
-                return None
-            else:
-                d = lock(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-        
-        case 'cz':
-            if not device['ip']:
-                return None
-            else:
-                d = smart_plug(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-        
-        case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
-            if not device['ip']:
-                return None
-            else:
-                d = smart_bulb(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-        
-        case 'dj'if("esmax" in device['name'].lower()):
-            if not device['ip']:
-                return None
-            else:
-                d = esmax(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-            
-        case 'dj':
-            if not device['ip']:
-                return None
-            else:
-                d = smart_ir(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-        
-        case 'tv':
-            if not device['ip']:
-                return None
-            else:
-                d = smart_tv(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
-            
-        case 'jtmspro':
-            if not device['ip']:
-                return None
-            else:
-                d = smart_lock(device['id'], device['ip'], device['key'], device['name'])
-                return d.get_status()
 
 
 if __name__ == "__main__":

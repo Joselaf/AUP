@@ -22,6 +22,16 @@ class presence_sensor:
         else:
             return None
         
+
+    def get_ip(self):
+        return self.ip
+
+    
+    def get_tui_info(self):
+        return "[bold yellow]Detected[/]" if self.stats['presence_status'] else "[bold blue]Undetected[/]"
+
+
+
     ## Exercise classification: none, presence, peaceful, small_move, large_move
     def set_motion_state(self, value):
         self.device.set_dps('105', value)
@@ -30,3 +40,5 @@ class presence_sensor:
     def toogle_indicator_switch(self):
         new_state = not self.dps.get('105')
         self.device.set_dps('105', new_state)
+
+

@@ -21,6 +21,12 @@ class smart_ir:
         else:
             return None
 
+    def get_ip(self):
+        return self.ip
+    
+    
+    
+    
     ## Send Code: The raw IR code (Base64) to be emitted.
     def send_ir_code(self, code):
         payload = self.device.generate_payload(tinytuya.CONTROL, {'1': code})

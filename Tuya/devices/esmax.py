@@ -38,6 +38,12 @@ class esmax:
         else:
             return None
 
+    def get_ip(self):
+        return self.ip
+
+    def get_tui_info(self):
+         return "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
+
     ## Electronic Lock toggle
     def toogle_switch_lock(self):
         new_state = not self.dps.get('1')

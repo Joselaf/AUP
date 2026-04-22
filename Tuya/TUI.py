@@ -33,12 +33,8 @@ class TuyaDashboard(App):
                 out_table = DataTable(id="outside_table")
                 out_table.add_columns("Device", "Status", "Details")
                 for device in my_outside_devices:
-                    detail = main.devices_status(device)
-                    if detail is not None:
-                        details = "[bold yellow]ON[/]" if detail.get('state') else "[bold blue]OFF[/]"
-                    else:
-                        details = "[bold white]Error[/]"
-                    status = "[bold green]ONLINE[/]" if device['ip'] else "[bold red]OFFLINE[/]"
+                    details = device.get_tui_info()
+                    status = "[bold green]ONLINE[/]" if device.get_ip()  else "[bold red]OFFLINE[/]"
                     out_table.add_row(device['name'], status, details)
                 yield out_table
 
