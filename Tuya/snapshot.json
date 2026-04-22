@@ -1,0 +1,43 @@
+{
+    "timestamp": 1776874225.5300694,
+    "devices": [
+        {
+            "id": "bfc367de4609adb77eyqwb",
+            "ip": "192.168.1.66",
+            "active": 2,
+            "encrypt": true,
+            "productKey": "keyuh3jxk9wu8ruj",
+            "token": true,
+            "wf_cfg": true,
+            "name": "test",
+            "key": "}k<X^IzYjvtSZa`2",
+            "mac": "3c:0b:59:8c:a8:38",
+            "ability": 0,
+            "dev_type": "default",
+            "err": "",
+            "type": "default",
+            "dps": {
+                "dps": {
+                    "1": true,
+                    "9": 0,
+                    "17": 1,
+                    "18": 0,
+                    "19": 0,
+                    "20": 2449,
+                    "21": 2,
+                    "22": 0,
+                    "23": 0,
+                    "24": 0,
+                    "25": 0,
+                    "26": 0,
+                    "38": "off",
+                    "40": "relay",
+                    "42": "",
+                    "47": 22
+                }
+            },
+            "origin": "broadcast",
+            "ver": "3.4"
+        }
+    ]
+}

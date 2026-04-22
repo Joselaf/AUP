@@ -110,14 +110,9 @@ def organize_devices(device_list):
     
 
     _outside_devices = {"Devices": [], "Objects": []}
-    index = 0
-    for device in devices:
-        tmp_name = device["name"]
-        
-        d = devices_status(device)
-        print("Finished", index)
-        index += 1
-        
+    for device_dict in devices:
+        tmp_name = device_dict["name"]
+        device_obj = devices_status(device_dict) 
         if "Q" in tmp_name:
             tmp_index_start = tmp_name.index("Q")
             tmp_index_end = tmp_index_start + 3
@@ -127,11 +122,11 @@ def organize_devices(device_list):
             _int_floor = int(_int_room[0:1])
             _int_room_number = int(_int_room[1:2])
             
-            _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number-1]["Devices"].append(device)
-            _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number-1]["Objects"].append(d)
+            _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number-1]["Devices"].append(device_dict)
+            _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number-1]["Objects"].append(device_obj)
         else:
-            _outside_devices["Devices"].append(device)
-            _outside_devices["Objects"].append(d)
+            _outside_devices["Devices"].append(device_dict)
+            _outside_devices["Objects"].append(device_obj)
             
         
     return _sorted_organized_list_of_rooms, _outside_devices

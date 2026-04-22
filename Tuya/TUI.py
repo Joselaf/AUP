@@ -3,7 +3,6 @@ from textual.widgets import Header, Footer, DataTable, Label
 from textual.containers import Horizontal, Vertical
 import main
 from devices import *
-import time
 
 class TuyaDashboard(App):
     
@@ -12,10 +11,6 @@ class TuyaDashboard(App):
 
         devices = main.load_devices()
         my_devices, my_outside_devices = main.organize_devices(devices)
-        
-        
-        print("Finished loading")
-        time.sleep(3)
         floor_data = my_devices.get("Floors",[])
         
         with Horizontal():
@@ -26,23 +21,32 @@ class TuyaDashboard(App):
                     table = DataTable(id="device_by_floor") ## criamos a tabela
                     table.add_columns("Device", "Status")
                     for room in floor:
-                        for in (room.get("Devices",[], "Objects", [])):
-                            status = "[bold green]ONLINE[/]" if device['ip'] else "[bold red]OFFLINE[/]"
-                            table.add_row(device['name'], status)
+                        for device_dict, device_obj in zip(room.get("Devices",[]), room.get("Objects",[])):
+                            if device_obj:
+                                status = device_obj.get_tui_info()
+                            else:
+                                status = "🔴[bold red]OFFLINE[/]"
+                            table.add_row(device_dict['name'], status)
                     yield table
 
             # 2. Criar uma tabela para os dispositivos "outside"
             with Vertical():
                 yield Label("OUTSIDE")
                 out_table = DataTable(id="outside_table")
-                out_table.add_columns("Device", "Status")
-                for device in my_outside_devices:
-                    status = "[bold green]ONLINE[/]" if device.get_ip()  else "[bold red]OFFLINE[/]"
-                    out_table.add_row(device['name'], status)
+                out_table.add_columns("Device", "Status", "Details")
+                for device_dict, device_obj in zip(my_outside_devices.get("Devices",[]),my_outside_devices.get("Objects",[])):
+                    status = None
+                    details = None
+                    if device_obj:
+                        status = "🟢[bold green]ONLINE[/]"
+                        details = device_obj.get_tui_info()
+                    else:
+                        status = "🔴[bold red]OFFLINE[/]"
+                    
+                    out_table.add_row(device_dict['name'], status, details)
                 yield out_table
 
         yield Footer()
 
 if __name__ == "__main__":
-    app = TuyaDashboard()
-    app.run()
+    TuyaDashboard().run()
