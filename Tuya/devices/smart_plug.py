@@ -26,6 +26,8 @@ class smart_plug:
     
     def get_ip(self):
         return self.ip
+    def get_name(self):
+        return self.name
 
     def gte_tui_info(self):
         return "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"

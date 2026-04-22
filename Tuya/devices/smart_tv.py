@@ -32,6 +32,8 @@ class smart_tv:
         
     def get_ip(self):
         return self.ip
+    def get_name(self):
+        return self.name
 
     
     def get_tui_info(self):

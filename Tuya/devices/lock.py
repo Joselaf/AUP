@@ -31,6 +31,9 @@ class lock:
 
     def get_ip(self):
         return self.ip
+    
+    def get_name(self):
+        return self.name
 
     def get_tui_info(self):
          return "[bold yellow]Opened[/]" if self.stats['door_status'] else "[bold blue]Closed[/]"

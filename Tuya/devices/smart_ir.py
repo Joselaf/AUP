@@ -23,6 +23,8 @@ class smart_ir:
 
     def get_ip(self):
         return self.ip
+    def get_name(self):
+        return self.name
     
     
     

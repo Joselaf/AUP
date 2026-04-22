@@ -41,6 +41,9 @@ class esmax:
     def get_ip(self):
         return self.ip
 
+    def get_name(self):
+        return self.name
+    
     def get_tui_info(self):
          return "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
 

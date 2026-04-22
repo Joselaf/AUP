@@ -3,6 +3,7 @@ from textual.widgets import Header, Footer, DataTable, Label
 from textual.containers import Horizontal, Vertical
 import main
 from devices import *
+import time
 
 class TuyaDashboard(App):
     
@@ -12,6 +13,9 @@ class TuyaDashboard(App):
         devices = main.load_devices()
         my_devices, my_outside_devices = main.organize_devices(devices)
         
+        
+        print("Finished loading")
+        time.sleep(3)
         floor_data = my_devices.get("Floors",[])
         
         with Horizontal():
@@ -31,11 +35,10 @@ class TuyaDashboard(App):
             with Vertical():
                 yield Label("OUTSIDE")
                 out_table = DataTable(id="outside_table")
-                out_table.add_columns("Device", "Status", "Details")
+                out_table.add_columns("Device", "Status")
                 for device in my_outside_devices:
-                    details = device.get_tui_info()
                     status = "[bold green]ONLINE[/]" if device.get_ip()  else "[bold red]OFFLINE[/]"
-                    out_table.add_row(device['name'], status, details)
+                    out_table.add_row(device['name'], status)
                 yield out_table
 
         yield Footer()

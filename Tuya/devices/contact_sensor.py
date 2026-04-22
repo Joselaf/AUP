@@ -22,7 +22,9 @@ class contact_sensor:
             return self.stats
         else:
             return None
-    
+        
+    def get_name(self):
+        return self.name    
 
     def get_ip(self):
         return self.ip

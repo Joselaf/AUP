@@ -38,6 +38,10 @@ class consumption_breaker:
     def get_ip(self):
         return self.ip
     
+    def get_name(self):
+        return self.name   
+        
+    
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
        new_state = not self.dps.get('1')
