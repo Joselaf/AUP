@@ -100,7 +100,6 @@ class TuyaDashboard(App):
                     self.build_table(out_table,device_obj, device_dict)
                     yield out_table
 
-        ##yield Footer()
 
 if __name__ == "__main__":
     TuyaDashboard().run()
