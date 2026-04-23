@@ -3,8 +3,8 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from devices import *
-from is_device_rechable import is_device_reachable
-
+from is_device_reachable import is_device_reachable
+    
 
 def devices_status(device):
     if not is_device_reachable(device['ip']):

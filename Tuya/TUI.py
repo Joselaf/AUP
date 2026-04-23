@@ -8,58 +8,72 @@ class TuyaDashboard(App):
     
         
     def build_table(self, table, device_obj, device_dict):
-        if device_obj == breaker or consumption_breaker:
+        if isinstance(device_obj, (breaker, consumption_breaker)):
             table.add_columns("Device", "Status","State","Error")
             name = device_dict['name']
             status,state,details = device_obj.get_tui_info()
             table.add_row(name,status,state,details)
-        elif device_obj == contact_sensor:
-            table.add_column("Device", "Status","Door_state","Battery")
+        elif isinstance(device_obj, contact_sensor):
+            table.add_columns("Device", "Status","Door_state","Battery")
             name = device_dict['name']
             status,door_state, battery = device_obj.get_tui_info()
             table.add_row(name, status, door_state, battery)
-        elif device_obj == esmax:
-            table.add_column("Device", "Status","State_Lock","Battery")
+        elif isinstance(device_obj, esmax):
+            table.add_columns("Device", "Status","State_Lock","Battery")
             name = device_dict['name']
             status,state_lock,battery = device_obj.get_tui_info()
             table.add_row(name, status, state_lock, battery)
-        elif device_obj == general_circuit_breaker:
+        elif isinstance(device_obj, general_circuit_breaker):
             table.add_columns("Device", "Status","State","Error")
             name = device_dict['name']
             status,details = device_obj.get_tui_info()
             table.add_row(name , status, details)
-        elif device_obj == heater:
-            table.add_column("Device","Status","Power")
+        elif isinstance(device_obj, heater):
+            table.add_columns("Device","Status","Power")
             name = device_dict['name']
             status,details = device_obj.get_tui_info()
             table.add_row(name, status, details)
-        elif device_obj == lock:
-            table.add_column("Device", "Status","Door_state","Battery")
+        elif isinstance(device_obj, lock):
+            table.add_columns("Device", "Status","Door_state","Battery")
             name = device_dict['name']
             status,door_state, battery = device_obj.get_tui_info()
             table.add_row(name, status, door_state, battery)
-        elif device_obj == presence_sensor:
-            table.add_column("Device","Status","Presence")
+        elif isinstance(device_obj, presence_sensor):
+            table.add_columns("Device","Status","Presence")
             name = device_dict['name']
             status,presence = device_obj.get_tui_info()
             table.add_row(name,status,presence)
-        elif device_obj == smart_bulb:
-            table.add_column("Devices","Status","Led")
+        elif isinstance(device_obj, smart_bulb):
+            table.add_columns("Devices","Status","Led")
             name = device_dict['name']
             status,led = device_obj.get_tui_info()
             table.add_row(name,status,led)
-        elif device_obj == smart_ir:
-            table.add_column("Device","Status")
+        elif isinstance(device_obj, smart_ir):
+            table.add_columns("Device","Status")
             name = device_dict['name']
             status = device_obj.get_tui_info()
             table.add_row(name,status)
-        elif device_obj == smart_lock:
-            table.add_column("Device","Status","Battery", "Lock")
+        elif isinstance(device_obj, smart_lock):
+            table.add_columns("Device","Status","Battery", "Lock")
             name = device_dict['name']
             status,battery,state = device_obj.get_tui_info()
             table.add_row(name,status,battery,state)
-        elif device_obj == smart_plug:
-            table.add_column("Device","Status","Power")
+        elif isinstance(device_obj, smart_plug):
+            table.add_columns("Device","Status","State")
+            name = device_dict['name']
+            status,state = device_obj.get_tui_info()
+            table.add_row(name,status,state)
+        elif isinstance(device_obj, smart_tv):
+            table.add_columns("Device","Status","Power")
+            name = device_dict['name']
+            status,power = device_obj.get_tui_info()
+            table.add_row(name,status,power)
+        else:
+            table.add_columns("Device","Status")
+            name = device_dict['name'] 
+            status = "[bold white]Unreacheble[/]"
+            table.add_row(name,status)
+            
         return table
             
     def compose(self) -> ComposeResult:
@@ -75,27 +89,19 @@ class TuyaDashboard(App):
                 with Vertical():
                     yield Label(f"Andar{index}")
                     for room in floor:
-                        table = DataTable(id="device_by_room") ## criamos a tabela por quarto
-                        for device_dict, device_obj in zip(room.get("Devices",[]), room.get("Objects",[])):
-                            if(device_obj):
-                                table = self.build_table(table, device_obj, device_dict)
-                                
-                    yield table
+                        with Vertical():
+                            for device_dict, device_obj in zip(room.get("Devices",[]), room.get("Objects",[])):
+                                table = DataTable() ## criamos a tabela por quarto
+                                table = self.build_table(table,device_obj,device_dict)                                   
+                                yield table 
 
             # 2. Criar uma tabela para os dispositivos "outside"
             with Vertical():
                 yield Label("OUTSIDE")
-                out_table = DataTable(id="outside_table")
-                out_table.add_columns("Device", "Status", "Details")
                 for device_dict, device_obj in zip(my_outside_devices.get("Devices",[]),my_outside_devices.get("Objects",[])):
-                    if device_obj:
-                        status = "🟢[bold green]ONLINE[/]"
-                        details = device_obj.get_tui_info()
-                    else:
-                        status = "🔴[bold red]OFFLINE[/]"
-                    
-                    out_table.add_row(device_dict['name'], status, details)
-                yield out_table
+                    out_table = DataTable()
+                    self.build_table(out_table,device_obj, device_dict)
+                    yield out_table
 
         yield Footer()
 

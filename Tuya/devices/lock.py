@@ -1,5 +1,5 @@
 import tinytuya
-from is_device_rechable import is_device_reachable
+from is_device_reachable import is_device_reachable
 class lock:
     def __init__(self, id, ip, local_key, name):
         self.id = id
