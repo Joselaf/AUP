@@ -89,13 +89,13 @@ class TuyaDashboard(App):
                 with Vertical():
                     yield Label(f"Andar{index}")
                     for room in floor:
-                        with Vertical():
                             for device_dict, device_obj in zip(room.get("Devices",[]), room.get("Objects",[])):
-                                table = DataTable() ## criamos a tabela por quarto
-                                table = self.build_table(table,device_obj,device_dict)                                   
-                                yield table 
+                                with Vertical():
+                                    table = DataTable() ## criamos a tabela por quarto
+                                    table = self.build_table(table,device_obj,device_dict)                                   
+                                    yield table 
 
-            # 2. Criar uma tabela para os dispositivos "outside"
+            ## 2. Criar uma tabela para os dispositivos "outside"
             with Vertical():
                 yield Label("OUTSIDE")
                 for device_dict, device_obj in zip(my_outside_devices.get("Devices",[]),my_outside_devices.get("Objects",[])):
