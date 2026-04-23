@@ -1,4 +1,5 @@
 import tinytuya
+from is_device_rechable import is_device_reachable
 
 class contact_sensor:
     def __init__(self, id, ip, local_key, name):
@@ -30,4 +31,7 @@ class contact_sensor:
         return self.ip
 
     def get_tui_info(self):
-        return "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]closed[/]"
+        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
+        door_state =  "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]closed[/]"
+        battery = f"[bold white]{self.stats['battery_percentage']}"
+        return status,door_state, battery

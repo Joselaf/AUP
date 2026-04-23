@@ -1,5 +1,5 @@
 import tinytuya
-
+from is_device_rechable import is_device_reachable
 class smart_plug:
     def __init__(self, id, ip, local_key, name):
         self.id = id
@@ -30,7 +30,9 @@ class smart_plug:
         return self.name
 
     def gte_tui_info(self):
-        return "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
+        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"  
+        details = "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
+        return status,details
             
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):

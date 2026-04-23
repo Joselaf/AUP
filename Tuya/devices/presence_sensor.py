@@ -1,4 +1,5 @@
 import tinytuya
+from is_device_rechable import is_device_reachable
 
 class presence_sensor:
     def __init__(self, id, ip, local_key, name):
@@ -30,7 +31,9 @@ class presence_sensor:
 
     
     def get_tui_info(self):
-        return "[bold yellow]Detected[/]" if self.stats['presence_status'] else "[bold blue]Undetected[/]"
+        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
+        details = "[bold yellow]Detected[/]" if self.stats['presence_status'] else "[bold blue]Undetected[/]"
+        return status,details
 
 
 

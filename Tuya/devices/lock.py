@@ -1,5 +1,5 @@
 import tinytuya
-
+from is_device_rechable import is_device_reachable
 class lock:
     def __init__(self, id, ip, local_key, name):
         self.id = id
@@ -36,4 +36,7 @@ class lock:
         return self.name
 
     def get_tui_info(self):
-         return "[bold yellow]Opened[/]" if self.stats['door_status'] else "[bold blue]Closed[/]"
+        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
+        door_state =  "[bold yellow]Opened[/]" if self.stats['door_status'] else "[bold blue]Closed[/]"
+        battery = f"[bold white]{self.stats['battery_level']}"
+        return status,door_state, battery

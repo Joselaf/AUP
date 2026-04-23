@@ -1,4 +1,5 @@
 import tinytuya
+from is_device_rechable import is_device_reachable
 
 class general_circuit_breaker:
     def __init__(self, id, ip, local_key, name):
@@ -34,7 +35,9 @@ class general_circuit_breaker:
         return self.name
 
     def get_tui_info(self):
-        return "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
+        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
+        details = f"[bold white]" if {self.stats['error']} else "[bold white]-[/]"      
+        return  status,details
 
 
     ## Turns the device ON if it is OFF and vice-versa

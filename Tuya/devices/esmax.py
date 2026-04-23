@@ -1,4 +1,5 @@
 import tinytuya
+from is_device_rechable import is_device_reachable
 
 class esmax:
     def __init__(self, id, ip, key, name):
@@ -45,7 +46,10 @@ class esmax:
         return self.name
     
     def get_tui_info(self):
-         return "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
+        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
+        state_lock =  "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
+        battery = f"[bold white]{self.stats['battery']}"
+        return status,state_lock,battery
 
     ## Electronic Lock toggle
     def toogle_switch_lock(self):

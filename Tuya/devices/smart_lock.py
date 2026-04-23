@@ -1,5 +1,5 @@
 import tinytuya
-
+from is_device_rechable import is_device_reachable
 class smart_lock:
     def __init__(self, id, ip, local_key, name):
         self.id = id
@@ -33,7 +33,9 @@ class smart_lock:
         return self.name
     
     def get_tui_info(self):
-        return "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]Closed[/]"
+        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
+        details = "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]Closed[/]"
+        return status,details
             
     def set_pir_switch(self, state):
         self.device.set_dps('103', state)
