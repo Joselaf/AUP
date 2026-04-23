@@ -1,18 +1,18 @@
 {
     "result": [
         {
-            "active_time": 1764523968,
+            "active_time": 1763378737,
             "biz_type": 18,
             "category": "dlq",
-            "create_time": 1764523968,
+            "create_time": 1763378737,
             "icon": "smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
-            "id": "bfd9bb45005fb79e46keao",
+            "id": "bf4968af361db071011pbo",
             "ip": "144.64.18.210",
             "lat": "41.45",
-            "local_key": "G<8f!1~My??Y*AJ+",
+            "local_key": "t@YPl/vX:8HX^jVs",
             "lon": "-8.29",
             "model": "PN-\u9648\u658c\u53cc\u706f",
-            "name": "Disjuntor AC Q24",
+            "name": "Disjuntor Q15",
             "online": true,
             "owner_id": "261481247",
             "product_id": "nfhnzerdfsvfgwzo",
@@ -28,19 +28,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 1
+                    "value": 3
                 },
                 {
                     "code": "cur_current",
-                    "value": 112
+                    "value": 70
                 },
                 {
                     "code": "cur_power",
-                    "value": 82
+                    "value": 52
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2312
+                    "value": 2302
                 },
                 {
                     "code": "test_bit",
@@ -80,7 +80,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 35
+                    "value": 25
                 },
                 {
                     "code": "alarm_set_1",
@@ -94,7 +94,209 @@
             "sub": false,
             "time_zone": "+00:00",
             "uid": "eu17383581812239V0K3",
-            "update_time": 1776957582,
+            "update_time": 1776959093,
+            "uuid": "21512f6df47dec79"
+        },
+        {
+            "active_time": 1763207714,
+            "biz_type": 18,
+            "category": "dlq",
+            "create_time": 1763207714,
+            "icon": "smart/icon/bay15871133488653eun/e3f7e9660cf5b087f12196e2f8cf01fe.png",
+            "id": "bf9af048affd5e31643rfj",
+            "ip": "144.64.18.210",
+            "lat": "41.45",
+            "local_key": "f*^+h*'1ZsQmzgBI",
+            "lon": "-8.29",
+            "model": "DPN\u65ad\u8def\u5668",
+            "name": "Disjuntor Q24",
+            "online": true,
+            "owner_id": "261481247",
+            "product_id": "dmtrpqibupjoxiq4",
+            "product_name": "Smart rail-type circuit breaker",
+            "status": [
+                {
+                    "code": "switch",
+                    "value": true
+                },
+                {
+                    "code": "countdown_1",
+                    "value": 0
+                },
+                {
+                    "code": "add_ele",
+                    "value": 1
+                },
+                {
+                    "code": "cur_current",
+                    "value": 0
+                },
+                {
+                    "code": "cur_power",
+                    "value": 0
+                },
+                {
+                    "code": "cur_voltage",
+                    "value": 2365
+                },
+                {
+                    "code": "test_bit",
+                    "value": 2
+                },
+                {
+                    "code": "voltage_coe",
+                    "value": 0
+                },
+                {
+                    "code": "electric_coe",
+                    "value": 0
+                },
+                {
+                    "code": "power_coe",
+                    "value": 0
+                },
+                {
+                    "code": "electricity_coe",
+                    "value": 0
+                },
+                {
+                    "code": "fault",
+                    "value": 0
+                },
+                {
+                    "code": "relay_status",
+                    "value": "last"
+                },
+                {
+                    "code": "light_mode",
+                    "value": "relay"
+                },
+                {
+                    "code": "child_lock",
+                    "value": false
+                },
+                {
+                    "code": "cycle_time",
+                    "value": ""
+                },
+                {
+                    "code": "temp_value",
+                    "value": 37
+                },
+                {
+                    "code": "alarm_set_1",
+                    "value": "BQEAZAcAAAA="
+                },
+                {
+                    "code": "alarm_set_2",
+                    "value": "AQEAUAMBAQkEAQBa"
+                },
+                {
+                    "code": "online_state",
+                    "value": "online"
+                }
+            ],
+            "sub": false,
+            "time_zone": "+00:00",
+            "uid": "eu17383581812239V0K3",
+            "update_time": 1776958890,
+            "uuid": "2ccbe21aa95f9740"
+        },
+        {
+            "active_time": 1764523968,
+            "biz_type": 18,
+            "category": "dlq",
+            "create_time": 1764523968,
+            "icon": "smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
+            "id": "bfd9bb45005fb79e46keao",
+            "ip": "144.64.18.210",
+            "lat": "41.45",
+            "local_key": "G<8f!1~My??Y*AJ+",
+            "lon": "-8.29",
+            "model": "PN-\u9648\u658c\u53cc\u706f",
+            "name": "Disjuntor AC Q24",
+            "online": true,
+            "owner_id": "261481247",
+            "product_id": "nfhnzerdfsvfgwzo",
+            "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
+            "status": [
+                {
+                    "code": "switch",
+                    "value": true
+                },
+                {
+                    "code": "countdown_1",
+                    "value": 0
+                },
+                {
+                    "code": "add_ele",
+                    "value": 2
+                },
+                {
+                    "code": "cur_current",
+                    "value": 97
+                },
+                {
+                    "code": "cur_power",
+                    "value": 31
+                },
+                {
+                    "code": "cur_voltage",
+                    "value": 2310
+                },
+                {
+                    "code": "test_bit",
+                    "value": 2
+                },
+                {
+                    "code": "voltage_coe",
+                    "value": 0
+                },
+                {
+                    "code": "electric_coe",
+                    "value": 0
+                },
+                {
+                    "code": "power_coe",
+                    "value": 0
+                },
+                {
+                    "code": "electricity_coe",
+                    "value": 0
+                },
+                {
+                    "code": "fault",
+                    "value": 0
+                },
+                {
+                    "code": "relay_status",
+                    "value": "last"
+                },
+                {
+                    "code": "light_mode",
+                    "value": "relay"
+                },
+                {
+                    "code": "cycle_time",
+                    "value": ""
+                },
+                {
+                    "code": "temp_value",
+                    "value": 34
+                },
+                {
+                    "code": "alarm_set_1",
+                    "value": "BQEAVQcAAAA="
+                },
+                {
+                    "code": "alarm_set_2",
+                    "value": "AQEAPwMBAQkEAQBk"
+                }
+            ],
+            "sub": false,
+            "time_zone": "+00:00",
+            "uid": "eu17383581812239V0K3",
+            "update_time": 1776958416,
             "uuid": "d7ff3b7106d68e94"
         },
         {
@@ -206,19 +408,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 2
+                    "value": 1
                 },
                 {
                     "code": "cur_current",
-                    "value": 0
+                    "value": 84
                 },
                 {
                     "code": "cur_power",
-                    "value": 0
+                    "value": 36
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2267
+                    "value": 2311
                 },
                 {
                     "code": "test_bit",
@@ -274,208 +476,6 @@
             "uid": "eu17383581812239V0K3",
             "update_time": 1776956712,
             "uuid": "743f67310aec2cb9"
-        },
-        {
-            "active_time": 1763207714,
-            "biz_type": 18,
-            "category": "dlq",
-            "create_time": 1763207714,
-            "icon": "smart/icon/bay15871133488653eun/e3f7e9660cf5b087f12196e2f8cf01fe.png",
-            "id": "bf9af048affd5e31643rfj",
-            "ip": "144.64.18.210",
-            "lat": "41.45",
-            "local_key": "f*^+h*'1ZsQmzgBI",
-            "lon": "-8.29",
-            "model": "DPN\u65ad\u8def\u5668",
-            "name": "Disjuntor Q24",
-            "online": true,
-            "owner_id": "261481247",
-            "product_id": "dmtrpqibupjoxiq4",
-            "product_name": "Smart rail-type circuit breaker",
-            "status": [
-                {
-                    "code": "switch",
-                    "value": true
-                },
-                {
-                    "code": "countdown_1",
-                    "value": 0
-                },
-                {
-                    "code": "add_ele",
-                    "value": 1
-                },
-                {
-                    "code": "cur_current",
-                    "value": 0
-                },
-                {
-                    "code": "cur_power",
-                    "value": 0
-                },
-                {
-                    "code": "cur_voltage",
-                    "value": 2316
-                },
-                {
-                    "code": "test_bit",
-                    "value": 2
-                },
-                {
-                    "code": "voltage_coe",
-                    "value": 0
-                },
-                {
-                    "code": "electric_coe",
-                    "value": 0
-                },
-                {
-                    "code": "power_coe",
-                    "value": 0
-                },
-                {
-                    "code": "electricity_coe",
-                    "value": 0
-                },
-                {
-                    "code": "fault",
-                    "value": 0
-                },
-                {
-                    "code": "relay_status",
-                    "value": "last"
-                },
-                {
-                    "code": "light_mode",
-                    "value": "relay"
-                },
-                {
-                    "code": "child_lock",
-                    "value": false
-                },
-                {
-                    "code": "cycle_time",
-                    "value": ""
-                },
-                {
-                    "code": "temp_value",
-                    "value": 37
-                },
-                {
-                    "code": "alarm_set_1",
-                    "value": "BQEAZAcAAAA="
-                },
-                {
-                    "code": "alarm_set_2",
-                    "value": "AQEAUAMBAQkEAQBa"
-                },
-                {
-                    "code": "online_state",
-                    "value": "online"
-                }
-            ],
-            "sub": false,
-            "time_zone": "+00:00",
-            "uid": "eu17383581812239V0K3",
-            "update_time": 1776955905,
-            "uuid": "2ccbe21aa95f9740"
-        },
-        {
-            "active_time": 1763378737,
-            "biz_type": 18,
-            "category": "dlq",
-            "create_time": 1763378737,
-            "icon": "smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
-            "id": "bf4968af361db071011pbo",
-            "ip": "144.64.18.210",
-            "lat": "41.45",
-            "local_key": "t@YPl/vX:8HX^jVs",
-            "lon": "-8.29",
-            "model": "PN-\u9648\u658c\u53cc\u706f",
-            "name": "Disjuntor Q15",
-            "online": true,
-            "owner_id": "261481247",
-            "product_id": "nfhnzerdfsvfgwzo",
-            "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
-            "status": [
-                {
-                    "code": "switch",
-                    "value": true
-                },
-                {
-                    "code": "countdown_1",
-                    "value": 0
-                },
-                {
-                    "code": "add_ele",
-                    "value": 2
-                },
-                {
-                    "code": "cur_current",
-                    "value": 62
-                },
-                {
-                    "code": "cur_power",
-                    "value": 26
-                },
-                {
-                    "code": "cur_voltage",
-                    "value": 2302
-                },
-                {
-                    "code": "test_bit",
-                    "value": 2
-                },
-                {
-                    "code": "voltage_coe",
-                    "value": 0
-                },
-                {
-                    "code": "electric_coe",
-                    "value": 0
-                },
-                {
-                    "code": "power_coe",
-                    "value": 0
-                },
-                {
-                    "code": "electricity_coe",
-                    "value": 0
-                },
-                {
-                    "code": "fault",
-                    "value": 0
-                },
-                {
-                    "code": "relay_status",
-                    "value": "last"
-                },
-                {
-                    "code": "light_mode",
-                    "value": "relay"
-                },
-                {
-                    "code": "cycle_time",
-                    "value": ""
-                },
-                {
-                    "code": "temp_value",
-                    "value": 26
-                },
-                {
-                    "code": "alarm_set_1",
-                    "value": "BQEAVQcAAAA="
-                },
-                {
-                    "code": "alarm_set_2",
-                    "value": "AQEAPwMBAQkEAQBk"
-                }
-            ],
-            "sub": false,
-            "time_zone": "+00:00",
-            "uid": "eu17383581812239V0K3",
-            "update_time": 1776953053,
-            "uuid": "21512f6df47dec79"
         },
         {
             "active_time": 1765304210,
@@ -569,7 +569,7 @@
                 },
                 {
                     "code": "initiative_message",
-                    "value": "eyJ2IjoiNS4wIiwiZmlsZXMiOlt7ImRhdGEiOiI1YmFkY2QwNTFlMzQyNWVhNzJiNTU4NzRkMmU0ZDI1NjYzZDRmNzI5YzI1MjNmMzJiM2I5MGYzNTA2NzVmZWI1YWJmNTdhNjNjYTc1M2RkNTA0OTFiZjFmNjZjYmZlNmEwZjY5YTdhZmZhMjIxYWY5MTk1ZGYyMjEzODdhODAzMzljYWZmMzRlMWIyMjcyOGFlMzJiYTQ3OTM1ZTgzNDhhMGVhMzk2OGM5NDcyOTE0YzNhNTFjOTkyOTZhMDY4NTIwZGIxOGYzNjk3YzUyODUwNzQxMjFhZTlmNmFhNjRiYTFkMWVmMmI5ZmE2OTgwMjcwNTQxYTI5NjU2OGIyOWZkIiwia2V5SWQiOiJkZWZhdWx0IiwiaXYiOiJjNDdjOTE5M2EwNzNmYzNjZWZkYThiMzEyMWIzMDJkMyJ9XSwiY21kIjoiZG9vcl9sb2NrX3ZpZGVvX2NvdmVyIiwidHlwZSI6ImltYWdlIn0="
+                    "value": "eyJ2IjoiNS4wIiwiZmlsZXMiOlt7ImRhdGEiOiJlYWZmOTFhMGFjYmI4ODY5MTI1ZmE2NjVkZDA4YmYxNTdlYzFmNTE3MjM4ZWQ1YjhiZWVhOTU4ODY0NzI1MTc4YmY4NGMxYjJlZGYzOGNkMmUyOTE5MGJhOGQ3ZDllYTA5OWZjODQ4MzY3NGNiMTQyZGM3ZmU0Mjg5YjBiYjc3NTI5N2ZhNzc0Y2I4MDQ4YzBhMWQxMmVhN2NkNjQ5MjEyNmUxYjEyZmU5Yjg0MzBhOTk5OTNkZGY0ZGRkMWQ1YTkxY2I3NWQ5YWY3NWYwMWQ1YTMxNzhlNDBkMzQ2NjQxYTAyNjYyNTg1MWQwYzAzZDk2NGJhOWMwNmIyZjdiMTliIiwia2V5SWQiOiJkZWZhdWx0IiwiaXYiOiI1MzIxMDAzYWQ2OTYwODliYmFkOGZmZTMwZjA4MTFkMSJ9XSwiY21kIjoiZG9vcl9sb2NrX3ZpZGVvX2NvdmVyIiwidHlwZSI6ImltYWdlIn0="
                 }
             ],
             "sub": false,
@@ -772,15 +772,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 203
+                    "value": 211
                 },
                 {
                     "code": "cur_power",
-                    "value": 44
+                    "value": 47
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2341
+                    "value": 2332
                 },
                 {
                     "code": "test_bit",
@@ -820,7 +820,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 34
+                    "value": 33
                 },
                 {
                     "code": "alarm_set_1",
@@ -857,19 +857,19 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 618537
+                    "value": 618642
                 },
                 {
                     "code": "phase_a",
-                    "value": "CQcAGD0ABRI="
+                    "value": "CRUAFtMABQk="
                 },
                 {
                     "code": "phase_b",
-                    "value": "COUAAVAAAEI="
+                    "value": "CQsAAe0AAGo="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CQgAALsAAAI="
+                    "value": "CQwAALwAAAI="
                 },
                 {
                     "code": "fault",
@@ -1382,7 +1382,7 @@
                 },
                 {
                     "code": "initiative_message",
-                    "value": "eyJ2IjoiNS4wIiwiZmlsZXMiOlt7ImRhdGEiOiIyY2ZlZWZkZDIwMmNiZDg3M2RiZGRlOGE1MDQ2Yjg4M2NkZjExODlmY2Y4OTYyY2FhZjY4NGM3MjJhNDgyN2Y5OTc0ZDYxY2RkOWU5YjQ4NzY1ZTUxZGEzZWQ1MTQ5MDg0ZTQ4OTI0Mzk1YjJhZTVkNzZkNzBhNDE3ODU4MDVlMDk5ODAyMTE3YmJlNjhjOWEyMTAzMzdkMDAzMDAwM2EyMjQ0NjVlOTNiMGE5MWVmNzk3NmVmNDI5MWRlNDQ5MGVmYTc1ZTYzODkxZjU5ZDkwZWMyYzQ0MmViMjQxNjE5YjI0MzIyMDNhY2Q2YmQ0MmFhNDNlY2RiOGYwMGExOTBiIiwia2V5SWQiOiJkZWZhdWx0IiwiaXYiOiJmMmE4YzU1OTZmM2QyNGM5ZjVmOGJjODc4NDZkOWI5OSJ9XSwiY21kIjoiZG9vcl9sb2NrX3ZpZGVvX2NvdmVyIiwidHlwZSI6ImltYWdlIn0="
+                    "value": "eyJ2IjoiNS4wIiwiZmlsZXMiOlt7ImRhdGEiOiI0YzEyMWM5MDAzOGY0MTAwOTUyM2Y4N2ZiMzEwOTUwYTBiZWE4MmZlOWYwOWJjZDllZjMzZjkwZDY5M2I5NzYwNTc3ODZkZjk3N2FmM2RkOGNkOWY4ODkzODc5NGJiZDkzNjViZjI0MjAzMjk5OTJjYTkxNTBkZWNlNDFhMmJjNWVkMzhlNDdjNTFhNjMwODNmZGRhOTBlMDEzODdlMDJjZDBjODcyODU1NGUxYzFjODNkODUyNzM5NDU1YjQzOGQ4N2M0OTI4ODRkOWU4NmVjNDVkOTY1ZjJjNDRhOTk2YmM4YTFjODE0YjI1ZjNiM2NhYjdkMWQyZDI0YmQ3OGY3Iiwia2V5SWQiOiJkZWZhdWx0IiwiaXYiOiJlNjM4MGZmYTAxZDJjNjA2YThjYzE3MTE1NTIwZjYzZCJ9XSwiY21kIjoiZG9vcl9sb2NrX3ZpZGVvX2NvdmVyIiwidHlwZSI6ImltYWdlIn0="
                 }
             ],
             "sub": false,
@@ -1423,15 +1423,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 0
+                    "value": 71
                 },
                 {
                     "code": "cur_power",
-                    "value": 0
+                    "value": 28
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2270
+                    "value": 2317
                 },
                 {
                     "code": "test_bit",
@@ -1471,7 +1471,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 34
+                    "value": 33
                 },
                 {
                     "code": "alarm_set_1",
@@ -1520,15 +1520,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 1820
+                    "value": 0
                 },
                 {
                     "code": "cur_power",
-                    "value": 3846
+                    "value": 0
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2260
+                    "value": 2325
                 },
                 {
                     "code": "test_bit",
@@ -1665,7 +1665,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 32
+                    "value": 31
                 },
                 {
                     "code": "alarm_set_1",
@@ -1807,7 +1807,7 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 100
+                    "value": 22
                 },
                 {
                     "code": "cur_current",
@@ -1956,7 +1956,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 29
+                    "value": 28
                 },
                 {
                     "code": "alarm_set_1",
@@ -2090,19 +2090,19 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 76464
+                    "value": 76466
                 },
                 {
                     "code": "phase_a",
-                    "value": "CTAAAJ0AABM="
+                    "value": "CSIAALwAABY="
                 },
                 {
                     "code": "phase_b",
-                    "value": "CTIAABAAAAE="
+                    "value": "CSQAABAAAAE="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CTQAAQIAACE="
+                    "value": "CSUAAcAAAD0="
                 },
                 {
                     "code": "fault",
@@ -2142,7 +2142,7 @@
                 },
                 {
                     "code": "temp_current",
-                    "value": 34
+                    "value": 35
                 },
                 {
                     "code": "countdown_1",
@@ -2187,19 +2187,19 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 1095948
+                    "value": 1096017
                 },
                 {
                     "code": "phase_a",
-                    "value": "CPIALqAAChA="
+                    "value": "CSAAGbUABZI="
                 },
                 {
                     "code": "phase_b",
-                    "value": "CQoAA3MAAGc="
+                    "value": "CRUAA9wAAIg="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CPkACGUAAbk="
+                    "value": "CRkAAuoAACA="
                 },
                 {
                     "code": "fault",
@@ -2292,7 +2292,7 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 3
+                    "value": 4
                 },
                 {
                     "code": "cur_current",
@@ -2348,7 +2348,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 37
+                    "value": 38
                 },
                 {
                     "code": "alarm_set_1",
@@ -2397,7 +2397,7 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 19
+                    "value": 20
                 },
                 {
                     "code": "cur_current",
@@ -2708,7 +2708,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 37
+                    "value": 36
                 },
                 {
                     "code": "alarm_set_1",
@@ -3004,19 +3004,19 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 590210
+                    "value": 590230
                 },
                 {
                     "code": "phase_a",
-                    "value": "CRAACDQAAa8AAA=="
+                    "value": "CRAACDQAAakAAA=="
                 },
                 {
                     "code": "phase_b",
-                    "value": "CRAAAZAAADg="
+                    "value": "CRAAAfQAAGA="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CQYAAMgAABg="
+                    "value": "CRAAASwAADs="
                 },
                 {
                     "code": "fault",
@@ -3073,7 +3073,7 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 248182
+                    "value": 248186
                 },
                 {
                     "code": "phase_a",
@@ -3081,11 +3081,11 @@
                 },
                 {
                     "code": "phase_b",
-                    "value": "CR8AAd4AADM="
+                    "value": "CR4AApsAAFw="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CSAAAEoAAAE="
+                    "value": "CSAAAEoAAAI="
                 },
                 {
                     "code": "fault",
@@ -3182,15 +3182,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 18
+                    "value": 20
                 },
                 {
                     "code": "cur_power",
-                    "value": 23
+                    "value": 27
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2352
+                    "value": 2341
                 },
                 {
                     "code": "test_bit",
@@ -3234,7 +3234,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 37
+                    "value": 36
                 },
                 {
                     "code": "alarm_set_1",
@@ -3283,19 +3283,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 1
+                    "value": 5
                 },
                 {
                     "code": "cur_current",
-                    "value": 130
+                    "value": 91
                 },
                 {
                     "code": "cur_power",
-                    "value": 131
+                    "value": 74
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2364
+                    "value": 2339
                 },
                 {
                     "code": "test_bit",
@@ -3392,11 +3392,11 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 96
+                    "value": 85
                 },
                 {
                     "code": "cur_power",
-                    "value": 47
+                    "value": 54
                 },
                 {
                     "code": "cur_voltage",
@@ -3489,15 +3489,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 0
+                    "value": 52
                 },
                 {
                     "code": "cur_power",
-                    "value": 0
+                    "value": 25
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2323
+                    "value": 2327
                 },
                 {
                     "code": "test_bit",
@@ -3655,7 +3655,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2290
+                    "value": 2335
                 },
                 {
                     "code": "test_bit",
@@ -3809,19 +3809,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 3
+                    "value": 1
                 },
                 {
                     "code": "cur_current",
-                    "value": 67
+                    "value": 63
                 },
                 {
                     "code": "cur_power",
-                    "value": 43
+                    "value": 24
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2318
+                    "value": 2331
                 },
                 {
                     "code": "test_bit",
@@ -3918,7 +3918,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2291
+                    "value": 2341
                 },
                 {
                     "code": "test_bit",
@@ -4011,15 +4011,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 45
+                    "value": 379
                 },
                 {
                     "code": "cur_power",
-                    "value": 43
+                    "value": 517
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2382
+                    "value": 2344
                 },
                 {
                     "code": "test_bit",
@@ -4112,19 +4112,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 52
+                    "value": 51
                 },
                 {
                     "code": "cur_current",
-                    "value": 590
+                    "value": 570
                 },
                 {
                     "code": "cur_power",
-                    "value": 1198
+                    "value": 1161
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2306
+                    "value": 2348
                 },
                 {
                     "code": "test_bit",
@@ -4217,19 +4217,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 2
+                    "value": 11
                 },
                 {
                     "code": "cur_current",
-                    "value": 208
+                    "value": 18
                 },
                 {
                     "code": "cur_power",
-                    "value": 285
+                    "value": 36
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2305
+                    "value": 2349
                 },
                 {
                     "code": "test_bit",
@@ -4322,7 +4322,7 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 4
+                    "value": 1
                 },
                 {
                     "code": "cur_current",
@@ -4334,7 +4334,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2265
+                    "value": 2324
                 },
                 {
                     "code": "test_bit",
@@ -5038,7 +5038,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 23
+                    "value": 22
                 },
                 {
                     "code": "alarm_set_1",
@@ -6282,13 +6282,13 @@
         }
     ],
     "success": true,
-    "t": 1776957736311,
-    "tid": "35bc60233f2811f190a856e25b14d5f2",
+    "t": 1776959492816,
+    "tid": "4cb2dc643f2c11f19b09f6054563e45d",
     "file": {
         "name": "tuya-raw.json",
         "description": "Full raw list of Tuya devices.",
         "account": "wq3f87vwvv8jpj5ynsqu",
-        "date": "2026-04-23T16:22:28.879590",
+        "date": "2026-04-23T16:51:45.364607",
         "tinytuya": "1.18.0"
     }
 }

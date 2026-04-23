@@ -4,8 +4,7 @@ from textual.containers import Horizontal, Vertical
 import main
 from devices import *
 
-class TuyaDashboard(App):
-    
+class TuyaDashboard(App): 
         
     def build_table(self, table, device_obj, device_dict):
         if isinstance(device_obj, (breaker, consumption_breaker)):
@@ -82,8 +81,6 @@ class TuyaDashboard(App):
         my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors",[])
         with Horizontal():
-            status = None
-            details = None
             ##uma coluna por cada andar, e cada andar tem uma tabela com os dispositivos daquele andar
             for index, floor in enumerate(floor_data):
                 with Vertical():
