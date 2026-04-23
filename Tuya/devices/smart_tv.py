@@ -37,9 +37,15 @@ class smart_tv:
 
     
     def get_tui_info(self):
-        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
-        details =  "[bold yellow]ON[/]" if self.stats['power'] else "[bold blue]OFF[/]"
-        return status,details
+        status = None
+        power = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            power =    "[bold yellow]ON[/]" if self.stats['power'] else "[bold blue]OFF[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            power =  "[old white]-[/]"
+        return status,power
         
         
             

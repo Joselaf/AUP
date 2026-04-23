@@ -14,7 +14,7 @@ class smart_lock:
         self.stats = {
             "battery":         self.dps.get('102'),
             "pir_switch":      self.dps.get('103'),
-            "pir_sensitivity": self.pir_sensitivity,
+            "pir_sensitivity": self.dps.gte('104'),
             "sd_status":       self.dps.get('105'),
             "video_flip":      self.dps.get('115'),
             "night_mode":      self.dps.get('116'),
@@ -33,9 +33,18 @@ class smart_lock:
         return self.name
     
     def get_tui_info(self):
-        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
-        details = "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]Closed[/]"
-        return status,details
+        status = None
+        battery = None
+        door_state = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]" 
+            battery = f"[bold white]{self.stats['battery']}"
+            door_state = "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]Closed[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            battery = "[bold white]-[/]"
+            door_state = "[bold white]-[/]"
+        return status, battery,door_state
             
     def set_pir_switch(self, state):
         self.device.set_dps('103', state)

@@ -33,9 +33,19 @@ class consumption_breaker:
             return None
 
     def get_tui_info(self):
-        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
-        details = f"[bold white]" if {self.stats['error']} else "[bold white]-[/]"      
-        return status,details
+        status = None
+        state = None
+        details = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            state = f"[bold white]On[/]" if {self.stats['state']} else "[bold white]OFF[/]"
+            details = f"[bold white]Err[/]" if {self.stats['error']} else "[bold white]-[/]"      
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            state = "[bold white]-[/]"
+            details = "[bold white]-[/]"
+            
+        return status,state,details
 
 
     def get_ip(self):

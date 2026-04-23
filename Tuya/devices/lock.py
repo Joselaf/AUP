@@ -36,7 +36,16 @@ class lock:
         return self.name
 
     def get_tui_info(self):
-        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
-        door_state =  "[bold yellow]Opened[/]" if self.stats['door_status'] else "[bold blue]Closed[/]"
-        battery = f"[bold white]{self.stats['battery_level']}"
+        status = None
+        door_state = None
+        battery = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            door_state =  "[bold yellow]Opened[/]" if self.stats['door_status'] else "[bold blue]Closed[/]"
+            battery = f"[bold white]{self.stats['battery_level']}[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            door_state = "[bold white]-[/]"
+            battery = "[bold white]-[/]"
+            
         return status,door_state, battery

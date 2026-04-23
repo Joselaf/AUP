@@ -33,9 +33,16 @@ class heater:
         return self.name
     
     def get_tui_info(self):
-        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
-        details = "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
-        return status,details
+        status = None
+        state = None
+        if is_device_reachable(self.ip):
+            status =  "🟢[bold green]ONLINE[/]"
+            state = "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            state = "[bold white]-[/]"
+          
+        return status,state
 
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):

@@ -46,9 +46,18 @@ class esmax:
         return self.name
     
     def get_tui_info(self):
-        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
-        state_lock =  "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
-        battery = f"[bold white]{self.stats['battery']}"
+        status = None
+        state_lock = None
+        battery = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            state_lock =  "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
+            battery = f"[bold white]{self.stats['battery']}[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            state_lock = "[bold white]-[/]"
+            battery = "[bold white]-[/]"
+            
         return status,state_lock,battery
 
     ## Electronic Lock toggle

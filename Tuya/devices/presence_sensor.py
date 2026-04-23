@@ -31,9 +31,15 @@ class presence_sensor:
 
     
     def get_tui_info(self):
-        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
-        details = "[bold yellow]Detected[/]" if self.stats['presence_status'] else "[bold blue]Undetected[/]"
-        return status,details
+        status = None
+        presence = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            presence = "[bold white]Detected[/]" if self.stats['presence_status'] else "[bold white]Undetected[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            presence = "[bold white]-[/]"
+        return status,presence
 
 
 
