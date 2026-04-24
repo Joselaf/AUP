@@ -2,6 +2,7 @@ from textual.app import App, ComposeResult
 from textual.widgets import Header, Footer, DataTable, Label, Static
 from textual.containers import Horizontal, Vertical
 import main
+import time
 from devices import *
 
 CSS = '''/* Each floor is a column */
@@ -125,6 +126,7 @@ class TuyaDashboard(App):
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
         devices = main.load_devices()
+        time.sleep(3)  
         my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors",[])
         with Horizontal():
@@ -146,7 +148,6 @@ class TuyaDashboard(App):
                     out_table = DataTable()
                     self.build_table(out_table,device_obj, device_dict)
                     yield out_table
-
-
+        
 if __name__ == "__main__":
     TuyaDashboard().run()
