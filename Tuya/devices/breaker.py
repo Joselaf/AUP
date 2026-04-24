@@ -43,18 +43,18 @@ class breaker:
 
     def get_tui_info(self):
         status = None
-        details = None
+        error = None
         state = None
         if is_device_reachable(self.ip):
             status = "🟢[bold green]ONLINE[/]"
             state = f"[bold white]On[/]" if {self.stats['state']} else "[bold white]OFF[/]"
-            details = f"[bold white]Err[/]" if {self.stats['error']} else "[bold white]-[/]"
+            error = f"[bold white]{self.stats['error']}[/]" if {self.stats['error']} else "[bold white]-[/]"
         else:
             status = "🔴[bold red]OFFLINE[/]"
             state = "[bold white]-[/]"
-            details = "[bold white]-[/]"
+            error = "[bold white]-[/]"
                 
-        return status,state,details
+        return status,state,error
 
 
     ##Turns the device ON if it is OFF and vice-versa
