@@ -2,7 +2,6 @@ from textual.app import App, ComposeResult
 from textual.widgets import Header, Footer, DataTable, Label, Static
 from textual.containers import Horizontal, Vertical
 import main
-import time
 from devices import *
 
 CSS = '''/* Each floor is a column */
@@ -126,16 +125,15 @@ class TuyaDashboard(App):
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
         devices = main.load_devices()
-        time.sleep(3)  
         my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors",[])
         with Horizontal():
             ##uma coluna por cada andar, e cada andar tem uma tabela com os dispositivos daquele andar
             for index, floor in enumerate(floor_data):
                 with Vertical():
-                    yield Label(f"Andar:{index}")
+                    yield Label(f"[bold red]Andar:{index}[/]")
                     for index, room in enumerate(floor):
-                                yield Label(f"Quarto:{index+1}")
+                                yield Label(f"[bold yellow]Quarto:{index+1}[/]")
                                 for device_dict, device_obj in zip(room.get("Devices",[]), room.get("Objects",[])):
                                     table = DataTable() ## criamos a tabela por quarto
                                     table = self.build_table(table,device_obj,device_dict)                                   
@@ -143,7 +141,7 @@ class TuyaDashboard(App):
 
             ## 2. Criar uma tabela para os dispositivos "outside"
             with Vertical():
-                yield Label("OUTSIDE")
+                yield Label("[bold purple]OUTSIDE[/]")
                 for device_dict, device_obj in zip(my_outside_devices.get("Devices",[]),my_outside_devices.get("Objects",[])):
                     out_table = DataTable()
                     self.build_table(out_table,device_obj, device_dict)

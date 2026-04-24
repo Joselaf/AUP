@@ -1,14 +1,23 @@
 import json
 import sys
 import os
+from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from devices import *
-from is_device_reachable import is_device_reachable
+from is_device_reachable import is_device_reachable, is_expected_mac
     
 
 def devices_status(device):
-    if not is_device_reachable(device['ip']):
+    ip = device.get('ip')
+    expected_mac = device.get('mac')
+
+    if not is_device_reachable(ip):
         return None
+
+    # TinyTuya wizard data can become stale; reject IPs now owned by another host.
+    if expected_mac and not is_expected_mac(ip, expected_mac):
+        return None
+
     else: 
         category = device['category']
         match category:
@@ -62,6 +71,16 @@ def load_devices():
     return data if isinstance(data, list) else data.get('devices', [])
 
 
+def _build_device_objects(devices):
+    """Build device objects concurrently to reduce startup time."""
+    if not devices:
+        return []
+
+    max_workers = min(32, len(devices))
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        return list(executor.map(devices_status, devices))
+
+
 def organize_devices(device_list):
     
     devices = device_list
@@ -99,9 +118,10 @@ def organize_devices(device_list):
     
 
     _outside_devices = {"Devices": [], "Objects": []}
-    for device_dict in devices:
+    device_objects = _build_device_objects(devices)
+
+    for device_dict, device_obj in zip(devices, device_objects):
         tmp_name = device_dict["name"]
-        device_obj = devices_status(device_dict) 
         if "Q" in tmp_name:
             tmp_index_start = tmp_name.index("Q")
             tmp_index_end = tmp_index_start + 3

@@ -213,6 +213,495 @@
         "version": "3.4"
     },
     {
+        "name": "Fechaduras inteligentes 25",
+        "id": "bfa5bccb1e1dfd85b6la1n",
+        "key": ":xz)?3|!<msW#BV0",
+        "mac": "c0:f8:53:d5:66:21",
+        "uuid": "485212828ab312f9",
+        "sn": "10018596001622",
+        "category": "ms",
+        "product_name": "SmartLock",
+        "product_id": "bxq2o60gxhh2ben6",
+        "biz_type": 18,
+        "model": "",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+        "mapping": {
+            "1": {
+                "code": "unlock_fingerprint",
+                "type": "Integer",
+                "values": {
+                    "unit": "",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "2": {
+                "code": "unlock_password",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "3": {
+                "code": "unlock_temporary",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "4": {
+                "code": "unlock_dynamic",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "5": {
+                "code": "unlock_card",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "6": {
+                "code": "unlock_face",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "8": {
+                "code": "alarm_lock",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "wrong_finger",
+                        "wrong_password",
+                        "wrong_card",
+                        "wrong_face",
+                        "tongue_bad",
+                        "too_hot",
+                        "unclosed_time",
+                        "tongue_not_out",
+                        "pry",
+                        "key_in",
+                        "low_battery",
+                        "power_off",
+                        "shock"
+                    ]
+                }
+            },
+            "9": {
+                "code": "unlock_request",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 90,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "11": {
+                "code": "battery_state",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "high",
+                        "medium",
+                        "low",
+                        "poweroff"
+                    ]
+                }
+            },
+            "15": {
+                "code": "unlock_app",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "16": {
+                "code": "hijack",
+                "type": "Boolean",
+                "values": {}
+            },
+            "17": {
+                "code": "open_inside",
+                "type": "Boolean",
+                "values": {}
+            },
+            "23": {
+                "code": "unlock_hand",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "unlock_finger_vein",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            }
+        },
+        "ip": "",
+        "version": ""
+    },
+    {
+        "name": "Fechaduras Q24",
+        "id": "bfc0ad61162890ac4dcj9v",
+        "key": "0~NrmNLY+Kks4Dc*",
+        "mac": "c0:f8:53:d5:5a:c7",
+        "uuid": "34e459f1d08c23c1",
+        "sn": "10018596000EA2",
+        "category": "ms",
+        "product_name": "SmartLock",
+        "product_id": "bxq2o60gxhh2ben6",
+        "biz_type": 18,
+        "model": "",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+        "mapping": {
+            "1": {
+                "code": "unlock_fingerprint",
+                "type": "Integer",
+                "values": {
+                    "unit": "",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "2": {
+                "code": "unlock_password",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "3": {
+                "code": "unlock_temporary",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "4": {
+                "code": "unlock_dynamic",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "5": {
+                "code": "unlock_card",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "6": {
+                "code": "unlock_face",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "8": {
+                "code": "alarm_lock",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "wrong_finger",
+                        "wrong_password",
+                        "wrong_card",
+                        "wrong_face",
+                        "tongue_bad",
+                        "too_hot",
+                        "unclosed_time",
+                        "tongue_not_out",
+                        "pry",
+                        "key_in",
+                        "low_battery",
+                        "power_off",
+                        "shock"
+                    ]
+                }
+            },
+            "9": {
+                "code": "unlock_request",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 90,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "11": {
+                "code": "battery_state",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "high",
+                        "medium",
+                        "low",
+                        "poweroff"
+                    ]
+                }
+            },
+            "15": {
+                "code": "unlock_app",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "16": {
+                "code": "hijack",
+                "type": "Boolean",
+                "values": {}
+            },
+            "17": {
+                "code": "open_inside",
+                "type": "Boolean",
+                "values": {}
+            },
+            "23": {
+                "code": "unlock_hand",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "unlock_finger_vein",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            }
+        },
+        "ip": "",
+        "version": ""
+    },
+    {
+        "name": "Fechadura Q11",
+        "id": "bf1655b8790a6a3e35ivlz",
+        "key": "{o5=1]+j<^E{?lZ?",
+        "mac": "c0:f8:53:d5:4d:92",
+        "uuid": "91c2a0e30d8977c4",
+        "sn": "100185960006B1",
+        "category": "ms",
+        "product_name": "SmartLock",
+        "product_id": "bxq2o60gxhh2ben6",
+        "biz_type": 18,
+        "model": "",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+        "mapping": {
+            "1": {
+                "code": "unlock_fingerprint",
+                "type": "Integer",
+                "values": {
+                    "unit": "",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "2": {
+                "code": "unlock_password",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "3": {
+                "code": "unlock_temporary",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "4": {
+                "code": "unlock_dynamic",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "5": {
+                "code": "unlock_card",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "6": {
+                "code": "unlock_face",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "8": {
+                "code": "alarm_lock",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "wrong_finger",
+                        "wrong_password",
+                        "wrong_card",
+                        "wrong_face",
+                        "tongue_bad",
+                        "too_hot",
+                        "unclosed_time",
+                        "tongue_not_out",
+                        "pry",
+                        "key_in",
+                        "low_battery",
+                        "power_off",
+                        "shock"
+                    ]
+                }
+            },
+            "9": {
+                "code": "unlock_request",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 90,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "11": {
+                "code": "battery_state",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "high",
+                        "medium",
+                        "low",
+                        "poweroff"
+                    ]
+                }
+            },
+            "15": {
+                "code": "unlock_app",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "16": {
+                "code": "hijack",
+                "type": "Boolean",
+                "values": {}
+            },
+            "17": {
+                "code": "open_inside",
+                "type": "Boolean",
+                "values": {}
+            },
+            "23": {
+                "code": "unlock_hand",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "unlock_finger_vein",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            }
+        },
+        "ip": "",
+        "version": ""
+    },
+    {
         "name": "Fechaduras Q04",
         "id": "bfad77d73230afaab4zmi9",
         "key": "Tjmo@@N/?cmla|j_",
@@ -736,338 +1225,12 @@
         "version": ""
     },
     {
-        "name": "Fechaduras Q24",
-        "id": "bfc0ad61162890ac4dcj9v",
-        "key": "0~NrmNLY+Kks4Dc*",
-        "mac": "c0:f8:53:d5:5a:c7",
-        "uuid": "34e459f1d08c23c1",
-        "sn": "10018596000EA2",
-        "category": "ms",
-        "product_name": "SmartLock",
-        "product_id": "bxq2o60gxhh2ben6",
-        "biz_type": 18,
-        "model": "",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-        "mapping": {
-            "1": {
-                "code": "unlock_fingerprint",
-                "type": "Integer",
-                "values": {
-                    "unit": "",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "2": {
-                "code": "unlock_password",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "3": {
-                "code": "unlock_temporary",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "4": {
-                "code": "unlock_dynamic",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "5": {
-                "code": "unlock_card",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "6": {
-                "code": "unlock_face",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "8": {
-                "code": "alarm_lock",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "wrong_finger",
-                        "wrong_password",
-                        "wrong_card",
-                        "wrong_face",
-                        "tongue_bad",
-                        "too_hot",
-                        "unclosed_time",
-                        "tongue_not_out",
-                        "pry",
-                        "key_in",
-                        "low_battery",
-                        "power_off",
-                        "shock"
-                    ]
-                }
-            },
-            "9": {
-                "code": "unlock_request",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 90,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "11": {
-                "code": "battery_state",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "high",
-                        "medium",
-                        "low",
-                        "poweroff"
-                    ]
-                }
-            },
-            "15": {
-                "code": "unlock_app",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "16": {
-                "code": "hijack",
-                "type": "Boolean",
-                "values": {}
-            },
-            "17": {
-                "code": "open_inside",
-                "type": "Boolean",
-                "values": {}
-            },
-            "23": {
-                "code": "unlock_hand",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "unlock_finger_vein",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            }
-        },
-        "ip": "",
-        "version": ""
-    },
-    {
         "name": "Fechaduras Q12",
         "id": "bf993bf8111cc3111czack",
         "key": "MpN/rF-AIKWg0xG_",
         "mac": "c0:f8:53:d5:5b:21",
         "uuid": "05aca3a600a002d2",
         "sn": "1001859600114E",
-        "category": "ms",
-        "product_name": "SmartLock",
-        "product_id": "bxq2o60gxhh2ben6",
-        "biz_type": 18,
-        "model": "",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-        "mapping": {
-            "1": {
-                "code": "unlock_fingerprint",
-                "type": "Integer",
-                "values": {
-                    "unit": "",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "2": {
-                "code": "unlock_password",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "3": {
-                "code": "unlock_temporary",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "4": {
-                "code": "unlock_dynamic",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "5": {
-                "code": "unlock_card",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "6": {
-                "code": "unlock_face",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "8": {
-                "code": "alarm_lock",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "wrong_finger",
-                        "wrong_password",
-                        "wrong_card",
-                        "wrong_face",
-                        "tongue_bad",
-                        "too_hot",
-                        "unclosed_time",
-                        "tongue_not_out",
-                        "pry",
-                        "key_in",
-                        "low_battery",
-                        "power_off",
-                        "shock"
-                    ]
-                }
-            },
-            "9": {
-                "code": "unlock_request",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 90,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "11": {
-                "code": "battery_state",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "high",
-                        "medium",
-                        "low",
-                        "poweroff"
-                    ]
-                }
-            },
-            "15": {
-                "code": "unlock_app",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "16": {
-                "code": "hijack",
-                "type": "Boolean",
-                "values": {}
-            },
-            "17": {
-                "code": "open_inside",
-                "type": "Boolean",
-                "values": {}
-            },
-            "23": {
-                "code": "unlock_hand",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "unlock_finger_vein",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            }
-        },
-        "ip": "",
-        "version": ""
-    },
-    {
-        "name": "Fechadura Q11",
-        "id": "bf1655b8790a6a3e35ivlz",
-        "key": "{o5=1]+j<^E{?lZ?",
-        "mac": "c0:f8:53:d5:4d:92",
-        "uuid": "91c2a0e30d8977c4",
-        "sn": "100185960006B1",
         "category": "ms",
         "product_name": "SmartLock",
         "product_id": "bxq2o60gxhh2ben6",
@@ -1782,169 +1945,6 @@
         },
         "ip": "192.168.1.151",
         "version": "3.4"
-    },
-    {
-        "name": "Fechaduras inteligentes 25",
-        "id": "bfa5bccb1e1dfd85b6la1n",
-        "key": ":xz)?3|!<msW#BV0",
-        "mac": "c0:f8:53:d5:66:21",
-        "uuid": "485212828ab312f9",
-        "sn": "10018596001622",
-        "category": "ms",
-        "product_name": "SmartLock",
-        "product_id": "bxq2o60gxhh2ben6",
-        "biz_type": 18,
-        "model": "",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-        "mapping": {
-            "1": {
-                "code": "unlock_fingerprint",
-                "type": "Integer",
-                "values": {
-                    "unit": "",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "2": {
-                "code": "unlock_password",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "3": {
-                "code": "unlock_temporary",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "4": {
-                "code": "unlock_dynamic",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "5": {
-                "code": "unlock_card",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "6": {
-                "code": "unlock_face",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "8": {
-                "code": "alarm_lock",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "wrong_finger",
-                        "wrong_password",
-                        "wrong_card",
-                        "wrong_face",
-                        "tongue_bad",
-                        "too_hot",
-                        "unclosed_time",
-                        "tongue_not_out",
-                        "pry",
-                        "key_in",
-                        "low_battery",
-                        "power_off",
-                        "shock"
-                    ]
-                }
-            },
-            "9": {
-                "code": "unlock_request",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 90,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "11": {
-                "code": "battery_state",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "high",
-                        "medium",
-                        "low",
-                        "poweroff"
-                    ]
-                }
-            },
-            "15": {
-                "code": "unlock_app",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "16": {
-                "code": "hijack",
-                "type": "Boolean",
-                "values": {}
-            },
-            "17": {
-                "code": "open_inside",
-                "type": "Boolean",
-                "values": {}
-            },
-            "23": {
-                "code": "unlock_hand",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "unlock_finger_vein",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            }
-        },
-        "ip": "",
-        "version": ""
     },
     {
         "name": "Disjuntor AC Q03",
