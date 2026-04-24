@@ -1,8 +1,49 @@
 from textual.app import App, ComposeResult
-from textual.widgets import Header, Footer, DataTable, Label
+from textual.widgets import Header, Footer, DataTable, Label, Static
 from textual.containers import Horizontal, Vertical
 import main
 from devices import *
+
+CSS = '''/* Each floor is a column */
+.floor-container {
+    width: 1fr;
+    border: tall $primary;
+    margin: 1;
+}
+
+/* Group of tables for one room */
+.room-container {
+    height: auto;
+    background: $surface;
+    margin: 1;
+    padding: 1;
+}
+
+/* Make individual device tables compact */
+DataTable {
+    height: auto;       /* Shrinks the table to only fit its rows */
+    max-height: 5;      /* Prevents any one table from exploding in size */
+    margin-bottom: 1;   /* Space between the tables */
+    border: rounded $accent;
+}
+DataTable {
+    /* This removes the extra empty lines and footers by shrinking 
+       the widget to fit only the rows it actually has */
+    height: auto;
+    
+    /* Removes the border that often contains the footer space */
+    border: none;
+    
+    /* Optional: reduce the margin so tables sit close together */
+    margin: 0 1; 
+}
+
+/* Specifically target the scrollbar if it still appears */
+DataTable > .datatable--scrollbar {
+    display: none;
+}
+
+'''
 
 class TuyaDashboard(App): 
         
@@ -73,6 +114,12 @@ class TuyaDashboard(App):
             status = "[bold white]Unreacheble[/]"
             table.add_row(name,status)
             
+        # 2. NOW disable the UI clutter after the table has structure
+        table.show_cursor = False
+        table.show_row_labels = False
+        # Only show header if you actually want it for every small table
+        table.show_header = True
+            
         return table
             
     def compose(self) -> ComposeResult:
@@ -84,13 +131,13 @@ class TuyaDashboard(App):
             ##uma coluna por cada andar, e cada andar tem uma tabela com os dispositivos daquele andar
             for index, floor in enumerate(floor_data):
                 with Vertical():
-                    yield Label(f"Andar{index}")
-                    for room in floor:
-                            for device_dict, device_obj in zip(room.get("Devices",[]), room.get("Objects",[])):
-                                with Vertical():
+                    yield Label(f"Andar:{index}")
+                    for index, room in enumerate(floor):
+                                yield Label(f"Quarto:{index+1}")
+                                for device_dict, device_obj in zip(room.get("Devices",[]), room.get("Objects",[])):
                                     table = DataTable() ## criamos a tabela por quarto
                                     table = self.build_table(table,device_obj,device_dict)                                   
-                                    yield table 
+                                    yield table  
 
             ## 2. Criar uma tabela para os dispositivos "outside"
             with Vertical():
