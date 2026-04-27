@@ -4,10 +4,12 @@ from textual.containers import Horizontal, Vertical
 import main
 from devices import *
 
-CSS = '''/* Each floor is a column */
+CSS = '''
+/* Each floor is a column */
 .floor-container {
     width: 1fr;
-    border: tall $primary;
+    /* FIX: Added 'solid' before $primary */
+    border: solid $primary; 
     margin: 1;
 }
 
@@ -21,29 +23,26 @@ CSS = '''/* Each floor is a column */
 
 /* Make individual device tables compact */
 DataTable {
-    height: auto;       /* Shrinks the table to only fit its rows */
-    max-height: 5;      /* Prevents any one table from exploding in size */
-    margin-bottom: 1;   /* Space between the tables */
-    border: rounded $accent;
-}
-DataTable {
-    /* This removes the extra empty lines and footers by shrinking 
-       the widget to fit only the rows it actually has */
     height: auto;
-    
-    /* Removes the border that often contains the footer space */
+    max-height: 5;
+    margin-bottom: 1;
+    /* FIX: 'round' is already here, but ensure it's a valid type like 'round' or 'tall' */
+    border: round $accent;
+}
+
+DataTable {
+    height: auto;
+    /* If you want NO border, use 'none' as the type */
     border: none;
-    
-    /* Optional: reduce the margin so tables sit close together */
     margin: 0 1; 
 }
 
-/* Specifically target the scrollbar if it still appears */
 DataTable > .datatable--scrollbar {
     display: none;
 }'''
 
 class TuyaDashboard(App):
+    CSS = CSS
     @staticmethod
     def clean_name(device_dict):
         name_raw = device_dict['name']
@@ -57,6 +56,11 @@ class TuyaDashboard(App):
 
         
     def build_table(self, table, device_obj, device_dict):
+        table.cursor_type="row"
+        table.show_cursor = True
+        table.show_row_labels = True
+        ##table.show_header = True
+        
         if isinstance(device_obj, (breaker, consumption_breaker)):
             table.add_columns("Device", "Status","State","Error")
             name = self.clean_name(device_dict)
@@ -124,11 +128,6 @@ class TuyaDashboard(App):
             status = "[bold white]Unreacheble[/]"
             table.add_row(name,status)
             
-        # 2. NOW disable the UI clutter after the table has structure
-        table.show_cursor = False
-        table.show_row_labels = False
-        # Only show header if you actually want it for every small table
-        table.show_header = True
             
         return table
             
