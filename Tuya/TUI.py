@@ -1,6 +1,7 @@
 from textual.app import App, ComposeResult
-from textual.widgets import Header, Footer, DataTable, Label, Static
+from textual.widgets import Header, Footer, DataTable, Label, Static, Switch
 from textual.containers import Horizontal, Vertical
+from textual import on, work
 import main
 from devices import *
 
@@ -8,7 +9,6 @@ CSS = '''
 /* Each floor is a column */
 .floor-container {
     width: 1fr;
-    /* FIX: Added 'solid' before $primary */
     border: solid $primary; 
     margin: 1;
 }
@@ -21,28 +21,27 @@ CSS = '''
     padding: 1;
 }
 
+/* Container for Table + Switch alignment */
+.device-wrapper {
+    height: auto;
+    /* FIX: Added 'left' to satisfy the 2-value requirement */
+    align: left middle;
+    margin-bottom: 1;
+}
+
 /* Make individual device tables compact */
 DataTable {
     height: auto;
     max-height: 5;
-    margin-bottom: 1;
-    /* FIX: 'round' is already here, but ensure it's a valid type like 'round' or 'tall' */
-    border: round $accent;
-}
-
-DataTable {
-    height: auto;
-    /* If you want NO border, use 'none' as the type */
-    border: none;
     margin: 0 1; 
-}
-
-DataTable > .datatable--scrollbar {
-    display: none;
+    border: none;
 }'''
+
 
 class TuyaDashboard(App):
     CSS = CSS
+
+                
     @staticmethod
     def clean_name(device_dict):
         name_raw = device_dict['name']
@@ -53,14 +52,19 @@ class TuyaDashboard(App):
             name = name_raw[:name_raw.index("Q")] if "Q" in name_raw else name_raw
     
         return name
-
+    
         
     def build_table(self, table, device_obj, device_dict):
-        table.cursor_type="row"
+       # Store references for the click handler
+        table.device_instance = device_obj
+        table.device_dict = device_dict
+        table.cursor_type = "row"
         table.show_cursor = True
-        table.show_row_labels = True
-        ##table.show_header = True
+        table.styles.text_hover_style = "bold magenta"
         
+        if len(table.columns) > 0:
+            table.clear(columns=True) 
+
         if isinstance(device_obj, (breaker, consumption_breaker)):
             table.add_columns("Device", "Status","State","Error")
             name = self.clean_name(device_dict)
@@ -145,7 +149,9 @@ class TuyaDashboard(App):
                                 yield Label(f"[bold yellow]Quarto:{index+1}[/]")
                                 for device_dict, device_obj in zip(room.get("Devices",[]), room.get("Objects",[])):
                                     table = DataTable() ## criamos a tabela por quarto
-                                    table = self.build_table(table,device_obj,device_dict)                                   
+                                    table.device_instance = device_obj
+                                    table.device_dict = device_dict 
+                                    self.build_table(table,device_obj,device_dict)                                   
                                     yield table  
 
             ## 2. Criar uma tabela para os dispositivos "outside"
@@ -153,6 +159,8 @@ class TuyaDashboard(App):
                 yield Label("[bold purple]OUTSIDE[/]")
                 for device_dict, device_obj in zip(my_outside_devices.get("Devices",[]),my_outside_devices.get("Objects",[])):
                     out_table = DataTable()
+                    out_table.device_instance = device_obj  
+                    out_table.device_dict = device_dict
                     self.build_table(out_table,device_obj, device_dict)
                     yield out_table
         

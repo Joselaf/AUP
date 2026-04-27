@@ -60,8 +60,7 @@ class breaker:
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
        new_state = not self.dps.get('1')
-       self.device.set_dps('1', new_state)
-       return new_state
+       self.device.set_status({'1': new_state})
 
     ##power_on / power_off / memory
     def set_relay_status(self, value):

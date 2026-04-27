@@ -1,727 +1,5 @@
 [
     {
-        "name": "test",
-        "id": "bfc367de4609adb77eyqwb",
-        "key": "}k<X^IzYjvtSZa`2",
-        "mac": "3c:0b:59:8c:a8:38",
-        "uuid": "4180f344332e1676",
-        "sn": "1001980810050D",
-        "category": "dlq",
-        "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
-        "product_id": "nfhnzerdfsvfgwzo",
-        "biz_type": 18,
-        "model": "PN-\u9648\u658c\u53cc\u706f",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
-        "mapping": {
-            "1": {
-                "code": "switch",
-                "type": "Boolean",
-                "values": {}
-            },
-            "9": {
-                "code": "countdown_1",
-                "type": "Integer",
-                "values": {
-                    "unit": "s",
-                    "min": 0,
-                    "max": 86400,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "17": {
-                "code": "add_ele",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 50000,
-                    "scale": 3,
-                    "step": 100
-                }
-            },
-            "18": {
-                "code": "cur_current",
-                "type": "Integer",
-                "values": {
-                    "unit": "mA",
-                    "min": 0,
-                    "max": 100000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "19": {
-                "code": "cur_power",
-                "type": "Integer",
-                "values": {
-                    "unit": "W",
-                    "min": 0,
-                    "max": 99999,
-                    "scale": 1,
-                    "step": 1
-                }
-            },
-            "20": {
-                "code": "cur_voltage",
-                "type": "Integer",
-                "values": {
-                    "unit": "V",
-                    "min": 0,
-                    "max": 5000,
-                    "scale": 1,
-                    "step": 1
-                }
-            },
-            "21": {
-                "code": "test_bit",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 5,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "22": {
-                "code": "voltage_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "23": {
-                "code": "electric_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "power_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "25": {
-                "code": "electricity_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "26": {
-                "code": "fault",
-                "type": "Bitmap",
-                "values": {
-                    "label": [
-                        "ov_cr",
-                        "ov_vol",
-                        "ov_pwr",
-                        "ls_cr",
-                        "ls_vol",
-                        "ls_pow",
-                        "short_circuit_alarm",
-                        "overload_alarm",
-                        "leakagecurr_alarm",
-                        "self_test_alarm",
-                        "high_temp",
-                        "unbalance_alarm",
-                        "miss_phase_alarm"
-                    ]
-                }
-            },
-            "38": {
-                "code": "relay_status",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "power_off",
-                        "power_on",
-                        "last"
-                    ]
-                }
-            },
-            "40": {
-                "code": "light_mode",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "relay",
-                        "pos",
-                        "none",
-                        "on"
-                    ]
-                }
-            },
-            "42": {
-                "code": "cycle_time",
-                "type": "String",
-                "values": "{\"maxlen\":255}"
-            },
-            "47": {
-                "code": "temp_value",
-                "type": "Integer",
-                "values": {
-                    "unit": "\u00b0C",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "48": {
-                "code": "alarm_set_1",
-                "type": "Raw",
-                "values": {}
-            },
-            "49": {
-                "code": "alarm_set_2",
-                "type": "Raw",
-                "values": {}
-            }
-        },
-        "ip": "192.168.1.66",
-        "version": "3.4"
-    },
-    {
-        "name": "Disjuntor AC Q13",
-        "id": "bf5b5b2f017d5a153de6ra",
-        "key": "46G~8kTfOa##p_2M",
-        "mac": "3c:0b:59:8c:a4:a5",
-        "uuid": "743f67310aec2cb9",
-        "sn": "10019808100CFB",
-        "category": "dlq",
-        "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
-        "product_id": "nfhnzerdfsvfgwzo",
-        "biz_type": 18,
-        "model": "PN-\u9648\u658c\u53cc\u706f",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
-        "mapping": {
-            "1": {
-                "code": "switch",
-                "type": "Boolean",
-                "values": {}
-            },
-            "9": {
-                "code": "countdown_1",
-                "type": "Integer",
-                "values": {
-                    "unit": "s",
-                    "min": 0,
-                    "max": 86400,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "17": {
-                "code": "add_ele",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 50000,
-                    "scale": 3,
-                    "step": 100
-                }
-            },
-            "18": {
-                "code": "cur_current",
-                "type": "Integer",
-                "values": {
-                    "unit": "mA",
-                    "min": 0,
-                    "max": 100000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "19": {
-                "code": "cur_power",
-                "type": "Integer",
-                "values": {
-                    "unit": "W",
-                    "min": 0,
-                    "max": 99999,
-                    "scale": 1,
-                    "step": 1
-                }
-            },
-            "20": {
-                "code": "cur_voltage",
-                "type": "Integer",
-                "values": {
-                    "unit": "V",
-                    "min": 0,
-                    "max": 5000,
-                    "scale": 1,
-                    "step": 1
-                }
-            },
-            "21": {
-                "code": "test_bit",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 5,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "22": {
-                "code": "voltage_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "23": {
-                "code": "electric_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "power_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "25": {
-                "code": "electricity_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "26": {
-                "code": "fault",
-                "type": "Bitmap",
-                "values": {
-                    "label": [
-                        "ov_cr",
-                        "ov_vol",
-                        "ov_pwr",
-                        "ls_cr",
-                        "ls_vol",
-                        "ls_pow",
-                        "short_circuit_alarm",
-                        "overload_alarm",
-                        "leakagecurr_alarm",
-                        "self_test_alarm",
-                        "high_temp",
-                        "unbalance_alarm",
-                        "miss_phase_alarm"
-                    ]
-                }
-            },
-            "38": {
-                "code": "relay_status",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "power_off",
-                        "power_on",
-                        "last"
-                    ]
-                }
-            },
-            "40": {
-                "code": "light_mode",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "relay",
-                        "pos",
-                        "none",
-                        "on"
-                    ]
-                }
-            },
-            "42": {
-                "code": "cycle_time",
-                "type": "String",
-                "values": "{\"maxlen\":255}"
-            },
-            "47": {
-                "code": "temp_value",
-                "type": "Integer",
-                "values": {
-                    "unit": "\u00b0C",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "48": {
-                "code": "alarm_set_1",
-                "type": "Raw",
-                "values": {}
-            },
-            "49": {
-                "code": "alarm_set_2",
-                "type": "Raw",
-                "values": {}
-            }
-        },
-        "ip": "192.168.1.241",
-        "version": "3.4"
-    },
-    {
-        "name": "Fechaduras inteligentes 25",
-        "id": "bfa5bccb1e1dfd85b6la1n",
-        "key": ":xz)?3|!<msW#BV0",
-        "mac": "c0:f8:53:d5:66:21",
-        "uuid": "485212828ab312f9",
-        "sn": "10018596001622",
-        "category": "ms",
-        "product_name": "SmartLock",
-        "product_id": "bxq2o60gxhh2ben6",
-        "biz_type": 18,
-        "model": "",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-        "mapping": {
-            "1": {
-                "code": "unlock_fingerprint",
-                "type": "Integer",
-                "values": {
-                    "unit": "",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "2": {
-                "code": "unlock_password",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "3": {
-                "code": "unlock_temporary",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "4": {
-                "code": "unlock_dynamic",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "5": {
-                "code": "unlock_card",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "6": {
-                "code": "unlock_face",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "8": {
-                "code": "alarm_lock",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "wrong_finger",
-                        "wrong_password",
-                        "wrong_card",
-                        "wrong_face",
-                        "tongue_bad",
-                        "too_hot",
-                        "unclosed_time",
-                        "tongue_not_out",
-                        "pry",
-                        "key_in",
-                        "low_battery",
-                        "power_off",
-                        "shock"
-                    ]
-                }
-            },
-            "9": {
-                "code": "unlock_request",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 90,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "11": {
-                "code": "battery_state",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "high",
-                        "medium",
-                        "low",
-                        "poweroff"
-                    ]
-                }
-            },
-            "15": {
-                "code": "unlock_app",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "16": {
-                "code": "hijack",
-                "type": "Boolean",
-                "values": {}
-            },
-            "17": {
-                "code": "open_inside",
-                "type": "Boolean",
-                "values": {}
-            },
-            "23": {
-                "code": "unlock_hand",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "unlock_finger_vein",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            }
-        },
-        "ip": "",
-        "version": ""
-    },
-    {
-        "name": "Fechaduras Q01",
-        "id": "bfa29c6177b6bec67f9mnv",
-        "key": "@rX2G@Qv>JPTv;QD",
-        "mac": "c0:f8:53:d5:5f:70",
-        "uuid": "9c05faaf74b4c156",
-        "sn": "10018596000EC1",
-        "category": "ms",
-        "product_name": "SmartLock",
-        "product_id": "bxq2o60gxhh2ben6",
-        "biz_type": 18,
-        "model": "",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-        "mapping": {
-            "1": {
-                "code": "unlock_fingerprint",
-                "type": "Integer",
-                "values": {
-                    "unit": "",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "2": {
-                "code": "unlock_password",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "3": {
-                "code": "unlock_temporary",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "4": {
-                "code": "unlock_dynamic",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "5": {
-                "code": "unlock_card",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "6": {
-                "code": "unlock_face",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "8": {
-                "code": "alarm_lock",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "wrong_finger",
-                        "wrong_password",
-                        "wrong_card",
-                        "wrong_face",
-                        "tongue_bad",
-                        "too_hot",
-                        "unclosed_time",
-                        "tongue_not_out",
-                        "pry",
-                        "key_in",
-                        "low_battery",
-                        "power_off",
-                        "shock"
-                    ]
-                }
-            },
-            "9": {
-                "code": "unlock_request",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 90,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "11": {
-                "code": "battery_state",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "high",
-                        "medium",
-                        "low",
-                        "poweroff"
-                    ]
-                }
-            },
-            "15": {
-                "code": "unlock_app",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "16": {
-                "code": "hijack",
-                "type": "Boolean",
-                "values": {}
-            },
-            "17": {
-                "code": "open_inside",
-                "type": "Boolean",
-                "values": {}
-            },
-            "23": {
-                "code": "unlock_hand",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "unlock_finger_vein",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            }
-        },
-        "ip": "",
-        "version": ""
-    },
-    {
         "name": "Disjuntor Q24",
         "id": "bf9af048affd5e31643rfj",
         "key": "f*^+h*'1ZsQmzgBI",
@@ -935,12 +213,571 @@
         "version": "3.4"
     },
     {
-        "name": "Fechaduras Q04",
-        "id": "bfad77d73230afaab4zmi9",
-        "key": "Tjmo@@N/?cmla|j_",
-        "mac": "c0:f8:53:d5:62:b4",
-        "uuid": "053569f1f51c9902",
-        "sn": "10018596001609",
+        "name": "Fechaduras Q24",
+        "id": "bfc0ad61162890ac4dcj9v",
+        "key": "0~NrmNLY+Kks4Dc*",
+        "mac": "c0:f8:53:d5:5a:c7",
+        "uuid": "34e459f1d08c23c1",
+        "sn": "10018596000EA2",
+        "category": "ms",
+        "product_name": "SmartLock",
+        "product_id": "bxq2o60gxhh2ben6",
+        "biz_type": 18,
+        "model": "",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+        "mapping": {
+            "1": {
+                "code": "unlock_fingerprint",
+                "type": "Integer",
+                "values": {
+                    "unit": "",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "2": {
+                "code": "unlock_password",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "3": {
+                "code": "unlock_temporary",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "4": {
+                "code": "unlock_dynamic",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "5": {
+                "code": "unlock_card",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "6": {
+                "code": "unlock_face",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "8": {
+                "code": "alarm_lock",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "wrong_finger",
+                        "wrong_password",
+                        "wrong_card",
+                        "wrong_face",
+                        "tongue_bad",
+                        "too_hot",
+                        "unclosed_time",
+                        "tongue_not_out",
+                        "pry",
+                        "key_in",
+                        "low_battery",
+                        "power_off",
+                        "shock"
+                    ]
+                }
+            },
+            "9": {
+                "code": "unlock_request",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 90,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "11": {
+                "code": "battery_state",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "high",
+                        "medium",
+                        "low",
+                        "poweroff"
+                    ]
+                }
+            },
+            "15": {
+                "code": "unlock_app",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "16": {
+                "code": "hijack",
+                "type": "Boolean",
+                "values": {}
+            },
+            "17": {
+                "code": "open_inside",
+                "type": "Boolean",
+                "values": {}
+            },
+            "23": {
+                "code": "unlock_hand",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "unlock_finger_vein",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            }
+        },
+        "ip": "",
+        "version": ""
+    },
+    {
+        "name": "Disjuntor AC Q13",
+        "id": "bf5b5b2f017d5a153de6ra",
+        "key": "46G~8kTfOa##p_2M",
+        "mac": "3c:0b:59:8c:a4:a5",
+        "uuid": "743f67310aec2cb9",
+        "sn": "10019808100CFB",
+        "category": "dlq",
+        "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
+        "product_id": "nfhnzerdfsvfgwzo",
+        "biz_type": 18,
+        "model": "PN-\u9648\u658c\u53cc\u706f",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
+        "mapping": {
+            "1": {
+                "code": "switch",
+                "type": "Boolean",
+                "values": {}
+            },
+            "9": {
+                "code": "countdown_1",
+                "type": "Integer",
+                "values": {
+                    "unit": "s",
+                    "min": 0,
+                    "max": 86400,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "17": {
+                "code": "add_ele",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 50000,
+                    "scale": 3,
+                    "step": 100
+                }
+            },
+            "18": {
+                "code": "cur_current",
+                "type": "Integer",
+                "values": {
+                    "unit": "mA",
+                    "min": 0,
+                    "max": 100000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "19": {
+                "code": "cur_power",
+                "type": "Integer",
+                "values": {
+                    "unit": "W",
+                    "min": 0,
+                    "max": 99999,
+                    "scale": 1,
+                    "step": 1
+                }
+            },
+            "20": {
+                "code": "cur_voltage",
+                "type": "Integer",
+                "values": {
+                    "unit": "V",
+                    "min": 0,
+                    "max": 5000,
+                    "scale": 1,
+                    "step": 1
+                }
+            },
+            "21": {
+                "code": "test_bit",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 5,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "22": {
+                "code": "voltage_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "23": {
+                "code": "electric_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "power_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "25": {
+                "code": "electricity_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "26": {
+                "code": "fault",
+                "type": "Bitmap",
+                "values": {
+                    "label": [
+                        "ov_cr",
+                        "ov_vol",
+                        "ov_pwr",
+                        "ls_cr",
+                        "ls_vol",
+                        "ls_pow",
+                        "short_circuit_alarm",
+                        "overload_alarm",
+                        "leakagecurr_alarm",
+                        "self_test_alarm",
+                        "high_temp",
+                        "unbalance_alarm",
+                        "miss_phase_alarm"
+                    ]
+                }
+            },
+            "38": {
+                "code": "relay_status",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "power_off",
+                        "power_on",
+                        "last"
+                    ]
+                }
+            },
+            "40": {
+                "code": "light_mode",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "relay",
+                        "pos",
+                        "none",
+                        "on"
+                    ]
+                }
+            },
+            "42": {
+                "code": "cycle_time",
+                "type": "String",
+                "values": "{\"maxlen\":255}"
+            },
+            "47": {
+                "code": "temp_value",
+                "type": "Integer",
+                "values": {
+                    "unit": "\u00b0C",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "48": {
+                "code": "alarm_set_1",
+                "type": "Raw",
+                "values": {}
+            },
+            "49": {
+                "code": "alarm_set_2",
+                "type": "Raw",
+                "values": {}
+            }
+        },
+        "ip": "192.168.1.241",
+        "version": "3.4"
+    },
+    {
+        "name": "Disjuntor AC Q03",
+        "id": "bf7bf6d37fa89c18e9pjsn",
+        "key": "FsDYTaPN[^/z6d+f",
+        "mac": "3c:0b:59:8c:a8:34",
+        "uuid": "daa9404d4419e998",
+        "sn": "100198081007AE",
+        "category": "dlq",
+        "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
+        "product_id": "nfhnzerdfsvfgwzo",
+        "biz_type": 18,
+        "model": "PN-\u9648\u658c\u53cc\u706f",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
+        "mapping": {
+            "1": {
+                "code": "switch",
+                "type": "Boolean",
+                "values": {}
+            },
+            "9": {
+                "code": "countdown_1",
+                "type": "Integer",
+                "values": {
+                    "unit": "s",
+                    "min": 0,
+                    "max": 86400,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "17": {
+                "code": "add_ele",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 50000,
+                    "scale": 3,
+                    "step": 100
+                }
+            },
+            "18": {
+                "code": "cur_current",
+                "type": "Integer",
+                "values": {
+                    "unit": "mA",
+                    "min": 0,
+                    "max": 100000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "19": {
+                "code": "cur_power",
+                "type": "Integer",
+                "values": {
+                    "unit": "W",
+                    "min": 0,
+                    "max": 99999,
+                    "scale": 1,
+                    "step": 1
+                }
+            },
+            "20": {
+                "code": "cur_voltage",
+                "type": "Integer",
+                "values": {
+                    "unit": "V",
+                    "min": 0,
+                    "max": 5000,
+                    "scale": 1,
+                    "step": 1
+                }
+            },
+            "21": {
+                "code": "test_bit",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 5,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "22": {
+                "code": "voltage_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "23": {
+                "code": "electric_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "power_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "25": {
+                "code": "electricity_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "26": {
+                "code": "fault",
+                "type": "Bitmap",
+                "values": {
+                    "label": [
+                        "ov_cr",
+                        "ov_vol",
+                        "ov_pwr",
+                        "ls_cr",
+                        "ls_vol",
+                        "ls_pow",
+                        "short_circuit_alarm",
+                        "overload_alarm",
+                        "leakagecurr_alarm",
+                        "self_test_alarm",
+                        "high_temp",
+                        "unbalance_alarm",
+                        "miss_phase_alarm"
+                    ]
+                }
+            },
+            "38": {
+                "code": "relay_status",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "power_off",
+                        "power_on",
+                        "last"
+                    ]
+                }
+            },
+            "40": {
+                "code": "light_mode",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "relay",
+                        "pos",
+                        "none",
+                        "on"
+                    ]
+                }
+            },
+            "42": {
+                "code": "cycle_time",
+                "type": "String",
+                "values": "{\"maxlen\":255}"
+            },
+            "47": {
+                "code": "temp_value",
+                "type": "Integer",
+                "values": {
+                    "unit": "\u00b0C",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "48": {
+                "code": "alarm_set_1",
+                "type": "Raw",
+                "values": {}
+            },
+            "49": {
+                "code": "alarm_set_2",
+                "type": "Raw",
+                "values": {}
+            }
+        },
+        "ip": "192.168.1.125",
+        "version": "3.4"
+    },
+    {
+        "name": "Fechaduras Q01",
+        "id": "bfa29c6177b6bec67f9mnv",
+        "key": "@rX2G@Qv>JPTv;QD",
+        "mac": "c0:f8:53:d5:5f:70",
+        "uuid": "9c05faaf74b4c156",
+        "sn": "10018596000EC1",
         "category": "ms",
         "product_name": "SmartLock",
         "product_id": "bxq2o60gxhh2ben6",
@@ -1458,12 +1295,817 @@
         "version": ""
     },
     {
-        "name": "Fechaduras Q24",
-        "id": "bfc0ad61162890ac4dcj9v",
-        "key": "0~NrmNLY+Kks4Dc*",
-        "mac": "c0:f8:53:d5:5a:c7",
-        "uuid": "34e459f1d08c23c1",
-        "sn": "10018596000EA2",
+        "name": "Fechadura Q22",
+        "id": "bf38e0728c96b08191ngse",
+        "key": "A>d.&NHN}4:V<E!E",
+        "mac": "c0:f8:53:d5:57:96",
+        "uuid": "6baf040e2c311a95",
+        "sn": "10018596000FB3",
+        "category": "ms",
+        "product_name": "SmartLock",
+        "product_id": "bxq2o60gxhh2ben6",
+        "biz_type": 18,
+        "model": "",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+        "mapping": {
+            "1": {
+                "code": "unlock_fingerprint",
+                "type": "Integer",
+                "values": {
+                    "unit": "",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "2": {
+                "code": "unlock_password",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "3": {
+                "code": "unlock_temporary",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "4": {
+                "code": "unlock_dynamic",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "5": {
+                "code": "unlock_card",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "6": {
+                "code": "unlock_face",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "8": {
+                "code": "alarm_lock",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "wrong_finger",
+                        "wrong_password",
+                        "wrong_card",
+                        "wrong_face",
+                        "tongue_bad",
+                        "too_hot",
+                        "unclosed_time",
+                        "tongue_not_out",
+                        "pry",
+                        "key_in",
+                        "low_battery",
+                        "power_off",
+                        "shock"
+                    ]
+                }
+            },
+            "9": {
+                "code": "unlock_request",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 90,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "11": {
+                "code": "battery_state",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "high",
+                        "medium",
+                        "low",
+                        "poweroff"
+                    ]
+                }
+            },
+            "15": {
+                "code": "unlock_app",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "16": {
+                "code": "hijack",
+                "type": "Boolean",
+                "values": {}
+            },
+            "17": {
+                "code": "open_inside",
+                "type": "Boolean",
+                "values": {}
+            },
+            "23": {
+                "code": "unlock_hand",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "unlock_finger_vein",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            }
+        },
+        "ip": "",
+        "version": ""
+    },
+    {
+        "name": "Fechaduras Q12",
+        "id": "bf993bf8111cc3111czack",
+        "key": "MpN/rF-AIKWg0xG_",
+        "mac": "c0:f8:53:d5:5b:21",
+        "uuid": "05aca3a600a002d2",
+        "sn": "1001859600114E",
+        "category": "ms",
+        "product_name": "SmartLock",
+        "product_id": "bxq2o60gxhh2ben6",
+        "biz_type": 18,
+        "model": "",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+        "mapping": {
+            "1": {
+                "code": "unlock_fingerprint",
+                "type": "Integer",
+                "values": {
+                    "unit": "",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "2": {
+                "code": "unlock_password",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "3": {
+                "code": "unlock_temporary",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "4": {
+                "code": "unlock_dynamic",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "5": {
+                "code": "unlock_card",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "6": {
+                "code": "unlock_face",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "8": {
+                "code": "alarm_lock",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "wrong_finger",
+                        "wrong_password",
+                        "wrong_card",
+                        "wrong_face",
+                        "tongue_bad",
+                        "too_hot",
+                        "unclosed_time",
+                        "tongue_not_out",
+                        "pry",
+                        "key_in",
+                        "low_battery",
+                        "power_off",
+                        "shock"
+                    ]
+                }
+            },
+            "9": {
+                "code": "unlock_request",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 90,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "11": {
+                "code": "battery_state",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "high",
+                        "medium",
+                        "low",
+                        "poweroff"
+                    ]
+                }
+            },
+            "15": {
+                "code": "unlock_app",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "16": {
+                "code": "hijack",
+                "type": "Boolean",
+                "values": {}
+            },
+            "17": {
+                "code": "open_inside",
+                "type": "Boolean",
+                "values": {}
+            },
+            "23": {
+                "code": "unlock_hand",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "unlock_finger_vein",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            }
+        },
+        "ip": "",
+        "version": ""
+    },
+    {
+        "name": "Disjuntor Geral Piso 0",
+        "id": "bf8991eb6b655860f4jahp",
+        "key": ">=hWW2|#::2X}&nT",
+        "mac": "3c:0b:59:17:36:5f",
+        "uuid": "64c00ed6564cb4e7",
+        "sn": "XADD-083000DC",
+        "category": "dlq",
+        "product_name": "Breaker",
+        "product_id": "mxmpol0lnvxuvikb",
+        "biz_type": 18,
+        "model": "",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/bay1591839287906taVN/48a0b03df204b480fc3dffaca51c423a.png",
+        "mapping": {
+            "1": {
+                "code": "total_forward_energy",
+                "type": "Integer",
+                "values": {
+                    "unit": "kW\u00b7h",
+                    "min": 0,
+                    "max": 99999999,
+                    "scale": 2,
+                    "step": 1
+                }
+            },
+            "6": {
+                "code": "phase_a",
+                "type": "Raw",
+                "values": {}
+            },
+            "7": {
+                "code": "phase_b",
+                "type": "Raw",
+                "values": {}
+            },
+            "8": {
+                "code": "phase_c",
+                "type": "Raw",
+                "values": {}
+            },
+            "9": {
+                "code": "fault",
+                "type": "Bitmap",
+                "values": {
+                    "label": [
+                        "short_circuit_alarm",
+                        "surge_alarm",
+                        "overload_alarm",
+                        "leakagecurr_alarm",
+                        "temp_dif_fault",
+                        "fire_alarm",
+                        "high_power_alarm",
+                        "self_test_alarm",
+                        "ov_cr",
+                        "unbalance_alarm",
+                        "ov_vol",
+                        "undervoltage_alarm",
+                        "miss_phase_alarm",
+                        "outage_alarm",
+                        "magnetism_alarm",
+                        "credit_alarm",
+                        "no_balance_alarm",
+                        "temp_alarm",
+                        "temp_cut_off"
+                    ]
+                }
+            },
+            "11": {
+                "code": "switch_prepayment",
+                "type": "Boolean",
+                "values": {}
+            },
+            "12": {
+                "code": "energy_reset",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "empty"
+                    ]
+                }
+            },
+            "13": {
+                "code": "balance_energy",
+                "type": "Integer",
+                "values": {
+                    "unit": "kW\u00b7h",
+                    "min": 0,
+                    "max": 99999999,
+                    "scale": 2,
+                    "step": 1
+                }
+            },
+            "14": {
+                "code": "charge_energy",
+                "type": "Integer",
+                "values": {
+                    "unit": "kW\u00b7h",
+                    "min": 0,
+                    "max": 999999,
+                    "scale": 2,
+                    "step": 1
+                }
+            },
+            "16": {
+                "code": "switch",
+                "type": "Boolean",
+                "values": {}
+            },
+            "19": {
+                "code": "breaker_number",
+                "type": "String",
+                "values": "{\"maxlen\":255}"
+            }
+        },
+        "ip": "192.168.1.127",
+        "version": "3.5"
+    },
+    {
+        "name": "test",
+        "id": "bfc367de4609adb77eyqwb",
+        "key": "}k<X^IzYjvtSZa`2",
+        "mac": "3c:0b:59:8c:a8:38",
+        "uuid": "4180f344332e1676",
+        "sn": "1001980810050D",
+        "category": "dlq",
+        "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
+        "product_id": "nfhnzerdfsvfgwzo",
+        "biz_type": 18,
+        "model": "PN-\u9648\u658c\u53cc\u706f",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
+        "mapping": {
+            "1": {
+                "code": "switch",
+                "type": "Boolean",
+                "values": {}
+            },
+            "9": {
+                "code": "countdown_1",
+                "type": "Integer",
+                "values": {
+                    "unit": "s",
+                    "min": 0,
+                    "max": 86400,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "17": {
+                "code": "add_ele",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 50000,
+                    "scale": 3,
+                    "step": 100
+                }
+            },
+            "18": {
+                "code": "cur_current",
+                "type": "Integer",
+                "values": {
+                    "unit": "mA",
+                    "min": 0,
+                    "max": 100000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "19": {
+                "code": "cur_power",
+                "type": "Integer",
+                "values": {
+                    "unit": "W",
+                    "min": 0,
+                    "max": 99999,
+                    "scale": 1,
+                    "step": 1
+                }
+            },
+            "20": {
+                "code": "cur_voltage",
+                "type": "Integer",
+                "values": {
+                    "unit": "V",
+                    "min": 0,
+                    "max": 5000,
+                    "scale": 1,
+                    "step": 1
+                }
+            },
+            "21": {
+                "code": "test_bit",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 5,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "22": {
+                "code": "voltage_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "23": {
+                "code": "electric_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "power_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "25": {
+                "code": "electricity_coe",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 1000000,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "26": {
+                "code": "fault",
+                "type": "Bitmap",
+                "values": {
+                    "label": [
+                        "ov_cr",
+                        "ov_vol",
+                        "ov_pwr",
+                        "ls_cr",
+                        "ls_vol",
+                        "ls_pow",
+                        "short_circuit_alarm",
+                        "overload_alarm",
+                        "leakagecurr_alarm",
+                        "self_test_alarm",
+                        "high_temp",
+                        "unbalance_alarm",
+                        "miss_phase_alarm"
+                    ]
+                }
+            },
+            "38": {
+                "code": "relay_status",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "power_off",
+                        "power_on",
+                        "last"
+                    ]
+                }
+            },
+            "40": {
+                "code": "light_mode",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "relay",
+                        "pos",
+                        "none",
+                        "on"
+                    ]
+                }
+            },
+            "42": {
+                "code": "cycle_time",
+                "type": "String",
+                "values": "{\"maxlen\":255}"
+            },
+            "47": {
+                "code": "temp_value",
+                "type": "Integer",
+                "values": {
+                    "unit": "\u00b0C",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "48": {
+                "code": "alarm_set_1",
+                "type": "Raw",
+                "values": {}
+            },
+            "49": {
+                "code": "alarm_set_2",
+                "type": "Raw",
+                "values": {}
+            }
+        },
+        "ip": "192.168.1.66",
+        "version": "3.4"
+    },
+    {
+        "name": "Fechaduras inteligentes 25",
+        "id": "bfa5bccb1e1dfd85b6la1n",
+        "key": ":xz)?3|!<msW#BV0",
+        "mac": "c0:f8:53:d5:66:21",
+        "uuid": "485212828ab312f9",
+        "sn": "10018596001622",
+        "category": "ms",
+        "product_name": "SmartLock",
+        "product_id": "bxq2o60gxhh2ben6",
+        "biz_type": 18,
+        "model": "",
+        "sub": false,
+        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+        "mapping": {
+            "1": {
+                "code": "unlock_fingerprint",
+                "type": "Integer",
+                "values": {
+                    "unit": "",
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "2": {
+                "code": "unlock_password",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "3": {
+                "code": "unlock_temporary",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "4": {
+                "code": "unlock_dynamic",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "5": {
+                "code": "unlock_card",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "6": {
+                "code": "unlock_face",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "8": {
+                "code": "alarm_lock",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "wrong_finger",
+                        "wrong_password",
+                        "wrong_card",
+                        "wrong_face",
+                        "tongue_bad",
+                        "too_hot",
+                        "unclosed_time",
+                        "tongue_not_out",
+                        "pry",
+                        "key_in",
+                        "low_battery",
+                        "power_off",
+                        "shock"
+                    ]
+                }
+            },
+            "9": {
+                "code": "unlock_request",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 90,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "11": {
+                "code": "battery_state",
+                "type": "Enum",
+                "values": {
+                    "range": [
+                        "high",
+                        "medium",
+                        "low",
+                        "poweroff"
+                    ]
+                }
+            },
+            "15": {
+                "code": "unlock_app",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "16": {
+                "code": "hijack",
+                "type": "Boolean",
+                "values": {}
+            },
+            "17": {
+                "code": "open_inside",
+                "type": "Boolean",
+                "values": {}
+            },
+            "23": {
+                "code": "unlock_hand",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            },
+            "24": {
+                "code": "unlock_finger_vein",
+                "type": "Integer",
+                "values": {
+                    "min": 0,
+                    "max": 999,
+                    "scale": 0,
+                    "step": 1
+                }
+            }
+        },
+        "ip": "",
+        "version": ""
+    },
+    {
+        "name": "Fechaduras Q04",
+        "id": "bfad77d73230afaab4zmi9",
+        "key": "Tjmo@@N/?cmla|j_",
+        "mac": "c0:f8:53:d5:62:b4",
+        "uuid": "053569f1f51c9902",
+        "sn": "10018596001609",
         "category": "ms",
         "product_name": "SmartLock",
         "product_id": "bxq2o60gxhh2ben6",
@@ -1997,332 +2639,6 @@
         "version": ""
     },
     {
-        "name": "Fechadura Q22",
-        "id": "bf38e0728c96b08191ngse",
-        "key": "A>d.&NHN}4:V<E!E",
-        "mac": "c0:f8:53:d5:57:96",
-        "uuid": "6baf040e2c311a95",
-        "sn": "10018596000FB3",
-        "category": "ms",
-        "product_name": "SmartLock",
-        "product_id": "bxq2o60gxhh2ben6",
-        "biz_type": 18,
-        "model": "",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-        "mapping": {
-            "1": {
-                "code": "unlock_fingerprint",
-                "type": "Integer",
-                "values": {
-                    "unit": "",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "2": {
-                "code": "unlock_password",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "3": {
-                "code": "unlock_temporary",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "4": {
-                "code": "unlock_dynamic",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "5": {
-                "code": "unlock_card",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "6": {
-                "code": "unlock_face",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "8": {
-                "code": "alarm_lock",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "wrong_finger",
-                        "wrong_password",
-                        "wrong_card",
-                        "wrong_face",
-                        "tongue_bad",
-                        "too_hot",
-                        "unclosed_time",
-                        "tongue_not_out",
-                        "pry",
-                        "key_in",
-                        "low_battery",
-                        "power_off",
-                        "shock"
-                    ]
-                }
-            },
-            "9": {
-                "code": "unlock_request",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 90,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "11": {
-                "code": "battery_state",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "high",
-                        "medium",
-                        "low",
-                        "poweroff"
-                    ]
-                }
-            },
-            "15": {
-                "code": "unlock_app",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "16": {
-                "code": "hijack",
-                "type": "Boolean",
-                "values": {}
-            },
-            "17": {
-                "code": "open_inside",
-                "type": "Boolean",
-                "values": {}
-            },
-            "23": {
-                "code": "unlock_hand",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "unlock_finger_vein",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            }
-        },
-        "ip": "",
-        "version": ""
-    },
-    {
-        "name": "Fechaduras Q12",
-        "id": "bf993bf8111cc3111czack",
-        "key": "MpN/rF-AIKWg0xG_",
-        "mac": "c0:f8:53:d5:5b:21",
-        "uuid": "05aca3a600a002d2",
-        "sn": "1001859600114E",
-        "category": "ms",
-        "product_name": "SmartLock",
-        "product_id": "bxq2o60gxhh2ben6",
-        "biz_type": 18,
-        "model": "",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-        "mapping": {
-            "1": {
-                "code": "unlock_fingerprint",
-                "type": "Integer",
-                "values": {
-                    "unit": "",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "2": {
-                "code": "unlock_password",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "3": {
-                "code": "unlock_temporary",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "4": {
-                "code": "unlock_dynamic",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "5": {
-                "code": "unlock_card",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "6": {
-                "code": "unlock_face",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "8": {
-                "code": "alarm_lock",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "wrong_finger",
-                        "wrong_password",
-                        "wrong_card",
-                        "wrong_face",
-                        "tongue_bad",
-                        "too_hot",
-                        "unclosed_time",
-                        "tongue_not_out",
-                        "pry",
-                        "key_in",
-                        "low_battery",
-                        "power_off",
-                        "shock"
-                    ]
-                }
-            },
-            "9": {
-                "code": "unlock_request",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 90,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "11": {
-                "code": "battery_state",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "high",
-                        "medium",
-                        "low",
-                        "poweroff"
-                    ]
-                }
-            },
-            "15": {
-                "code": "unlock_app",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "16": {
-                "code": "hijack",
-                "type": "Boolean",
-                "values": {}
-            },
-            "17": {
-                "code": "open_inside",
-                "type": "Boolean",
-                "values": {}
-            },
-            "23": {
-                "code": "unlock_hand",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "unlock_finger_vein",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            }
-        },
-        "ip": "",
-        "version": ""
-    },
-    {
         "name": "Fechadura Q11",
         "id": "bf1655b8790a6a3e35ivlz",
         "key": "{o5=1]+j<^E{?lZ?",
@@ -2484,124 +2800,6 @@
         },
         "ip": "",
         "version": ""
-    },
-    {
-        "name": "Disjuntor Geral Piso 0",
-        "id": "bf8991eb6b655860f4jahp",
-        "key": ">=hWW2|#::2X}&nT",
-        "mac": "3c:0b:59:17:36:5f",
-        "uuid": "64c00ed6564cb4e7",
-        "sn": "XADD-083000DC",
-        "category": "dlq",
-        "product_name": "Breaker",
-        "product_id": "mxmpol0lnvxuvikb",
-        "biz_type": 18,
-        "model": "",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/bay1591839287906taVN/48a0b03df204b480fc3dffaca51c423a.png",
-        "mapping": {
-            "1": {
-                "code": "total_forward_energy",
-                "type": "Integer",
-                "values": {
-                    "unit": "kW\u00b7h",
-                    "min": 0,
-                    "max": 99999999,
-                    "scale": 2,
-                    "step": 1
-                }
-            },
-            "6": {
-                "code": "phase_a",
-                "type": "Raw",
-                "values": {}
-            },
-            "7": {
-                "code": "phase_b",
-                "type": "Raw",
-                "values": {}
-            },
-            "8": {
-                "code": "phase_c",
-                "type": "Raw",
-                "values": {}
-            },
-            "9": {
-                "code": "fault",
-                "type": "Bitmap",
-                "values": {
-                    "label": [
-                        "short_circuit_alarm",
-                        "surge_alarm",
-                        "overload_alarm",
-                        "leakagecurr_alarm",
-                        "temp_dif_fault",
-                        "fire_alarm",
-                        "high_power_alarm",
-                        "self_test_alarm",
-                        "ov_cr",
-                        "unbalance_alarm",
-                        "ov_vol",
-                        "undervoltage_alarm",
-                        "miss_phase_alarm",
-                        "outage_alarm",
-                        "magnetism_alarm",
-                        "credit_alarm",
-                        "no_balance_alarm",
-                        "temp_alarm",
-                        "temp_cut_off"
-                    ]
-                }
-            },
-            "11": {
-                "code": "switch_prepayment",
-                "type": "Boolean",
-                "values": {}
-            },
-            "12": {
-                "code": "energy_reset",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "empty"
-                    ]
-                }
-            },
-            "13": {
-                "code": "balance_energy",
-                "type": "Integer",
-                "values": {
-                    "unit": "kW\u00b7h",
-                    "min": 0,
-                    "max": 99999999,
-                    "scale": 2,
-                    "step": 1
-                }
-            },
-            "14": {
-                "code": "charge_energy",
-                "type": "Integer",
-                "values": {
-                    "unit": "kW\u00b7h",
-                    "min": 0,
-                    "max": 999999,
-                    "scale": 2,
-                    "step": 1
-                }
-            },
-            "16": {
-                "code": "switch",
-                "type": "Boolean",
-                "values": {}
-            },
-            "19": {
-                "code": "breaker_number",
-                "type": "String",
-                "values": "{\"maxlen\":255}"
-            }
-        },
-        "ip": "192.168.1.127",
-        "version": "3.5"
     },
     {
         "name": "Fechadura Q21",
@@ -5017,204 +5215,6 @@
         },
         "ip": "192.168.1.206",
         "version": "3.5"
-    },
-    {
-        "name": "Disjuntor AC Q03",
-        "id": "bf7bf6d37fa89c18e9pjsn",
-        "key": "FsDYTaPN[^/z6d+f",
-        "mac": "3c:0b:59:8c:a8:34",
-        "uuid": "daa9404d4419e998",
-        "sn": "100198081007AE",
-        "category": "dlq",
-        "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
-        "product_id": "nfhnzerdfsvfgwzo",
-        "biz_type": 18,
-        "model": "PN-\u9648\u658c\u53cc\u706f",
-        "sub": false,
-        "icon": "https://images.tuyaeu.com/smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
-        "mapping": {
-            "1": {
-                "code": "switch",
-                "type": "Boolean",
-                "values": {}
-            },
-            "9": {
-                "code": "countdown_1",
-                "type": "Integer",
-                "values": {
-                    "unit": "s",
-                    "min": 0,
-                    "max": 86400,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "17": {
-                "code": "add_ele",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 50000,
-                    "scale": 3,
-                    "step": 100
-                }
-            },
-            "18": {
-                "code": "cur_current",
-                "type": "Integer",
-                "values": {
-                    "unit": "mA",
-                    "min": 0,
-                    "max": 100000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "19": {
-                "code": "cur_power",
-                "type": "Integer",
-                "values": {
-                    "unit": "W",
-                    "min": 0,
-                    "max": 99999,
-                    "scale": 1,
-                    "step": 1
-                }
-            },
-            "20": {
-                "code": "cur_voltage",
-                "type": "Integer",
-                "values": {
-                    "unit": "V",
-                    "min": 0,
-                    "max": 5000,
-                    "scale": 1,
-                    "step": 1
-                }
-            },
-            "21": {
-                "code": "test_bit",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 5,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "22": {
-                "code": "voltage_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "23": {
-                "code": "electric_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "24": {
-                "code": "power_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "25": {
-                "code": "electricity_coe",
-                "type": "Integer",
-                "values": {
-                    "min": 0,
-                    "max": 1000000,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "26": {
-                "code": "fault",
-                "type": "Bitmap",
-                "values": {
-                    "label": [
-                        "ov_cr",
-                        "ov_vol",
-                        "ov_pwr",
-                        "ls_cr",
-                        "ls_vol",
-                        "ls_pow",
-                        "short_circuit_alarm",
-                        "overload_alarm",
-                        "leakagecurr_alarm",
-                        "self_test_alarm",
-                        "high_temp",
-                        "unbalance_alarm",
-                        "miss_phase_alarm"
-                    ]
-                }
-            },
-            "38": {
-                "code": "relay_status",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "power_off",
-                        "power_on",
-                        "last"
-                    ]
-                }
-            },
-            "40": {
-                "code": "light_mode",
-                "type": "Enum",
-                "values": {
-                    "range": [
-                        "relay",
-                        "pos",
-                        "none",
-                        "on"
-                    ]
-                }
-            },
-            "42": {
-                "code": "cycle_time",
-                "type": "String",
-                "values": "{\"maxlen\":255}"
-            },
-            "47": {
-                "code": "temp_value",
-                "type": "Integer",
-                "values": {
-                    "unit": "\u00b0C",
-                    "min": 0,
-                    "max": 999,
-                    "scale": 0,
-                    "step": 1
-                }
-            },
-            "48": {
-                "code": "alarm_set_1",
-                "type": "Raw",
-                "values": {}
-            },
-            "49": {
-                "code": "alarm_set_2",
-                "type": "Raw",
-                "values": {}
-            }
-        },
-        "ip": "192.168.1.125",
-        "version": "3.4"
     },
     {
         "name": "Disjuntor AC Q21",
