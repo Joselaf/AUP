@@ -1,6 +1,5 @@
-import threading
-
 import tinytuya
+from is_device_reachable import is_device_reachable
 
 class breaker:
     def __init__(self, id, ip, local_key, name):
@@ -26,19 +25,42 @@ class breaker:
             "child_lock":self.dps.get('40')
             }
         
+        
+        
     def get_status(self):
         if self.ip: 
             return self.stats
         else:
             return None
-            
+
+
+
+    def get_ip(self):
+        return self.ip
+    
+    def get_name(self):
+        return self.name
+
+    def get_tui_info(self):
+        status = None
+        error = None
+        state = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            state = f"[bold white]On[/]" if {self.stats['state']} else "[bold white]OFF[/]"
+            error = f"[bold white]{self.stats['error']}[/]" if {self.stats['error']} else "[bold white]-[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            state = "[bold white]-[/]"
+            error = "[bold white]-[/]"
+                
+        return status,state,error
 
 
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
        new_state = not self.dps.get('1')
-       self.device.set_dps('1', new_state)
-       return new_state
+       self.device.set_status({'1': new_state})
 
     ##power_on / power_off / memory
     def set_relay_status(self, value):

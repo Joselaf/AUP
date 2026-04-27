@@ -1,4 +1,5 @@
 import tinytuya
+from is_device_reachable import is_device_reachable
 
 class heater:
     def __init__(self, id, ip, local_key, name):
@@ -24,8 +25,25 @@ class heater:
             return self.stats
         else:
             return None
-        
     
+    def get_ip(self):
+        return self.ip
+    
+    def get_name(self):
+        return self.name
+    
+    def get_tui_info(self):
+        status = None
+        state = None
+        if is_device_reachable(self.ip):
+            status =  "🟢[bold green]ONLINE[/]"
+            state = "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            state = "[bold white]-[/]"
+          
+        return status,state
+
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
         new_state = not self.dps.get('1')

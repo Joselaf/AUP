@@ -1,4 +1,5 @@
 import tinytuya
+from is_device_reachable import is_device_reachable
 
 class smart_ir:
     def __init__(self, id, ip, local_key, name):
@@ -21,6 +22,16 @@ class smart_ir:
         else:
             return None
 
+    def get_ip(self):
+        return self.ip
+    def get_name(self):
+        return self.name
+    
+    
+    def get_tui_info(self):
+        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
+        return status
+    
     ## Send Code: The raw IR code (Base64) to be emitted.
     def send_ir_code(self, code):
         payload = self.device.generate_payload(tinytuya.CONTROL, {'1': code})

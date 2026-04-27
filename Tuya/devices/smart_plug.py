@@ -1,5 +1,5 @@
 import tinytuya
-
+from is_device_reachable import is_device_reachable
 class smart_plug:
     def __init__(self, id, ip, local_key, name):
         self.id = id
@@ -11,10 +11,10 @@ class smart_plug:
         self.dps = self.status.get('dps', {})
         
         self.stats = {
-            "state":        self.state,
-            "countdown":    self.countdown,
-            "relay_status": self.relay_status,
-            "child_lock":   self.child_lock,
+            "state":        self.dps.get('1'),
+            "countdown":    self.dps.get('9'),
+            "relay_status": self.dps.get('38'),
+            "child_lock":   self.dps.get('40'),
         }
         
         
@@ -23,7 +23,22 @@ class smart_plug:
             return self.stats
         else:
             return None
-            
+    
+    def get_ip(self):
+        return self.ip
+    def get_name(self):
+        return self.name
+
+    def gte_tui_info(self):
+        status = None
+        state = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            state = "[bold white]ON[/]" if self.stats['state'] else "[bold white]OFF[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            state = "[bold white]-[/]"
+        return status,state
             
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):

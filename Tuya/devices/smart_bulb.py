@@ -1,4 +1,5 @@
 import tinytuya
+from is_device_reachable import is_device_reachable
 
 class smart_bulb:
     def __init__(self, id, ip, local_key, name):
@@ -35,7 +36,22 @@ class smart_bulb:
             return self.stats
         else:
             return None
-        
+       
+    def get_ip(self):
+        return self.ip
+    def get_name(self):
+        return self.name
+    
+    def get_tui_info(self):
+        status = None
+        led = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            led = "[bold yellow]ON[/]" if self.stats['led'] else "[bold blue]OFF[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            led = "[bold white]-[/]"
+        return status,led
         
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):

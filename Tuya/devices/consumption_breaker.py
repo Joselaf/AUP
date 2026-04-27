@@ -1,4 +1,5 @@
 import tinytuya
+from is_device_reachable import is_device_reachable
 
 class consumption_breaker:
     def __init__(self, id, ip, local_key, name):
@@ -30,7 +31,29 @@ class consumption_breaker:
             return self.stats
         else:
             return None
+
+    def get_tui_info(self):
+        status = None
+        state = None
+        error = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            state = f"[bold white]On[/]" if {self.stats['state']} else "[bold white]OFF[/]"
+            error = f"[bold white]{self.stats['error']}[/]" if {self.stats['error']} else "[bold white]-[/]"    
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            state = "[bold white]-[/]"
+            error = "[bold white]-[/]"
+            
+        return status,state,error
+
+
+    def get_ip(self):
+        return self.ip
     
+    def get_name(self):
+        return self.name   
+        
     
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):

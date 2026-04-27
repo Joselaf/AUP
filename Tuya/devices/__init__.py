@@ -11,3 +11,19 @@ from .smart_ir import smart_ir
 from .smart_lock import smart_lock
 from .smart_plug import smart_plug
 from .smart_tv import smart_tv
+
+__all__ = [
+	"breaker",
+	"consumption_breaker",
+	"contact_sensor",
+	"esmax",
+	"general_circuit_breaker",
+	"heater",
+	"lock",
+	"presence_sensor",
+	"smart_bulb",
+	"smart_ir",
+	"smart_lock",
+	"smart_plug",
+	"smart_tv",
+]

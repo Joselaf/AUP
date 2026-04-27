@@ -1,5 +1,5 @@
 import tinytuya
-
+from is_device_reachable import is_device_reachable
 class smart_tv:
     def __init__(self, id, ip, local_key, name):
         self.id = id
@@ -24,11 +24,30 @@ class smart_tv:
         }
 
 
-        def get_status(self):
-            if(self.ip):
-                return self.stats
-            else:
-                return None
+    def get_status(self):
+        if(self.ip):
+            return self.stats
+        else:
+            return None
+        
+    def get_ip(self):
+        return self.ip
+    def get_name(self):
+        return self.name
+
+    
+    def get_tui_info(self):
+        status = None
+        power = None
+        if is_device_reachable(self.ip):
+            status = "🟢[bold green]ONLINE[/]"
+            power =    "[bold yellow]ON[/]" if self.stats['power'] else "[bold blue]OFF[/]"
+        else:
+            status = "🔴[bold red]OFFLINE[/]"
+            power =  "[old white]-[/]"
+        return status,power
+        
+        
             
             
     ## Turns the device ON if it is OFF and vice-versa
