@@ -35,11 +35,11 @@ class contact_sensor:
         door_state = None
         battery = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
+            status = "🟢 [bold green]ONLINE[/]"
             door_state =  "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]closed[/]"
             battery = f"[bold white]{self.stats['battery_percentage']}"
         else:      
-            status = "🔴[bold red]OFFLINE[/]"
+            status = "🔴 [bold red]OFFLINE[/]"
             door_state = "[bold white]-[/]"
             battery = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Door_State", "Battery")

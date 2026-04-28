@@ -50,11 +50,11 @@ class esmax:
         state_lock = None
         battery = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
+            status = "🟢 [bold green]ONLINE[/]"
             state_lock =  "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
             battery = f"[bold white]{self.stats['battery']}[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
+            status = "🔴 [bold red]OFFLINE[/]"
             state_lock = "[bold white]-[/]"
             battery = "[bold white]-[/]"
             

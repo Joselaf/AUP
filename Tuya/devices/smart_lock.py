@@ -37,11 +37,11 @@ class smart_lock:
         battery = None
         door_state = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]" 
+            status = "🟢 [bold green]ONLINE[/]" 
             battery = f"[bold white]{self.stats['battery']}"
             door_state = "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]Closed[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
+            status = "🔴 [bold red]OFFLINE[/]"
             battery = "[bold white]-[/]"
             door_state = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Battery", "Lock")

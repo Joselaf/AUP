@@ -34,10 +34,10 @@ class presence_sensor:
         status = None
         presence = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
+            status = "🟢 [bold green]ONLINE[/]"
             presence = "[bold white]Detected[/]" if self.stats['presence_status'] else "[bold white]Undetected[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
+            status = "🔴 [bold red]OFFLINE[/]"
             presence = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Presence")
         table.add_row(name, status, presence)

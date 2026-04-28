@@ -33,10 +33,10 @@ class smart_plug:
         status = None
         state = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
+            status = "🟢 [bold green]ONLINE[/]"
             state = "[bold white]ON[/]" if self.stats['state'] else "[bold white]OFF[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
+            status = "🔴 [bold red]OFFLINE[/]"
             state = "[bold white]-[/]"
         table.add_columns("Device", "Status", "State")
         table.add_row(name, status, state)

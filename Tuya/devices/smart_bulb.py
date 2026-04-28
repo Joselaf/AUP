@@ -46,10 +46,10 @@ class smart_bulb:
         status = None
         led = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
+            status = "🟢 [bold green]ONLINE[/]"
             led = "[bold yellow]ON[/]" if self.stats['led'] else "[bold blue]OFF[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
+            status = "🔴 [bold red]OFFLINE[/]"
             led = "[bold white]-[/]"
         table.add_columns("Device", "Status", "LED")
         table.add_row(name, status, led)

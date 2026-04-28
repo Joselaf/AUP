@@ -29,7 +29,7 @@ class smart_ir:
     
     
     def get_tui_table(self,table,name):
-        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
+        status = "🟢 [bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴 [bold red]OFFLINE[/]"
         table.add_columns("Device", "Status")
         table.add_row(name, status)
     

@@ -40,10 +40,10 @@ class smart_tv:
         status = None
         power = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
+            status = "🟢 [bold green]ONLINE[/]"
             power =    "[bold yellow]ON[/]" if self.stats['power'] else "[bold blue]OFF[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
+            status = "🔴 [bold red]OFFLINE[/]"
             power =  "[old white]-[/]"
         table.add_columns("Device", "Status", "Power")
         table.add_row(name, status, power)
