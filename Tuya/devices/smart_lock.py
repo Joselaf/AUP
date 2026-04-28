@@ -6,7 +6,7 @@ class smart_lock:
         self.ip = ip
         self.local_key = local_key
         self.name = name
-        self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
+        self.device = tinytuya.OutletDevice(id, ip, local_key)
         self.status = self.device.status()
         self.dps = self.status.get('dps', {})
         
