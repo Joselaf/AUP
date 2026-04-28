@@ -42,7 +42,7 @@ class smart_bulb:
     def get_name(self):
         return self.name
     
-    def get_tui_info(self):
+    def get_tui_table(self,table,name):
         status = None
         led = None
         if is_device_reachable(self.ip):
@@ -51,7 +51,9 @@ class smart_bulb:
         else:
             status = "🔴[bold red]OFFLINE[/]"
             led = "[bold white]-[/]"
-        return status,led
+        table.add_columns("Device", "Status", "LED")
+        table.add_row(name, status, led)
+        return table
         
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):

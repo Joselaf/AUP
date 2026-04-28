@@ -36,7 +36,7 @@ class smart_tv:
         return self.name
 
     
-    def get_tui_info(self):
+    def get_tui_table(self,table,name):
         status = None
         power = None
         if is_device_reachable(self.ip):
@@ -45,7 +45,9 @@ class smart_tv:
         else:
             status = "🔴[bold red]OFFLINE[/]"
             power =  "[old white]-[/]"
-        return status,power
+        table.add_columns("Device", "Status", "Power")
+        table.add_row(name, status, power)
+        return table
         
         
             

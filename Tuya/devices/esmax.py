@@ -45,7 +45,7 @@ class esmax:
     def get_name(self):
         return self.name
     
-    def get_tui_info(self):
+    def get_tui_table(self,table,name):
         status = None
         state_lock = None
         battery = None
@@ -58,7 +58,9 @@ class esmax:
             state_lock = "[bold white]-[/]"
             battery = "[bold white]-[/]"
             
-        return status,state_lock,battery
+        table.add_columns("Device", "Status", "Lock State", "Battery")
+        table.add_row(name, status, state_lock, battery)
+        return table
 
     ## Electronic Lock toggle
     def toogle_switch_lock(self):

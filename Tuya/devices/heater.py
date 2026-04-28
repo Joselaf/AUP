@@ -32,7 +32,7 @@ class heater:
     def get_name(self):
         return self.name
     
-    def get_tui_info(self):
+    def get_tui_table(self,table,name):
         status = None
         state = None
         if is_device_reachable(self.ip):
@@ -42,7 +42,9 @@ class heater:
             status = "🔴[bold red]OFFLINE[/]"
             state = "[bold white]-[/]"
           
-        return status,state
+        table.add_columns("Device", "Status", "Power")
+        table.add_row(name, status, details)
+        return table
 
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):

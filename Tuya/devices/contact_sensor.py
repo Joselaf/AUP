@@ -30,7 +30,7 @@ class contact_sensor:
     def get_ip(self):
         return self.ip
 
-    def get_tui_info(self):
+    def get_tui_table(self,table,name):
         status = None
         door_state = None
         battery = None
@@ -42,4 +42,6 @@ class contact_sensor:
             status = "🔴[bold red]OFFLINE[/]"
             door_state = "[bold white]-[/]"
             battery = "[bold white]-[/]"
-        return status,door_state, battery
+        table.add_columns("Device", "Status", "Door_State", "Battery")
+        table.add_row(name, status, door_state, battery)
+        return table

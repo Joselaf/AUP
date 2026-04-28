@@ -32,7 +32,7 @@ class smart_lock:
     def get_name(self):
         return self.name
     
-    def get_tui_info(self):
+    def get_tui_table(self,table,name):
         status = None
         battery = None
         door_state = None
@@ -44,7 +44,9 @@ class smart_lock:
             status = "🔴[bold red]OFFLINE[/]"
             battery = "[bold white]-[/]"
             door_state = "[bold white]-[/]"
-        return status, battery,door_state
+        table.add_columns("Device", "Status", "Battery", "Lock")
+        table.add_row(name, status, battery, state)
+        return table
             
     def set_pir_switch(self, state):
         self.device.set_dps('103', state)

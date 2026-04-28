@@ -19,7 +19,7 @@ def devices_status(device):
         return None
 
     else: 
-        category = device['category']
+        category = device.get('category')
         match category:
             case 'dlq'if("consumo" in device['name'].lower()):
                 if device['ip']:

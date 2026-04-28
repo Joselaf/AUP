@@ -66,11 +66,11 @@ class TuyaDashboard(App):
         # Show scanning indicator
         self.call_from_thread(setattr, self, "scanning", True)
 
-        # Step 1: Direct library call (Replaces subprocess)
-        # This updates 'devices.json' in the local directory by default
+        #Direct library call (Replaces subprocess)
+        #This updates 'devices.json' in the local directory by default
         tinytuya.deviceScan(False,10)
 
-        # Step 2: Reload devices from the updated devices.json
+        #Reload devices from the updated devices.json
         devices = main.load_devices()
         my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors", [])
@@ -115,70 +115,45 @@ class TuyaDashboard(App):
 
     def build_table(self, table, device_obj, device_dict):
         if isinstance(device_obj, (breaker, consumption_breaker)):
-            table.add_columns("Device", "Status", "State", "Error")
             name = self.clean_name(device_dict)
-            status, state, details = device_obj.get_tui_info()
-            table.add_row(name, status, state, details)
+            table = device_obj.get_tui_table(table,name)
         elif isinstance(device_obj, contact_sensor):
-            table.add_columns("Device", "Status", "Door State", "Battery")
             name = self.clean_name(device_dict)
-            status, door_state, battery = device_obj.get_tui_info()
-            table.add_row(name, status, door_state, battery)
+            table = device_obj.get_tui_table(table,name)
         elif isinstance(device_obj, esmax):
-            table.add_columns("Device", "Status", "Lock State", "Battery")
             name = self.clean_name(device_dict)
-            status, state_lock, battery = device_obj.get_tui_info()
-            table.add_row(name, status, state_lock, battery)
+            table = device_obj.get_tui_table(table,name)
         elif isinstance(device_obj, general_circuit_breaker):
-            table.add_columns("Device", "Status", "State", "Error")
-            name_raw = device_dict['name']
-            name = name_raw[:name_raw.index("s Q")] if "s Q" in name_raw else name_raw
-            status, state, error = device_obj.get_tui_info()
-            table.add_row(name, status, state, error)
+            name = self.clean_name(device_dict)
+            table = device_obj.get_tui_tanle(table,name)
         elif isinstance(device_obj, heater):
-            table.add_columns("Device", "Status", "Power")
             name = self.clean_name(device_dict)
-            status, details = device_obj.get_tui_info()
-            table.add_row(name, status, details)
+            table = device_obj.get_tui_table(table,name)
         elif isinstance(device_obj, lock):
-            table.add_columns("Device", "Status", "Door State", "Battery")
             name = self.clean_name(device_dict)
-            status, door_state, battery = device_obj.get_tui_info()
-            table.add_row(name, status, door_state, battery)
+            table = device_obj.get_tui_info(table,name)
         elif isinstance(device_obj, presence_sensor):
-            table.add_columns("Device", "Status", "Presence")
             name = self.clean_name(device_dict)
-            status, presence = device_obj.get_tui_info()
-            table.add_row(name, status, presence)
+            table= device_obj.get_tui_info(table,name)
         elif isinstance(device_obj, smart_bulb):
-            table.add_columns("Device", "Status", "LED")
             name = self.clean_name(device_dict)
-            status, led = device_obj.get_tui_info()
-            table.add_row(name, status, led)
+            table = device_obj.get_tui_table(table,name)
         elif isinstance(device_obj, smart_ir):
-            table.add_columns("Device", "Status")
             name = self.clean_name(device_dict)
-            status = device_obj.get_tui_info()
-            table.add_row(name, status)
+            status = device_obj.get_tui_table(table,name)
         elif isinstance(device_obj, smart_lock):
-            table.add_columns("Device", "Status", "Battery", "Lock")
             name = self.clean_name(device_dict)
-            status, battery, state = device_obj.get_tui_info()
-            table.add_row(name, status, battery, state)
+            status, battery, state = device_obj.get_tui_table(table,name)
         elif isinstance(device_obj, smart_plug):
-            table.add_columns("Device", "Status", "State")
             name = self.clean_name(device_dict)
-            status, state = device_obj.get_tui_info()
-            table.add_row(name, status, state)
+            status, state = device_obj.get_tui_table(table,name)
         elif isinstance(device_obj, smart_tv):
-            table.add_columns("Device", "Status", "Power")
             name = self.clean_name(device_dict)
-            status, power = device_obj.get_tui_info()
-            table.add_row(name, status, power)
+            status, power = device_obj.get_tui_table(table,name)
         else:
-            table.add_columns("Device", "Status")
             name = self.clean_name(device_dict)
             status = "[bold white]Unreachable[/]"
+            table.add_columns("Device", "Status")
             table.add_row(name, status)
 
         return table
