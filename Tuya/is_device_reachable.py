@@ -1,28 +1,25 @@
 import subprocess
 import platform
 import re
+import socket
 
 
-def is_device_reachable(ip):
+def is_device_reachable(ip, timeout=0.5):
     if not ip:
         return False
-
-    result = subprocess.run(
-        ["ping", "-c", "1", "-W", "1", ip],
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-        check=False)
-    return result.returncode == 0
+    try:
+        # Tuya devices communicate on port 6668
+        with socket.create_connection((ip, 6668), timeout=timeout):
+            return True
+    except (socket.timeout, OSError):
+        return False
 
 
 def get_ip_mac(ip):
     if not ip:
         return None
-
-    if platform.system().lower() != "linux":
-        raise RuntimeError("get_ip_mac is supported only on Linux")
-
-    cmd = ["ip", "neigh", "show", ip]
+    else:
+        cmd = ["ip", "neigh", "show", ip]
     try:
         result = subprocess.run(
             cmd,
