@@ -44,7 +44,6 @@ class heater:
           
         table.add_columns("Device", "Status", "Power")
         table.add_row(name, status, details)
-        return table
 
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):

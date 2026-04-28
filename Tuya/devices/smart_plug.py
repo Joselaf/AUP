@@ -40,7 +40,6 @@ class smart_plug:
             state = "[bold white]-[/]"
         table.add_columns("Device", "Status", "State")
         table.add_row(name, status, state)
-        return table
             
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):

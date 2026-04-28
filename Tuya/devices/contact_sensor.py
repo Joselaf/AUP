@@ -44,4 +44,3 @@ class contact_sensor:
             battery = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Door_State", "Battery")
         table.add_row(name, status, door_state, battery)
-        return table

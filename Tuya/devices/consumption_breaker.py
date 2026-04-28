@@ -46,7 +46,6 @@ class consumption_breaker:
         
         table.add_columns("Device", "Status", "State", "Error")
         table.add_row(name, status, state, error)
-        return table
 
 
     def get_ip(self):

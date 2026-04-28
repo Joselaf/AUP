@@ -32,7 +32,6 @@ class smart_ir:
         status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴[bold red]OFFLINE[/]"
         table.add_columns("Device", "Status")
         table.add_row(name, status)
-        return table
     
     ## Send Code: The raw IR code (Base64) to be emitted.
     def send_ir_code(self, code):

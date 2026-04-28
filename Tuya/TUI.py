@@ -109,49 +109,15 @@ class TuyaDashboard(App):
         name = name_raw
         if "s Q" in name_raw:
             name = name_raw[0:name_raw.index("s Q")]
-        elif "Q" in name_raw:
+        elif " Q" in name_raw:
             name = name_raw[0:name_raw.index("Q")]
         return name
 
     def build_table(self, table, device_obj, device_dict):
-        if isinstance(device_obj, (breaker, consumption_breaker)):
-            name = self.clean_name(device_dict)
-            table = device_obj.get_tui_table(table,name)
-        elif isinstance(device_obj, contact_sensor):
-            name = self.clean_name(device_dict)
-            table = device_obj.get_tui_table(table,name)
-        elif isinstance(device_obj, esmax):
-            name = self.clean_name(device_dict)
-            table = device_obj.get_tui_table(table,name)
-        elif isinstance(device_obj, general_circuit_breaker):
-            name = self.clean_name(device_dict)
-            table = device_obj.get_tui_tanle(table,name)
-        elif isinstance(device_obj, heater):
-            name = self.clean_name(device_dict)
-            table = device_obj.get_tui_table(table,name)
-        elif isinstance(device_obj, lock):
-            name = self.clean_name(device_dict)
-            table = device_obj.get_tui_info(table,name)
-        elif isinstance(device_obj, presence_sensor):
-            name = self.clean_name(device_dict)
-            table= device_obj.get_tui_info(table,name)
-        elif isinstance(device_obj, smart_bulb):
-            name = self.clean_name(device_dict)
-            table = device_obj.get_tui_table(table,name)
-        elif isinstance(device_obj, smart_ir):
-            name = self.clean_name(device_dict)
-            status = device_obj.get_tui_table(table,name)
-        elif isinstance(device_obj, smart_lock):
-            name = self.clean_name(device_dict)
-            status, battery, state = device_obj.get_tui_table(table,name)
-        elif isinstance(device_obj, smart_plug):
-            name = self.clean_name(device_dict)
-            status, state = device_obj.get_tui_table(table,name)
-        elif isinstance(device_obj, smart_tv):
-            name = self.clean_name(device_dict)
-            status, power = device_obj.get_tui_table(table,name)
+        name = self.clean_name(device_dict)
+        if(device_obj !=None):
+            device_obj.get_tui_table(table,name)     
         else:
-            name = self.clean_name(device_dict)
             status = "[bold white]Unreachable[/]"
             table.add_columns("Device", "Status")
             table.add_row(name, status)

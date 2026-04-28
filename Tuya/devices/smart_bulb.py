@@ -53,7 +53,6 @@ class smart_bulb:
             led = "[bold white]-[/]"
         table.add_columns("Device", "Status", "LED")
         table.add_row(name, status, led)
-        return table
         
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):

@@ -47,7 +47,6 @@ class smart_tv:
             power =  "[old white]-[/]"
         table.add_columns("Device", "Status", "Power")
         table.add_row(name, status, power)
-        return table
         
         
             

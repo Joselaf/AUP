@@ -49,7 +49,6 @@ class general_circuit_breaker:
             
         table.add_columns("Device", "Status", "State", "Error")
         table.add_row(name, status, state, error)
-        return table
 
 
     ## Turns the device ON if it is OFF and vice-versa

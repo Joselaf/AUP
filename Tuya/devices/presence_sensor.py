@@ -41,7 +41,6 @@ class presence_sensor:
             presence = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Presence")
         table.add_row(name, status, presence)
-        return table
 
 
 

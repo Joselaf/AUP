@@ -50,4 +50,3 @@ class lock:
             
         table.add_columns("Device", "Status", "Door State", "Battery")
         table.add_row(name, status, door_state, battery)
-        return table

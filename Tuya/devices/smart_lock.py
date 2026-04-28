@@ -46,7 +46,6 @@ class smart_lock:
             door_state = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Battery", "Lock")
         table.add_row(name, status, battery, state)
-        return table
             
     def set_pir_switch(self, state):
         self.device.set_dps('103', state)

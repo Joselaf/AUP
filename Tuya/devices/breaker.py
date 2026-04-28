@@ -56,7 +56,6 @@ class breaker:
         
         table.add_columns("Device", "Status", "State", "Error")
         table.add_row(name, status, state, error)
-        return table
         
 
 
