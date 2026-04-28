@@ -10,7 +10,7 @@ import tinytuya
 
 CSS = '''
 .floor-container {
-    width: 5fr;
+    width: 1fr;
     border: solid $primary;
     margin: 0;
     height: 1fr;
@@ -56,7 +56,7 @@ class TuyaDashboard(App):
     @work(thread=True)
     def refresh_devices(self) -> None:
         self.call_from_thread(setattr, self, "scanning", True)
-        tinytuya.deviceScan(False, 10)
+        tinytuya.deviceScan()
         devices = main.load_devices()
         my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors", [])

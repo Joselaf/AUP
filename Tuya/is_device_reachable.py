@@ -7,22 +7,12 @@ def is_device_reachable(ip):
     if not ip:
         return False
 
-    if platform.system().lower() != "linux":
-        raise RuntimeError("is_device_reachable is supported only on Linux")
-
-    cmd = ["ping", "-c", "1", "-W", "1", ip]
-
-    try:
-        result = subprocess.run(
-            cmd,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-            check=False,
-            timeout=2,
-        )
-        return result.returncode == 0
-    except subprocess.TimeoutExpired:
-        return False
+    result = subprocess.run(
+        ["ping", "-c", "1", "-W", "1", ip],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        check=False)
+    return result.returncode == 0
 
 
 def get_ip_mac(ip):
