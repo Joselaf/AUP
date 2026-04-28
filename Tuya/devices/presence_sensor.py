@@ -30,7 +30,7 @@ class presence_sensor:
         return self.name
 
     
-    def get_tui_info(self):
+    def get_tui_table(self,table,name):
         status = None
         presence = None
         if is_device_reachable(self.ip):
@@ -39,7 +39,8 @@ class presence_sensor:
         else:
             status = "🔴[bold red]OFFLINE[/]"
             presence = "[bold white]-[/]"
-        return status,presence
+        table.add_columns("Device", "Status", "Presence")
+        table.add_row(name, status, presence)
 
 
 

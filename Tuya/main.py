@@ -19,48 +19,37 @@ def devices_status(device):
         return None
 
     else: 
-        category = device['category']
-        match category:
-            case 'dlq'if("consumo" in device['name'].lower()):
-                if device['ip']:
-                    return consumption_breaker(device['id'], device['ip'], device['key'], device['name'])
-            case 'dlq':
-                if device['ip']:
-                    return breaker(device['id'], device['ip'], device['key'], device['name'])
-            case 'kg':
-                if device['ip']:
-                    return breaker(device['id'], device['ip'], device['key'], device['name'])
-            case 'tdp':
-                if device['ip']:
-                    return heater(device['id'], device['ip'], device['key'], device['name'])
-            case 'mcs':
-                if device['ip']:
-                    return contact_sensor(device['id'], device['ip'], device['key'], device['name'])
-                    
-            case 'hps':
-                if device['ip']:
-                    return presence_sensor(device['id'], device['ip'], device['key'], device['name'])
-            case 'ms':
-                if device['ip']:
-                    return lock(device['id'], device['ip'], device['key'], device['name'])
-            case 'cz':
-                if device['ip']:
-                    return smart_plug(device['id'], device['ip'], device['key'], device['name'])
-            case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
-                if device['ip']:
-                    return smart_bulb(device['id'], device['ip'], device['key'], device['name'])
-            case 'dj'if("esmax" in device['name'].lower()):
-                if device['ip']:
-                    return esmax(device['id'], device['ip'], device['key'], device['name'])     
-            case 'dj':
-                if device['ip']:
-                    return smart_ir(device['id'], device['ip'], device['key'], device['name'])
-            case 'tv':
-                if device['ip']:
-                    return smart_tv(device['id'], device['ip'], device['key'], device['name'])
-            case 'jtmspro':
-                if device['ip']:
-                    return smart_lock(device['id'], device['ip'], device['key'], device['name'])
+        category = device.get('category')
+        if device['ip']:     
+            match category:
+                case 'dlq'if("consumo" in device['name'].lower()):
+                        return consumption_breaker(device['id'],device['ip'],device['key'],device['name'])
+                case 'dlq':
+                        return breaker(device['id'], device['ip'], device['key'], device['name'])
+                case 'kg':
+                        return breaker(device['id'], device['ip'], device['key'], device['name'])
+                case 'tdp':
+                        return heater(device['id'], device['ip'], device['key'], device['name'])
+                case 'mcs':
+                        return contact_sensor(device['id'], device['ip'], device['key'], device['name'])  
+                case 'hps':
+                        return presence_sensor(device['id'], device['ip'], device['key'], device['name'])
+                case 'ms':
+                        return lock(device['id'], device['ip'], device['key'], device['name'])
+                case 'cz':
+                        return smart_plug(device['id'], device['ip'], device['key'], device['name'])
+                case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
+                        return smart_bulb(device['id'], device['ip'], device['key'], device['name'])
+                case 'dj'if("esmax" in device['name'].lower()):
+                        return esmax(device['id'], device['ip'], device['key'], device['name'])     
+                case 'dj':
+                        return smart_ir(device['id'], device['ip'], device['key'], device['name'])
+                case 'tv':
+                        return smart_tv(device['id'], device['ip'], device['key'], device['name'])
+                case 'jtmspro':
+                        return smart_lock(device['id'], device['ip'], device['key'], device['name'])
+        else:
+            return None
 
 
 DEVICES_FILE = "devices.json"

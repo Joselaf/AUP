@@ -34,7 +34,7 @@ class general_circuit_breaker:
     def get_name(self):
         return self.name
 
-    def get_tui_info(self):
+    def get_tui_table(self,table,name):
         status = None
         state = None
         error = None
@@ -47,7 +47,8 @@ class general_circuit_breaker:
             state = "[bold white]-[/]"
             error = "[bold white]-[/]"
             
-        return status,state,error
+        table.add_columns("Device", "Status", "State", "Error")
+        table.add_row(name, status, state, error)
 
 
     ## Turns the device ON if it is OFF and vice-versa

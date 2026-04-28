@@ -29,7 +29,7 @@ class smart_plug:
     def get_name(self):
         return self.name
 
-    def gte_tui_info(self):
+    def gte_tui_table(self,table,nme):
         status = None
         state = None
         if is_device_reachable(self.ip):
@@ -38,7 +38,8 @@ class smart_plug:
         else:
             status = "🔴[bold red]OFFLINE[/]"
             state = "[bold white]-[/]"
-        return status,state
+        table.add_columns("Device", "Status", "State")
+        table.add_row(name, status, state)
             
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):

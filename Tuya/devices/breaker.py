@@ -2,12 +2,12 @@ import tinytuya
 from is_device_reachable import is_device_reachable
 
 class breaker:
-    def __init__(self, id, ip, local_key, name):
-        self.id = id
-        self.ip = ip
-        self.local_key = local_key
-        self.name = name
-        self.device = tinytuya.OutletDevice(id, ip, local_key)
+    def __init__(self, d_id, d_ip, d_local_key, d_name):
+        self.id = d_id
+        self.ip = d_ip
+        self.local_key = d_local_key
+        self.name = d_name
+        self.device = tinytuya.OutletDevice(d_id, d_ip, d_local_key)
         self.volts = 0.0
         self.amps = 0.0
         self.watts = 0.0
@@ -41,7 +41,7 @@ class breaker:
     def get_name(self):
         return self.name
 
-    def get_tui_info(self):
+    def get_tui_table(self, table, name):
         status = None
         error = None
         state = None
@@ -53,8 +53,10 @@ class breaker:
             status = "🔴[bold red]OFFLINE[/]"
             state = "[bold white]-[/]"
             error = "[bold white]-[/]"
-                
-        return status,state,error
+        
+        table.add_columns("Device", "Status", "State", "Error")
+        table.add_row(name, status, state, error)
+        
 
 
     ##Turns the device ON if it is OFF and vice-versa
