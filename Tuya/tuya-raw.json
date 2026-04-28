@@ -1,87 +1,6 @@
 {
     "result": [
         {
-            "active_time": 1765367984,
-            "biz_type": 18,
-            "category": "ms",
-            "create_time": 1765367984,
-            "icon": "smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-            "id": "bfc0ad61162890ac4dcj9v",
-            "ip": "188.83.223.16",
-            "lat": "41.45",
-            "local_key": "0~NrmNLY+Kks4Dc*",
-            "lon": "-8.29",
-            "model": "",
-            "name": "Fechaduras Q24",
-            "online": true,
-            "owner_id": "261481247",
-            "product_id": "bxq2o60gxhh2ben6",
-            "product_name": "SmartLock",
-            "status": [
-                {
-                    "code": "unlock_fingerprint",
-                    "value": 13
-                },
-                {
-                    "code": "unlock_password",
-                    "value": 11
-                },
-                {
-                    "code": "unlock_temporary",
-                    "value": 910
-                },
-                {
-                    "code": "unlock_dynamic",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_card",
-                    "value": 10
-                },
-                {
-                    "code": "unlock_face",
-                    "value": 0
-                },
-                {
-                    "code": "alarm_lock",
-                    "value": "wrong_finger"
-                },
-                {
-                    "code": "unlock_request",
-                    "value": 1
-                },
-                {
-                    "code": "battery_state",
-                    "value": "low"
-                },
-                {
-                    "code": "unlock_app",
-                    "value": 0
-                },
-                {
-                    "code": "hijack",
-                    "value": false
-                },
-                {
-                    "code": "open_inside",
-                    "value": false
-                },
-                {
-                    "code": "unlock_hand",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_finger_vein",
-                    "value": 0
-                }
-            ],
-            "sub": false,
-            "time_zone": "+00:00",
-            "uid": "eu17383581812239V0K3",
-            "update_time": 1777386594,
-            "uuid": "34e459f1d08c23c1"
-        },
-        {
             "active_time": 1763207714,
             "biz_type": 18,
             "category": "dlq",
@@ -109,19 +28,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 3
+                    "value": 1
                 },
                 {
                     "code": "cur_current",
-                    "value": 94
+                    "value": 0
                 },
                 {
                     "code": "cur_power",
-                    "value": 135
+                    "value": 0
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2368
+                    "value": 2376
                 },
                 {
                     "code": "test_bit",
@@ -165,7 +84,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 39
+                    "value": 40
                 },
                 {
                     "code": "alarm_set_1",
@@ -183,186 +102,8 @@
             "sub": false,
             "time_zone": "+00:00",
             "uid": "eu17383581812239V0K3",
-            "update_time": 1777386350,
+            "update_time": 1777393788,
             "uuid": "2ccbe21aa95f9740"
-        },
-        {
-            "active_time": 1764524101,
-            "biz_type": 18,
-            "category": "dlq",
-            "create_time": 1764524099,
-            "icon": "smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
-            "id": "bf5b5b2f017d5a153de6ra",
-            "ip": "144.64.18.210",
-            "lat": "41.45",
-            "local_key": "46G~8kTfOa##p_2M",
-            "lon": "-8.29",
-            "model": "PN-\u9648\u658c\u53cc\u706f",
-            "name": "Disjuntor AC Q13",
-            "online": true,
-            "owner_id": "261481247",
-            "product_id": "nfhnzerdfsvfgwzo",
-            "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
-            "status": [
-                {
-                    "code": "switch",
-                    "value": true
-                },
-                {
-                    "code": "countdown_1",
-                    "value": 0
-                },
-                {
-                    "code": "add_ele",
-                    "value": 2
-                },
-                {
-                    "code": "cur_current",
-                    "value": 75
-                },
-                {
-                    "code": "cur_power",
-                    "value": 20
-                },
-                {
-                    "code": "cur_voltage",
-                    "value": 2285
-                },
-                {
-                    "code": "test_bit",
-                    "value": 2
-                },
-                {
-                    "code": "voltage_coe",
-                    "value": 0
-                },
-                {
-                    "code": "electric_coe",
-                    "value": 0
-                },
-                {
-                    "code": "power_coe",
-                    "value": 0
-                },
-                {
-                    "code": "electricity_coe",
-                    "value": 0
-                },
-                {
-                    "code": "fault",
-                    "value": 0
-                },
-                {
-                    "code": "relay_status",
-                    "value": "last"
-                },
-                {
-                    "code": "light_mode",
-                    "value": "relay"
-                },
-                {
-                    "code": "cycle_time",
-                    "value": ""
-                },
-                {
-                    "code": "temp_value",
-                    "value": 0
-                },
-                {
-                    "code": "alarm_set_1",
-                    "value": "BQEAVQcAAAA="
-                },
-                {
-                    "code": "alarm_set_2",
-                    "value": "AQEAPwMBAQkEAQBk"
-                }
-            ],
-            "sub": false,
-            "time_zone": "+00:00",
-            "uid": "eu17383581812239V0K3",
-            "update_time": 1777385338,
-            "uuid": "743f67310aec2cb9"
-        },
-        {
-            "active_time": 1765316406,
-            "biz_type": 18,
-            "category": "ms",
-            "create_time": 1765316406,
-            "icon": "smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-            "id": "bfa5bccb1e1dfd85b6la1n",
-            "ip": "188.83.223.16",
-            "lat": "41.45",
-            "local_key": ":xz)?3|!<msW#BV0",
-            "lon": "-8.29",
-            "model": "",
-            "name": "Fechaduras inteligentes 25",
-            "online": true,
-            "owner_id": "261481247",
-            "product_id": "bxq2o60gxhh2ben6",
-            "product_name": "SmartLock",
-            "status": [
-                {
-                    "code": "unlock_fingerprint",
-                    "value": 12
-                },
-                {
-                    "code": "unlock_password",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_temporary",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_dynamic",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_card",
-                    "value": 10
-                },
-                {
-                    "code": "unlock_face",
-                    "value": 0
-                },
-                {
-                    "code": "alarm_lock",
-                    "value": "wrong_finger"
-                },
-                {
-                    "code": "unlock_request",
-                    "value": 1
-                },
-                {
-                    "code": "battery_state",
-                    "value": "low"
-                },
-                {
-                    "code": "unlock_app",
-                    "value": 970
-                },
-                {
-                    "code": "hijack",
-                    "value": false
-                },
-                {
-                    "code": "open_inside",
-                    "value": false
-                },
-                {
-                    "code": "unlock_hand",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_finger_vein",
-                    "value": 0
-                }
-            ],
-            "sub": false,
-            "time_zone": "+00:00",
-            "uid": "eu17383581812239V0K3",
-            "update_time": 1777384743,
-            "uuid": "485212828ab312f9"
         },
         {
             "active_time": 1765368566,
@@ -442,22 +183,119 @@
             "sub": false,
             "time_zone": "+00:00",
             "uid": "eu17383581812239V0K3",
-            "update_time": 1777384531,
+            "update_time": 1777392894,
             "uuid": "05aca3a600a002d2"
         },
         {
-            "active_time": 1765367600,
+            "active_time": 1764524101,
+            "biz_type": 18,
+            "category": "dlq",
+            "create_time": 1764524099,
+            "icon": "smart/icon/bay1605084556449a3Fp/8f80528264e3802fa920f156305c5df8.png",
+            "id": "bf5b5b2f017d5a153de6ra",
+            "ip": "144.64.18.210",
+            "lat": "41.45",
+            "local_key": "46G~8kTfOa##p_2M",
+            "lon": "-8.29",
+            "model": "PN-\u9648\u658c\u53cc\u706f",
+            "name": "Disjuntor AC Q13",
+            "online": true,
+            "owner_id": "261481247",
+            "product_id": "nfhnzerdfsvfgwzo",
+            "product_name": "\u8ba1\u91cf\u65ad\u8def\u5668",
+            "status": [
+                {
+                    "code": "switch",
+                    "value": true
+                },
+                {
+                    "code": "countdown_1",
+                    "value": 0
+                },
+                {
+                    "code": "add_ele",
+                    "value": 2
+                },
+                {
+                    "code": "cur_current",
+                    "value": 0
+                },
+                {
+                    "code": "cur_power",
+                    "value": 0
+                },
+                {
+                    "code": "cur_voltage",
+                    "value": 2323
+                },
+                {
+                    "code": "test_bit",
+                    "value": 2
+                },
+                {
+                    "code": "voltage_coe",
+                    "value": 0
+                },
+                {
+                    "code": "electric_coe",
+                    "value": 0
+                },
+                {
+                    "code": "power_coe",
+                    "value": 0
+                },
+                {
+                    "code": "electricity_coe",
+                    "value": 0
+                },
+                {
+                    "code": "fault",
+                    "value": 0
+                },
+                {
+                    "code": "relay_status",
+                    "value": "last"
+                },
+                {
+                    "code": "light_mode",
+                    "value": "relay"
+                },
+                {
+                    "code": "cycle_time",
+                    "value": ""
+                },
+                {
+                    "code": "temp_value",
+                    "value": 0
+                },
+                {
+                    "code": "alarm_set_1",
+                    "value": "BQEAVQcAAAA="
+                },
+                {
+                    "code": "alarm_set_2",
+                    "value": "AQEAPwMBAQkEAQBk"
+                }
+            ],
+            "sub": false,
+            "time_zone": "+00:00",
+            "uid": "eu17383581812239V0K3",
+            "update_time": 1777389391,
+            "uuid": "743f67310aec2cb9"
+        },
+        {
+            "active_time": 1765368845,
             "biz_type": 18,
             "category": "ms",
-            "create_time": 1763578535,
+            "create_time": 1765368845,
             "icon": "smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-            "id": "bf45ed69fdca08c91crwq5",
+            "id": "bfd3463d0d1634e933p7nw",
             "ip": "188.83.223.16",
             "lat": "41.45",
-            "local_key": "r6eee*8*2k{l=|~q",
+            "local_key": ").P#+!FVnaNK'=?$",
             "lon": "-8.29",
             "model": "",
-            "name": "Fechadura Q21",
+            "name": "Fechaduras Q13",
             "online": true,
             "owner_id": "261481247",
             "product_id": "bxq2o60gxhh2ben6",
@@ -465,15 +303,15 @@
             "status": [
                 {
                     "code": "unlock_fingerprint",
-                    "value": 12
+                    "value": 16
                 },
                 {
                     "code": "unlock_password",
-                    "value": 11
+                    "value": 0
                 },
                 {
                     "code": "unlock_temporary",
-                    "value": 0
+                    "value": 910
                 },
                 {
                     "code": "unlock_dynamic",
@@ -481,7 +319,7 @@
                 },
                 {
                     "code": "unlock_card",
-                    "value": 13
+                    "value": 15
                 },
                 {
                     "code": "unlock_face",
@@ -489,11 +327,11 @@
                 },
                 {
                     "code": "alarm_lock",
-                    "value": "wrong_finger"
+                    "value": "low_battery"
                 },
                 {
                     "code": "unlock_request",
-                    "value": 0
+                    "value": 1
                 },
                 {
                     "code": "battery_state",
@@ -523,8 +361,8 @@
             "sub": false,
             "time_zone": "+00:00",
             "uid": "eu17383581812239V0K3",
-            "update_time": 1777383167,
-            "uuid": "53ebc13d05c84890"
+            "update_time": 1777388987,
+            "uuid": "81b9f7cf1258a8b0"
         },
         {
             "active_time": 1765304210,
@@ -618,14 +456,95 @@
                 },
                 {
                     "code": "initiative_message",
-                    "value": "eyJ2IjoiNS4wIiwiZmlsZXMiOlt7ImRhdGEiOiJjNDJjMTFlZDU5NTJhMWUyMTJmYmI3NWQwNzI5ZGJmNzAzMjIzMDNhZTE3MTkyMjQ3MzdmYjc4NWJkOWFkMjA5ZjllZDViZmJkNmJmOTliN2NlNjYzZGU2NzNjMDExMmUyODI4YzdjNTdjZTliMmZkZjQ4NDNjZDJhNzYyM2E5YjgzM2U1Y2RjMGUxYTRkYTEwODJmNmY1NzcxNGIyNGFlOTgwMWQzMDYxNjdiMTllYjNjNTA0NTM1MWY3ZjUwMWQxMDI4NjA4ZDBlOTMyMzZlZGUzMzEwOTYwNjNjMjQwOGQxYzBkMzdhMjlkMmU0NjgzMTMxMjEwYTUxZWY5NjVkIiwia2V5SWQiOiJkZWZhdWx0IiwiaXYiOiI3ZmFlYzAxZjIwMzllZjc0ZmY4ZjQwYTlmZmM3NjA5ZiJ9XSwiY21kIjoiZG9vcl9sb2NrX3ZpZGVvX2NvdmVyIiwidHlwZSI6ImltYWdlIn0="
+                    "value": "eyJ2IjoiNS4wIiwiZmlsZXMiOlt7ImRhdGEiOiI4YjRiMTUyMDI4Mjc4YWZjYWY0ZjE5MDFjYTFiNmMwNzE1YjY0OGE0YzYyZDY3MDZhYWExMzE1MjEwOWU1ODk5MGY1MzRiZWVjZTdkMWEwZWM4ZGUwZDJmM2Q0ZWQxNzYzNzNhMjRhYzlhYTRhZDI3YTIxYWQwMWE2NjBjMWFmYWJlMmE5NGQ5ZWQ3YjdjYzJkZDhhNmE4MWU3MzMxZDczMjMxN2VkYmQxZWE3OTE5MTNjNDM1ODIwOTUxMGFiNGYxMmM4ZTZhYzFjODI4NWRhODYwZTg4NDQwYTNlNDQ3YjI2NjZmNmVkNDliMDEwYjFmNjc5YTYzNThiY2Y3NDg3Iiwia2V5SWQiOiJkZWZhdWx0IiwiaXYiOiJlNThjZGUyZjg1YjZmNDQxMTM4ZmU1ZWYxMTJlYzkwZiJ9XSwiY21kIjoiZG9vcl9sb2NrX3ZpZGVvX2NvdmVyIiwidHlwZSI6ImltYWdlIn0="
                 }
             ],
             "sub": false,
             "time_zone": "+00:00",
             "uid": "eu17383581812239V0K3",
-            "update_time": 1777380933,
+            "update_time": 1777388911,
             "uuid": "ea8bf345e91803a1"
+        },
+        {
+            "active_time": 1765366441,
+            "biz_type": 18,
+            "category": "ms",
+            "create_time": 1764175220,
+            "icon": "smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+            "id": "bf1655b8790a6a3e35ivlz",
+            "ip": "188.83.223.16",
+            "lat": "41.45",
+            "local_key": "{o5=1]+j<^E{?lZ?",
+            "lon": "-8.29",
+            "model": "",
+            "name": "Fechadura Q11",
+            "online": true,
+            "owner_id": "261481247",
+            "product_id": "bxq2o60gxhh2ben6",
+            "product_name": "SmartLock",
+            "status": [
+                {
+                    "code": "unlock_fingerprint",
+                    "value": 13
+                },
+                {
+                    "code": "unlock_password",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_temporary",
+                    "value": 910
+                },
+                {
+                    "code": "unlock_dynamic",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_card",
+                    "value": 10
+                },
+                {
+                    "code": "unlock_face",
+                    "value": 0
+                },
+                {
+                    "code": "alarm_lock",
+                    "value": "wrong_finger"
+                },
+                {
+                    "code": "unlock_request",
+                    "value": 1
+                },
+                {
+                    "code": "battery_state",
+                    "value": "low"
+                },
+                {
+                    "code": "unlock_app",
+                    "value": 0
+                },
+                {
+                    "code": "hijack",
+                    "value": false
+                },
+                {
+                    "code": "open_inside",
+                    "value": false
+                },
+                {
+                    "code": "unlock_hand",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_finger_vein",
+                    "value": 0
+                }
+            ],
+            "sub": false,
+            "time_zone": "+00:00",
+            "uid": "eu17383581812239V0K3",
+            "update_time": 1777388417,
+            "uuid": "91c2a0e30d8977c4"
         },
         {
             "active_time": 1765305857,
@@ -679,6 +598,168 @@
                 },
                 {
                     "code": "battery_state",
+                    "value": "high"
+                },
+                {
+                    "code": "unlock_app",
+                    "value": 970
+                },
+                {
+                    "code": "hijack",
+                    "value": false
+                },
+                {
+                    "code": "open_inside",
+                    "value": false
+                },
+                {
+                    "code": "unlock_hand",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_finger_vein",
+                    "value": 0
+                }
+            ],
+            "sub": false,
+            "time_zone": "+00:00",
+            "uid": "eu17383581812239V0K3",
+            "update_time": 1777387731,
+            "uuid": "6baf040e2c311a95"
+        },
+        {
+            "active_time": 1765367984,
+            "biz_type": 18,
+            "category": "ms",
+            "create_time": 1765367984,
+            "icon": "smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+            "id": "bfc0ad61162890ac4dcj9v",
+            "ip": "188.83.223.16",
+            "lat": "41.45",
+            "local_key": "0~NrmNLY+Kks4Dc*",
+            "lon": "-8.29",
+            "model": "",
+            "name": "Fechaduras Q24",
+            "online": true,
+            "owner_id": "261481247",
+            "product_id": "bxq2o60gxhh2ben6",
+            "product_name": "SmartLock",
+            "status": [
+                {
+                    "code": "unlock_fingerprint",
+                    "value": 13
+                },
+                {
+                    "code": "unlock_password",
+                    "value": 11
+                },
+                {
+                    "code": "unlock_temporary",
+                    "value": 910
+                },
+                {
+                    "code": "unlock_dynamic",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_card",
+                    "value": 10
+                },
+                {
+                    "code": "unlock_face",
+                    "value": 0
+                },
+                {
+                    "code": "alarm_lock",
+                    "value": "wrong_finger"
+                },
+                {
+                    "code": "unlock_request",
+                    "value": 1
+                },
+                {
+                    "code": "battery_state",
+                    "value": "low"
+                },
+                {
+                    "code": "unlock_app",
+                    "value": 0
+                },
+                {
+                    "code": "hijack",
+                    "value": false
+                },
+                {
+                    "code": "open_inside",
+                    "value": false
+                },
+                {
+                    "code": "unlock_hand",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_finger_vein",
+                    "value": 0
+                }
+            ],
+            "sub": false,
+            "time_zone": "+00:00",
+            "uid": "eu17383581812239V0K3",
+            "update_time": 1777386594,
+            "uuid": "34e459f1d08c23c1"
+        },
+        {
+            "active_time": 1765316406,
+            "biz_type": 18,
+            "category": "ms",
+            "create_time": 1765316406,
+            "icon": "smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+            "id": "bfa5bccb1e1dfd85b6la1n",
+            "ip": "188.83.223.16",
+            "lat": "41.45",
+            "local_key": ":xz)?3|!<msW#BV0",
+            "lon": "-8.29",
+            "model": "",
+            "name": "Fechaduras inteligentes 25",
+            "online": true,
+            "owner_id": "261481247",
+            "product_id": "bxq2o60gxhh2ben6",
+            "product_name": "SmartLock",
+            "status": [
+                {
+                    "code": "unlock_fingerprint",
+                    "value": 12
+                },
+                {
+                    "code": "unlock_password",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_temporary",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_dynamic",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_card",
+                    "value": 11
+                },
+                {
+                    "code": "unlock_face",
+                    "value": 0
+                },
+                {
+                    "code": "alarm_lock",
+                    "value": "wrong_finger"
+                },
+                {
+                    "code": "unlock_request",
+                    "value": 1
+                },
+                {
+                    "code": "battery_state",
                     "value": "low"
                 },
                 {
@@ -705,8 +786,89 @@
             "sub": false,
             "time_zone": "+00:00",
             "uid": "eu17383581812239V0K3",
-            "update_time": 1777378929,
-            "uuid": "6baf040e2c311a95"
+            "update_time": 1777384743,
+            "uuid": "485212828ab312f9"
+        },
+        {
+            "active_time": 1765367600,
+            "biz_type": 18,
+            "category": "ms",
+            "create_time": 1763578535,
+            "icon": "smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
+            "id": "bf45ed69fdca08c91crwq5",
+            "ip": "188.83.223.16",
+            "lat": "41.45",
+            "local_key": "r6eee*8*2k{l=|~q",
+            "lon": "-8.29",
+            "model": "",
+            "name": "Fechadura Q21",
+            "online": true,
+            "owner_id": "261481247",
+            "product_id": "bxq2o60gxhh2ben6",
+            "product_name": "SmartLock",
+            "status": [
+                {
+                    "code": "unlock_fingerprint",
+                    "value": 12
+                },
+                {
+                    "code": "unlock_password",
+                    "value": 11
+                },
+                {
+                    "code": "unlock_temporary",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_dynamic",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_card",
+                    "value": 13
+                },
+                {
+                    "code": "unlock_face",
+                    "value": 0
+                },
+                {
+                    "code": "alarm_lock",
+                    "value": "wrong_finger"
+                },
+                {
+                    "code": "unlock_request",
+                    "value": 0
+                },
+                {
+                    "code": "battery_state",
+                    "value": "low"
+                },
+                {
+                    "code": "unlock_app",
+                    "value": 0
+                },
+                {
+                    "code": "hijack",
+                    "value": false
+                },
+                {
+                    "code": "open_inside",
+                    "value": false
+                },
+                {
+                    "code": "unlock_hand",
+                    "value": 0
+                },
+                {
+                    "code": "unlock_finger_vein",
+                    "value": 0
+                }
+            ],
+            "sub": false,
+            "time_zone": "+00:00",
+            "uid": "eu17383581812239V0K3",
+            "update_time": 1777383167,
+            "uuid": "53ebc13d05c84890"
         },
         {
             "active_time": 1765369668,
@@ -962,7 +1124,7 @@
                 },
                 {
                     "code": "initiative_message",
-                    "value": "eyJ2IjoiNS4wIiwiZmlsZXMiOlt7ImRhdGEiOiJiNmQzMDVhOWM1MGQ5Y2VkYWZmZmM0MzhjMjI4NTEwM2ViNmFhYjRmMTk5OTFjOGQxYmZhM2Q1ZjQ3YWJhOGMwMGRlNTRjNGU5OGViYjg3NGQzZDBjZTUwNzUwNjdjYWNhNDMzMmYxYTY1MzU3ZDk5ZjRiMmFjYWQ2NWI0MTNjNDQ4ZDJlNDVhZTllNTAyMjZjMjI2MjUyNmQ0MDhiOWM1NWFlYmYxMmIzZTRmMjMwYmFiNDg5Y2RmMWVlOWY0N2ZiMzNlMDdlNjYzMTg0Nzk1OWMxYTU5NjZkNjBkNGY1MmIzNjFiYzgyY2Y5Mjc5YTliYjU1ODlmZDg2NGRhZDY2Iiwia2V5SWQiOiJkZWZhdWx0IiwiaXYiOiIxN2NiNGY5NGFjMTk4MGFiMjYxNjA2ZmVmNDg1YTdjMyJ9XSwiY21kIjoiZG9vcl9sb2NrX3ZpZGVvX2NvdmVyIiwidHlwZSI6ImltYWdlIn0="
+                    "value": "eyJ2IjoiNS4wIiwiZmlsZXMiOlt7ImRhdGEiOiJkMzllNzA2OTRkOWZiZGNiNjY4ZDdkYjkwOGY5NTRmODRlZmFhNmI2OTQ0NDg2ODNjMjMwMzI5ZGJlZmUyZDc4YTUxZTcyYjFiNmI5MmFhYTViZTlmYTBjZDI2MjRmOGY3NjU2ZjFjMGUyNWEwNWY3ZTI3OWRiYjA2ZjQ3NDZkY2RjMjZmZGY0Mzc5NDRlMmM0OThkMGUyYjY4MjM1Njk4NzZlODE0ZDY2MWQ0NThhYmU0MzM2MWNiNWZjYTI1NGI2NWUzNWNlZTVmZTZiNGFmMmM3YWI2NDE4YjRkZWM2MjU4NDBiNGI2MWMzNDc0MGE1YzIyNGQ1YjA4NmRkYjg5Iiwia2V5SWQiOiJkZWZhdWx0IiwiaXYiOiI0YWIzMDFkMTcwNWFjYTE4NDQwYzhjNGIwMDZiNzYxMCJ9XSwiY21kIjoiZG9vcl9sb2NrX3ZpZGVvX2NvdmVyIiwidHlwZSI6ImltYWdlIn0="
                 }
             ],
             "sub": false,
@@ -1226,15 +1388,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 90
+                    "value": 75
                 },
                 {
                     "code": "cur_power",
-                    "value": 45
+                    "value": 52
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2298
+                    "value": 2314
                 },
                 {
                     "code": "test_bit",
@@ -1311,19 +1473,19 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 253218
+                    "value": 253296
                 },
                 {
                     "code": "phase_a",
-                    "value": "CSgAB/YAAbA="
+                    "value": "CRQAAgQAAPc="
                 },
                 {
                     "code": "phase_b",
-                    "value": "CSUAAsUAAGU="
+                    "value": "CRUAApsAAF8="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CSwAAEoAAAI="
+                    "value": "CRcAAEoAAAI="
                 },
                 {
                     "code": "fault",
@@ -1420,15 +1582,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 76
+                    "value": 74
                 },
                 {
                     "code": "cur_power",
-                    "value": 28
+                    "value": 27
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2348
+                    "value": 2349
                 },
                 {
                     "code": "test_bit",
@@ -1517,15 +1679,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 0
+                    "value": 179
                 },
                 {
                     "code": "cur_power",
-                    "value": 0
+                    "value": 23
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2291
+                    "value": 2319
                 },
                 {
                     "code": "test_bit",
@@ -1565,7 +1727,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 34
+                    "value": 33
                 },
                 {
                     "code": "alarm_set_1",
@@ -1614,15 +1776,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 98
+                    "value": 0
                 },
                 {
                     "code": "cur_power",
-                    "value": 25
+                    "value": 0
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2339
+                    "value": 2299
                 },
                 {
                     "code": "test_bit",
@@ -1662,7 +1824,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 36
+                    "value": 35
                 },
                 {
                     "code": "alarm_set_1",
@@ -1711,15 +1873,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 87
+                    "value": 83
                 },
                 {
                     "code": "cur_power",
-                    "value": 63
+                    "value": 62
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2332
+                    "value": 2343
                 },
                 {
                     "code": "test_bit",
@@ -1824,7 +1986,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2359
+                    "value": 2363
                 },
                 {
                     "code": "test_bit",
@@ -2051,7 +2213,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2349
+                    "value": 2326
                 },
                 {
                     "code": "test_bit",
@@ -2136,19 +2298,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 48
+                    "value": 16
                 },
                 {
                     "code": "cur_current",
-                    "value": 231
+                    "value": 241
                 },
                 {
                     "code": "cur_power",
-                    "value": 408
+                    "value": 307
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2371
+                    "value": 2328
                 },
                 {
                     "code": "test_bit",
@@ -2212,168 +2374,6 @@
             "uid": "eu17383581812239V0K3",
             "update_time": 1777348796,
             "uuid": "94c68a4861fafd85"
-        },
-        {
-            "active_time": 1765366441,
-            "biz_type": 18,
-            "category": "ms",
-            "create_time": 1764175220,
-            "icon": "smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-            "id": "bf1655b8790a6a3e35ivlz",
-            "ip": "188.83.223.16",
-            "lat": "41.45",
-            "local_key": "{o5=1]+j<^E{?lZ?",
-            "lon": "-8.29",
-            "model": "",
-            "name": "Fechadura Q11",
-            "online": true,
-            "owner_id": "261481247",
-            "product_id": "bxq2o60gxhh2ben6",
-            "product_name": "SmartLock",
-            "status": [
-                {
-                    "code": "unlock_fingerprint",
-                    "value": 13
-                },
-                {
-                    "code": "unlock_password",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_temporary",
-                    "value": 910
-                },
-                {
-                    "code": "unlock_dynamic",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_card",
-                    "value": 10
-                },
-                {
-                    "code": "unlock_face",
-                    "value": 0
-                },
-                {
-                    "code": "alarm_lock",
-                    "value": "wrong_finger"
-                },
-                {
-                    "code": "unlock_request",
-                    "value": 1
-                },
-                {
-                    "code": "battery_state",
-                    "value": "low"
-                },
-                {
-                    "code": "unlock_app",
-                    "value": 0
-                },
-                {
-                    "code": "hijack",
-                    "value": false
-                },
-                {
-                    "code": "open_inside",
-                    "value": false
-                },
-                {
-                    "code": "unlock_hand",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_finger_vein",
-                    "value": 0
-                }
-            ],
-            "sub": false,
-            "time_zone": "+00:00",
-            "uid": "eu17383581812239V0K3",
-            "update_time": 1777323830,
-            "uuid": "91c2a0e30d8977c4"
-        },
-        {
-            "active_time": 1765368845,
-            "biz_type": 18,
-            "category": "ms",
-            "create_time": 1765368845,
-            "icon": "smart/icon/ay1547457421489gOxPi/c5a832c6cf05fafec2a40a5afc4aef3a.png",
-            "id": "bfd3463d0d1634e933p7nw",
-            "ip": "188.83.223.16",
-            "lat": "41.45",
-            "local_key": ").P#+!FVnaNK'=?$",
-            "lon": "-8.29",
-            "model": "",
-            "name": "Fechaduras Q13",
-            "online": true,
-            "owner_id": "261481247",
-            "product_id": "bxq2o60gxhh2ben6",
-            "product_name": "SmartLock",
-            "status": [
-                {
-                    "code": "unlock_fingerprint",
-                    "value": 16
-                },
-                {
-                    "code": "unlock_password",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_temporary",
-                    "value": 910
-                },
-                {
-                    "code": "unlock_dynamic",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_card",
-                    "value": 15
-                },
-                {
-                    "code": "unlock_face",
-                    "value": 0
-                },
-                {
-                    "code": "alarm_lock",
-                    "value": "low_battery"
-                },
-                {
-                    "code": "unlock_request",
-                    "value": 1
-                },
-                {
-                    "code": "battery_state",
-                    "value": "low"
-                },
-                {
-                    "code": "unlock_app",
-                    "value": 0
-                },
-                {
-                    "code": "hijack",
-                    "value": false
-                },
-                {
-                    "code": "open_inside",
-                    "value": false
-                },
-                {
-                    "code": "unlock_hand",
-                    "value": 0
-                },
-                {
-                    "code": "unlock_finger_vein",
-                    "value": 0
-                }
-            ],
-            "sub": false,
-            "time_zone": "+00:00",
-            "uid": "eu17383581812239V0K3",
-            "update_time": 1777319959,
-            "uuid": "81b9f7cf1258a8b0"
         },
         {
             "active_time": 1765367093,
@@ -2585,7 +2585,7 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 201
+                    "value": 197
                 },
                 {
                     "code": "cur_power",
@@ -2593,7 +2593,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2342
+                    "value": 2313
                 },
                 {
                     "code": "test_bit",
@@ -2670,19 +2670,19 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 599870
+                    "value": 600000
                 },
                 {
                     "code": "phase_a",
-                    "value": "CRAACigAAjIAAA=="
+                    "value": "CSQAArwAAGoAAA=="
                 },
                 {
                     "code": "phase_b",
-                    "value": "CRAAFXwABL0="
+                    "value": "CRAAAfQAAF4="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CRAAASwAAC4="
+                    "value": "CQYAAlgAAHo="
                 },
                 {
                     "code": "fault",
@@ -2755,11 +2755,11 @@
                 },
                 {
                     "code": "cur_power",
-                    "value": 38
+                    "value": 37
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2359
+                    "value": 2327
                 },
                 {
                     "code": "test_bit",
@@ -2803,7 +2803,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 38
+                    "value": 39
                 },
                 {
                     "code": "alarm_set_1",
@@ -2852,19 +2852,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 3
+                    "value": 2
                 },
                 {
                     "code": "cur_current",
-                    "value": 105
+                    "value": 117
                 },
                 {
                     "code": "cur_power",
-                    "value": 23
+                    "value": 44
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2251
+                    "value": 2307
                 },
                 {
                     "code": "test_bit",
@@ -2904,7 +2904,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 37
+                    "value": 36
                 },
                 {
                     "code": "alarm_set_1",
@@ -2953,15 +2953,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 2951
+                    "value": 1493
                 },
                 {
                     "code": "cur_power",
-                    "value": 6665
+                    "value": 3234
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2297
+                    "value": 2319
                 },
                 {
                     "code": "test_bit",
@@ -3001,7 +3001,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 37
+                    "value": 35
                 },
                 {
                     "code": "alarm_set_1",
@@ -3058,7 +3058,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2289
+                    "value": 2317
                 },
                 {
                     "code": "test_bit",
@@ -3147,15 +3147,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 0
+                    "value": 101
                 },
                 {
                     "code": "cur_power",
-                    "value": 0
+                    "value": 35
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2285
+                    "value": 2320
                 },
                 {
                     "code": "test_bit",
@@ -3195,7 +3195,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 37
+                    "value": 36
                 },
                 {
                     "code": "alarm_set_1",
@@ -3232,19 +3232,19 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 632480
+                    "value": 632841
                 },
                 {
                     "code": "phase_a",
-                    "value": "COsAFDoABFI="
+                    "value": "CSoAFmMABSI="
                 },
                 {
                     "code": "phase_b",
-                    "value": "CNwAAW8AAE0="
+                    "value": "CSwAANMAACw="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CN4AAXcAAC8="
+                    "value": "CRgAATcAACQ="
                 },
                 {
                     "code": "fault",
@@ -3499,15 +3499,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 91
+                    "value": 0
                 },
                 {
                     "code": "cur_power",
-                    "value": 21
+                    "value": 0
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2337
+                    "value": 2303
                 },
                 {
                     "code": "test_bit",
@@ -3547,7 +3547,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 35
+                    "value": 34
                 },
                 {
                     "code": "alarm_set_1",
@@ -3592,7 +3592,7 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 34
+                    "value": 36
                 },
                 {
                     "code": "cur_current",
@@ -3604,7 +3604,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2352
+                    "value": 2348
                 },
                 {
                     "code": "test_bit",
@@ -3644,7 +3644,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 28
+                    "value": 29
                 },
                 {
                     "code": "alarm_set_1",
@@ -3681,19 +3681,19 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 78708
+                    "value": 78745
                 },
                 {
                     "code": "phase_a",
-                    "value": "CSMAAbMAAFU="
+                    "value": "CSkAALcAABY="
                 },
                 {
                     "code": "phase_b",
-                    "value": "CSIAEksAA9w="
+                    "value": "CSwAAA8AAAE="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CSgAAQYAAC4="
+                    "value": "CS0AAnkAAII="
                 },
                 {
                     "code": "fault",
@@ -3733,7 +3733,7 @@
                 },
                 {
                     "code": "temp_current",
-                    "value": 37
+                    "value": 36
                 },
                 {
                     "code": "countdown_1",
@@ -3778,19 +3778,19 @@
             "status": [
                 {
                     "code": "total_forward_energy",
-                    "value": 1115016
+                    "value": 1115453
                 },
                 {
                     "code": "phase_a",
-                    "value": "CO8AIVIABxg="
+                    "value": "CREAHeMABrA="
                 },
                 {
                     "code": "phase_b",
-                    "value": "COsAA0UAAF8="
+                    "value": "CRAAAvcAAD0="
                 },
                 {
                     "code": "phase_c",
-                    "value": "CN0AAlcAADc="
+                    "value": "CRoAAjUAACs="
                 },
                 {
                     "code": "fault",
@@ -3883,19 +3883,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 27
+                    "value": 31
                 },
                 {
                     "code": "cur_current",
-                    "value": 273
+                    "value": 254
                 },
                 {
                     "code": "cur_power",
-                    "value": 511
+                    "value": 508
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2301
+                    "value": 2349
                 },
                 {
                     "code": "test_bit",
@@ -3984,11 +3984,11 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 0
+                    "value": 101
                 },
                 {
                     "code": "cur_power",
-                    "value": 0
+                    "value": 33
                 },
                 {
                     "code": "cur_voltage",
@@ -4077,19 +4077,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 8
+                    "value": 6
                 },
                 {
                     "code": "cur_current",
-                    "value": 403
+                    "value": 129
                 },
                 {
                     "code": "cur_power",
-                    "value": 806
+                    "value": 126
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2365
+                    "value": 2367
                 },
                 {
                     "code": "test_bit",
@@ -4194,7 +4194,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2341
+                    "value": 2292
                 },
                 {
                     "code": "test_bit",
@@ -4283,7 +4283,7 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 78
+                    "value": 69
                 },
                 {
                     "code": "cur_power",
@@ -4291,7 +4291,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2352
+                    "value": 2350
                 },
                 {
                     "code": "test_bit",
@@ -4331,7 +4331,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 30
+                    "value": 31
                 },
                 {
                     "code": "alarm_set_1",
@@ -4384,11 +4384,11 @@
                 },
                 {
                     "code": "cur_power",
-                    "value": 25
+                    "value": 26
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2359
+                    "value": 2365
                 },
                 {
                     "code": "test_bit",
@@ -4481,19 +4481,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 2
+                    "value": 3
                 },
                 {
                     "code": "cur_current",
-                    "value": 115
+                    "value": 83
                 },
                 {
                     "code": "cur_power",
-                    "value": 59
+                    "value": 42
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2357
+                    "value": 2349
                 },
                 {
                     "code": "test_bit",
@@ -4533,7 +4533,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 27
+                    "value": 28
                 },
                 {
                     "code": "alarm_set_1",
@@ -4582,15 +4582,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 64
+                    "value": 51
                 },
                 {
                     "code": "cur_power",
-                    "value": 29
+                    "value": 24
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2361
+                    "value": 2323
                 },
                 {
                     "code": "test_bit",
@@ -4679,15 +4679,15 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 0
+                    "value": 79
                 },
                 {
                     "code": "cur_power",
-                    "value": 0
+                    "value": 26
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2341
+                    "value": 2349
                 },
                 {
                     "code": "test_bit",
@@ -4772,19 +4772,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 2
+                    "value": 1
                 },
                 {
                     "code": "cur_current",
-                    "value": 0
+                    "value": 57
                 },
                 {
                     "code": "cur_power",
-                    "value": 0
+                    "value": 48
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2361
+                    "value": 2348
                 },
                 {
                     "code": "test_bit",
@@ -4828,7 +4828,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 39
+                    "value": 40
                 },
                 {
                     "code": "alarm_set_1",
@@ -4873,19 +4873,19 @@
                 },
                 {
                     "code": "add_ele",
-                    "value": 18
+                    "value": 55
                 },
                 {
                     "code": "cur_current",
-                    "value": 0
+                    "value": 507
                 },
                 {
                     "code": "cur_power",
-                    "value": 0
+                    "value": 1034
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2355
+                    "value": 2323
                 },
                 {
                     "code": "test_bit",
@@ -4982,7 +4982,7 @@
                 },
                 {
                     "code": "cur_current",
-                    "value": 181
+                    "value": 179
                 },
                 {
                     "code": "cur_power",
@@ -4990,7 +4990,7 @@
                 },
                 {
                     "code": "cur_voltage",
-                    "value": 2317
+                    "value": 2303
                 },
                 {
                     "code": "test_bit",
@@ -5034,7 +5034,7 @@
                 },
                 {
                     "code": "temp_value",
-                    "value": 38
+                    "value": 39
                 },
                 {
                     "code": "alarm_set_1",
@@ -6282,13 +6282,13 @@
         }
     ],
     "success": true,
-    "t": 1777386659627,
-    "tid": "dff0818c430e11f1b2d2c2db188909a4",
+    "t": 1777394429800,
+    "tid": "f76a3c3b432011f1b2d2c2db188909a4",
     "file": {
         "name": "tuya-raw.json",
         "description": "Full raw list of Tuya devices.",
         "account": "wq3f87vwvv8jpj5ynsqu",
-        "date": "2026-04-28T15:30:59.833195",
+        "date": "2026-04-28T17:40:29.984458",
         "tinytuya": "1.18.0"
     }
 }

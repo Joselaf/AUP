@@ -2,15 +2,18 @@ import tinytuya
 from is_device_reachable import is_device_reachable
 
 class smart_ir:
-    def __init__(self, id, ip, local_key, name):
-        self.id = id
-        self.ip = ip
-        self.local_key = local_key
-        self.name = name
-        self.device = tinytuya.OutletDevice(id, ip, local_key)
+    def __init__(self,d_id,d_ip,d_local_key,d_name,d_version):
+        self.id = d_id
+        self.ip = d_ip
+        self.local_key = d_local_key
+        self.name = d_name
+        self.device = tinytuya.OutletDevice(d_id,d_ip,d_local_key)
+        self.device.set_version(d_version)
         self.status = self.device.status()
-        self.dps = self.status.get('dps', {})
-
+        if self.status is not None:
+             self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
         self.stats = {
             "id":      self.id,
             "address": self.ip,
