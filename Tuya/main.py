@@ -175,19 +175,6 @@ def organize_structure(device_list):
 
     return _sorted_organized_list_of_rooms, _outside_devices
 
-
-if __name__ == "__main__":
-    devices = load_devices()
-    
-    my_devices, my_outside_devices = organize_devices(devices)
-    
-        
-    '''floor = int(input("indique o seu piso"))
-    room = int(input("indique o seu quarto"))
-    
-    for device in my_devices["Floors"][floor][room]["Devices"]:
-        status = "ONLINE" if device['ip'] else "OFFLINE"
-        print(f"{device['name'][0:device['name'].index("Q")]}-->{status}")'''
     
     
        

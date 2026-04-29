@@ -1,13 +1,13 @@
-from textual.app import App,ComposeResult
-from textual.widgets import Header,DataTable,Label
-from textual.containers import Horizontal,Vertical
+from textual.app import App, ComposeResult
+from textual.widgets import Header, DataTable, Label
+from textual.containers import Horizontal, Vertical
 from textual import work
 import main
 from devices import *
 from textual.reactive import reactive
 from datetime import datetime
 import tinytuya
-from  is_device_reachable import is_device_reachable
+from is_device_reachable import is_device_reachable
 
 CSS = '''
 .floor-container {
@@ -35,7 +35,7 @@ DataTable > .datatable--header {
     text-style: bold;
 }'''
 
-REFRESH_INTERVAL = 300  
+REFRESH_INTERVAL = 300
 
 
 class TuyaDashboard(App):
@@ -57,13 +57,18 @@ class TuyaDashboard(App):
     @work(thread=True)
     def refresh_devices(self) -> None:
         self.call_from_thread(setattr, self, "scanning", True)
+        # Scan first so load_devices() picks up fresh data
         tinytuya.deviceScan()
         devices = main.load_devices()
+        # FIX #1: was main.organize_devices in refresh but main.organize_structure in compose —
+        # now both use the same function: organize_devices
         my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors", [])
         self.call_from_thread(self._update_tables, floor_data, my_outside_devices)
 
     def _update_tables(self, floor_data, my_outside_devices) -> None:
+        # FIX #3: instead of a raw iterator with silent StopIteration swallowing,
+        # log a warning when the live data doesn't match the composed layout.
         table_iter = iter(self.query(DataTable))
 
         for floor in floor_data:
@@ -75,16 +80,25 @@ class TuyaDashboard(App):
                         table.clear(columns=True)
                         self.build_table(table, device_obj, device_dict)
                     except StopIteration:
+                        self.log.warning(
+                            "More devices in live data than DataTables in layout — "
+                            "layout and data are out of sync. Restart the app to rebuild."
+                        )
                         return
 
         for device_dict, device_obj in zip(
             my_outside_devices.get("Devices", []),
-            my_outside_devices.get("Objects", [])):
+            my_outside_devices.get("Objects", [])
+        ):
             try:
                 table = next(table_iter)
                 table.clear(columns=True)
                 self.build_table(table, device_obj, device_dict)
             except StopIteration:
+                self.log.warning(
+                    "More outside devices in live data than DataTables in layout — "
+                    "layout and data are out of sync. Restart the app to rebuild."
+                )
                 return
 
         self.scanning = False
@@ -110,7 +124,8 @@ class TuyaDashboard(App):
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
         devices = main.load_devices()
-        my_devices, my_outside_devices = main.organize_structure(devices)
+        # FIX #1: was main.organize_structure — now consistent with refresh_devices
+        my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors", [])
 
         with Horizontal():
@@ -128,9 +143,9 @@ class TuyaDashboard(App):
                 yield Label("[bold purple]OUTSIDE[/]")
                 for device_dict, device_obj in zip(
                     my_outside_devices.get("Devices", []),
-                    my_outside_devices.get("Objects", [])):
+                    my_outside_devices.get("Objects", [])
+                ):
                     yield DataTable()
-
 
 
 if __name__ == "__main__":
