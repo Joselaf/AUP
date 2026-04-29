@@ -9,15 +9,11 @@ class breaker:
         self.name = d_name
         self.device = tinytuya.OutletDevice(d_id, d_ip, d_local_key)
         self.device.set_version(d_version) 
-        
         self.status = self.device.status()
-        
         if self.status is not None:
             self.dps = self.status.get('dps', {})
         else:
             self.dps = {}
-
-        # 1. PRE-CALCULATE values with safety checks
         try:
             self.watts = float(self.dps.get('19', 0)) / 10.0
         except (ValueError, TypeError):
@@ -32,8 +28,6 @@ class breaker:
             self.volts = float(self.dps.get('20', 0)) / 10.0
         except (ValueError, TypeError):
             self.volts = 0.0
-
-        # 2. DEFINE the dictionary using the pre-calculated values
         self.stats = {
             "state": self.dps.get('1'),
             "amps": self.amps,
@@ -65,7 +59,7 @@ class breaker:
         state = None
         if is_device_reachable(self.ip):
             status = "🟢 [bold green]ONLINE[/]"
-            state = "[bold white]On[/]" if {self.stats['state']} else "[bold white]OFF[/]"
+            state = "[bold white]On[/]" if {self.stats['state']==True} else "[bold white]OFF[/]"
             error = "[bold white]None[/]" if {self.stats['error'] == '0'} else f"[bold white]{self.stats['error']}[/]"
         else:
             status = "🔴 [bold red]OFFLINE[/]"

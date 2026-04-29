@@ -7,6 +7,7 @@ from devices import *
 from textual.reactive import reactive
 from datetime import datetime
 import tinytuya
+from  is_device_reachable import is_device_reachable
 
 CSS = '''
 .floor-container {
@@ -34,7 +35,7 @@ DataTable > .datatable--header {
     text-style: bold;
 }'''
 
-REFRESH_INTERVAL = 60
+REFRESH_INTERVAL = 300  
 
 
 class TuyaDashboard(App):
@@ -109,7 +110,7 @@ class TuyaDashboard(App):
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
         devices = main.load_devices()
-        my_devices, my_outside_devices = main.organize_devices(devices)
+        my_devices, my_outside_devices = main.organize_structure(devices)
         floor_data = my_devices.get("Floors", [])
 
         with Horizontal():

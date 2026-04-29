@@ -8,8 +8,8 @@ from is_device_reachable import is_device_reachable, is_expected_mac
     
 
 def devices_status(device):
-    ip = device.get('ip')
-    expected_mac = device.get('mac')
+    ip = device['ip']
+    expected_mac = device['mac']
 
     if not is_device_reachable(ip):
         return None
@@ -129,6 +129,51 @@ def organize_devices(device_list):
         
     return _sorted_organized_list_of_rooms, _outside_devices
 
+
+def organize_structure(device_list):
+    """Build floor/room structure from device names only — no network scanning."""
+    devices = device_list
+
+    _organized_list_of_rooms = []
+    for index in range(len(devices)):
+        tmp_name = devices[index]["name"]
+        if "Q" in tmp_name:
+            tmp_index_start = tmp_name.index("Q")
+            tmp_index_end = tmp_index_start + 3
+            tmp_room = tmp_name[tmp_index_start:tmp_index_end]
+            if tmp_room not in _organized_list_of_rooms:
+                _organized_list_of_rooms.append(tmp_room)
+
+    _sorted_organized_list_of_rooms = {"Floors": []}
+    for _room in _organized_list_of_rooms:
+        _int_room = _room[1:]
+        _int_floor = int(_int_room[0])
+        _int_room_number = int(_int_room[1])
+        while len(_sorted_organized_list_of_rooms["Floors"]) <= _int_floor:
+            _sorted_organized_list_of_rooms["Floors"].append([])
+        while len(_sorted_organized_list_of_rooms["Floors"][_int_floor]) < _int_room_number:
+            _sorted_organized_list_of_rooms["Floors"][_int_floor].append([])
+        _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number - 1] = {
+            "Name": _room, "Devices": [], "Objects": []
+        }
+
+    _outside_devices = {"Devices": [], "Objects": []}
+    for device_dict in devices:
+        tmp_name = device_dict["name"]
+        if "Q" in tmp_name:
+            tmp_index_start = tmp_name.index("Q")
+            tmp_index_end = tmp_index_start + 3
+            tmp_room = tmp_name[tmp_index_start:tmp_index_end]
+            _int_room = tmp_room[1:]
+            _int_floor = int(_int_room[0])
+            _int_room_number = int(_int_room[1])
+            _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number - 1]["Devices"].append(device_dict)
+            _sorted_organized_list_of_rooms["Floors"][_int_floor][_int_room_number - 1]["Objects"].append(None)
+        else:
+            _outside_devices["Devices"].append(device_dict)
+            _outside_devices["Objects"].append(None)
+
+    return _sorted_organized_list_of_rooms, _outside_devices
 
 
 if __name__ == "__main__":
