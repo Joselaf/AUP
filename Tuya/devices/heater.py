@@ -7,7 +7,7 @@ class heater:
         self.ip = d_ip
         self.local_key = d_local_key
         self.name = d_name
-        self.device = tinytuya.OutletDevice(d_id,d_ip,d_local_key)
+        self.device = tinytuya.OutletDevice(self.id,self.ip,self.local_key)
         self.device.set_version(d_version)
         self.status = self.device.status()
         if self.status is not None:

@@ -6,7 +6,7 @@ class lock:
         self.ip = d_ip
         self.local_key = d_local_key
         self.name = d_name
-        self.device = tinytuya.OutletDevice(d_id,d_ip,d_local_key)
+        self.device = tinytuya.OutletDevice(self.id,self.ip,self.local_key)
         self.device.set_version(d_version)
         self.status = self.device.status()
         if self.status is not None:
@@ -43,14 +43,9 @@ class lock:
         status = None
         door_state = None
         battery = None
-        if is_device_reachable(self.ip):
-            status = "🟢 [bold green]ONLINE[/]"
-            door_state =  "[bold yellow]Opened[/]" if self.stats['door_status'] else "[bold blue]Closed[/]"
-            battery = self.device.status.get("battery_percentage", status.get("battery_level", status.get("battery")))
-        else:
-            status = "🔴 [bold red]OFFLINE[/]"
-            door_state = "[bold white]-[/]"
-            battery = "[bold white]-[/]"
+        door_state =  "[bold yellow]Opened[/]" if self.stats['door_status'] else "[bold blue]Closed[/]"
+        battery = self.stats.get("battery_percentage", self.stats.get("battery_level", self.stats.get("battery")))
+        status = "🔴 [bold red]OFFLINE[/]"
             
         table.add_columns("Device", "Status", "Door State", "Battery")
         table.add_row(name, status, door_state, battery)

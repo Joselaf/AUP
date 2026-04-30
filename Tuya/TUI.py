@@ -12,7 +12,6 @@ from is_device_reachable import is_device_reachable
 CSS = '''
 .floor-container {
     width: 1fr;
-    border: solid $primary;
     margin: 0;
     height: 1fr;
     overflow-y: scroll;
@@ -22,13 +21,11 @@ CSS = '''
     background: $surface;
     margin: 0;
     padding: 0;
-    border-left: solid $primary-darken-1;
 }
 DataTable {
     height: auto;
     max-height: 5;
     margin: 0 1;
-    border: none;
 }
 DataTable > .datatable--header {
     background: $primary-darken-3;
@@ -86,10 +83,7 @@ class TuyaDashboard(App):
                         )
                         return
 
-        for device_dict, device_obj in zip(
-            my_outside_devices.get("Devices", []),
-            my_outside_devices.get("Objects", [])
-        ):
+        for device_dict, device_obj in zip(my_outside_devices.get("Devices", []),my_outside_devices.get("Objects", [])):
             try:
                 table = next(table_iter)
                 table.clear(columns=True)
@@ -115,11 +109,7 @@ class TuyaDashboard(App):
 
     def build_table(self, table, device_obj, device_dict):
         name = self.clean_name(device_dict)
-        if device_obj is not None:
-            device_obj.get_tui_table(table, name)
-        else:
-            table.add_columns("Device", "Status")
-            table.add_row(name, "[bold white]Unreachable[/]")
+        device_obj.get_tui_table(table, name)
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)

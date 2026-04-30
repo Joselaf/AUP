@@ -6,7 +6,7 @@ class smart_lock:
         self.ip = d_ip
         self.local_key = d_local_key
         self.name = d_name
-        self.device = tinytuya.OutletDevice(id, ip, local_key)
+        self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
         self.device.set_version(d_version)
         self.status = self.device.status()
         if self.status is not None:
@@ -40,14 +40,10 @@ class smart_lock:
         status = None
         battery = None
         door_state = None
-        if is_device_reachable(self.ip):
-            status = "🟢 [bold green]ONLINE[/]" 
-            battery = f"[bold white]{self.stats['battery']}"
-            door_state = "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]Closed[/]"
-        else:
-            status = "🔴 [bold red]OFFLINE[/]"
-            battery = "[bold white]-[/]"
-            door_state = "[bold white]-[/]"
+        status = "🔴 [bold red]OFFLINE[/]"
+        battery = f"[bold white]{self.stats['battery']}"
+        door_state = "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]Closed[/]"
+
         table.add_columns("Device", "Status", "Battery", "Lock")
         table.add_row(name, status, battery, state)
             
