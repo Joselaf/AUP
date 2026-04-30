@@ -1,51 +1,77 @@
+import json
+import os
 import tinytuya
-from is_device_reachable import is_device_reachable
+
+_CFG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tinytuya.json")
+
+def _get_cloud():
+    with open(_CFG_PATH) as f:
+        cfg = json.load(f)
+    return tinytuya.Cloud(
+        apiRegion=cfg["apiRegion"],
+        apiKey=cfg["apiKey"],
+        apiSecret=cfg["apiSecret"],
+        apiDeviceID=cfg["apiDeviceID"],
+    )
+
 class lock:
-    def __init__(self,d_id,d_ip,d_local_key,d_name,d_version):
+    def __init__(self, d_id, d_ip, d_local_key, d_name, d_version=3.3):
         self.id = d_id
         self.ip = d_ip
         self.local_key = d_local_key
         self.name = d_name
-        self.device = tinytuya.OutletDevice(self.id,self.ip,self.local_key)
-        self.device.set_version(d_version)
-        self.status = self.device.status()
-        if self.status is not None:
-             self.dps = self.status.get('dps', {})
-        else:
-            self.dps = {}
+        self.version = d_version
+        self._cloud = _get_cloud()
+        self._codes = {}
+        self.is_online = False
+        self.refresh()
 
-        self.stats = {
-            "finger_unlocked":    self.dps.get('1'),   ## ID of fingerprint used
-            "password_unlocked":  self.dps.get('2'),   ## ID of local password used
-            "password_generated": self.dps.get('3'),   ## App-generated temp code
-            "card_unlocked":      self.dps.get('5'),   ## RFID card/tag ID
-            "key":                self.dps.get('7'),   ## Physical key used
-            "door_status":        self.dps.get('8'),   ## True=open, False=closed
-            "alarms":             self.dps.get('9'),   ## wrong_password, low_battery, etc.
-            "battery_level":      self.dps.get('10'),  ## 0-100%
-            "doorbell":           self.dps.get('14'),  ## True when doorbell pressed
-            "remote":             self.dps.get('61'),  ## True if opened remotely
+    def refresh(self):
+        try:
+            result = self._cloud.getstatus(self.id)
+            if result and result.get("success") and result.get("result"):
+                self._codes = {item["code"]: item["value"] for item in result["result"]}
+                self.is_online = True
+                return True
+        except Exception:
+            pass
+        self.is_online = False
+        return False
+
+    @property
+    def stats(self):
+        return {
+            "battery_state":      self._codes.get("battery_state", "unknown"),
+            "door_open":          self._codes.get("open_inside", False),
+            "alarm":              self._codes.get("alarm_lock"),
+            "unlock_fingerprint": self._codes.get("unlock_fingerprint"),
+            "unlock_password":    self._codes.get("unlock_password"),
+            "unlock_card":        self._codes.get("unlock_card"),
+            "unlock_temporary":   self._codes.get("unlock_temporary"),
+            "hijack":             self._codes.get("hijack", False),
         }
-        
-    def get_status(self):
-        if(self.ip):
-            return self.stats
-        else:
+
+    def remote_unlock(self):
+        try:
+            return self._cloud.sendcommand(self.id, {"commands": [{"code": "unlock_app", "value": 1}]})
+        except Exception:
             return None
 
-    def get_ip(self):
-        return self.ip
-    
+    def get_status(self):
+        return self.stats if self.is_online else None
+
     def get_name(self):
         return self.name
 
-    def get_tui_table(self,table,name):
-        status = None
-        door_state = None
-        battery = None
-        door_state =  "[bold yellow]Opened[/]" if self.stats['door_status'] else "[bold blue]Closed[/]"
-        battery = self.stats.get("battery_percentage", self.stats.get("battery_level", self.stats.get("battery")))
-        status = "🔴 [bold red]OFFLINE[/]"
-            
-        table.add_columns("Device", "Status", "Door State", "Battery")
+    def get_tui_table(self, table, name):
+        if self.is_online:
+            status = "🟢 [bold green]ONLINE[/]"
+            bat = self.stats["battery_state"]
+            battery = f"[bold white]{bat}[/]"
+            door_state = "[bold yellow]Opened[/]" if self.stats["door_open"] else "[bold blue]Closed[/]"
+        else:
+            status = "🔴 [bold red]OFFLINE[/]"
+            battery = "[bold white]-[/]"
+            door_state = "[bold white]-[/]"
+        table.add_columns("Device", "Status", "Door","Battery")
         table.add_row(name, status, door_state, battery)

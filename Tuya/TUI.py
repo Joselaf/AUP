@@ -26,6 +26,7 @@ DataTable {
     height: auto;
     max-height: 5;
     margin: 0 1;
+
 }
 DataTable > .datatable--header {
     background: $primary-darken-3;
@@ -109,6 +110,10 @@ class TuyaDashboard(App):
 
     def build_table(self, table, device_obj, device_dict):
         name = self.clean_name(device_dict)
+        if device_obj is None:
+            table.add_columns("Device", "Status")
+            table.add_row(name,"[bold white]unreachable[/]")
+            return
         device_obj.get_tui_table(table, name)
 
     def compose(self) -> ComposeResult:

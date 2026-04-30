@@ -10,6 +10,16 @@ from is_device_reachable import is_device_reachable, is_expected_mac
 def devices_status(device):
     ip = device['ip']
     expected_mac = device['mac']
+    category = device.get('category')
+
+    # Devices without a local IP (e.g. BLE/Zigbee locks) — skip network checks
+    if not ip:
+        match category:
+            case 'ms':
+                return lock(device['id'], None, device['key'], device['name'], device['version'])
+            case 'jtmspro':
+                return smart_lock(device['id'], None, device['key'], device['name'], device['version'])
+        return None
 
     if not is_device_reachable(ip):
         return None
@@ -18,8 +28,7 @@ def devices_status(device):
     if expected_mac and not is_expected_mac(ip, expected_mac):
         return None
 
-    else: 
-        category = device.get('category')
+    else:
         if device['ip']:     
             match category:
                 case 'dlq'if("consumo" in device['name'].lower()):
