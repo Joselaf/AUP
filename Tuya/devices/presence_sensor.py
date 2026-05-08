@@ -45,8 +45,12 @@ class presence_sensor:
             presence = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Presence")
         table.add_row(name, status, presence)
-
-
+        
+    def get_alerts(self):
+        _alerts = []
+        if self.stats.get('presence_status'):
+            _alerts.append(("PRESENCE DETECTED"))
+        return _alerts
 
     ## Exercise classification: none, presence, peaceful, small_move, large_move
     def set_motion_state(self, value):

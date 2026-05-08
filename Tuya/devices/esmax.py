@@ -65,6 +65,16 @@ class esmax:
         table.add_columns("Device", "Status", "Lock State", "Battery")
         table.add_row(name, status, state_lock, battery)
 
+    def get_alerts(self):
+        _alerts = []
+        _fault = self.stats.get('fault')
+        _battery = self.stats.get('battery')
+        if _battery is not None and _battery < 20:
+            _alerts.append(("BATTERY LOW"))
+        elif _fault and str(_fault) != '0':
+            _alerts.append((f"VEHICLE FAULT:reported fault code {_fault}!"))
+        return _alerts
+    
     ## Electronic Lock toggle
     def toogle_switch_lock(self):
         new_state = not self.dps.get('1')

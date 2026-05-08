@@ -36,6 +36,9 @@ class smart_ir:
         table.add_columns("Device", "Status")
         table.add_row(name, status)
     
+    def get_alerts(self):
+       return []
+    
     ## Send Code: The raw IR code (Base64) to be emitted.
     def send_ir_code(self, code):
         payload = self.device.generate_payload(tinytuya.CONTROL, {'1': code})

@@ -47,8 +47,12 @@ class heater:
             state = "[bold white]-[/]"
           
         table.add_columns("Device", "Status", "Power")
-        table.add_row(name, status, details)
-
+        table.add_row(name, status, state)
+    def get_alerts(self):
+        _alerts = []
+        if self.stats.get('state') == False:
+            _alerts.append("POWER OFF")
+        return _alerts
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
         new_state = not self.dps.get('1')

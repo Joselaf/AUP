@@ -15,9 +15,8 @@ def _get_cloud():
     )
 
 class lock:
-    def __init__(self, d_id, d_ip, d_local_key, d_name, d_version=3.3):
+    def __init__(self, d_id, d_local_key, d_name, d_version=3.3):
         self.id = d_id
-        self.ip = d_ip
         self.local_key = d_local_key
         self.name = d_name
         self.version = d_version
@@ -75,3 +74,15 @@ class lock:
             door_state = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Door","Battery")
         table.add_row(name, status, door_state, battery)
+
+    def get_alerts(self):
+        self.refresh()
+        _alerts = []
+        _battery = self.stats.get("battery_state")
+        if _battery and _battery != "unknown" and _battery.lower() == "low":
+            _alerts.append(("Low Battery"))
+        if self.stats.get("alarm"):
+            _alerts.append(("Alarm is triggered!"))
+        if self.stats.get("hijack"):
+            _alerts.append(("Hijack mode is active!"))
+        return _alerts

@@ -2,12 +2,14 @@ from textual.app import App, ComposeResult
 from textual.widgets import Header, DataTable, Label
 from textual.containers import Horizontal, Vertical
 from textual import work
+import os
 import main
 from devices import *
 from textual.reactive import reactive
 from datetime import datetime
 import tinytuya
 from is_device_reachable import is_device_reachable
+from send_email import send_email
 
 CSS = '''
 .floor-container {
@@ -25,7 +27,7 @@ CSS = '''
 DataTable {
     height: auto;
     max-height: 5;
-    margin: 0 1;
+    margin: 0 0;
 
 }
 DataTable > .datatable--header {
@@ -34,6 +36,7 @@ DataTable > .datatable--header {
 }'''
 
 REFRESH_INTERVAL = 300
+LOG_FILE = os.getenv("LOG_FILE")
 
 
 class TuyaDashboard(App):
@@ -42,6 +45,7 @@ class TuyaDashboard(App):
     scanning: reactive[bool] = reactive(False)
 
     def on_mount(self) -> None:
+        open("alerts_log.txt", "w").close()
         self.set_interval(REFRESH_INTERVAL, self.refresh_devices)
         self.refresh_devices()
 
@@ -55,24 +59,18 @@ class TuyaDashboard(App):
     @work(thread=True)
     def refresh_devices(self) -> None:
         self.call_from_thread(setattr, self, "scanning", True)
-        # Scan first so load_devices() picks up fresh data
         tinytuya.deviceScan()
         devices = main.load_devices()
-        # FIX #1: was main.organize_devices in refresh but main.organize_structure in compose —
-        # now both use the same function: organize_devices
         my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors", [])
         self.call_from_thread(self._update_tables, floor_data, my_outside_devices)
 
     def _update_tables(self, floor_data, my_outside_devices) -> None:
-        # FIX #3: instead of a raw iterator with silent StopIteration swallowing,
-        # log a warning when the live data doesn't match the composed layout.
         table_iter = iter(self.query(DataTable))
 
         for floor in floor_data:
             for room in floor:
-                for device_dict, device_obj in zip(
-                    room.get("Devices", []), room.get("Objects", [])):
+                for device_dict, device_obj in zip(room.get("Devices", []), room.get("Objects", [])):
                     try:
                         table = next(table_iter)
                         table.clear(columns=True)
@@ -98,6 +96,15 @@ class TuyaDashboard(App):
 
         self.scanning = False
         self.last_updated = datetime.now().strftime("%H:%M:%S")
+        if os.path.exists("alerts_log.txt") and os.path.getsize("alerts_log.txt") > 0:
+            self._send_alert_async()
+
+    @work(thread=True)
+    def _send_alert_async(self) -> None:
+        log_file = os.getenv("LOG_FILE", "alerts_log.txt")
+        with open(log_file, "r", encoding="utf-8") as f:
+            body = f.read()
+        send_email(subject="Alerts from casa ganso", body=body)
 
     @staticmethod
     def clean_name(device_dict):
@@ -109,17 +116,26 @@ class TuyaDashboard(App):
         return name_raw
 
     def build_table(self, table, device_obj, device_dict):
-        name = self.clean_name(device_dict)
+        _name = self.clean_name(device_dict)
         if device_obj is None:
             table.add_columns("Device", "Status")
-            table.add_row(name,"[bold white]unreachable[/]")
+            table.add_row(_name,"[bold white]unreachable[/]")
             return
-        device_obj.get_tui_table(table, name)
+        _device_alerts = device_obj.get_alerts()
+        _full_name = device_dict['name']
+        if _device_alerts:
+            with open("alerts_log.txt", "a", encoding="utf-8") as f:
+                _device_name = _full_name      
+                f.write(f"{_device_name}\n")
+                for alert in _device_alerts:
+                    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    f.write(f"->{alert}\n")
+                f.write("\n")
+        device_obj.get_tui_table(table, _name)
 
     def compose(self) -> ComposeResult:
         yield Header(show_clock=True)
         devices = main.load_devices()
-        # FIX #1: was main.organize_structure — now consistent with refresh_devices
         my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors", [])
 
@@ -130,16 +146,12 @@ class TuyaDashboard(App):
                     for room_idx, room in enumerate(floor):
                         with Vertical(classes="room-container"):
                             yield Label(f"[bold yellow]Quarto:{room_idx + 1}[/]")
-                            for device_dict, device_obj in zip(
-                                room.get("Devices", []), room.get("Objects", [])):
+                            for device_dict, device_obj in zip(room.get("Devices", []), room.get("Objects", [])):
                                 yield DataTable()
 
             with Vertical(classes="floor-container"):
                 yield Label("[bold purple]OUTSIDE[/]")
-                for device_dict, device_obj in zip(
-                    my_outside_devices.get("Devices", []),
-                    my_outside_devices.get("Objects", [])
-                ):
+                for device_dict, device_obj in zip(my_outside_devices.get("Devices", []),my_outside_devices.get("Objects", [])):
                     yield DataTable()
 
 

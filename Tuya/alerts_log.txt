@@ -1,0 +1,69 @@
+Fechaduras Q01
+->Alarm is triggered!
+
+Fechaduras Q02
+->Low Battery
+->Alarm is triggered!
+
+Fechaduras Q03
+->Low Battery
+->Alarm is triggered!
+
+Fechaduras Q04
+->Low Battery
+->Alarm is triggered!
+
+Fechadura Q11
+->Low Battery
+->Alarm is triggered!
+
+Fechaduras Q12
+->Alarm is triggered!
+
+Fechaduras Q13
+->Low Battery
+->Alarm is triggered!
+
+Fechaduras Q14
+->Low Battery
+->Alarm is triggered!
+
+Fechadura Q15
+->Alarm is triggered!
+
+Fechadura Q21
+->Low Battery
+->Alarm is triggered!
+
+Fechadura Q22
+->Alarm is triggered!
+
+Fechadura Q23
+->Low Battery
+->Alarm is triggered!
+
+Fechaduras Q24
+->Low Battery
+->Alarm is triggered!
+
+Fechaduras Q26
+->Low Battery
+->Alarm is triggered!
+
+Smart Lock 2
+->Alarm is triggered!
+
+Smart Lock Main
+->Alarm is triggered!
+
+Fechaduras inteligentes 25
+->Low Battery
+->Alarm is triggered!
+
+Porta Estufa
+->Low Battery
+->Alarm is triggered!
+
+Disjuntor Candeeiros Viela
+->POWER OFF
+

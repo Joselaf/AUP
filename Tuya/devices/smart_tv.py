@@ -48,12 +48,12 @@ class smart_tv:
             power =    "[bold yellow]ON[/]" if self.stats['power'] else "[bold blue]OFF[/]"
         else:
             status = "🔴 [bold red]OFFLINE[/]"
-            power =  "[old white]-[/]"
+            power =  "[bold white]-[/]"
         table.add_columns("Device", "Status", "Power")
         table.add_row(name, status, power)
-        
-        
-            
+    
+    def get_alerts(self):
+        return []
             
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
@@ -61,7 +61,7 @@ class smart_tv:
         self.device.set_dps('1', new_state)
 
     ## Volume setting: Normal range 0-100
-    def set_volune(self, value):
+    def set_volume(self, value):
         self.device.dps_set(value, '2')
 
     ## Turns the mute ON if it is OFF and vice-versa

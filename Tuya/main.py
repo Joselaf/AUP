@@ -16,9 +16,9 @@ def devices_status(device):
     if not ip:
         match category:
             case 'ms':
-                return lock(device['id'], None, device['key'], device['name'], device['version'])
+                return lock(device['id'], device['key'], device['name'], device['version'])
             case 'jtmspro':
-                return smart_lock(device['id'], None, device['key'], device['name'], device['version'])
+                return smart_lock(device['id'], device['key'], device['name'], device['version'])
         return None
 
     if not is_device_reachable(ip):

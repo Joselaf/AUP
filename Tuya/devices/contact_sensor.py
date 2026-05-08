@@ -48,3 +48,11 @@ class contact_sensor:
             battery = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Door_State", "Battery")
         table.add_row(name, status, door_state, battery)
+    
+    def get_alerts(self):
+        _alerts = []
+        if self.stats.get('tamper_alarm'):
+            _alerts.append((f"TAMPER ALERT:detected a tampering attempt!"))
+        elif(self.stats['battery_state'] == 'low'):
+            _alerts.append(("BATTERY LOW"))
+        return _alerts

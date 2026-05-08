@@ -44,6 +44,12 @@ class smart_plug:
             state = "[bold white]-[/]"
         table.add_columns("Device", "Status", "State")
         table.add_row(name, status, state)
+    
+    def get_alerts(self):
+        alerts = []
+        if self.stats.get('state') == False:
+            alerts.append(("POWER OFF"))
+        return alerts
             
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
