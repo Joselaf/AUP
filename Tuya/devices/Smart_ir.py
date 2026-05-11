@@ -1,7 +1,7 @@
 import tinytuya
 from is_device_reachable import is_device_reachable
 
-class smart_ir:
+class Smart_ir:
     def __init__(self,d_id,d_ip,d_local_key,d_name,d_version):
         self.id = d_id
         self.ip = d_ip
@@ -32,7 +32,7 @@ class smart_ir:
     
     
     def get_tui_table(self,table,name):
-        status = "🟢 [bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴 [bold red]OFFLINE[/]"
+        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴 [bold red]OFFLINE[/]"
         table.add_columns("Device", "Status")
         table.add_row(name, status)
     

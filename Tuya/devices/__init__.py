@@ -1,29 +1,29 @@
-from .breaker import breaker
-from .consumption_breaker import consumption_breaker
-from .contact_sensor import contact_sensor
-from .esmax import esmax
-from .general_circuit_breaker import general_circuit_breaker
-from .heater import heater
-from .lock import lock
-from .presence_sensor import presence_sensor
-from .smart_bulb import smart_bulb
-from .smart_ir import smart_ir
-from .smart_lock import smart_lock
-from .smart_plug import smart_plug
-from .smart_tv import smart_tv
+from .Breaker import Breaker
+from .Consumption_breaker import Consumption_breaker
+from .Contact_sensor import Contact_sensor
+from .Esmax import Esmax
+from .General_circuit_breaker import General_circuit_breaker
+from .Heater import Heater
+from .Lock import Lock
+from .Presence_sensor import Presence_sensor
+from .Smart_bulb import Smart_bulb
+from .Smart_ir import Smart_ir
+from .Smart_lock import Smart_lock
+from .Smart_plug import Smart_plug
+from .Smart_tv import Smart_tv
 
 __all__ = [
-	"breaker",
-	"consumption_breaker",
-	"contact_sensor",
-	"esmax",
-	"general_circuit_breaker",
-	"heater",
-	"lock",
-	"presence_sensor",
-	"smart_bulb",
-	"smart_ir",
-	"smart_lock",
-	"smart_plug",
-	"smart_tv",
+	"Breaker",
+	"Consumption_breaker",
+	"Contact_sensor",
+	"Esmax",
+	"General_circuit_breaker",
+	"Heater",
+	"Lock",
+	"Presence_sensor",
+	"Smart_bulb",
+	"Smart_ir",
+	"Smart_lock",
+	"Smart_plug",
+	"Smart_tv",
 ]

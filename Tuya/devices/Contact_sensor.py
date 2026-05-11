@@ -1,7 +1,7 @@
 import tinytuya
 from is_device_reachable import is_device_reachable
 
-class contact_sensor:
+class Contact_sensor:
     def __init__(self, d_id, d_ip, d_local_key, d_name,d_version):
         self.id = d_id
         self.ip = d_ip
@@ -39,11 +39,11 @@ class contact_sensor:
         door_state = None
         battery = None
         if is_device_reachable(self.ip):
-            status = "🟢 [bold green]ONLINE[/]"
+            status = "🟢[bold green]ONLINE[/]"
             door_state =  "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]closed[/]"
             battery = status.get("battery_percentage", status.get("battery_level", status.get("battery")))
         else:      
-            status = "🔴 [bold red]OFFLINE[/]"
+            status = "🔴[bold red]OFFLINE[/]"
             door_state = "[bold white]-[/]"
             battery = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Door_State", "Battery")

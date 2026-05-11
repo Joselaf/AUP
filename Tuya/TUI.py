@@ -104,7 +104,7 @@ class TuyaDashboard(App):
         log_file = os.getenv("LOG_FILE", "alerts_log.txt")
         with open(log_file, "r", encoding="utf-8") as f:
             body = f.read()
-        send_email(subject="Alerts from casa ganso", body=body)
+        ##send_email(subject="Alerts from casa ganso", body=body)
 
     @staticmethod
     def clean_name(device_dict):

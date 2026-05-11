@@ -14,7 +14,7 @@ def _get_cloud():
         apiDeviceID=cfg['apiDeviceID'],
     )
 
-class smart_lock:
+class Smart_lock:
     def __init__(self, d_id, d_local_key, d_name, d_version=3.3):
         self.id = d_id
         self.local_key = d_local_key
@@ -64,12 +64,12 @@ class smart_lock:
 
     def get_tui_table(self, table, name):
         if self.is_online:
-            status = "🟢 [bold green]ONLINE[/]"
+            status = "🟢[bold green]ONLINE[/]"
             bat = self.stats['battery_state']
             battery = f"[bold white]{bat}[/]"
             door_state = "[bold yellow]Opened[/]" if self.stats['door_open'] else "[bold blue]Closed[/]"
         else:
-            status = "🔴 [bold red]OFFLINE[/]"
+            status = "🔴[bold red]OFFLINE[/]"
             battery = "[bold white]-[/]"
             door_state = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Door","Battery")

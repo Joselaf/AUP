@@ -16,9 +16,9 @@ def devices_status(device):
     if not ip:
         match category:
             case 'ms':
-                return lock(device['id'], device['key'], device['name'], device['version'])
+                return Lock(device['id'], device['key'], device['name'], device['version'])
             case 'jtmspro':
-                return smart_lock(device['id'], device['key'], device['name'], device['version'])
+                return Smart_lock(device['id'], device['key'], device['name'], device['version'])
         return None
 
     if not is_device_reachable(ip):
@@ -32,31 +32,27 @@ def devices_status(device):
         if device['ip']:     
             match category:
                 case 'dlq'if("consumo" in device['name'].lower()):
-                        return consumption_breaker(device['id'],device['ip'],device['key'],device['name'],device['version'])
+                        return Consumption_breaker(device['id'],device['ip'],device['key'],device['name'],device['version'])
                 case 'dlq':
-                        return breaker(device['id'], device['ip'], device['key'], device['name'],device['version'])
+                        return Breaker(device['id'], device['ip'], device['key'], device['name'],device['version'])
                 case 'kg':
-                        return breaker(device['id'], device['ip'], device['key'], device['name'],device['version'])
+                        return Breaker(device['id'], device['ip'], device['key'], device['name'],device['version'])
                 case 'tdp':
-                        return heater(device['id'], device['ip'], device['key'], device['name'],device['version'])
+                        return Heater(device['id'], device['ip'], device['key'], device['name'],device['version'])
                 case 'mcs':
-                        return contact_sensor(device['id'], device['ip'], device['key'], device['name'],device['version'])  
+                        return Contact_sensor(device['id'], device['ip'], device['key'], device['name'],device['version'])  
                 case 'hps':
-                        return presence_sensor(device['id'], device['ip'], device['key'], device['name'],device['version'])
-                case 'ms':
-                        return lock(device['id'], device['ip'], device['key'], device['name'],device['version'])
+                        return Presence_sensor(device['id'], device['ip'], device['key'], device['name'],device['version'])
                 case 'cz':
-                        return smart_plug(device['id'], device['ip'], device['key'], device['name'],device['version'])
+                        return Smart_plug(device['id'], device['ip'], device['key'], device['name'],device['version'])
                 case 'dj'if("\u6b27\u7248A60-WB 9W RGBCW 220V E27" in device['name'].upper()):
-                        return smart_bulb(device['id'], device['ip'], device['key'], device['name'],device['version'])
+                        return Smart_bulb(device['id'], device['ip'], device['key'], device['name'],device['version'])
                 case 'dj'if("esmax" in device['name'].lower()):
-                        return esmax(device['id'], device['ip'], device['key'], device['name'],device['version'])     
+                        return Esmax(device['id'], device['ip'], device['key'], device['name'],device['version'])     
                 case 'dj':
-                        return smart_ir(device['id'], device['ip'], device['key'], device['name'],device['version'])
+                        return Smart_ir(device['id'], device['ip'], device['key'], device['name'],device['version'])
                 case 'tv':
-                        return smart_tv(device['id'], device['ip'], device['key'], device['name'],device['version'])
-                case 'jtmspro':
-                        return smart_lock(device['id'], device['ip'], device['key'], device['name'],device['version'])
+                        return Smart_tv(device['id'], device['ip'], device['key'], device['name'],device['version'])
         else:
             return None
 

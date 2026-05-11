@@ -1,7 +1,7 @@
 import tinytuya
 from is_device_reachable import is_device_reachable
 
-class esmax:
+class Esmax:
     def __init__(self, d_id, d_ip, d_local_key, d_name,d_version):
         self.id = d_id
         self.ip = d_ip
@@ -54,11 +54,11 @@ class esmax:
         state_lock = None
         battery = None
         if is_device_reachable(self.ip):
-            status = "🟢 [bold green]ONLINE[/]"
+            status = "🟢[bold green]ONLINE[/]"
             state_lock =  "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
             battery = f"[bold white]{self.stats['battery']}[/]"
         else:
-            status = "🔴 [bold red]OFFLINE[/]"
+            status = "🔴[bold red]OFFLINE[/]"
             state_lock = "[bold white]-[/]"
             battery = "[bold white]-[/]"
             

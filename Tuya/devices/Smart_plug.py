@@ -1,6 +1,6 @@
 import tinytuya
 from is_device_reachable import is_device_reachable
-class smart_plug:
+class Smart_plug:
     def __init__(self,d_id,d_ip,d_local_key,d_name,d_version):
         self.id = d_id
         self.ip = d_ip
@@ -37,10 +37,10 @@ class smart_plug:
         status = None
         state = None
         if is_device_reachable(self.ip):
-            status = "🟢 [bold green]ONLINE[/]"
+            status = "🟢[bold green]ONLINE[/]"
             state = "[bold white]ON[/]" if self.stats['state'] else "[bold white]OFF[/]"
         else:
-            status = "🔴 [bold red]OFFLINE[/]"
+            status = "🔴[bold red]OFFLINE[/]"
             state = "[bold white]-[/]"
         table.add_columns("Device", "Status", "State")
         table.add_row(name, status, state)

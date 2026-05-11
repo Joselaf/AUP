@@ -1,7 +1,7 @@
 import tinytuya
 from is_device_reachable import is_device_reachable
 
-class presence_sensor:
+class Presence_sensor:
     def __init__(self,d_id,d_ip,d_local_key,d_name,d_version):
         self.id = d_id
         self.ip = d_ip
@@ -38,10 +38,10 @@ class presence_sensor:
         status = None
         presence = None
         if is_device_reachable(self.ip):
-            status = "🟢 [bold green]ONLINE[/]"
+            status = "🟢[bold green]ONLINE[/]"
             presence = "[bold white]Detected[/]" if self.stats['presence_status'] else "[bold white]Undetected[/]"
         else:
-            status = "🔴 [bold red]OFFLINE[/]"
+            status = "🔴[bold red]OFFLINE[/]"
             presence = "[bold white]-[/]"
         table.add_columns("Device", "Status", "Presence")
         table.add_row(name, status, presence)
