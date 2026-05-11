@@ -1,5 +1,6 @@
 import tinytuya
 from is_device_reachable import is_device_reachable
+from breaker_code import breaker_code
 
 class Consumption_breaker:
     def __init__(self, d_id, d_ip, d_local_key, d_name, d_version):
@@ -52,19 +53,20 @@ class Consumption_breaker:
             return None
 
     def get_tui_table(self,table,name):
-        error = None
-        state = None
+        _status = None
+        _error = None
+        _state = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
-            state = f"[bold white]On[/]" if {self.stats['state']==True} else "[bold white]OFF[/]"
-            error = f"[bold white]{self.stats['error']}[/]" if {self.stats['error']} else "[bold white]-[/]"
+            _status = "🟢 [bold green]ONLINE[/]"
+            _state = "[bold white]On[/]" if self.stats['state'] == True else "[bold white]OFF[/]"
+            _error = "[bold white]None[/]" if self.stats['error'] == 0 else f"[bold white]{breaker_code(self.stats['error'])}[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
-            state = "[bold white]-[/]"
-            error = "[bold white]-[/]"
+            _status = "🔴 [bold red]OFFLINE[/]"
+            _state = "[bold white]-[/]"  
+            _error = "[bold white]-[/]"
         
         table.add_columns("Device", "Status", "State", "Error")
-        table.add_row(name, status, state, error)
+        table.add_row(name, _status, _state, _error)
         
     def get_alerts(self):
         _alerts = []
@@ -73,8 +75,38 @@ class Consumption_breaker:
         if _state is not None and _state == False:
             _alerts.append((f"POWER OFF"))
         elif _error and str(_error) != '0':
-            _alerts.append((f"BREAKER ERROR:{_error}!"))
+            _alerts.append((f"BREAKER ERROR:{breaker_code(self.stats['error'])}!"))
         return _alerts
+
+    def refresh(self):
+        self.status = self.device.status()
+        if self.status is not None:
+            self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
+        try:
+            self.watts = float(self.dps.get('19', 0)) / 10.0
+        except (ValueError, TypeError):
+            self.watts = 0.0
+
+        try:
+            self.amps = float(self.dps.get('18', 0)) / 1000.0
+        except (ValueError, TypeError):
+            self.amps = 0.0
+
+        try:
+            self.volts = float(self.dps.get('20', 0)) / 10.0
+        except (ValueError, TypeError):
+            self.volts = 0.0
+        self.stats = {
+            "state": self.dps.get('1'),
+            "amps": self.amps,
+            "watts": self.watts,
+            "volts": self.volts,
+            "error": self.dps.get('26'),
+            "relay_status": self.dps.get('38'),
+            "child_lock": self.dps.get('40')
+        }
 
     def get_ip(self):
         return self.ip

@@ -33,24 +33,38 @@ class Smart_plug:
     def get_name(self):
         return self.name
 
-    def gte_tui_table(self,table,nme):
-        status = None
-        state = None
+    def get_tui_table(self,table,name):
+        _status = None
+        _state = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
-            state = "[bold white]ON[/]" if self.stats['state'] else "[bold white]OFF[/]"
+            _status = "🟢 [bold green]ONLINE[/]"
+            _state = "[bold white]ON[/]" if self.stats['state'] else "[bold white]OFF[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
-            state = "[bold white]-[/]"
-        table.add_columns("Device", "Status", "State")
-        table.add_row(name, status, state)
+            _status = "🔴 [bold red]OFFLINE[/]"
+            _state = "[bold white]-[/]"
+        table.add_columns("Device", "_Status", "_State")
+        table.add_row(name, _status, _state)
     
     def get_alerts(self):
-        alerts = []
+        _alerts = []
         if self.stats.get('state') == False:
-            alerts.append(("POWER OFF"))
-        return alerts
+            _alerts.append(("POWER OFF"))
+        return _alerts
             
+    def refresh(self):
+        self.status = self.device.status()
+        if self.status is not None:
+            self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
+        
+        self.stats = {
+            "state":        self.dps.get('1'),
+            "countdown":    self.dps.get('9'),
+            "relay_status": self.dps.get('38'),
+            "child_lock":   self.dps.get('40'),
+        }
+
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
         new_state = not self.dps.get('1')

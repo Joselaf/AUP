@@ -27,7 +27,7 @@ CSS = '''
 DataTable {
     height: auto;
     max-height: 5;
-    margin: 0 0;
+    margin: 0 1;
 
 }
 DataTable > .datatable--header {
@@ -35,7 +35,7 @@ DataTable > .datatable--header {
     text-style: bold;
 }'''
 
-REFRESH_INTERVAL = 300
+REFRESH_INTERVAL = 120
 LOG_FILE = os.getenv("LOG_FILE")
 
 
@@ -45,7 +45,6 @@ class TuyaDashboard(App):
     scanning: reactive[bool] = reactive(False)
 
     def on_mount(self) -> None:
-        open("alerts_log.txt", "w").close()
         self.set_interval(REFRESH_INTERVAL, self.refresh_devices)
         self.refresh_devices()
 
@@ -58,6 +57,8 @@ class TuyaDashboard(App):
 
     @work(thread=True)
     def refresh_devices(self) -> None:
+        if os.path.exists("alerts_log.txt"):
+            open("alerts_log.txt", "w", encoding="utf-8").close()
         self.call_from_thread(setattr, self, "scanning", True)
         tinytuya.deviceScan()
         devices = main.load_devices()
@@ -121,6 +122,7 @@ class TuyaDashboard(App):
             table.add_columns("Device", "Status")
             table.add_row(_name,"[bold white]unreachable[/]")
             return
+        device_obj.refresh()
         _device_alerts = device_obj.get_alerts()
         _full_name = device_dict['name']
         if _device_alerts:

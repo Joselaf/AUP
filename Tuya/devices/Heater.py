@@ -37,22 +37,37 @@ class Heater:
         return self.name
     
     def get_tui_table(self,table,name):
-        status = None
-        state = None
+        _status = None
+        _state = None
         if is_device_reachable(self.ip):
-            status =  "🟢[bold green]ONLINE[/]"
-            state = "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
+            _status =  "🟢 [bold green]ONLINE[/]"
+            _state = "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
-            state = "[bold white]-[/]"
+            _status = "🔴 [bold red]OFFLINE[/]"
+            _state = "[bold white]-[/]"
           
         table.add_columns("Device", "Status", "Power")
-        table.add_row(name, status, state)
+        table.add_row(name, _status, _state)
     def get_alerts(self):
         _alerts = []
         if self.stats.get('state') == False:
             _alerts.append("POWER OFF")
         return _alerts
+    def refresh(self):
+        self.status = self.device.status()
+        if self.status is not None:
+            self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
+        
+        self.stats = {
+            "state":self.dps.get('1'),
+            "countdown":self.dps.get('9'),
+            "relay_status":self.dps.get('83'),
+            "child_lock":self.dps.get('40'),
+            "switch_type":self.dps.get('42')
+            
+        }
     ##Turns the device ON if it is OFF and vice-versa
     def toggle(self):
         new_state = not self.dps.get('1')

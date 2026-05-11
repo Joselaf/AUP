@@ -16,13 +16,13 @@ class Smart_bulb:
             self.dps = {}
 
         self.stats = {
-            "state":       self.led,
-            "mode":        self.mode,
-            "brightness":  self.bright,
-            "temperature": self.temp,
-            "colour":      self.colour,
-            "scene":       self.scene,
-            "countdown":   self.countdown,
+            "state":       self.dps.get('20'),
+            "mode":        self.dps.get('21'),
+            "brightness":  self.dps.get('22'),
+            "temperature": self.dps.get('23'),
+            "colour":      self.dps.get('24'),
+            "scene":       self.dps.get('25'),
+            "countdown":   self.dps.get('26'),
         }
         
     def get_status(self):
@@ -37,16 +37,16 @@ class Smart_bulb:
         return self.name
     
     def get_tui_table(self,table,name):
-        status = None
-        led = None
+        _status = None
+        _led = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
-            led = "[bold yellow]ON[/]" if self.stats['led'] else "[bold blue]OFF[/]"
+            _status = "🟢 [bold green]ONLINE[/]"
+            _led = "[bold yellow]ON[/]" if self.stats['led'] else "[bold blue]OFF[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
-            led = "[bold white]-[/]"
-        table.add_columns("Device", "Status", "LED")
-        table.add_row(name, status, led)
+            _status = "🔴 [bold red]OFFLINE[/]"
+            _led = "[bold white]-[/]"
+        table.add_columns("Device", "_Status", "_LED")
+        table.add_row(name, _status, _led)
     
     def get_alerts(self):
         _alerts = []
@@ -54,6 +54,22 @@ class Smart_bulb:
             _alerts.append("POWER OFF")
         return _alerts
         
+    def refresh(self):
+        self.status = self.device.status()
+        if self.status is not None:
+            self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
+        self.stats = {
+            "state":       self.dps.get('20'),
+            "mode":        self.dps.get('21'),
+            "brightness":  self.dps.get('22'),
+            "temperature": self.dps.get('23'),
+            "colour":      self.dps.get('24'),
+            "scene":       self.dps.get('25'),
+            "countdown":   self.dps.get('26'),
+        }
+
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
         new_state = not self.dps.get('20')

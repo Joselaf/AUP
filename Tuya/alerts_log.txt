@@ -1,56 +1,8 @@
-Fechaduras Q01
-->Low Battery (App Alarm)
-
-Fechaduras Q02
-->Low Battery (App Alarm)
-
-Fechaduras Q03
-->Low Battery (App Alarm)
-
-Fechaduras Q04
-->Low Battery (App Alarm)
-
-Fechadura Q11
-->Alarm: Wrong Password
-
-Fechaduras Q12
-->Alarm: Wrong Password
-
-Fechaduras Q13
-->Low Battery (App Alarm)
-
-Fechaduras Q14
-->Low Battery (App Alarm)
-
-Fechadura Q15
-->Alarm: Wrong Password
-
-Fechadura Q21
-->Alarm: Wrong Finger
-
-Fechadura Q22
-->Low Battery (App Alarm)
-
-Fechadura Q23
-->Alarm: Wrong Finger
-
-Fechaduras Q24
-->Alarm: Wrong Finger
-
-Fechaduras Q26
-->Alarm: Wrong Finger
-
 Smart Lock 2
-->Alarm is triggered!
+->Alarm is triggered! (wrong_finger)
 
 Smart Lock Main
-->Alarm is triggered!
-
-Fechaduras inteligentes 25
-->Alarm: Wrong Finger
-
-Porta Estufa
-->Alarm: Wrong Finger
+->Alarm is triggered! (wrong_finger)
 
 Disjuntor Candeeiros Viela
 ->POWER OFF

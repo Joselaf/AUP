@@ -14,27 +14,17 @@ class Esmax:
              self.dps = self.status.get('dps', {})
         else:
             self.dps = {}
-        self.switch_lock    = self.dps.get('1')
-        self.gear_set       = self.dps.get('2')
-        self.light_switch   = self.dps.get('3')
-        self.cruise_control = self.dps.get('4')
-        self.start_mode     = self.dps.get('5')
-        self.speed          = self.dps.get('101')
-        self.battery_level  = self.dps.get('102')
-        self.milage         = self.dps.get('103')
-        self.milage_trip    = self.dps.get('104')
-        self.fault          = self.dps.get('105')
         self.stats = {
-            "switch_lock": self.switch_lock,   ## True=Locked, False=Unlocked
-            "gear":        self.gear_set,       ## 1=Eco, 2=Normal, 3=Sport
-            "lights":      self.light_switch,
-            "cruise":      self.cruise_control,
-            "start_mode":  self.start_mode,
-            "speed":       self.speed,          ## in 0.1 km/h units
-            "battery":     self.battery_level,  ## 0-100%
-            "mileage":     self.milage,
-            "trip":        self.milage_trip,
-            "fault":       self.fault,
+            "switch_lock":  self.dps.get('1'),   ## True=Locked, False=Unlocked
+            "gear":        self.dps.get('2'),       ## 1=Eco, 2=Normal, 3=Sport
+            "lights":      self.dps.get('3'),
+            "cruise":      self.dps.get('4'),
+            "start_mode":  self.dps.get('5'),
+            "speed":       self.dps.get('101'),          ## in 0.1 km/h units
+            "battery":     self.dps.get('102'),  ## 0-100%
+            "mileage":     self.dps.get('103'),
+            "trip":        self.dps.get('103'),
+            "fault":       self.dps.get('105')
         }
         
     def get_status(self):
@@ -50,20 +40,20 @@ class Esmax:
         return self.name
     
     def get_tui_table(self,table,name):
-        status = None
-        state_lock = None
-        battery = None
+        _status = None
+        _state_lock = None
+        _battery = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
-            state_lock =  "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
-            battery = f"[bold white]{self.stats['battery']}[/]"
+            _status = "🟢 [bold green]ONLINE[/]"
+            _state_lock =  "[bold yellow]Locked[/]" if self.stats['switch_lock'] else "[bold blue]Unlocked[/]"
+            _battery = f"[bold white]{self.stats['battery']}[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
-            state_lock = "[bold white]-[/]"
-            battery = "[bold white]-[/]"
+            _status = "🔴 [bold red]OFFLINE[/]"
+            _state_lock = "[bold white]-[/]"
+            _battery = "[bold white]-[/]"
             
         table.add_columns("Device", "Status", "Lock State", "Battery")
-        table.add_row(name, status, state_lock, battery)
+        table.add_row(name, _status, _state_lock, _battery)
 
     def get_alerts(self):
         _alerts = []
@@ -74,7 +64,36 @@ class Esmax:
         elif _fault and str(_fault) != '0':
             _alerts.append((f"VEHICLE FAULT:reported fault code {_fault}!"))
         return _alerts
-    
+
+    def refresh(self):
+        self.status = self.device.status()
+        if self.status is not None:
+            self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
+        self.switch_lock    = self.dps.get('1')
+        self.gear_set       = self.dps.get('2')
+        self.light_switch   = self.dps.get('3')
+        self.cruise_control = self.dps.get('4')
+        self.start_mode     = self.dps.get('5')
+        self.speed          = self.dps.get('101')
+        self.battery_level  = self.dps.get('102')
+        self.milage         = self.dps.get('103')
+        self.milage_trip    = self.dps.get('104')
+        self.fault          = self.dps.get('105')
+        self.stats = {
+            "switch_lock": self.switch_lock,
+            "gear":        self.gear_set,
+            "lights":      self.light_switch,
+            "cruise":      self.cruise_control,
+            "start_mode":  self.start_mode,
+            "speed":       self.speed,
+            "battery":     self.battery_level,
+            "mileage":     self.milage,
+            "trip":        self.milage_trip,
+            "fault":       self.fault,
+        }
+
     ## Electronic Lock toggle
     def toogle_switch_lock(self):
         new_state = not self.dps.get('1')

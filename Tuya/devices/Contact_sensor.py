@@ -35,19 +35,19 @@ class Contact_sensor:
         return self.ip
 
     def get_tui_table(self,table,name):
-        status = None
-        door_state = None
-        battery = None
+        _status = None
+        _door_state = None
+        _battery = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
-            door_state =  "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]closed[/]"
-            battery = status.get("battery_percentage", status.get("battery_level", status.get("battery")))
+            _status = "🟢 [bold green]ONLINE[/]"
+            _door_state =  "[bold yellow]Opened[/]" if self.stats['_door_state'] else "[bold blue]closed[/]"
+            _battery = self.stats.get("battery_state")
         else:      
-            status = "🔴[bold red]OFFLINE[/]"
-            door_state = "[bold white]-[/]"
-            battery = "[bold white]-[/]"
-        table.add_columns("Device", "Status", "Door_State", "Battery")
-        table.add_row(name, status, door_state, battery)
+            _status = "🔴 [bold red]OFFLINE[/]"
+            _door_state = "[bold white]-[/]"
+            _battery = "[bold white]-[/]"
+        table.add_columns("Device", "_Status", "Door_State", "Battery")
+        table.add_row(name, _status, _door_state, _battery)
     
     def get_alerts(self):
         _alerts = []
@@ -56,3 +56,16 @@ class Contact_sensor:
         elif(self.stats['battery_state'] == 'low'):
             _alerts.append(("BATTERY LOW"))
         return _alerts
+
+    def refresh(self):
+        self.status = self.device.status()
+        if self.status is not None:
+            self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
+        self.stats = {
+            "door_state":         self.dps.get('1'),
+            "battery_percentage": self.dps.get('2'),
+            "battery_state":      self.dps.get('3'),
+            "tamper_alarm":       self.dps.get('4'),
+        }

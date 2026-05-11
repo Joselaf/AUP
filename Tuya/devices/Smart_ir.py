@@ -32,19 +32,26 @@ class Smart_ir:
     
     
     def get_tui_table(self,table,name):
-        status = "🟢[bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴 [bold red]OFFLINE[/]"
+        status = "🟢 [bold green]ONLINE[/]" if is_device_reachable(self.ip) else "🔴 [bold red]OFFLINE[/]"
         table.add_columns("Device", "Status")
         table.add_row(name, status)
     
     def get_alerts(self):
        return []
     
+    def refresh(self):
+        self.status = self.device.status()
+        if self.status is not None:
+            self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
+
     ## Send Code: The raw IR code (Base64) to be emitted.
     def send_ir_code(self, code):
-        payload = self.device.generate_payload(tinytuya.CONTROL, {'1': code})
-        self.device.send(payload)
+        _payload = self.device.generate_payload(tinytuya.CONTROL, {'1': code})
+        self.device.send(_payload)
 
     ## Learning Mode: Receives and reports the IR code from a physical remote.
     def enter_learning_mode(self):
-        payload = self.device.generate_payload(tinytuya.CONTROL, {'2': True})
-        self.device.send(payload)
+        _payload = self.device.generate_payload(tinytuya.CONTROL, {'2': True})
+        self.device.send(_payload)

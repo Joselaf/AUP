@@ -35,22 +35,35 @@ class Presence_sensor:
 
     
     def get_tui_table(self,table,name):
-        status = None
-        presence = None
+        _status = None
+        _presence = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
-            presence = "[bold white]Detected[/]" if self.stats['presence_status'] else "[bold white]Undetected[/]"
+            _status = "🟢 [bold green]ONLINE[/]"
+            _presence = "[bold white]Detected[/]" if self.stats['presence_status'] else "[bold white]Undetected[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
-            presence = "[bold white]-[/]"
-        table.add_columns("Device", "Status", "Presence")
-        table.add_row(name, status, presence)
+            _status = "🔴 [bold red]OFFLINE[/]"
+            _presence = "[bold white]-[/]"
+        table.add_columns("Device", "_Status", "_Presence")
+        table.add_row(name, _status, _presence)
         
     def get_alerts(self):
         _alerts = []
         if self.stats.get('presence_status'):
             _alerts.append(("PRESENCE DETECTED"))
         return _alerts
+
+    def refresh(self):
+        self.status = self.device.status()
+        if self.status is not None:
+            self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
+        self.stats = {
+            "presence_status":  self.dps.get('1'),
+            "motion_state":     self.dps.get('105'),
+            "illuminance_lux":  self.dps.get('104'),
+            "target_distance":  self.dps.get('9'),
+        }
 
     ## Exercise classification: none, presence, peaceful, small_move, large_move
     def set_motion_state(self, value):

@@ -41,20 +41,40 @@ class Smart_tv:
 
     
     def get_tui_table(self,table,name):
-        status = None
-        power = None
+        _status = None
+        _power = None
         if is_device_reachable(self.ip):
-            status = "🟢[bold green]ONLINE[/]"
-            power =    "[bold yellow]ON[/]" if self.stats['power'] else "[bold blue]OFF[/]"
+            _status = "🟢 [bold green]ONLINE[/]"
+            _power =    "[bold yellow]ON[/]" if self.stats['power'] else "[bold blue]OFF[/]"
         else:
-            status = "🔴[bold red]OFFLINE[/]"
-            power =  "[bold white]-[/]"
-        table.add_columns("Device", "Status", "Power")
-        table.add_row(name, status, power)
+            _status = "🔴 [bold red]OFFLINE[/]"
+            _power =  "[bold white]-[/]"
+        table.add_columns("Device", "_Status", "_Power")
+        table.add_row(name, _status, _power)
     
     def get_alerts(self):
         return []
             
+    def refresh(self):
+        self.status = self.device.status()
+        if self.status is not None:
+            self.dps = self.status.get('dps', {})
+        else:
+            self.dps = {}
+        self.power  = self.dps.get('1')
+        self.volume = self.dps.get('2')
+        self.mute   = self.dps.get('3')
+        self.mode   = self.dps.get('4')
+        self.source = self.dps.get('102')
+
+        self.stats = {
+            "power":   self.power,
+            "volume":  self.volume,
+            "mute":    self.mute,
+            "mode":    self.mode,
+            "source":  self.source,
+        }
+
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
         new_state = not self.dps.get('1')

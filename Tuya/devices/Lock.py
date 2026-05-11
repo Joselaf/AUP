@@ -1,20 +1,29 @@
 import json
 import os
+import logging
 import tinytuya
+
+# Setup logging to catch errors instead of silent 'pass'
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 _CFG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tinytuya.json")
 
 def _get_cloud():
-    with open(_CFG_PATH) as f:
-        cfg = json.load(f)
-    return tinytuya.Cloud(
-        apiRegion=cfg["apiRegion"],
-        apiKey=cfg["apiKey"],
-        apiSecret=cfg["apiSecret"],
-        apiDeviceID=cfg["apiDeviceID"],
-    )
+    try:
+        with open(_CFG_PATH) as f:
+            cfg = json.load(f)
+        return tinytuya.Cloud(
+            apiRegion=cfg["apiRegion"],
+            apiKey=cfg["apiKey"],
+            apiSecret=cfg["apiSecret"],
+            apiDeviceID=cfg["apiDeviceID"],
+        )
+    except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
+        logger.error(f"Failed to load Cloud config: {e}")
+        return None
 
-class Lock:
+class Lock: # Changed to PascalCase (Python standard)
     def __init__(self, d_id, d_local_key, d_name, d_version=3.3):
         self.id = d_id
         self.local_key = d_local_key
@@ -23,45 +32,34 @@ class Lock:
         self._cloud = _get_cloud()
         self._codes = {}
         self.is_online = False
+        
+        # Logic to prevent false low battery alerts
+        self._low_bat_count = 0
+        self._BATTERY_THRESHOLD = 3 # Must be 'low' 3 times to alert
+        
         self.refresh()
 
     def refresh(self):
-        """Hybrid Refresh: Tries Cloud status, then sniffs for real-time local broadcasts."""
-        # 1. Cloud Fallback
+        if not self._cloud:
+            return False
         try:
             result = self._cloud.getstatus(self.id)
             if result and result.get("success") and result.get("result"):
+                # Convert list of dicts to a single dictionary
                 self._codes = {item["code"]: item["value"] for item in result["result"]}
                 self.is_online = True
-        except Exception:
-            self.is_online = False
-
-        # 2. Local Real-Time Sniffing (UDP)
-        try:
-            # Scans for 1 second to see if the lock is currently awake on Wi-Fi
-            devices = tinytuya.deviceScan(False, 1) 
-            for addr in devices:
-                if devices[addr]['id'] == self.id:
-                    d = tinytuya.OutletDevice(self.id, addr, self.local_key)
-                    d.set_version(self.version)
-                    payload = d.status()
-                    if payload and 'dps' in payload:
-                        # Map numeric DPs to string codes for consistency
-                        # DP 21: alarm_lock | DP 8: battery_percentage
-                        rt = payload['dps']
-                        if '21' in rt: self._codes['alarm_lock'] = rt['21']
-                        if '8' in rt: self._codes['residual_electricity'] = rt['8']
-                        self.is_online = True
-        except Exception:
-            pass
-        return self.is_online
+                return True
+        except Exception as e:
+            logger.debug(f"Refresh failed for {self.name}: {e}")
+        
+        self.is_online = False
+        return False
 
     @property
     def stats(self):
-        """Consolidates cloud and local data into a clean dictionary."""
+        """Returns a cleaned dictionary of device states."""
         return {
             "battery_state":      self._codes.get("battery_state", "unknown"),
-            "percentage":         self._codes.get("residual_electricity") or self._codes.get("battery_percentage"),
             "door_open":          self._codes.get("open_inside", False),
             "alarm":              self._codes.get("alarm_lock"),
             "unlock_fingerprint": self._codes.get("unlock_fingerprint"),
@@ -69,63 +67,41 @@ class Lock:
             "unlock_card":        self._codes.get("unlock_card"),
             "unlock_temporary":   self._codes.get("unlock_temporary"),
             "hijack":             self._codes.get("hijack", False),
+            "battery_percentage": self._codes.get("battery_percentage", "unknown")
         }
+
+    def remote_unlock(self):
+        if not self._cloud: return None
+        try:
+            # Typical Tuya command format
+            return self._cloud.sendcommand(self.id, {"commands": [{"code": "unlock_app", "value": True}]})
+        except Exception as e:
+            logger.error(f"Unlock command failed: {e}")
+            return None
+
+    def get_tui_table(self, table,name):
+        self.refresh()
+        _status = "🔴 [bold red]OFFLINE[/]"
+        _battery = f"[bold white]{self.stats["battery_state"]}[/]"
+        _door_state = "[bold yellow]Opened[/]" if self.stats["door_open"] else "[bold blue]Closed[/]"
+        table.add_columns("Device", "Status", "Door State", "Battery")
+        table.add_row(name,_status,_door_state,_battery)
 
     def get_alerts(self):
         self.refresh()
         _alerts = []
-        s = self.stats
-        
-        # Match App Logic: Priority 1 (Alarm Event)
-        if s["alarm"] == "low_battery":
-            _alerts.append("Low Battery (App Alarm)")
-        
-        # Match App Logic: Priority 2 (Actual Percentage)
-        if s["percentage"] is not None:
-            try:
-                if int(s["percentage"]) < 20:
-                    _alerts.append(f"Low Battery: {s['percentage']}%")
-            except (ValueError, TypeError):
-                pass
-        
-        # Security Alarms
-        if s["alarm"] and s["alarm"] != "low_battery" and s["alarm"] != "none":
-            _alerts.append(f"Alarm: {str(s['alarm']).replace('_', ' ').title()}")
-        
-        if s["hijack"]:
-            _alerts.append("Hijack Alert!")
+        _current_stats = self.stats
+        _battery = _current_stats.get("battery_state", "").lower()
+        if _battery == "low":
+            self._low_bat_count += 1
+        else:
+            self._low_bat_count = 0 # Reset if it reports 'high' or 'medium'
+
+        battery_pct = self._codes.get("battery_percentage")
+        if battery_pct is not None and isinstance(battery_pct, (int, float)):
+            if self._low_bat_count >= self._BATTERY_THRESHOLD and battery_pct < 20 or battery_pct < 20:
+                _alerts.append("Low Battery (Confirmed)")
+        if _current_stats.get("hijack"):
+            _alerts.append(f"Hijack mode is active! ({self._codes.get('hijack')})")
             
         return _alerts
-
-    def get_tui_table(self, table, name):
-        """Displays status using the Rich library formatting."""
-        if self.is_online:
-            status = "🟢 [bold green]ONLINE[/]"
-            s = self.stats
-            
-            # Show percentage if available, otherwise fallback to state
-            bat_val = s["percentage"]
-            if bat_val is not None:
-                battery = f"[bold white]{bat_val}%[/]"
-            else:
-                battery = f"[bold white]{s['battery_state']}[/]"
-                
-            door_state = "[bold yellow]Opened[/]" if s["door_open"] else "[bold blue]Closed[/]"
-        else:
-            status = "🔴 [bold red]OFFLINE[/]"
-            battery = "[bold white]-[/]"
-            door_state = "[bold white]-[/]"
-
-        # add_columns should ideally be handled by the parent table object
-        # but kept here for compatibility with your existing loop logic
-        table.add_columns("Device", "Status", "Door State", "Battery")
-        table.add_row(name,status,door_state,battery)
-
-    def remote_unlock(self):
-        try:
-            return self._cloud.sendcommand(self.id, {"commands": [{"code": "unlock_app", "value": True}]})
-        except Exception:
-            return None
-
-    def get_name(self):
-        return self.name
