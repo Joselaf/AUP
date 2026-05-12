@@ -1,5 +1,7 @@
 def breaker_code(err):
     match err:
+        case None:
+            return "No error"
         case 1:
             return "OverCurrent"
         case 2:

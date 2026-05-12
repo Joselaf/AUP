@@ -74,7 +74,7 @@ class Consumption_breaker:
         _state = self.stats.get('state')
         if _state is not None and _state == False:
             _alerts.append((f"POWER OFF"))
-        elif _error and str(_error) != '0':
+        if _error not in (None, 0, "None"):
             _alerts.append((f"BREAKER ERROR:{breaker_code(self.stats['error'])}!"))
         return _alerts
 
@@ -98,6 +98,17 @@ class Consumption_breaker:
             self.volts = float(self.dps.get('20', 0)) / 10.0
         except (ValueError, TypeError):
             self.volts = 0.0
+
+        # Update self.stats with the refreshed values
+        self.stats = {
+            "state": self.dps.get('1'),
+            "amps": self.amps,
+            "watts": self.watts,
+            "volts": self.volts,
+            "error": self.dps.get('26'),
+            "relay_status": self.dps.get('38'),
+            "child_lock": self.dps.get('40')
+        }
         self.stats = {
             "state": self.dps.get('1'),
             "amps": self.amps,

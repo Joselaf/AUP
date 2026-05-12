@@ -27,12 +27,11 @@ CSS = '''
 DataTable {
     height: auto;
     max-height: 5;
-    margin: 0 1;
+    margin: 0 0;
 
 }
 DataTable > .datatable--header {
     background: $primary-darken-3;
-    text-style: bold;
 }'''
 
 REFRESH_INTERVAL = 120

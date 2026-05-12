@@ -71,11 +71,11 @@ class Breaker:
     
     def get_alerts(self):
         _alerts = []
-        _error = self.stats.get('error')
+        _error = self.stats.get('error')    
         _state = self.stats.get('state')
         if _state is not None and _state == False:
             _alerts.append((f"POWER OFF"))
-        elif _error and str(_error) != '0':
+        if _error not in (None, 0, "None"):   
             _alerts.append((f"BREAKER ERROR:{breaker_code(self.stats['error'])}!"))
         return _alerts
 
