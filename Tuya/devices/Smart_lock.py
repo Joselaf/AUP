@@ -67,7 +67,6 @@ class Smart_lock: # Changed to PascalCase (Python standard)
             "unlock_card":        self._codes.get("unlock_card"),
             "unlock_temporary":   self._codes.get("unlock_temporary"),
             "hijack":             self._codes.get("hijack", False),
-           "battery_percentage": self._codes.get("battery_percentage", self._codes.get("residual_electricity","unknown")),
         }
 
     def remote_unlock(self):
@@ -81,35 +80,19 @@ class Smart_lock: # Changed to PascalCase (Python standard)
 
     def get_tui_table(self, table,name):
         self.refresh()
-        status = "🔴 [bold red]OFFLINE[/]"
-        bat_raw = self.stats["battery_state"]
-        battery = f"[bold white]{bat_raw}[/]"
-        door_state = "[bold yellow]Opened[/]" if self.stats["door_open"] else "[bold blue]Closed[/]"
-        table.add_columns("Device", "Status", "Door State", "Battery")
-        table.add_row(name,status,door_state,battery)
+        _status = "🔴 [bold red]OFFLINE[/]"
+        _battery_state = f"[bold white]{self.stats["battery_state"]}[/]"
+        _door_state = "[bold yellow]Opened[/]" if self.stats["door_open"] else "[bold blue]Closed[/]"
+        table.add_columns("Device","Status","Door State","Battery")
+        table.add_row(name,_status,_door_state,_battery_state)
 
     def get_alerts(self):
-        """Calculates alerts with debouncing for sensitive sensors."""
         self.refresh()
-        alerts = []
-        current_stats = self.stats
-
-        # --- Debounced Battery Logic ---
-        _battery = current_stats.get("battery_state", "").lower()
-        if _battery == "low":
-            self._low_bat_count += 1
-        else:
-            self._low_bat_count = 0 # Reset if it reports 'high' or 'middle'
-
-        battery_pct = self._codes.get("battery_percentage")
-        if battery_pct is not None and isinstance(battery_pct, (int, float)):
-            if self._low_bat_count >= self._BATTERY_THRESHOLD and battery_pct < 20 or battery_pct < 20:
-                alerts.append("Low Battery (Confirmed)")
-
-        # --- Immediate Alerts ---
-        if current_stats.get("alarm")!='low_battery': # Avoid duplicate low battery alert
-            alerts.append(f"Alarm is triggered! ({self._codes.get('alarm_lock')})")
-        if current_stats.get("hijack"):
-            alerts.append(f"Hijack mode is active! ({self._codes.get('hijack')})")
-            
-        return alerts
+        _alerts = []
+        _battery_state = self._codes.get("battery_state")
+        if _battery_state is not None and _battery_state.lower() == "low":
+                _alerts.append("Low Battery (Confirmed)")
+        if self._codes.get("hijack"):
+            _alerts.append(f"Hijack mode is active! ({self._codes.get('hijack')})")
+                
+        return _alerts

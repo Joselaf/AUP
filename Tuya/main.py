@@ -31,7 +31,7 @@ def devices_status(device):
     else:
         if device['ip']:     
             match category:
-                case 'dlq'if("consumo" in device['name'].lower()):
+                case 'dlq' if ("consumo" in device['name'].lower()):
                         return Consumption_breaker(device['id'],device['ip'],device['key'],device['name'],device['version'])
                 case 'dlq':
                         return Breaker(device['id'], device['ip'], device['key'], device['name'],device['version'])

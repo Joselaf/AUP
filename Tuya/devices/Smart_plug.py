@@ -47,7 +47,8 @@ class Smart_plug:
     
     def get_alerts(self):
         _alerts = []
-        if self.stats.get('state') == False:
+        _state = self.stats.get('state')
+        if _state in (False, 0, "0") or str(_state).strip().lower() in {"false", "off", "no", "none"}:
             _alerts.append(("POWER OFF"))
         return _alerts
             

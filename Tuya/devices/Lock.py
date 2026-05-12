@@ -90,18 +90,12 @@ class Lock: # Changed to PascalCase (Python standard)
     def get_alerts(self):
         self.refresh()
         _alerts = []
-        _current_stats = self.stats
-        _battery = _current_stats.get("battery_state", "").lower()
-        if _battery == "low":
-            self._low_bat_count += 1
-        else:
-            self._low_bat_count = 0 # Reset if it reports 'high' or 'medium'
 
         battery_pct = self._codes.get("battery_percentage")
         if battery_pct is not None and isinstance(battery_pct, (int, float)):
-            if self._low_bat_count >= self._BATTERY_THRESHOLD and battery_pct < 20 or battery_pct < 20:
+            if battery_pct < 20:
                 _alerts.append("Low Battery (Confirmed)")
-        if _current_stats.get("hijack"):
+        if self._codes.get("hijack"):
             _alerts.append(f"Hijack mode is active! ({self._codes.get('hijack')})")
             
         return _alerts

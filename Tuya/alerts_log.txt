@@ -1,9 +1,0 @@
-Smart Lock 2
-->Alarm is triggered! (wrong_finger)
-
-Smart Lock Main
-->Alarm is triggered! (wrong_finger)
-
-Disjuntor Candeeiros Viela
-->POWER OFF
-

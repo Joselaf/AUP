@@ -34,7 +34,8 @@ DataTable > .datatable--header {
     background: $primary-darken-3;
 }'''
 
-REFRESH_INTERVAL = 120
+REFRESH_INTERVAL_TUI = 300
+REFRSH_INTERVAL_EMAIL = 3600
 LOG_FILE = os.getenv("LOG_FILE")
 
 
@@ -44,7 +45,8 @@ class TuyaDashboard(App):
     scanning: reactive[bool] = reactive(False)
 
     def on_mount(self) -> None:
-        self.set_interval(REFRESH_INTERVAL, self.refresh_devices)
+        self.set_interval(REFRESH_INTERVAL_TUI, self.refresh_devices)
+        self.set_interval(REFRSH_INTERVAL_EMAIL, self._send_alert_async)
         self.refresh_devices()
 
     def watch_last_updated(self, value: str) -> None:
@@ -95,14 +97,12 @@ class TuyaDashboard(App):
 
         self.scanning = False
         self.last_updated = datetime.now().strftime("%H:%M:%S")
-        if os.path.exists(LOG_FILE) and os.path.getsize(LOG_FILE) > 0:
-            self._send_alert_async()
 
     @work(thread=True)
     def _send_alert_async(self) -> None:
-        with open(LOG_FILE, "r", encoding="utf-8") as f:
-            body = f.read()
-        ##send_email(subject="Alerts from casa ganso", body=body)
+            with open(LOG_FILE, "r", encoding="utf-8") as f:
+                body = f.read()
+            ##send_email(subject="Alerts from casa ganso", body=body)
 
     @staticmethod
     def clean_name(device_dict):
@@ -127,7 +127,6 @@ class TuyaDashboard(App):
                 _device_name = _full_name      
                 f.write(f"{_device_name}\n")
                 for alert in _device_alerts:
-                    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     f.write(f"->{alert}\n")
                 f.write("\n")
         device_obj.get_tui_table(table, _name)

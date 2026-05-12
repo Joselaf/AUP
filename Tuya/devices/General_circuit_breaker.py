@@ -35,7 +35,7 @@ class General_circuit_breaker:
 
         # 2. DEFINE the dictionary using the pre-calculated values
         self.stats = {
-            "state": self.dps.get('1'),
+            "state": self._normalize_state(self.dps.get('1')),
             "amps": self.amps,
             "watts": self.watts,
             "volts": self.volts,
@@ -76,7 +76,7 @@ class General_circuit_breaker:
         _alerts = []
         _error = self.stats.get('error')
         _state = self.stats.get('state')
-        if _state is False:
+        if _state in (False, 0, "0") or str(_state).strip().lower() in {"false", "off", "no", "none"}:
             _alerts.append("POWER OFF")
         if _error not in (None, 0, "None"):
             _alerts.append(f"BREAKER ERROR:{_error}!")
@@ -102,7 +102,7 @@ class General_circuit_breaker:
         except (ValueError, TypeError):
             self.volts = 0.0
         self.stats = {
-            "state": self.dps.get('1'),
+            "state": self._normalize_state(self.dps.get('1')),
             "amps": self.amps,
             "watts": self.watts,
             "volts": self.volts,
@@ -112,10 +112,31 @@ class General_circuit_breaker:
         }
     ## Turns the device ON if it is OFF and vice-versa
     def toggle(self):
-        new_state = not self.dps.get('1')
+        new_state = not self._normalize_state(self.dps.get('1'))
         self.device.set_dps('1', new_state)
 
-    ## power_on / power_off / memory
+    def _normalize_state(self, raw_state):
+        if isinstance(raw_state, bool):
+            return raw_state
+        if raw_state in (0, "0", False):
+            return False
+        if raw_state in (1, "1", True):
+            return True
+        dp12 = self.dps.get('12')
+        if isinstance(dp12, bool):
+            return dp12
+        if dp12 in (0, "0", False):
+            return False
+        if dp12 in (1, "1", True):
+            return True
+        dp16 = self.dps.get('16')
+        if isinstance(dp16, bool):
+            return dp16
+        if dp16 in (0, "0", False):
+            return False
+        if dp16 in (1, "1", True):
+            return True
+        return raw_state not in (None, "None", "")
     def set_relay_status(self, value):
         self.device.set_dps('38', value)
         self.relay_status = value
