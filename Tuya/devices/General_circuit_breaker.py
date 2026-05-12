@@ -76,10 +76,10 @@ class General_circuit_breaker:
         _alerts = []
         _error = self.stats.get('error')
         _state = self.stats.get('state')
-        if _state is not None and _state == False:
-            _alerts.append("POWER OFF:")
-        elif _error and str(_error) != '0':
-            _alerts.append((f"BREAKER ERROR:{_error}!"))
+        if _state is False:
+            _alerts.append("POWER OFF")
+        if _error not in (None, 0, "None"):
+            _alerts.append(f"BREAKER ERROR:{_error}!")
         return _alerts
     def refresh(self):
         self.status = self.device.status()

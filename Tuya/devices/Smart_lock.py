@@ -67,7 +67,7 @@ class Smart_lock: # Changed to PascalCase (Python standard)
             "unlock_card":        self._codes.get("unlock_card"),
             "unlock_temporary":   self._codes.get("unlock_temporary"),
             "hijack":             self._codes.get("hijack", False),
-            "battery_percentage": self._codes.get("battery_percentage", "unknown")
+           "battery_percentage": self._codes.get("battery_percentage", self._codes.get("residual_electricity","unknown")),
         }
 
     def remote_unlock(self):

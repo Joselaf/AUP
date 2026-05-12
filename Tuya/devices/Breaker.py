@@ -60,7 +60,7 @@ class Breaker:
         if is_device_reachable(self.ip):
             _status = "🟢 [bold green]ONLINE[/]"
             _state = "[bold white]On[/]" if self.stats['state'] == True else "[bold white]OFF[/]"
-            _error = "[bold white]None[/]" if self.stats['error'] == 0 else f"[bold white]{breaker_code(self.stats['error'])}[/]"
+            _error = "[bold white]None[/]" if self.stats['error'] in (None, 0, "None") else f"[bold white]{breaker_code(self.stats['error'])}[/]"
         else:
             _status = "🔴 [bold red]OFFLINE[/]"
             _state = "[bold white]-[/]"  

@@ -56,8 +56,8 @@ class TuyaDashboard(App):
 
     @work(thread=True)
     def refresh_devices(self) -> None:
-        if os.path.exists("alerts_log.txt"):
-            open("alerts_log.txt", "w", encoding="utf-8").close()
+        if os.path.exists(LOG_FILE):
+            open(LOG_FILE, "w", encoding="utf-8").close()
         self.call_from_thread(setattr, self, "scanning", True)
         tinytuya.deviceScan()
         devices = main.load_devices()
@@ -67,7 +67,6 @@ class TuyaDashboard(App):
 
     def _update_tables(self, floor_data, my_outside_devices) -> None:
         table_iter = iter(self.query(DataTable))
-
         for floor in floor_data:
             for room in floor:
                 for device_dict, device_obj in zip(room.get("Devices", []), room.get("Objects", [])):
@@ -96,13 +95,12 @@ class TuyaDashboard(App):
 
         self.scanning = False
         self.last_updated = datetime.now().strftime("%H:%M:%S")
-        if os.path.exists("alerts_log.txt") and os.path.getsize("alerts_log.txt") > 0:
+        if os.path.exists(LOG_FILE) and os.path.getsize(LOG_FILE) > 0:
             self._send_alert_async()
 
     @work(thread=True)
     def _send_alert_async(self) -> None:
-        log_file = os.getenv("LOG_FILE", "alerts_log.txt")
-        with open(log_file, "r", encoding="utf-8") as f:
+        with open(LOG_FILE, "r", encoding="utf-8") as f:
             body = f.read()
         ##send_email(subject="Alerts from casa ganso", body=body)
 
@@ -125,7 +123,7 @@ class TuyaDashboard(App):
         _device_alerts = device_obj.get_alerts()
         _full_name = device_dict['name']
         if _device_alerts:
-            with open("alerts_log.txt", "a", encoding="utf-8") as f:
+            with open(LOG_FILE, "a", encoding="utf-8") as f:
                 _device_name = _full_name      
                 f.write(f"{_device_name}\n")
                 for alert in _device_alerts:
