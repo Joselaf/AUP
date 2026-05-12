@@ -218,4 +218,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
-*.txt
+alerts_log.txt
