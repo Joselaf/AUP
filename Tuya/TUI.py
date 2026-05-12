@@ -102,7 +102,7 @@ class TuyaDashboard(App):
     def _send_alert_async(self) -> None:
             with open(LOG_FILE, "r", encoding="utf-8") as f:
                 body = f.read()
-            ##send_email(subject="Alerts from casa ganso", body=body)
+            send_email(subject="Alerts from casa ganso", body=body)
 
     @staticmethod
     def clean_name(device_dict):
