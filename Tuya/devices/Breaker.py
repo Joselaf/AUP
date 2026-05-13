@@ -60,7 +60,7 @@ class Breaker:
         if is_device_reachable(self.ip):
             _status = "🟢 [bold green]ONLINE[/]"
             _state = "[bold white]On[/]" if self.stats['state'] == True else "[bold white]OFF[/]"
-            _fault = "[bold white]None[/]" if self.stats['fault'] in (None, 0, "None") else f"[bold white]{breaker_code(self.stats['fault'])}[/]"
+            _fault = "[bold white]None[/]" if self.stats['state'] == True in (None,"None") else f"[bold white]{breaker_code(self.stats['fault'])}[/]"
         else:
             _status = "🔴 [bold red]OFFLINE[/]"
             _state = "[bold white]-[/]"  
@@ -71,12 +71,15 @@ class Breaker:
     
     def get_alerts(self):
         _alerts = []
-        _fault = self.stats.get('fault')    
+        _fault = self.stats.get('fault')
         _state = self.stats.get('state')
-        if _state in (False, 0, "0") or str(_state).strip().lower() in {"false", "off", "no", "none"}:
-            _alerts.append((f"POWER OFF"))
-        if _fault not in (None, 0, "None"):
-            _alerts.append((f"BREAKER FAULT:{breaker_code(self.stats['fault'])}!"))
+        if _state in (False, 0, "0"):
+            if _fault is not None:
+                _alerts.append(f"Breaker OFF:{breaker_code(_fault)}")
+                if self.stats['watts'] == 0 and self.stats['amps'] == 0:
+                    _alerts.append("BREAKER TRIPPED!")
+            else:
+                _alerts.append("POWER OFF")
         return _alerts
 
     def refresh(self):

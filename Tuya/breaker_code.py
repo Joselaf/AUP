@@ -26,6 +26,4 @@ def breaker_code(value: int) -> str:
             return "Unbalance"
         case 12:
             return "Miss-Phase"
-        case _:
-            return "unknown"
 

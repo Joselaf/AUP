@@ -61,7 +61,7 @@ class TuyaDashboard(App):
         if os.path.exists(LOG_FILE):
             open(LOG_FILE, "w", encoding="utf-8").close()
         self.call_from_thread(setattr, self, "scanning", True)
-        tinytuya.deviceScan()
+        tinytuya.deviceScan(False, 10)
         devices = main.load_devices()
         my_devices, my_outside_devices = main.organize_devices(devices)
         floor_data = my_devices.get("Floors", [])
