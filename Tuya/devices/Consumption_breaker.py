@@ -40,7 +40,7 @@ class Consumption_breaker:
             "amps": self.amps,
             "watts": self.watts,
             "volts": self.volts,
-            "error": self.dps.get('26'),
+            "fault": self.dps.get('26'),
             "relay_status": self.dps.get('38'),
             "child_lock": self.dps.get('40')
         }
@@ -54,28 +54,28 @@ class Consumption_breaker:
 
     def get_tui_table(self,table,name):
         _status = None
-        _error = None
+        _fault = None
         _state = None
         if is_device_reachable(self.ip):
             _status = "🟢 [bold green]ONLINE[/]"
             _state = "[bold white]On[/]" if self.stats['state'] == True else "[bold white]OFF[/]"
-            _error = "[bold white]None[/]" if self.stats['error'] in (None, 0, "None") else f"[bold white]{breaker_code(self.stats['error'])}[/]"
+            _fault = "[bold white]None[/]" if self.stats['fault'] in (None, 0, "None") else f"[bold white]{breaker_code(self.stats['fault'])}[/]"
         else:
             _status = "🔴 [bold red]OFFLINE[/]"
             _state = "[bold white]-[/]"  
-            _error = "[bold white]-[/]"
+            _fault = "[bold white]-[/]"
         
-        table.add_columns("Device", "Status", "State", "Error")
-        table.add_row(name, _status, _state, _error)
+        table.add_columns("Device", "Status", "State", "Fault")
+        table.add_row(name, _status, _state, _fault)
         
     def get_alerts(self):
         _alerts = []
-        _error = self.stats.get('error')
+        _fault = self.stats.get('fault')
         _state = self.stats.get('state')
         if _state in (False, 0, "0") or str(_state).strip().lower() in {"false", "off", "no", "none"}:
             _alerts.append((f"POWER OFF"))
-        if _error not in (None, 0, "None"):
-            _alerts.append((f"BREAKER ERROR:{breaker_code(self.stats['error'])}!"))
+        if _fault not in (None, 0, "None"):
+            _alerts.append((f"BREAKER FAULT:{breaker_code(self.stats['fault'])}!"))
         return _alerts
 
     def refresh(self):
@@ -105,7 +105,7 @@ class Consumption_breaker:
             "amps": self.amps,
             "watts": self.watts,
             "volts": self.volts,
-            "error": self.dps.get('26'),
+            "fault": self.dps.get('26'),
             "relay_status": self.dps.get('38'),
             "child_lock": self.dps.get('40')
         }

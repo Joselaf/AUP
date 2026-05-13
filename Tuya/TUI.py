@@ -26,7 +26,7 @@ CSS = '''
 }
 DataTable {
     height: auto;
-    max-height: 5;
+    max-height: 1fr;
     margin: 0 0;
 
 }
@@ -34,7 +34,7 @@ DataTable > .datatable--header {
     background: $primary-darken-3;
 }'''
 
-REFRESH_INTERVAL_TUI = 300
+REFRESH_INTERVAL_TUI = 120       
 REFRSH_INTERVAL_EMAIL = 3600
 LOG_FILE = os.getenv("LOG_FILE")
 
