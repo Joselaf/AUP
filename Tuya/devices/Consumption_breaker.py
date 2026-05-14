@@ -75,7 +75,7 @@ class Consumption_breaker:
         if _state in (False, 0, "0"):
             if _fault is not None:
                 _alerts.append(f"Breaker OFF:{breaker_code(_fault)}")
-                if self.stats['watts'] == 0 and self.stats['amps'] == 0:
+                if self.stats['watts'] == 0 and self.stats['amps'] == 0 and _fault is None:
                     _alerts.append("BREAKER TRIPPED!")
             else:
                 _alerts.append("POWER OFF")
