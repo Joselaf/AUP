@@ -40,7 +40,7 @@ class Contact_sensor:
         _battery = None
         if is_device_reachable(self.ip):
             _status = "🟢 [bold green]ONLINE[/]"
-            _door_state =  "[bold yellow]Opened[/]" if self.stats['_door_state'] else "[bold blue]closed[/]"
+            _door_state = "[bold yellow]Opened[/]" if self.stats['door_state'] else "[bold blue]Closed[/]"
             _battery = self.stats.get("battery_state")
         else:      
             _status = "🔴 [bold red]OFFLINE[/]"

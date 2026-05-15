@@ -9,23 +9,9 @@ class Esmax:
         self.name = d_name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.key)
         self.device.set_version(d_version)
-        self.status = self.device.status()
-        if self.status is not None:
-             self.dps = self.status.get('dps', {})
-        else:
-            self.dps = {}
-        self.stats = {
-            "switch_lock":  self.dps.get('1'),   ## True=Locked, False=Unlocked
-            "gear":        self.dps.get('2'),       ## 1=Eco, 2=Normal, 3=Sport
-            "lights":      self.dps.get('3'),
-            "cruise":      self.dps.get('4'),
-            "start_mode":  self.dps.get('5'),
-            "speed":       self.dps.get('101'),          ## in 0.1 km/h units
-            "battery":     self.dps.get('102'),  ## 0-100%
-            "mileage":     self.dps.get('103'),
-            "trip":        self.dps.get('103'),
-            "fault":       self.dps.get('105')
-        }
+        self.dps = {}
+        self.stats = {}
+        self.refresh()
         
     def get_status(self):
         if(self.ip):
@@ -66,32 +52,19 @@ class Esmax:
         return _alerts
 
     def refresh(self):
-        self.status = self.device.status()
-        if self.status is not None:
-            self.dps = self.status.get('dps', {})
-        else:
-            self.dps = {}
-        self.switch_lock    = self.dps.get('1')
-        self.gear_set       = self.dps.get('2')
-        self.light_switch   = self.dps.get('3')
-        self.cruise_control = self.dps.get('4')
-        self.start_mode     = self.dps.get('5')
-        self.speed          = self.dps.get('101')
-        self.battery_level  = self.dps.get('102')
-        self.milage         = self.dps.get('103')
-        self.milage_trip    = self.dps.get('104')
-        self.fault          = self.dps.get('105')
+        status = self.device.status()
+        self.dps = status.get('dps', {}) if status else {}
         self.stats = {
-            "switch_lock": self.switch_lock,
-            "gear":        self.gear_set,
-            "lights":      self.light_switch,
-            "cruise":      self.cruise_control,
-            "start_mode":  self.start_mode,
-            "speed":       self.speed,
-            "battery":     self.battery_level,
-            "mileage":     self.milage,
-            "trip":        self.milage_trip,
-            "fault":       self.fault,
+            "switch_lock": self.dps.get('1'),
+            "gear":        self.dps.get('2'),
+            "lights":      self.dps.get('3'),
+            "cruise":      self.dps.get('4'),
+            "start_mode":  self.dps.get('5'),
+            "speed":       self.dps.get('101'),
+            "battery":     self.dps.get('102'),
+            "mileage":     self.dps.get('103'),
+            "trip":        self.dps.get('104'),
+            "fault":       self.dps.get('105'),
         }
 
     ## Electronic Lock toggle

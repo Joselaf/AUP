@@ -41,7 +41,7 @@ class Smart_bulb:
         _led = None
         if is_device_reachable(self.ip):
             _status = "🟢 [bold green]ONLINE[/]"
-            _led = "[bold yellow]ON[/]" if self.stats['led'] else "[bold blue]OFF[/]"
+            _led = "[bold yellow]ON[/]" if self.stats['state'] else "[bold blue]OFF[/]"
         else:
             _status = "🔴 [bold red]OFFLINE[/]"
             _led = "[bold white]-[/]"

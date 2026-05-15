@@ -1,5 +1,7 @@
 import tinytuya
 from is_device_reachable import is_device_reachable
+from breaker_code import breaker_code
+
 
 class General_circuit_breaker:
     def __init__(self, d_id, d_ip, d_local_key, d_name, d_version):
@@ -8,47 +10,51 @@ class General_circuit_breaker:
         self.local_key = d_local_key
         self.name = d_name
         self.device = tinytuya.OutletDevice(self.id, self.ip, self.local_key)
-        self.device.set_version(d_version) 
-        
-        self.status = self.device.status()
-        
-        if self.status is not None:
-            self.dps = self.status.get('dps', {})
-        else:
-            self.dps = {}
+        self.device.set_version(d_version)
+        self.dps = {}
+        self.stats = {}
+        self.refresh()
 
-        # 1. PRE-CALCULATE values with safety checks
+    # ------------------------------------------------------------------
+    # Internal helpers
+    # ------------------------------------------------------------------
+
+    def _parse_dps(self):
+        """Parse raw DPS into self.stats. Called by __init__ and refresh."""
         try:
-            self.watts = float(self.dps.get('19', 0)) / 10.0
+            watts = float(self.dps.get("19", 0)) / 10.0
         except (ValueError, TypeError):
-            self.watts = 0.0
-
+            watts = 0.0
         try:
-            self.amps = float(self.dps.get('18', 0)) / 1000.0
+            amps = float(self.dps.get("18", 0)) / 1000.0
         except (ValueError, TypeError):
-            self.amps = 0.0
-
+            amps = 0.0
         try:
-            self.volts = float(self.dps.get('20', 0)) / 10.0
+            volts = float(self.dps.get("20", 0)) / 10.0
         except (ValueError, TypeError):
-            self.volts = 0.0
+            volts = 0.0
 
-        # 2. DEFINE the dictionary using the pre-calculated values
         self.stats = {
-            "state": self._normalize_state(self.dps.get('1')),
-            "amps": self.amps,
-            "watts": self.watts,
-            "volts": self.volts,
-            "error": self.dps.get('26'),
-            "relay_status": self.dps.get('38'),
-            "child_lock": self.dps.get('40')
+            "state":        self.dps.get("1"),
+            "amps":         amps,
+            "watts":        watts,
+            "volts":        volts,
+            "fault":        self.dps.get("26"),
+            "relay_status": self.dps.get("38"),
+            "child_lock":   self.dps.get("40"),
         }
-        
+
+    # ------------------------------------------------------------------
+    # Public API
+    # ------------------------------------------------------------------
+
+    def refresh(self):
+        status = self.device.status()
+        self.dps = status.get("dps", {}) if status else {}
+        self._parse_dps()
+
     def get_status(self):
-        if(self.ip):
-            return self.stats
-        else:
-            return None
+        return self.stats if self.ip else None
 
     def get_ip(self):
         return self.ip
@@ -56,92 +62,32 @@ class General_circuit_breaker:
     def get_name(self):
         return self.name
 
-    def get_tui_table(self,table,name):
-        _status = None
-        _state = None
-        _error = None
+    def get_tui_table(self, table, name):
         if is_device_reachable(self.ip):
-            _status = "🟢 [bold green]ONLINE[/]"
-            _state = f"[bold white]On[/]" if self.stats['state']==True else "[bold white]OFF[/]"
-            _error = f"[bold white]{self.stats['error']}[/]" if self.stats['error'] else "[bold white]-[/]"
+            status  = "🟢 [bold green]ONLINE[/]"
+            state   = "[bold white]On[/]" if self.stats["state"] else "[bold white]OFF[/]"
+            fault   = "[bold white]None[/]" if self.stats["fault"] is None else f"[bold white]{breaker_code(self.stats['fault'])}[/]"
+            power   = f"[bold yellow]{self.stats['watts']}W[/]"
         else:
-            _status = "🔴 [bold red]OFFLINE[/]"
-            _state = "[bold white]-[/]"
-            _error = "[bold white]-[/]"
-            
-        table.add_columns("Device", "_Status", "_State", "_Error")
-        table.add_row(name, _status, _state, _error)
+            status = "🔴 [bold red]OFFLINE[/]"
+            state = fault = power = "[bold white]-[/]"
+
+        table.add_columns("Device", "Status", "State", "Fault", "Power")
+        table.add_row(name, status, state, fault, power)
 
     def get_alerts(self):
-        _alerts = []
-        _error = self.stats.get('error')
-        _state = self.stats.get('state')
-        if _state in (False, 0, "0") or str(_state).strip().lower() in {"false", "off", "no", "none"}:
-            _alerts.append("POWER OFF")
-        if _error not in (None, 0, "None"):
-            _alerts.append(f"BREAKER ERROR:{_error}!")
-        return _alerts
-    def refresh(self):
-        self.status = self.device.status()
-        if self.status is not None:
-            self.dps = self.status.get('dps', {})
-        else:
-            self.dps = {}
-        try:
-            self.watts = float(self.dps.get('19', 0)) / 10.0
-        except (ValueError, TypeError):
-            self.watts = 0.0
+        alerts = []
+        fault = self.stats.get("fault")
+        state = self.stats.get("state")
+        if state is False:
+            if fault is not None:
+                alerts.append(f"Breaker OFF:{breaker_code(fault)}")
+                if self.stats["watts"] == 0 and self.stats["amps"] == 0:
+                    alerts.append("BREAKER TRIPPED!")
+            else:
+                alerts.append("POWER OFF")
+        return alerts
 
-        try:
-            self.amps = float(self.dps.get('18', 0)) / 1000.0
-        except (ValueError, TypeError):
-            self.amps = 0.0
-
-        try:
-            self.volts = float(self.dps.get('20', 0)) / 10.0
-        except (ValueError, TypeError):
-            self.volts = 0.0
-        self.stats = {
-            "state": self._normalize_state(self.dps.get('1')),
-            "amps": self.amps,
-            "watts": self.watts,
-            "volts": self.volts,
-            "error": self.dps.get('26'),
-            "relay_status": self.dps.get('38'),
-            "child_lock": self.dps.get('40')
-        }
-    ## Turns the device ON if it is OFF and vice-versa
     def toggle(self):
-        new_state = not self._normalize_state(self.dps.get('1'))
-        self.device.set_dps('1', new_state)
-
-    def _normalize_state(self, raw_state):
-        if isinstance(raw_state, bool):
-            return raw_state
-        if raw_state in (0, "0", False):
-            return False
-        if raw_state in (1, "1", True):
-            return True
-        dp12 = self.dps.get('12')
-        if isinstance(dp12, bool):
-            return dp12
-        if dp12 in (0, "0", False):
-            return False
-        if dp12 in (1, "1", True):
-            return True
-        dp16 = self.dps.get('16')
-        if isinstance(dp16, bool):
-            return dp16
-        if dp16 in (0, "0", False):
-            return False
-        if dp16 in (1, "1", True):
-            return True
-        return raw_state not in (None, "None", "")
-    def set_relay_status(self, value):
-        self.device.set_dps('38', value)
-        self.relay_status = value
-
-    ## Child Lock: Disables the physical button
-    def set_childlock(self):
-        self.device.set_dps('40', True)
-        self.child_lock = True
+        new_state = not self.dps.get("1")
+        self.device.set_status({"1": new_state})
