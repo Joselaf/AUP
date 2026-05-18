@@ -10,13 +10,14 @@ from devices import *
 from send_email import send_email
 from udp_listener import UDPListener
 from energy_graph import GraphScreen
+import tinytuya
 
 DEVICES = main.load_devices()
 MY_DEVICES, OUTSIDE_DEVICES = main.organize_devices(DEVICES)
 
 MAX_CONCURRENT_POLLS  = 8
-REFRESH_INTERVAL      = 5      # local devices: poll every 5s (UDP handles real-time)
-REFRESH_INTERVAL_CLOUD = 300   # cloud devices (locks): poll every 5 minutes
+REFRESH_INTERVAL      = 2      ##local devices: poll every 5s (UDP handles real-time)
+REFRESH_INTERVAL_CLOUD = 300   ##cloud devices (locks): poll every 5 minutes
 REFRESH_INTERVAL_EMAIL = 3600
 LOG_FILE = os.getenv("LOG_FILE")
 

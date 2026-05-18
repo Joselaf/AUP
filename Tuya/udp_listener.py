@@ -100,12 +100,16 @@ class UDPListener:
 
     def _handle_packet(self, data: bytes, addr: tuple) -> None:
         sender_ip = addr[0]
+
+        # First try devices whose stored IP matches the sender
         candidates = [
             dev for dev in self._registry.values()
             if getattr(dev, "ip", None) == sender_ip
         ]
+
+        # If no match, the device may have changed IP — try all devices
         if not candidates:
-            return
+            candidates = list(self._registry.values())
 
         for dev in candidates:
             try:
@@ -115,6 +119,15 @@ class UDPListener:
                 dps = result.get("dps") or result.get("Data")
                 if not dps:
                     continue
+
+                # Update IP if it changed (DHCP reassignment)
+                if getattr(dev, "ip", None) != sender_ip:
+                    logger.info(
+                        "Device %s IP changed: %s → %s",
+                        dev.name, dev.ip, sender_ip,
+                    )
+                    dev.ip = sender_ip
+                    dev.device.address = sender_ip
 
                 # Acquire the per-device lock before mutating dps/stats
                 lock = self._dev_locks.get(dev.id)
@@ -126,7 +139,7 @@ class UDPListener:
 
                 if self._on_update:
                     self._on_update(dev.id, dev)
-                return   # packet handled — stop trying other candidates
+                return
 
             except Exception:
                 continue
