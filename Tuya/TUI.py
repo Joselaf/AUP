@@ -8,12 +8,15 @@ import threading
 import main
 from devices import *
 from send_email import send_email
+from udp_listener import UDPListener
+from energy_graph import GraphScreen
 
 DEVICES = main.load_devices()
 MY_DEVICES, OUTSIDE_DEVICES = main.organize_devices(DEVICES)
 
-MAX_CONCURRENT_POLLS = 8
-REFRESH_INTERVAL = 5
+MAX_CONCURRENT_POLLS  = 8
+REFRESH_INTERVAL      = 5      # local devices: poll every 5s (UDP handles real-time)
+REFRESH_INTERVAL_CLOUD = 300   # cloud devices (locks): poll every 5 minutes
 REFRESH_INTERVAL_EMAIL = 3600
 LOG_FILE = os.getenv("LOG_FILE")
 
@@ -32,30 +35,52 @@ def _iter_all_devices():
 
 
 CSS = '''
+/* ─── Fullscreen layout ──────────────────────────────────────────── */
+Screen {
+    overflow: hidden;
+}
+
+#main {
+    width: 100%;
+    height: 100%;
+}
+
+/* Each floor fills the full screen height */
 .floor-container {
     width: 1fr;
+    height: 100%;
     margin: 0;
-    height: 1fr;
     overflow-y: scroll;
+    border-right: tall $primary-darken-3;
 }
+
+/* Room sections stacked within a floor */
 .room-container {
     height: auto;
+    margin: 0 0 1 0;
+    padding: 0 1;
     background: $surface;
-    margin: 0;
-    padding: 0;
+    border-bottom: dashed $primary-darken-2;
 }
+
+/* ─── Tables fill available space ─── */
 DataTable {
     height: auto;
-    max-height: 1fr;
-    margin: 0 0;
+    max-height: 100%;
+    margin: 0;
+    width: 100%;
 }
+
 DataTable > .datatable--header {
     background: $primary-darken-3;
-}'''
+    text-style: bold;
+}
+'''
 
 
 class TuyaDashboard(App):
-    CSS = CSS
+    ##CSS = CSS
+    BINDINGS = [("g", "show_graphs", "Energy Graphs")]
 
     def on_mount(self) -> None:
         if LOG_FILE and os.path.exists(LOG_FILE):
@@ -64,46 +89,126 @@ class TuyaDashboard(App):
 
     def on_ready(self) -> None:
         """All widgets are mounted — populate tables immediately then start polling."""
+        # Build device index: device_id → (table_id, device_dict, device_obj)
+        self._device_index: dict[str, tuple] = {}
+        for idx, device_dict, device_obj in _iter_all_devices():
+            if device_obj is not None:
+                self._device_index[device_obj.id] = (
+                    f"device-table-{idx}", device_dict, device_obj
+                )
+
+        # Per-device flag: True means a UI update is already queued, don't
+        # queue another one until the current one is rendered.
+        self._update_pending: dict[str, bool] = {
+            dev_id: False for dev_id in self._device_index
+        }
+        self._pending_lock = threading.Lock()
+
+        # Start UDP listener for real-time updates
+        self._udp = UDPListener(
+            device_registry={
+                dev_id: info[2] for dev_id, info in self._device_index.items()
+            },
+            on_update=self._on_udp_update,
+        )
+        self._udp.start()
+
+        # Initial display with startup data (no network call)
         for idx, device_dict, device_obj in _iter_all_devices():
             self._update_single_table(f"device-table-{idx}", device_dict, device_obj)
+
+        # Poll loop as fallback for devices that don't broadcast
         self._poll_loop()
+
+    def action_show_graphs(self) -> None:
+        """Collect energy history from all breakers and open the graph screen."""
+        breaker_data = [
+            (device_dict["name"], device_obj.get_energy_history())
+            for _, device_dict, device_obj in _iter_all_devices()
+            if device_obj is not None and hasattr(device_obj, "get_energy_history")
+        ]
+        self.push_screen(GraphScreen(breaker_data))
+
+    def _on_udp_update(self, device_id: str, device_obj) -> None:
+        """Called from the UDP listener thread — queue a UI update if none pending."""
+        info = self._device_index.get(device_id)
+        if info is None:
+            return
+        table_id, device_dict, _ = info
+
+        with self._pending_lock:
+            if self._update_pending.get(device_id):
+                return   # already queued, skip duplicate
+            self._update_pending[device_id] = True
+
+        self.call_from_thread(
+            self._update_single_table, table_id, device_dict, device_obj
+        )
 
     @work(thread=True)
     def _poll_loop(self) -> None:
-        """Single background thread: polls all devices concurrently then updates UI."""
+        """Fallback poll: local devices every REFRESH_INTERVAL, cloud devices
+        (locks) every REFRESH_INTERVAL_CLOUD to conserve API quota."""
         all_devices = list(_iter_all_devices())
-        semaphore = threading.BoundedSemaphore(MAX_CONCURRENT_POLLS)
-        results: dict = {}
-        lock = threading.Lock()
+        semaphore   = threading.BoundedSemaphore(MAX_CONCURRENT_POLLS)
+
+        # Separate local (have IP) from cloud (no IP — locks use cloud API)
+        local_devices = [
+            (idx, d, o) for idx, d, o in all_devices
+            if o is not None and getattr(o, "ip", None)
+        ]
+        cloud_devices = [
+            (idx, d, o) for idx, d, o in all_devices
+            if o is not None and not getattr(o, "ip", None)
+        ]
+
+        cloud_counter = 0  # counts local poll cycles since last cloud poll
+        cloud_every   = max(1, REFRESH_INTERVAL_CLOUD // REFRESH_INTERVAL)
 
         def poll_one(idx, device_dict, device_obj):
-            if device_obj is not None:
-                with semaphore:
+            dev_lock = self._udp.get_lock(device_obj.id)
+            with semaphore:
+                with dev_lock:
                     device_obj.refresh()
-            with lock:
-                results[idx] = (device_dict, device_obj)
 
         while True:
             time.sleep(REFRESH_INTERVAL)
+            cloud_counter += 1
+
+            # Always poll local devices
+            devices_to_poll = list(local_devices)
+
+            # Only poll cloud devices every cloud_every cycles
+            if cloud_counter >= cloud_every:
+                devices_to_poll += cloud_devices
+                cloud_counter = 0
+
             threads = [
                 threading.Thread(target=poll_one, args=(idx, d, o), daemon=True)
-                for idx, d, o in all_devices
+                for idx, d, o in devices_to_poll
             ]
             for t in threads:
                 t.start()
             for t in threads:
                 t.join()
-            with lock:
-                snapshot = dict(results)
-            for idx, (device_dict, device_obj) in snapshot.items():
+
+            # Push UI updates
+            for idx, device_dict, device_obj in devices_to_poll:
+                dev_id   = device_obj.id
+                table_id = f"device-table-{idx}"
+                with self._pending_lock:
+                    if self._update_pending.get(dev_id):
+                        continue
+                    self._update_pending[dev_id] = True
                 self.call_from_thread(
-                    self._update_single_table,
-                    f"device-table-{idx}",
-                    device_dict,
-                    device_obj,
+                    self._update_single_table, table_id, device_dict, device_obj
                 )
 
     def _update_single_table(self, table_id: str, device_dict: dict, device_obj) -> None:
+        # Clear the pending flag so the next update can be queued
+        if device_obj is not None:
+            with self._pending_lock:
+                self._update_pending[device_obj.id] = False
         try:
             table = self.query_one(f"#{table_id}", DataTable)
         except Exception:
@@ -148,7 +253,7 @@ class TuyaDashboard(App):
         floor_data = MY_DEVICES.get("Floors", [])
         idx = 0
 
-        with Horizontal():
+        with Horizontal(id="main"):
             # One .floor-container per floor — scrolls independently
             for floor_idx, floor in enumerate(floor_data):
                 with Vertical(classes="floor-container"):

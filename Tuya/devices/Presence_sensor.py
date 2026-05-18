@@ -65,6 +65,16 @@ class Presence_sensor:
             "target_distance":  self.dps.get('9'),
         }
 
+    def update_from_dps(self, dps: dict) -> None:
+        """Called by UDPListener when a broadcast packet arrives for this device."""
+        self.dps.update(dps)
+        self.stats = {
+            "presence_status":  self.dps.get('1'),
+            "motion_state":     self.dps.get('105'),
+            "illuminance_lux":  self.dps.get('104'),
+            "target_distance":  self.dps.get('9'),
+        }
+
     ## Exercise classification: none, presence, peaceful, small_move, large_move
     def set_motion_state(self, value):
         self.device.set_dps('105', value)

@@ -58,7 +58,16 @@ class Smart_plug:
             self.dps = self.status.get('dps', {})
         else:
             self.dps = {}
-        
+        self.stats = {
+            "state":        self.dps.get('1'),
+            "countdown":    self.dps.get('9'),
+            "relay_status": self.dps.get('38'),
+            "child_lock":   self.dps.get('40'),
+        }
+
+    def update_from_dps(self, dps: dict) -> None:
+        """Called by UDPListener when a broadcast packet arrives for this device."""
+        self.dps.update(dps)
         self.stats = {
             "state":        self.dps.get('1'),
             "countdown":    self.dps.get('9'),

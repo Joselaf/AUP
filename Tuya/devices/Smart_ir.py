@@ -46,6 +46,10 @@ class Smart_ir:
         else:
             self.dps = {}
 
+    def update_from_dps(self, dps: dict) -> None:
+        """Called by UDPListener when a broadcast packet arrives for this device."""
+        self.dps.update(dps)
+
     ## Send Code: The raw IR code (Base64) to be emitted.
     def send_ir_code(self, code):
         _payload = self.device.generate_payload(tinytuya.CONTROL, {'1': code})

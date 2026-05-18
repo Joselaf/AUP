@@ -67,6 +67,22 @@ class Esmax:
             "fault":       self.dps.get('105'),
         }
 
+    def update_from_dps(self, dps: dict) -> None:
+        """Called by UDPListener when a broadcast packet arrives for this device."""
+        self.dps.update(dps)
+        self.stats = {
+            "switch_lock": self.dps.get('1'),
+            "gear":        self.dps.get('2'),
+            "lights":      self.dps.get('3'),
+            "cruise":      self.dps.get('4'),
+            "start_mode":  self.dps.get('5'),
+            "speed":       self.dps.get('101'),
+            "battery":     self.dps.get('102'),
+            "mileage":     self.dps.get('103'),
+            "trip":        self.dps.get('104'),
+            "fault":       self.dps.get('105'),
+        }
+
     ## Electronic Lock toggle
     def toogle_switch_lock(self):
         new_state = not self.dps.get('1')

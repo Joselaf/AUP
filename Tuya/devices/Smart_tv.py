@@ -66,7 +66,22 @@ class Smart_tv:
         self.mute   = self.dps.get('3')
         self.mode   = self.dps.get('4')
         self.source = self.dps.get('102')
+        self.stats = {
+            "power":   self.power,
+            "volume":  self.volume,
+            "mute":    self.mute,
+            "mode":    self.mode,
+            "source":  self.source,
+        }
 
+    def update_from_dps(self, dps: dict) -> None:
+        """Called by UDPListener when a broadcast packet arrives for this device."""
+        self.dps.update(dps)
+        self.power  = self.dps.get('1')
+        self.volume = self.dps.get('2')
+        self.mute   = self.dps.get('3')
+        self.mode   = self.dps.get('4')
+        self.source = self.dps.get('102')
         self.stats = {
             "power":   self.power,
             "volume":  self.volume,

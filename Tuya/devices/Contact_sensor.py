@@ -69,3 +69,13 @@ class Contact_sensor:
             "battery_state":      self.dps.get('3'),
             "tamper_alarm":       self.dps.get('4'),
         }
+
+    def update_from_dps(self, dps: dict) -> None:
+        """Called by UDPListener when a broadcast packet arrives for this device."""
+        self.dps.update(dps)
+        self.stats = {
+            "door_state":         self.dps.get('1'),
+            "battery_percentage": self.dps.get('2'),
+            "battery_state":      self.dps.get('3'),
+            "tamper_alarm":       self.dps.get('4'),
+        }

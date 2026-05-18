@@ -70,6 +70,19 @@ class Smart_bulb:
             "countdown":   self.dps.get('26'),
         }
 
+    def update_from_dps(self, dps: dict) -> None:
+        """Called by UDPListener when a broadcast packet arrives for this device."""
+        self.dps.update(dps)
+        self.stats = {
+            "state":       self.dps.get('20'),
+            "mode":        self.dps.get('21'),
+            "brightness":  self.dps.get('22'),
+            "temperature": self.dps.get('23'),
+            "colour":      self.dps.get('24'),
+            "scene":       self.dps.get('25'),
+            "countdown":   self.dps.get('26'),
+        }
+
     ## Turns the device ON if it is OFF and vice-versa
     def Toogle(self):
         new_state = not self.dps.get('20')

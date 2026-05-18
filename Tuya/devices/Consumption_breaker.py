@@ -1,6 +1,10 @@
 import tinytuya
 from is_device_reachable import is_device_reachable
 from breaker_code import breaker_code
+from collections import deque
+from datetime import datetime
+
+_HISTORY_MAX = 2880
 
 
 class Consumption_breaker:
@@ -13,6 +17,11 @@ class Consumption_breaker:
         self.device.set_version(d_version)
         self.dps = {}
         self.stats = {}
+
+        # Energy accumulation
+        self._cumulative_kwh: float = 0.0
+        self._energy_history: deque = deque(maxlen=_HISTORY_MAX)
+
         self.refresh()
 
     # ------------------------------------------------------------------
@@ -36,6 +45,16 @@ class Consumption_breaker:
                 return True
         return raw_state not in (None, "None", "")
 
+    def _accumulate_energy(self):
+        """Accumulate add_ele (DP 17) into the running total."""
+        try:
+            raw = int(self.dps.get("17", 0))
+        except (ValueError, TypeError):
+            raw = 0
+        if raw > 0:
+            self._cumulative_kwh += raw / 1000.0
+            self._energy_history.append((datetime.now(), self._cumulative_kwh))
+
     def _parse_dps(self):
         try:
             watts = float(self.dps.get("19", 0)) / 10.0
@@ -51,13 +70,14 @@ class Consumption_breaker:
             volts = 0.0
 
         self.stats = {
-            "state":        self._normalize_state(self.dps.get("1")),
-            "amps":         amps,
-            "watts":        watts,
-            "volts":        volts,
-            "fault":        self.dps.get("26"),
-            "relay_status": self.dps.get("38"),
-            "child_lock":   self.dps.get("40"),
+            "state":          self._normalize_state(self.dps.get("1")),
+            "amps":           amps,
+            "watts":          watts,
+            "volts":          volts,
+            "cumulative_kwh": self._cumulative_kwh,
+            "fault":          self.dps.get("26"),
+            "relay_status":   self.dps.get("38"),
+            "child_lock":     self.dps.get("40"),
         }
 
     # ------------------------------------------------------------------
@@ -67,7 +87,18 @@ class Consumption_breaker:
     def refresh(self):
         status = self.device.status()
         self.dps = status.get("dps", {}) if status else {}
+        self._accumulate_energy()
         self._parse_dps()
+
+    def update_from_dps(self, dps: dict) -> None:
+        """Called by UDPListener when a broadcast packet arrives."""
+        self.dps.update(dps)
+        self._accumulate_energy()
+        self._parse_dps()
+
+    def get_energy_history(self) -> list:
+        """Return list of (datetime, cumulative_kwh) for graphing."""
+        return list(self._energy_history)
 
     def get_status(self):
         return self.stats if self.ip else None
@@ -80,18 +111,17 @@ class Consumption_breaker:
 
     def get_tui_table(self, table, name):
         if is_device_reachable(self.ip):
-            _status = "🟢 [bold green]ONLINE[/]"
-            _state  = "[bold white]On[/]" if self.stats["state"] else "[bold white]OFF[/]"
-            _fault  = "[bold white]None[/]" if self.stats["fault"] is None else f"[bold white]{breaker_code(self.stats['fault'])}[/]"
-            _power = f"[bold yellow]{self.stats['watts']}W[/]"
+            status = "🟢 [bold green]ONLINE[/]"
+            state  = "[bold white]On[/]" if self.stats["state"] else "[bold white]OFF[/]"
+            fault  = "[bold white]None[/]" if self.stats["fault"] is None else f"[bold white]{breaker_code(self.stats['fault'])}[/]"
+            power  = f"[bold yellow]{self.stats['watts']}W[/]"
+            energy = f"[bold cyan]{self._cumulative_kwh:.3f}kWh[/]"
         else:
-            _status = "🔴 [bold red]OFFLINE[/]"
-            _state = "[bold white]-[/]"
-            _fault = "[bold white]-[/]"
-            _power = "[bold white]-[/]"
+            status = "🔴 [bold red]OFFLINE[/]"
+            state = fault = power = energy = "[bold white]-[/]"
 
-        table.add_columns("Device", "Status", "State", "Fault","Power")
-        table.add_row(name,_status,_state,_fault,_power)
+        table.add_columns("Device", "Status", "State", "Fault", "Power", "Energy")
+        table.add_row(name, status, state, fault, power, energy)
 
     def get_alerts(self):
         alerts = []
