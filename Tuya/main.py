@@ -69,8 +69,18 @@ def load_devices():
     return data if isinstance(data, list) else data.get("devices", [])
 
 
+# Manual room overrides: device name → (floor, room_number)
+# Devices listed here are placed in the specified room regardless of their name.
+_ROOM_OVERRIDES = {
+    "ESMAX 2": (0, 1),
+}
+
+
 def _parse_room_tag(name: str):
     """Return (floor, room_number) ints from a device name, or None if not a room device."""
+    # Check manual overrides first
+    if name in _ROOM_OVERRIDES:
+        return _ROOM_OVERRIDES[name]
     if "Q" not in name:
         return None
     idx = name.index("Q")

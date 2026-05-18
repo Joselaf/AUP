@@ -79,7 +79,7 @@ DataTable > .datatable--header {
 
 
 class TuyaDashboard(App):
-    ##CSS = CSS
+    CSS = CSS
     BINDINGS = [("g", "show_graphs", "Energy Graphs")]
 
     def on_mount(self) -> None:
